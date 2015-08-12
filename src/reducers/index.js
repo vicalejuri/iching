@@ -1,1 +1,1 @@
-export counter from './counter';
+export hexagram from './hexagram';

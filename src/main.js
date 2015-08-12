@@ -5,17 +5,19 @@ import { DevTools, DebugPanel, LogMonitor } from 'redux-devtools/lib/react';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 
-import * as reducers from './reducers';
 import Tashuo from './Tashuo';
 
+//import * as store from './store.js';
+import * as reducers from './reducers';
 const finalCreateStore = compose(
   applyMiddleware(thunk),
   devTools(),
   createStore
 );
 
-const reducer = combineReducers(reducers);
-const store = finalCreateStore(reducer);
+let reducer = combineReducers(reducers);
+let store = finalCreateStore(reducer);
+window.store = store;
 
 export default class App extends Component {
   render() {

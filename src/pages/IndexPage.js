@@ -26,10 +26,8 @@ export default class IndexPage extends Component {
             },
           }}/>
         <p style={styles.p}>this is the index page</p>
-        <Link to="/counter">GO TO COUNTER</Link>
+        <Link to="/hexagram">GO TO HEXAGRAM</Link>
       </div>
     );
   }
 }
-
-

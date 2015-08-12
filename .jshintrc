@@ -20,8 +20,8 @@
   "smarttabs": true,
   "white": true,
   "newcap": false,
+  "prefer-const": false,
   "globals": {
     "React": true
   }
 }
-

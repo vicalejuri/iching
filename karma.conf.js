@@ -9,9 +9,11 @@ module.exports = function (config) {
     files: [
       'test/helpers/pack/**/*.js',
       'test/helpers/react/**/*.js',
-      'test/spec/components/**/*.js'
+      'test/spec/components/**/*.js',
+      'test/hexagram/*.js'
     ],
     preprocessors: {
+      'test/hexagram/*.js': ['webpack'],
       'test/helpers/createComponent.js': ['webpack'],
       'test/spec/components/**/*.js': ['webpack'],
       'test/spec/components/**/*.jsx': ['webpack']
@@ -50,6 +52,7 @@ module.exports = function (config) {
         alias: {
           'styles': path.join(process.cwd(), './src/styles/'),
           'components': path.join(process.cwd(), './src/components/'),
+          'src': path.join(process.cwd(), './src/'),
           'helpers': path.join(process.cwd(), './test/helpers/')
         }
       }
