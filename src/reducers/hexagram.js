@@ -1,4 +1,4 @@
-import { HEXAGRAM_GENERATE_KUA, HEXAGRAM_GENERATED } from '../constants/ActionTypes';
+import { HEXAGRAM_GENERATE_KUA, HEXAGRAM_GENERATED, HEXAGRAM_RESET } from '../constants/ActionTypes';
 import * as _ from 'lodash';
 
 import * as HexagramActions from '../actions/HexagramActions.js';
@@ -56,10 +56,11 @@ export function generateKua() {
 
 // Single Line KUA Reducer
 export default function hexagram(state = [], action) {
-  const store = window.store;
   switch (action.type) {
     case HEXAGRAM_GENERATE_KUA:
       return [...state , generateKua()];
+    case HEXAGRAM_RESET:
+      return [];
     case HEXAGRAM_GENERATED:
       console.log('HEXAGRAM GENERATED!');
       return state;

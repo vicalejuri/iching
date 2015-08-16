@@ -26,7 +26,34 @@ export default class IndexPage extends Component {
             },
           }}/>
         <p style={styles.p}>this is the index page</p>
-        <Link to="/hexagram">GO TO HEXAGRAM</Link>
+          <p>Bla bla bla lorem</p>
+          <p>Bla bla bla lorem</p>
+          <p>Bla bla bla lorem</p>
+          <p>Bla bla bla lorem</p>
+          <p>Bla bla bla lorem</p>
+          <p>Bla bla bla lorem</p>
+          <p>Bla bla bla lorem</p>
+          <p>Bla bla bla lorem</p>
+          <p>Bla bla bla lorem</p>
+          <p>Bla bla bla lorem</p>
+          <p>Bla bla bla lorem</p>
+          <p>Bla bla bla lorem</p>
+          <p>Bla bla bla lorem</p>
+          <p>Bla bla bla lorem</p>
+          <p>Bla bla bla lorem</p>
+          <p>Bla bla bla lorem</p>
+          <p>Bla bla bla lorem</p>
+          <p>Bla bla bla lorem</p>
+          <p>Bla bla bla lorem</p>
+          <p>Bla bla bla lorem</p>
+          <p>Bla bla bla lorem</p>
+          <p>Bla bla bla lorem</p>
+          <p>Bla bla bla lorem</p>
+          <p>Bla bla bla lorem</p>
+          <p>Bla bla bla lorem</p>
+          <p>Bla bla bla lorem</p>
+          <p>Bla bla bla lorem</p>
+          <p>Bla bla bla lorem</p>
       </div>
     );
   }

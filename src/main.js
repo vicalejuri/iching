@@ -3,9 +3,7 @@ import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import { devTools } from 'redux-devtools';
 import { DevTools, DebugPanel, LogMonitor } from 'redux-devtools/lib/react';
 import thunk from 'redux-thunk';
-import { Provider } from 'react-redux';
-
-import Tashuo from './Tashuo';
+import { Provider  } from 'react-redux';
 
 //import * as store from './store.js';
 import * as reducers from './reducers';
@@ -19,21 +17,16 @@ let reducer = combineReducers(reducers);
 let store = finalCreateStore(reducer);
 window.store = store;
 
-export default class App extends Component {
-  render() {
-    return (
-      <div>
-        <Provider store={store}>
-          {() => <Tashuo />}
-        </Provider>
 
-        <DebugPanel top right bottom>
-          <DevTools store={store}
-                    monitor={LogMonitor} />
-        </DebugPanel>
-      </div>
-    );
-  }
-}
 
-React.render(<App />, document.body);
+// Start routes
+import Router from 'react-router';
+import { Tashuo } from './Tashuo';
+
+Router.run( Tashuo, Router.HashLocation, (Root, routerState) => {
+  React.render(
+    <Provider store={store}>
+      {() => <Root routerState={routerState} />}
+    </Provider> ,
+    document.body);
+} );

@@ -18,7 +18,7 @@
     "radium": "^0.13.5",
     "react": "0.13.x",
     "react-redux": "^0.2.2",
-    "react-router": "1.0.0-beta3",
+    "react-router": "0.13.3",
     "redux": "^1.0.0-rc",
     "redux-thunk": "^0.1.0"
   },
@@ -47,9 +47,7 @@
     "phantomjs": "^1.9.17",
     "react-hot-loader": "^1.2.8",
     "react-tap-event-plugin": "^0.1.7",
-    "redux": "^1.0.0-rc",
     "redux-devtools": "^0.1.2",
-    "redux-thunk": "^0.1.0",
     "run-sequence": "^1.1.2",
     "sass-loader": "^1.0.1",
     "style-loader": "~0.8.0",

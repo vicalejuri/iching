@@ -1,1 +1,1 @@
-export hexagram from './hexagram';
+export { default as hexagram } from './hexagram';

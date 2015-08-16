@@ -16,7 +16,7 @@ export function generateKua() {
     // hexagram complete with 6!
     if (hexx.length === 5) {
       dispatch({type: HEXAGRAM_GENERATE_KUA});
-      dispatch(generateHexagram(hexx));
+      dispatch(generateHexagram(getState().hexagram));
     } else {
       dispatch({type: HEXAGRAM_GENERATE_KUA});
     }
