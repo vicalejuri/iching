@@ -30,3 +30,7 @@ Router.run( Tashuo, Router.HashLocation, (Root, routerState) => {
     </Provider> ,
     document.body);
 } );
+
+
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();

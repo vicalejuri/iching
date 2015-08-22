@@ -5,22 +5,15 @@ export default class Footer extends Component {
   render() {
     return (
       <div className="icon-bar">
-       <Link to="index">
-         <i className="fa fa-home"></i>
-         Home
+
+       <Link to="hexagram-play">
+         <div><i className="material-icons">brightness_high</i></div>
+         Play
        </Link>
-       <Link to="hexagram">
-         <i className="fa fa-bell"></i>
-         Notifications
+       <Link to="hexagram-list">
+        <div><i className="material-icons">power_input</i></div>
+       Hexagrams
        </Link>
-       <a href="#">
-         <i className="fa fa-envelope"></i>
-         Messages
-       </a>
-       <a href="#">
-         <i className="fa fa-user"></i>
-         Me
-       </a>
      </div>
     );
   }

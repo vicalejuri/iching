@@ -32,7 +32,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['', '.js', '.jsx'],
+    extensions: ['', '.js', '.jsx','.json'],
     alias: {
       'styles': __dirname + '/src/styles',
       'components': __dirname + '/src/components/',
@@ -40,6 +40,7 @@ module.exports = {
       'actions': __dirname + '/src/actions/',
       'constants': __dirname + '/src/constants/',
       'pages': __dirname + '/src/pages/',
+      'public': __dirname + '/src/public',
     }
   },
   module: {

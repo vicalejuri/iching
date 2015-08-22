@@ -1,6 +1,7 @@
 import IndexPage from './IndexPage.js';
-import CounterPage from './CounterPage.js';
-import HexagramPage from './HexagramPage.js';
-import HomePage from './HomePage.js';
+import AppContainer from './AppContainer.js';
 
-export { HomePage, IndexPage, CounterPage, HexagramPage };
+import PlayPage from './hexagram/PlayPage.js';
+import ListPage from './hexagram/ListPage.js';
+
+export { AppContainer, IndexPage, PlayPage, ListPage };
