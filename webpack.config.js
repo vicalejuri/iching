@@ -8,6 +8,7 @@
 var webpack = require('webpack');
 
 var assetPath = require('path').join(__dirname, 'dist');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
 
@@ -55,19 +56,34 @@ module.exports = {
       loaders: ['react-hot', 'babel']
     }, {
       test: /\.scss/,
-      loader: 'style-loader!css-loader!sass-loader?outputStyle=expanded'
+      //loader: 'style!css!sass?indentedSyntax',,
+      loader: ExtractTextPlugin.extract(
+                    'css-loader?sourceMap!sass-loader?sourceMap',
+                )
     }, {
       test: /\.css$/,
-      loader: 'style-loader!css-loader'
+      loader: ExtractTextPlugin.extract("css-loader")
     }, {
-      test: /\.(png|jpg|woff|woff2)$/,
+      test: /\.(png|jpg)$/,
       loader: 'url-loader?limit=8192'
-    }]
+    },
+    {
+      test: /\.(woff|woff2|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+      loader: 'file-loader'
+    },
+    /*
+    {
+      test: /\.(woff|woff2|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+      loader: 'base64-font-loader'
+    },
+    */
+  ]
   },
 
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
+    new ExtractTextPlugin('main.sourcemap.css'),
     new webpack.DefinePlugin({
       __DEVELOPMENT__: true,
       __DEVTOOLS__: true  // <-------- DISABLE redux-devtools HERE

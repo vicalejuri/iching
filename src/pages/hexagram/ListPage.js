@@ -28,7 +28,7 @@ export default class ListPage extends Component {
 
     return (
       <div>
-        <List subheader={<i>All Hexagrams</i>}>
+        <List subheader="All Hexagrams">
           {hexNodes}
         </List>
       </div>

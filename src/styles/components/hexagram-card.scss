@@ -1,0 +1,20 @@
+/*
+ * HexagramImage
+ */
+.hexagram-card {
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+  padding: 10px;
+
+  .title {
+    flex: 1;
+    h3 {
+      margin: 0px;
+      font-size: 1.6em;
+    }
+    .trigrams > div {
+      padding-left: 10px;
+    }
+  }
+}

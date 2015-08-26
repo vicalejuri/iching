@@ -16,13 +16,10 @@ const finalCreateStore = compose(
 let reducer = combineReducers(reducers);
 let store = finalCreateStore(reducer);
 window.store = store;
-
-
+import { Tashuo } from './Tashuo';
 
 // Start routes
 import Router from 'react-router';
-import { Tashuo } from './Tashuo';
-
 Router.run( Tashuo, Router.HashLocation, (Root, routerState) => {
   React.render(
     <Provider store={store}>
@@ -31,6 +28,9 @@ Router.run( Tashuo, Router.HashLocation, (Root, routerState) => {
     document.body);
 } );
 
-
+// Material-ui touchHandler
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
+
+// Import/Compile css
+import 'styles/main.scss';

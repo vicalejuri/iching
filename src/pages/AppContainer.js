@@ -1,6 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
+// Import/Compile css
+require( 'styles/main.scss' );
+
 import mui from 'material-ui';
 let Icons = mui.Icons;
 let ThemeManager = new mui.Styles.ThemeManager();

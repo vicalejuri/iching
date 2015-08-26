@@ -1,0 +1,38 @@
+/* Wrapper */
+.app-wrap {
+  max-width:540px;
+  height: 90vh;
+  margin: 5vh auto 5vh auto;
+  border:10px solid rgba(0,0,0,0.8);
+  border-bottom-width: 70px;
+  border-radius:10px;
+  box-shadow:0 0 50px  rgba(0,0,0,0.3);
+}
+
+.app-wrap {
+  display:flex;
+  flex-direction:column;
+}
+
+/*
+  Overall Layout
+*/
+.app-wrap > * {
+  flex:1 1 auto;
+}
+
+
+
+/*
+  Content
+*/
+
+.content {
+  overflow-y:scroll;
+  -webkit-overflow-scrolling:touch;
+  height: 100%;
+  padding: 0px 0px;
+  background: transparent;
+}
+
+@import '../components/footer.scss';

@@ -1,0 +1,32 @@
+/*
+ * Footer
+ */
+.icon-bar {
+ display:flex;
+}
+
+.icon-bar a {
+  flex:1;
+  text-align: center;
+  padding:1.5rem;
+  border-left:1px solid rgba(0,0,0,0.1);
+  background:#EFCA51;
+  color:rgba(0,0,0,0.5);
+}
+
+.icon-bar a:first-child {
+  border-left: 0;
+}
+
+.icon-bar a:first-child, .icon-bar a:hover {
+  border-bottom: 5px solid rgba(0,0,0,0.1);
+}
+
+.icon-bar {
+  border-top:1px solid #E6E6E6;
+}
+
+.icon-bar i {
+  font-size: 2.5rem;
+  text-shadow:3px 3px 0 rgba(0,0,0,0.1);
+}
