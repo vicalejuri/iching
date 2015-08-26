@@ -1,8 +1,6 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component, PropTypes  } from 'react';
 import { connect } from 'react-redux';
-
-// Import/Compile css
-require( 'styles/main.scss' );
+let CSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 import mui from 'material-ui';
 let Icons = mui.Icons;
@@ -16,6 +14,9 @@ import Router from 'react-router';
 let RouteHandler = Router.RouteHandler;
 
 export default class AppContainer extends Component {
+  static contextTypes = {
+    router: React.PropTypes.func.isRequired,
+  }
   static childContextTypes = {
     muiTheme: React.PropTypes.object,
   }
@@ -43,10 +44,13 @@ export default class AppContainer extends Component {
 
 
   render() {
+    let name = this.context.router.getCurrentPath();
     return (
       <div className="app-wrap">
         <div className="content">
-          <RouteHandler/>
+          <CSSTransitionGroup component="div" transitionName="page-transition">
+            <RouteHandler key={name} />
+          </CSSTransitionGroup>
         </div>
         <Footer/>
       </div>
