@@ -8,6 +8,7 @@
 var webpack = require('webpack');
 
 var assetPath = require('path').join(__dirname, 'dist');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
 
@@ -48,14 +49,14 @@ module.exports = {
       test: /\.(js|jsx)$/,
       exclude: /node_modules/,
       loader: 'react-hot!babel'
-    }, {
-      test: /\.scss/,
-      loader: 'style-loader!css-loader!sass-loader?outputStyle=expanded'
-    }, {
-      test: /\.css$/,
-      loader: 'style-loader!css-loader'
-    }, {
-      test: /\.(png|jpg|woff|woff2)$/,
+    },
+    { test: /\.scss/,
+      loader: ExtractTextPlugin.extract('css-loader?sourceMap!sass-loader?sourceMap')
+    },
+    { test: /\.css$/,
+      loader: ExtractTextPlugin.extract("css-loader")
+    },{
+      test: /\.(png|jpg|svg|eot|ttf|woff|woff2)$/,
       loader: 'url-loader?limit=8192'
     }]
   },
@@ -66,11 +67,16 @@ module.exports = {
       __DEVELOPMENT__: false,
       __DEVTOOLS__: false  // <-------- DISABLE redux-devtools HERE
     }),
+    new ExtractTextPlugin('main.sourcemap.css'),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
+      mangler: true,
       compress: {
-        warnings: false
+        warnings: false,
+        booleans: true,
+        conditionals: true,
+        dead_code: true,
       }
     }),
   ]

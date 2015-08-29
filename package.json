@@ -19,6 +19,7 @@
     "normalize.css": "~3.0.3",
     "radium": "^0.13.5",
     "react": "0.13.x",
+    "react-page-transitions": "^1.1.0",
     "react-redux": "^0.2.2",
     "react-router": "0.13.3",
     "reapp": "^0.8.28",

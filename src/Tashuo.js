@@ -6,13 +6,13 @@ import Router from 'react-router';
 let Route = Router.Route;
 let DefaultRoute = Router.DefaultRoute;
 
-import { AppContainer, IndexPage, PlayPage , ListPage } from './pages';
+import { AppContainer, IndexPage, PlayPage , ListPage, DetailPage } from './pages';
 
 export const Tashuo = (
   <Route path="/" handler={AppContainer}>
-    <Route name="hexagram-play" handler={PlayPage} />
-    <Route name="hexagram-list" handler={ListPage} />
-    <Route name="index" path="/index" handler={IndexPage} />
-    <DefaultRoute handler={IndexPage} />
+    <Route name="hexagram-play" path="/play" handler={PlayPage} />
+    <Route name="hexagram-list" path="/list" handler={ListPage} />
+    <Route name="hexagram-details" path="/details/:name" handler={DetailPage} />
+    <DefaultRoute handler={PlayPage} />
   </Route>
 );

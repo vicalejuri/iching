@@ -5,16 +5,18 @@
   display: flex;
   align-items: stretch;
   flex-wrap: wrap;
-  padding: 10px;
+  padding: 24px;
 
   .title {
     flex: 1;
     h3 {
       margin: 0px;
-      font-size: 1.6em;
+      font-size: 2.2em;
+      padding-left: 24px;
+      font-weight: 300;
     }
     .trigrams > div {
-      padding-left: 10px;
+      padding-left: 24px;
     }
   }
 }

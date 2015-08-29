@@ -1,19 +1,25 @@
 $time: .3s;
-$easing: ease-in-out;
+$easing: cubic-bezier(0.23, 1, 0.32, 1) ;
 
 .page-transition-enter {
-  transition: opacity $time $easing;
-  opacity: 0;
   position: absolute;
+  transition: all $time $easing;
+  opacity: 0;
+  will-change: transform, opacity;
+  transform: translateX(100%);
 }
 .page-transition-enter.page-transition-enter-active {
   opacity: 1;
+  transform: translateX(0px);
 }
 .page-transition-leave {
-  transition: opacity $time $easing;
-  opacity: 1;
   position: absolute;
+  transition: all $time $easing;
+  opacity: 1;
+  will-change: transform, opacity;
 }
+
 .page-transition-leave.page-transition-leave-active {
   opacity: 0;
+  transform: translateX(-100%);
 }

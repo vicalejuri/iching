@@ -8,11 +8,16 @@ import ICHING from '!json!constants/iching.json';
 import HexagramImage from 'components/HexagramImage';
 import { List, ListItem, Avatar, Icons, IconButton, FontIcon, Styles } from 'material-ui';
 
-export default class ListPage extends Component {
-  render() {
+let Router = require('react-router');
+
+let ListPage = React.createClass({
+  mixins: [ Router.Navigation ],
+
+  render: function() {
     let hexNodes = _.chain(ICHING).map( (hex) => {
       return (
             <ListItem
+                onClick={this.details.bind(this,hex)}
                 key={hex.number}
                 leftAvatar={<Avatar><HexagramImage name={hex.name}/></Avatar>}
                 primaryText={<p><b>{hex.name}</b> - {hex.description}</p>}
@@ -28,10 +33,16 @@ export default class ListPage extends Component {
 
     return (
       <div>
-        <List subheader="All Hexagrams">
+        <List subheader="The King Wen sequence">
           {hexNodes}
         </List>
       </div>
     );
-  }
-}
+  },
+
+  details: function( hex ) {
+    console.log('Selected this fucker', hex);
+    this.transitionTo('hexagram-details', {name: hex.name});
+  },
+});
+export default ListPage;

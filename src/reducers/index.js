@@ -1,1 +1,2 @@
-export { default as hexagram } from './hexagram';
+export { default as kuas ,
+         selectedHexagram as hexagram} from './hexagram';

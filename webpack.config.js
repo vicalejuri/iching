@@ -10,6 +10,10 @@ var webpack = require('webpack');
 var assetPath = require('path').join(__dirname, 'dist');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+var path = require('path');
+var node_modules = path.resolve(__dirname, 'node_modules');
+var pathToReact = path.resolve(node_modules, 'react/dist/react.min.js');
+
 module.exports = {
 
   output: {
@@ -42,6 +46,7 @@ module.exports = {
       'constants': __dirname + '/src/constants/',
       'pages': __dirname + '/src/pages/',
       'public': __dirname + '/src/public',
+      //'react': pathToReact,
     }
   },
   module: {
@@ -50,25 +55,21 @@ module.exports = {
       exclude: /node_module/,
       loaders: ['eslint-loader', ],
     }],
-    loaders: [{
-      test: /\.(js|jsx)$/,
+    loaders: [
+    { test: /\.(js|jsx)$/,
       exclude: /node_modules/,
       loaders: ['react-hot', 'babel']
-    }, {
-      test: /\.scss/,
-      //loader: 'style!css!sass?indentedSyntax',,
-      loader: ExtractTextPlugin.extract(
-                    'css-loader?sourceMap!sass-loader?sourceMap',
-                )
-    }, {
-      test: /\.css$/,
+    },
+    { test: /\.scss/,
+      loader: ExtractTextPlugin.extract('css-loader?sourceMap!sass-loader?sourceMap')
+    },
+    { test: /\.css$/,
       loader: ExtractTextPlugin.extract("css-loader")
-    }, {
-      test: /\.(png|jpg)$/,
+    },
+    { test: /\.(png|jpg)$/,
       loader: 'url-loader?limit=8192'
     },
-    {
-      test: /\.(woff|woff2|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+    { test: /\.(woff|woff2|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
       loader: 'file-loader'
     },
     /*
@@ -76,8 +77,9 @@ module.exports = {
       test: /\.(woff|woff2|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
       loader: 'base64-font-loader'
     },
-    */
-  ]
+    */ ],
+
+    //noParse: [ pathToReact , ],
   },
 
   plugins: [

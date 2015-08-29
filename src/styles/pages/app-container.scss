@@ -1,7 +1,7 @@
 /* Wrapper */
 .app-wrap {
   max-width:540px;
-  height: 90vh;
+  height: 80vh;
   margin: 5vh auto 5vh auto;
   border:10px solid rgba(0,0,0,0.8);
   border-bottom-width: 70px;
@@ -28,11 +28,14 @@
 */
 
 .content {
-  overflow-y:scroll;
-  -webkit-overflow-scrolling:touch;
+  overflow-y:  auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
   height: 100%;
   padding: 0px 0px;
-  background: transparent;
+  background: white;
+
+  will-change: transform, opacity;
 }
 
 @import '../components/footer.scss';

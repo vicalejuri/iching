@@ -1,24 +1,48 @@
-import { HEXAGRAM_GENERATE_KUA, HEXAGRAM_GENERATED } from '../constants/ActionTypes';
+import { HEXAGRAM_GENERATE_KUA, HEXAGRAM_GENERATED,
+         HEXAGRAM_GENERATE_TRIGRAM } from '../constants/ActionTypes';
 
 
-export function generateHexagram( kuas ) {
+export function generatedHexagram( kuas ) {
   return {
     type: HEXAGRAM_GENERATED,
-    payload: kuas,
+    //payload: kuas,
   };
 }
 
 
 export function generateKua() {
   return (dispatch, getState) => {
-    let hexx = getState().hexagram;
+    let hexx = getState().kuas;
 
     // hexagram complete with 6!
-    if (hexx.length === 5) {
+    if (hexx.length <= 5) {
       dispatch({type: HEXAGRAM_GENERATE_KUA});
-      dispatch(generateHexagram(getState().hexagram));
     } else {
-      dispatch({type: HEXAGRAM_GENERATE_KUA});
+      dispatch(generatedHexagram(hexx));
     }
+
+  };
+}
+
+export function generateHexgram() {
+  return (dispatch, getState) => {
+    // Throw 6 coins
+    for (let i of [1,2,3,4,5,6]) {
+      dispatch(generateKua());
+    }
+
+    // The last one emit 'HEXAGRAM_GENERATED'
+    dispatch(generateKua());
+  };
+}
+
+export function generateTrigram() {
+  return (dispatch, getState) => {
+    // Throw 3 coins
+    for (let i of [1,2,3]) {
+      dispatch(generateKua());
+    }
+
+    dispatch({type: HEXAGRAM_GENERATE_TRIGRAM});
   };
 }

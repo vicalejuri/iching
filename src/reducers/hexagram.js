@@ -51,18 +51,34 @@ export function generateKua() {
   return {value: kuaSum, name: kuaName};
 }
 
+/*
+ * Turn an array of kuas to a full hexagram.
+ */
+export function kuas2Hexagram( kuas ) {
+  console.log(kuas);
+  console.dir(kuas);
+}
+
 
 
 
 // Single Line KUA Reducer
-export default function hexagram(state = [], action) {
+export default function kuasLine(state = [], action) {
   switch (action.type) {
     case HEXAGRAM_GENERATE_KUA:
       return [...state , generateKua()];
     case HEXAGRAM_RESET:
       return [];
+    default:
+      return state;
+  }
+}
+
+// From 6 given kuas, fetch the interpretation
+export function kuasGenerated(state = {}, action) {
+  switch (action.type) {
     case HEXAGRAM_GENERATED:
-      console.log('HEXAGRAM GENERATED!');
+      kuas2Hexagram( window.store.getState().kuas );
       return state;
     default:
       return state;
