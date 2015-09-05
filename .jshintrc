@@ -21,6 +21,7 @@
   "white": true,
   "newcap": false,
   "prefer-const": false,
+  "func-names": false,
   "globals": {
     "React": true
   }
