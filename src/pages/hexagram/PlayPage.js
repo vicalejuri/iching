@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import * as _ from 'lodash';
 
 import * as HexagramActions from 'actions/HexagramActions.js';
 import Kua from 'components/Kua.jsx';
@@ -23,10 +24,10 @@ export default class PlayPage extends Component {
   }
 
   renderPreviewCard() {
-    let { kuas } = this.props;
-    if ( kuas.length === 6 ) {
+    let { hexagram } = this.props;
+    if ( !_.isEmpty( hexagram )) {
       return (
-          <HexagramInfoCard hex={kuas}/>
+          <HexagramInfoCard hexagram={hexagram}/>
       );
     }
   }
@@ -42,16 +43,20 @@ export default class PlayPage extends Component {
                 fullWidth={true}
                 hintText="Should i ... ?"
                 defaultValue="Should i " />
-              <RaisedButton label="Play" primary={true} onTouchTap={this.play} />
           </div>
 
-          {this.renderPreviewCard()}
+          <div className="ichingDragArea">
+            <FloatingActionButton className="playBtn" onTouchTap={this.play} />
+          </div>
         </div>
+
+        {this.renderPreviewCard()}
       </div>
     );
   }
 
   play() {
-    window.store.dispatch(HexagramActions.generateHexgram());
+    window.store.dispatch(HexagramActions.clearHexagram());
+    window.store.dispatch(HexagramActions.generateHexagram());
   }
 }

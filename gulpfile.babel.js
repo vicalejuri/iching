@@ -5,7 +5,7 @@ import WebpackDevServer from 'webpack-dev-server';
 
 import * as _ from 'lodash';
 import del from 'del';
-import RunSequnence from 'run-sequence';
+import RunSequence from 'run-sequence';
 import scraper from 'scraperjs'
 
 import scrapeIchingTable from './src/scrape/scrape.js'
@@ -39,27 +39,32 @@ gulp.task('bundle', (cb) => {
 
 gulp.task('bundle:dist', (cb) => {
   options.dist = true;
-  RunSequnence('bundle', cb);
+  RunSequence('bundle', cb);
 });
 
 gulp.task('assets', (cb) => {
   return gulp.src('src/public/**')
-    .pipe(gulp.dest('dist/')).
-    pipe($.size({title: 'assets'}));
+    .pipe(gulp.dest('dist/assets/'))
+    .pipe($.size({title: 'assets'}));
+});
+
+gulp.task('copy', (cb) => {
+  return gulp.src(['./src/*.html','./src/*.ico'])
+             .pipe(gulp.dest('dist/'));
 });
 
 gulp.task('build', ['clean'], (cb) => {
-  RunSequnence(['assets', 'bundle'], cb)
+  RunSequence(['assets', 'copy','bundle'], cb)
 });
 
 gulp.task('build:dist', ['clean'], (cb) => {
   options.dist = true;
-  RunSequnence(['assets', 'bundle'], cb)
+  RunSequence(['assets', 'copy','bundle'], cb)
 });
 
 gulp.task('build:watch', ['clean'], (cb) => {
   options.watch = true;
-  RunSequnence(['build'], () => {
+  RunSequence(['build'], () => {
     gulp.watch('src/public/**', ['assets']);
   });
 });

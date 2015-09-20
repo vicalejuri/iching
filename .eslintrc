@@ -29,6 +29,10 @@
      "key-spacing": 0,
      "prefer-const": 0,
      "comma-spacing": 0,
+     "func-names": 0,
+     "camelcase": 0,
+
+     "react/no-multi-comp": 0,
   },
   "plugins": [
     "react"

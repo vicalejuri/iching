@@ -1,4 +1,4 @@
-import { HEXAGRAM_GENERATE_KUA, HEXAGRAM_GENERATED,
+import { HEXAGRAM_GENERATE_KUA, HEXAGRAM_GENERATED, HEXAGRAM_CLEAR,
          HEXAGRAM_GENERATE_TRIGRAM } from '../constants/ActionTypes';
 
 
@@ -9,7 +9,14 @@ export function generatedHexagram( kuas ) {
   };
 }
 
+export function clearHexagram() {
+  return {
+    type: HEXAGRAM_CLEAR,
+  };
+}
 
+
+// Generate a single line
 export function generateKua() {
   return (dispatch, getState) => {
     let hexx = getState().kuas;
@@ -24,7 +31,8 @@ export function generateKua() {
   };
 }
 
-export function generateHexgram() {
+// 6 lines
+export function generateHexagram() {
   return (dispatch, getState) => {
     // Throw 6 coins
     for (let i of [1,2,3,4,5,6]) {
@@ -32,10 +40,11 @@ export function generateHexgram() {
     }
 
     // The last one emit 'HEXAGRAM_GENERATED'
-    dispatch(generateKua());
+    dispatch(generatedHexagram());
   };
 }
 
+// 3 lines
 export function generateTrigram() {
   return (dispatch, getState) => {
     // Throw 3 coins

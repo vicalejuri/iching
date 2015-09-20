@@ -6,19 +6,35 @@
   min-height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  align-items: center;
+
   position: absolute;
   top: 0px;
 
   .canvas {
     flex: 1;
-    height: 100%;
-    background-color: #fff;
+    min-height: 100%;
+    min-width: 90%;
+
+    flex-direction: column;
+    display: flex;
+    margin: 5% 5%;
+
+    .question {
+      min-width: 100%;
+      margin: 10% 0;
+    }
+
+    .ichingDragArea {
+      min-width: 100%;
+      height: 80%;
+      text-align: center;
+    }
   }
 
   .hexagram-card {
     position: absolute;
     bottom: 0px;
-    width: calc(100% - 2*24px);
+    min-width: 90%;
   }
 }

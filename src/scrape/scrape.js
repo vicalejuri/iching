@@ -34,11 +34,11 @@ export default function scrapeIchingTable() {
         // Number - Name / Description
         let fname = _._( $('article > h1').text().split(' - ') );
         let [ name, description, num ] = [
-          fname.last().split('/')[0].trim(),
-          fname.last().split('/')[1].trim(),
+          fname.last().split('/')[0].trim().replace('\'',''),
+          fname.last().split('/')[1].trim().replace('\'',''),
           Number( fname.first().match(/\d+$/)[0] ),
         ];
-        console.log(name, description, num);
+        console.log(num, name, description);
 
         // Get interpretation fields( 'introduction','judgment','image','lines')
         let articles = $('article > h2').get();
@@ -61,13 +61,20 @@ export default function scrapeIchingTable() {
         let IMAGE_OUTPUT = (iname) => `./src/images/iching/${iname}.gif`;
         let image_url = [ URL_BASE, $('article > img').attr('src').substr(3) ].join('/');
         download(image_url, IMAGE_OUTPUT(name));
-        let image = `./image/${name}.gif`;
+        let image = `./images/${name}.gif`;
+
+        // Get Trigrams of hexagram
+        let getTrigram = (tri) => {
+          let tri_name = $(tri).text().replace(/Above|Below|\'/,'').trim().splice(' ')[0].toLowerCase();
+          return tri_name;
+        }
+        let { above, below } = [ getTrigram(trigrams[0]), getTrigram(trigrams[2]) ];
 
         return {
           name:  name, description: description, number: num,
-          image: image, trigrams: {
-            above: $(trigrams[0]).text().replace('Above','').trim(),
-            below: $(trigrams[2]).text().replace('Below','').trim()
+          trigrams: {
+            above: above,
+            below: below,
           },
           interpretation: interpretation
         };
@@ -76,7 +83,7 @@ export default function scrapeIchingTable() {
 
     // Download all 64 hexagrams
     let URL_HEXAGRAM = (id) => `http://ichingfortune.com/hexagrams/${id}.php`;
-    let JSON_OUTPUT = './src/public/iching.json';
+    let JSON_OUTPUT = './src/constants/iching.json';
 
     let urls = _.range(1,65).map( URL_HEXAGRAM );
     let iching = [];

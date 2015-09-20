@@ -1,7 +1,9 @@
-import { HEXAGRAM_GENERATE_KUA, HEXAGRAM_GENERATED, HEXAGRAM_RESET } from '../constants/ActionTypes';
+import { HEXAGRAM_GENERATE_KUA, HEXAGRAM_GENERATED, HEXAGRAM_CLEAR } from '../constants/ActionTypes';
 import * as _ from 'lodash';
 
 import * as HexagramActions from '../actions/HexagramActions.js';
+import * as IchingTable from 'constants/lookup.js';
+
 
 /*
  * True = head
@@ -36,38 +38,35 @@ export function generateKua() {
   const kuaName = (sum) => {
     switch (sum) {
       case 9:
-        return 'old-yang';
+        return 'old-yang'; // yang change to yin
       case 8:
         return 'young-yang';
       case 7:
         return 'young-yin';
       case 6:
-        return 'old-yin';
+        return 'old-yin'; // yin change to yang
       default:
         return 'shit';
     }
   }(kuaSum);
 
-  return {value: kuaSum, name: kuaName};
-}
+  const kuaYinOrYang =  () => {
+    if (kuaName === 'old-yang' || kuaName === 'young-yang') return 0;
+    return 1;
+  }();
 
-/*
- * Turn an array of kuas to a full hexagram.
- */
-export function kuas2Hexagram( kuas ) {
-  console.log(kuas);
-  console.dir(kuas);
+  return {value: kuaSum, name: kuaName, yin_yang: kuaYinOrYang};
 }
 
 
 
 
 // Single Line KUA Reducer
-export default function kuasLine(state = [], action) {
+export default function kuaCreated(state = [], action) {
   switch (action.type) {
     case HEXAGRAM_GENERATE_KUA:
       return [...state , generateKua()];
-    case HEXAGRAM_RESET:
+    case HEXAGRAM_CLEAR:
       return [];
     default:
       return state;
@@ -75,11 +74,13 @@ export default function kuasLine(state = [], action) {
 }
 
 // From 6 given kuas, fetch the interpretation
-export function kuasGenerated(state = {}, action) {
+export function hexagramCreated(state = {}, action) {
   switch (action.type) {
     case HEXAGRAM_GENERATED:
-      kuas2Hexagram( window.store.getState().kuas );
-      return state;
+      console.log('HEXAGRAM_GENERATED');
+      return IchingTable.getHexagram( window.store.getState().kuas );
+    case HEXAGRAM_CLEAR:
+      return {};
     default:
       return state;
   }

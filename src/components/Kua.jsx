@@ -4,7 +4,7 @@ export default class Kua extends Component {
   static propTypes = {
     kua: PropTypes.shape({
       name: PropTypes.string,
-      value: PropTypes.number,
+      value: PropTypes.array,
     }),
   }
 

@@ -7,7 +7,7 @@
 'use strict';
 var webpack = require('webpack');
 
-var assetPath = require('path').join(__dirname, 'dist');
+var assetPath = require('path').join(__dirname, 'dist/assets');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
@@ -15,7 +15,6 @@ module.exports = {
   output: {
     path: assetPath,
     filename: 'main.js',
-    publicPath: '/assets/'
   },
   devtool: 'source-map',
   progress: true,
@@ -29,7 +28,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['', '.js', '.jsx'],
+    extensions: ['', '.js', '.jsx','.json'],
     alias: {
       'styles': __dirname + '/src/styles',
       'components': __dirname + '/src/components/',
@@ -37,6 +36,7 @@ module.exports = {
       'actions': __dirname + '/src/actions/',
       'constants': __dirname + '/src/constants/',
       'pages': __dirname + '/src/pages/',
+      'public': __dirname + '/src/public',
     }
   },
   module: {
@@ -55,19 +55,32 @@ module.exports = {
     },
     { test: /\.css$/,
       loader: ExtractTextPlugin.extract("css-loader")
-    },{
+    },
+    { test: /\.(png|jpg)$/,
+      loader: 'url-loader?limit=8192'
+    },
+    /*
+    { test: /\.(woff|woff2|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+      loader: 'file-loader'
+    },
+    */
+    {
+      test: /\.(woff|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+      loader: 'base64-font-loader'
+    },
+    /*
+    {
       test: /\.(png|jpg|svg|eot|ttf|woff|woff2)$/,
       loader: 'url-loader?limit=8192'
-    }]
+    }*/],
   },
 
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
       __DEVELOPMENT__: false,
       __DEVTOOLS__: false  // <-------- DISABLE redux-devtools HERE
     }),
-    new ExtractTextPlugin('main.sourcemap.css'),
+    new ExtractTextPlugin('main.css'),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({

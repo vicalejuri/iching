@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import * as _ from 'lodash';
 
 import * as HexagramActions from 'actions/HexagramActions.js';
-import ICHING from '!json!constants/iching.json';
+import * as IchingTable from 'constants/lookup.js';
 
 import HexagramImage from 'components/HexagramImage';
 import { List, ListItem, Avatar, Icons, IconButton, FontIcon, Styles } from 'material-ui';
@@ -14,7 +14,7 @@ let ListPage = React.createClass({
   mixins: [ Router.Navigation ],
 
   render: function() {
-    let hexNodes = _.chain(ICHING).map( (hex) => {
+    let hexNodes = _.chain(IchingTable.getAllHexagrams()).map( (hex) => {
       return (
             <ListItem
                 onClick={this.details.bind(this,hex)}

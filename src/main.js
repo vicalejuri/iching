@@ -10,11 +10,11 @@ injectTapEventPlugin();
 
 //import * as store from './store.js';
 import * as reducers from './reducers';
-const finalCreateStore = compose(
-  applyMiddleware(thunk),
-  devTools(),
-  createStore
-);
+let composed_functions = ( __DEVTOOLS__ ?
+                          [applyMiddleware(thunk), devTools(), createStore] :
+                          [applyMiddleware(thunk), createStore] );
+
+const finalCreateStore = compose( ...composed_functions );
 
 let reducer = combineReducers(reducers);
 let store = finalCreateStore(reducer);
@@ -24,14 +24,18 @@ import { Tashuo } from './Tashuo';
 // Start routes
 import Router from 'react-router';
 Router.run( Tashuo, Router.HashLocation, (Root, routerState) => {
+  let debugTools = (
+    <DebugPanel top right bottom>
+      <DevTools store={store} monitor={LogMonitor} />
+    </DebugPanel>
+  );
+
   React.render(
     <div>
       <Provider store={store}>
         {() => <Root routerState={routerState} />}
       </Provider>
-      <DebugPanel top right bottom>
-        <DevTools store={store} monitor={LogMonitor} />
-      </DebugPanel>
+      { __DEVTOOLS__ ? debugTools : '' }
     </div>,
     document.body);
 } );

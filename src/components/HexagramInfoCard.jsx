@@ -11,15 +11,17 @@ import { Card, CardHeader, CardTitle, CardText, Avatar, Icons, FlatButton, IconB
 
 export default class HexagramInfoCard extends Component {
   render() {
+    let {trigrams, name, number, description} = this.props.hexagram;
     return (
       <div className="hexagram-card">
-        <HexagramImage name="hue"/>
+        <HexagramImage below={trigrams.below} above={trigrams.above} />
 
         <div className="title">
-          <h3>{this.props.name}</h3>
+          <h3>{number} - {name}</h3>
+          <h2>{description}</h2>
           <div className="trigrams">
-            <div id="above">Above: The Lake</div>
-            <div id="below">Below: The Mountain</div>
+            <div id="above">Above: {trigrams.above.name} - {trigrams.above.image}</div>
+            <div id="below">Below: {trigrams.below.name} - {trigrams.below.image}</div>
           </div>
         </div>
       </div>
