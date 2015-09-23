@@ -7,6 +7,7 @@ import { Provider  } from 'react-redux';
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
+React.initializeTouchEvents(true);
 
 //import * as store from './store.js';
 import * as reducers from './reducers';

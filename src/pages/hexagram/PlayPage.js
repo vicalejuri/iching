@@ -24,17 +24,55 @@ export default class PlayPage extends Component {
     dispatch: PropTypes.func,
   }
 
+  onGongoHold() {
+    console.log('hold',this);
+    React.findDOMNode( this.refs.gongo ).className = 'gongo down';
+  }
+  onGongoRelease() {
+    console.log('release',this);
+    React.findDOMNode( this.refs.gongo ).className = 'gongo hit';
+  }
+
+
   renderPreviewCard() {
     let { hexagram } = this.props;
     if ( !_.isEmpty( hexagram )) {
       return (
-        <HexagramInfoCard hexagram={hexagram}/>
+        <HexagramInfoCard hexagram={hexagram} full={false} />
       );
     }
   }
 
+
   render() {
     const { kuas } = this.props;
+    return (
+      <div className="playpage-container">
+
+        <div className="canvas">
+          <div className="question">
+              <TextField
+                fullWidth={true}
+                hintText="Should i ... ?"
+                defaultValue="Should i " />
+          </div>
+
+          <div className="ichingDragArea">
+            <button ref="gongo" className="gongo"
+              onMouseDown={this.onGongoHold.bind(this)}
+              onMouseUp={this.onGongoRelease.bind(this)}
+              onTouchStart={this.onGongoHold.bind(this)}
+              onTouchEnd={this.onGongoRelease.bind(this)}
+              onTouchTap={this.play.bind(this)} />
+            <audio ref="gongosound" src="styles/audio/bell-gongo-resonance2.mp3" preload="auto"></audio>
+          </div>
+        </div>
+
+        {this.renderPreviewCard()}
+
+      </div>
+    );
+    /*
     return (
       <div className="playpage-container">
 
@@ -57,10 +95,17 @@ export default class PlayPage extends Component {
 
       </div>
     );
+    */
   }
 
-  play() {
+  play( ev ) {
+    let au = React.findDOMNode( this.refs.gongosound );
+    au.currentTime = 0.0;
+    au.play();
+
     window.store.dispatch(HexagramActions.clearHexagram());
+    //_.delay( () => {
     window.store.dispatch(HexagramActions.generateHexagram());
+    //} , 300 );
   }
 }

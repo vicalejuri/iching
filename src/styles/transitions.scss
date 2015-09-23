@@ -1,6 +1,9 @@
 $time: .3s;
 $easing: cubic-bezier(0.23, 1, 0.32, 1) ;
 
+/*
+ * Transitions from pages (left/right translate)
+ */
 .page-transition-enter {
   position: absolute;
   transition: all $time $easing;
@@ -30,7 +33,10 @@ $easing: cubic-bezier(0.23, 1, 0.32, 1) ;
 
 
 
-
+/*
+ * Transition for hexagram-preview
+ * (translateY , from bottom hidden to bottom of screen)
+ */
 .hexagram-preview-enter {
   position: absolute;
   transition: all $time $easing;

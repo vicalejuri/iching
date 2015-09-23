@@ -17,14 +17,26 @@ export default class HexagramInfoCard extends Component {
         <HexagramImage below={trigrams.below} above={trigrams.above} />
 
         <div className="title">
-          <h3>{number} - {name}</h3>
+          <h3>{number}: {name}</h3>
           <h2>{description}</h2>
-          <div className="trigrams">
-            <div id="above">Above: {trigrams.above.name} - {trigrams.above.image}</div>
-            <div id="below">Below: {trigrams.below.name} - {trigrams.below.image}</div>
-          </div>
+          {this.innerTrigrams()}
         </div>
       </div>
     );
   }
+
+  innerTrigrams( ) {
+    let {is_full} = this.props.full || true;
+    let {trigrams} = this.props.hexagram;
+
+    if ( is_full ) {
+      return (
+        <div className="trigrams">
+          <div id="above">Above: {trigrams.above.name} - {trigrams.above.image}</div>
+          <div id="below">Below: {trigrams.below.name} - {trigrams.below.image}</div>
+        </div>
+      );
+    }
+  }
+
 }

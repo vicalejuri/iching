@@ -1,5 +1,6 @@
 /* Stiziles */
 @import 'fonts/material-icons/material-ui.css';
+@import 'utils/easing.scss';
 @import 'transitions.scss';
 
 html , body {
@@ -9,24 +10,27 @@ html , body {
   font-weight: 100;
   margin: 0;
   background-image: linear-gradient(260deg, #2376ae 0%, #c16ecf 100%);
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
 }
 
-* {
 
-    /* Support for all WebKit browsers. */
-    -webkit-font-smoothing: antialiased;
-    /* Support for Safari and Chrome. */
-    text-rendering: optimizeLegibility;
-
-    /* Support for Firefox. */
-    -moz-osx-font-smoothing: grayscale;
-
-    /* Support for IE. */
-    font-feature-settings: 'liga';
+*:focus {
+    outline: 0;
 }
 
 @import 'pages/app-container.scss';
 @import 'pages/play.scss';
+@import 'pages/list.scss';
 @import 'pages/details.scss';
 
 

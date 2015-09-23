@@ -5,15 +5,17 @@
   display: flex;
   align-items: stretch;
   flex-wrap: wrap;
-  margin: 5% 5%;
+  background-color: #ddd;
+  padding: 2.5% 5%;
 
   .hex-img {
-    flex: 1 0 25%;
-    height: 125px;
+    flex: 0 0 25%;
+    min-height: 100px;
   }
 
   .title {
     flex: 1 1 60%;
+
     h3 {
       margin: 0px;
       font-size: 1.2em;

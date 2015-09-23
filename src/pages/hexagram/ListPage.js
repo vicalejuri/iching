@@ -19,20 +19,20 @@ let ListPage = React.createClass({
             <ListItem
                 onClick={this.details.bind(this,hex)}
                 key={hex.number}
-                leftAvatar={<Avatar><HexagramImage below={hex.trigrams.below} above={hex.trigrams.above} /></Avatar>}
+                leftAvatar={<Avatar className="avatar"><HexagramImage below={hex.trigrams.below} above={hex.trigrams.above} /></Avatar>}
                 primaryText={<p><b>{hex.name}</b> - {hex.description}</p>}
                 secondaryText={
-                  <p>
-                    <span style={{color: Styles.Colors.darkBlack}}>{hex.trigrams.above}</span><br/>
-                      {hex.trigrams.bellow}
-                  </p>
+                  <div>
+                    <span>{hex.trigrams.above.wilhelm}</span><br/>
+                    <span>{hex.trigrams.below.wilhelm}</span>
+                  </div>
                 }
                 secondaryTextLines={2} />
       );
     }).value();
 
     return (
-      <div>
+      <div className="listpage-container">
         <List subheader="The King Wen sequence">
           {hexNodes}
         </List>
