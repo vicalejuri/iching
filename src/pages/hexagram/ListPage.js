@@ -15,7 +15,6 @@ let ListPage = React.createClass({
 
   render: function() {
     let hexNodes = _.chain(IchingTable.getAllHexagrams()).map( (hex) => {
-      console.log( hex.name, hex, hex.trigrams.above );
       return (
             <ListItem
                 onClick={this.details.bind(this,hex)}
@@ -42,8 +41,7 @@ let ListPage = React.createClass({
   },
 
   details: function( hex ) {
-    console.log('Selected this fucker', hex);
-    this.transitionTo('hexagram-details', {hex: hex} );
+    this.transitionTo('hexagram-details', {name: hex.name} );
   },
 });
 export default ListPage;

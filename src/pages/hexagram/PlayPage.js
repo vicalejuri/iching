@@ -28,9 +28,7 @@ export default class PlayPage extends Component {
     let { hexagram } = this.props;
     if ( !_.isEmpty( hexagram )) {
       return (
-        <CSSTransitionGroup component="div" transitionName="hexagram-preview">
-          <HexagramInfoCard hexagram={hexagram}/>
-        </CSSTransitionGroup>
+        <HexagramInfoCard hexagram={hexagram}/>
       );
     }
   }
@@ -49,11 +47,14 @@ export default class PlayPage extends Component {
           </div>
 
           <div className="ichingDragArea">
-            <FloatingActionButton className="playBtn" onTouchTap={this.play} />
+            <button className="playBtn" onTouchTap={this.play} />
           </div>
         </div>
 
-        {this.renderPreviewCard()}
+        <CSSTransitionGroup component="div" transitionName="hexagram-preview">
+          {this.renderPreviewCard()}
+        </CSSTransitionGroup>
+
       </div>
     );
   }

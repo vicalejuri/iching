@@ -8,11 +8,12 @@
   margin: 5% 5%;
 
   .hex-img {
+    flex: 1 0 25%;
     height: 125px;
   }
 
   .title {
-    flex: 1;
+    flex: 1 1 60%;
     h3 {
       margin: 0px;
       font-size: 1.2em;

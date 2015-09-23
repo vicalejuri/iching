@@ -13,6 +13,8 @@ export const Tashuo = (
     <Route name="hexagram-play" path="/play" handler={PlayPage} />
     <Route name="hexagram-list" path="/list" handler={ListPage} />
     <Route name="hexagram-details" path="/details/:name" handler={DetailPage} />
+    <Route name="settings-about" path="/settings" handler={IndexPage} />
+
     <DefaultRoute handler={PlayPage} />
   </Route>
 );

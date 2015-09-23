@@ -8,17 +8,19 @@
 .icon-bar a {
   flex:1;
   text-align: center;
-  padding:1.5rem;
+  padding:1.0rem;
   border-left:1px solid rgba(0,0,0,0.1);
   background:#EFCA51;
   color:rgba(0,0,0,0.5);
+  text-decoration: none;
+  text-transform: lowercase;
 }
 
 .icon-bar a:first-child {
   border-left: 0;
 }
 
-.icon-bar a:first-child, .icon-bar a:hover {
+.icon-bar a.active, .icon-bar a:hover {
   border-bottom: 5px solid rgba(0,0,0,0.1);
 }
 

@@ -47,6 +47,7 @@ export default class AppContainer extends Component {
     let name = this.context.router.getCurrentPath();
     return (
       <div className="app-wrap">
+       <Header/>
         <div className="content">
           <CSSTransitionGroup component="div" transitionName="page-transition">
             <RouteHandler key={name} />

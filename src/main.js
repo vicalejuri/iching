@@ -18,7 +18,7 @@ const finalCreateStore = compose( ...composed_functions );
 
 let reducer = combineReducers(reducers);
 let store = finalCreateStore(reducer);
-window.store = store;
+parent.store = store;
 import { Tashuo } from './Tashuo';
 
 // Start routes
@@ -29,6 +29,9 @@ Router.run( Tashuo, Router.HashLocation, (Root, routerState) => {
       <DevTools store={store} monitor={LogMonitor} />
     </DebugPanel>
   );
+  let currentPath = {routerState};
+  console.log('path', currentPath);
+  // store.dispatch 'PATH_CHANGED', currentPath
 
   React.render(
     <div>
@@ -39,7 +42,6 @@ Router.run( Tashuo, Router.HashLocation, (Root, routerState) => {
     </div>,
     document.body);
 } );
-
 
 // Import/Compile css
 import 'styles/main.scss';

@@ -19,9 +19,19 @@ let DetailPage = React.createClass({
     let hex      = IchingTable.getHexagram( p.name );
     console.log( hex );
     return (
-      <div>
-        <h1>Hello World</h1>
+      <div className="details">
           <HexagramInfoCard hexagram={hex} />
+
+          <div className="interpretation">
+            <h3>Introduction</h3>
+            <p>{hex.interpretation.introduction}</p>
+
+            <h3>Judgement</h3>
+            <p>{hex.interpretation.judgement}</p>
+
+            <h3>Image</h3>
+            <p>{hex.interpretation.image}</p>
+          </div>
       </div>
     );
   },

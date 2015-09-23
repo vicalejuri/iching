@@ -27,7 +27,6 @@ export class YangLine extends Component {
 
 export default class HexagramImage extends Component {
     render() {
-      console.log( this.props );
       let below_image = this.trigramImage( this.props.below );
       let above_image = this.trigramImage( this.props.above );
 
@@ -41,7 +40,6 @@ export default class HexagramImage extends Component {
 
     // Generate a single trigrams
     trigramImage( trigram ) {
-      console.log( trigram );
       let image = _.chain(trigram.trigrams).map( this.kuaTag ).value();
       return image;
     }
