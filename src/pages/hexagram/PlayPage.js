@@ -8,6 +8,7 @@ import HexagramInfoCard from 'components/HexagramInfoCard.jsx';
 
 import { FloatingActionButton, RaisedButton, ToggleStar, TextField, Colors } from 'material-ui';
 import { Toolbar, ToolbarGroup, ToolbarSeparator } from 'material-ui';
+let CSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 @connect(state => {
   return {
@@ -27,7 +28,9 @@ export default class PlayPage extends Component {
     let { hexagram } = this.props;
     if ( !_.isEmpty( hexagram )) {
       return (
+        <CSSTransitionGroup component="div" transitionName="hexagram-preview">
           <HexagramInfoCard hexagram={hexagram}/>
+        </CSSTransitionGroup>
       );
     }
   }

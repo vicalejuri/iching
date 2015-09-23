@@ -32,6 +32,7 @@ export const Trigrams = [
 // Vertical rows are lower trigrams
 // Horizontal lines are upper trigrams
 export const Lookup =  {
+          // chien,tui,li,chen,sun,san,kan,ken,kun
     'chien':  [1,  43, 14, 34, 9,   5, 26, 11],
     'tui':    [10, 58, 38, 54, 61, 60, 41, 19],
     'li':     [13, 49, 30, 55, 37, 63, 22, 36],
@@ -87,6 +88,8 @@ export function getHexagram( hex ) {
     hexNumber = getHexagramNumberByKuas( hex );
   } else if ( _.isNumber(hex) ) {
     hexNumber = hex;
+  } else if ( _.isString(hex) ) {
+    hexNumber = _.find( ICHING,  {'name': hex} ).number;
   } else {
     console.error('getHexagram', 'Argument ',hex,' is not of valid type (Number or Array of Kuas)');
     return {};
@@ -95,12 +98,12 @@ export function getHexagram( hex ) {
   // And finally the interpretation
   let hexInterpretation = _.find( ICHING, {'number': hexNumber});
 
-  console.debug( 'Before --> ',hexInterpretation.trigrams );
+  if (hexNumber === 32) {
+    console.log( hexNumber, hexInterpretation );
+  }
 
   hexInterpretation.trigrams.below = getTrigramByName( hexInterpretation.trigrams.below );
   hexInterpretation.trigrams.above = getTrigramByName( hexInterpretation.trigrams.above );
-
-  console.debug( 'After --> ',hexInterpretation.trigrams );
 
   return hexInterpretation;
 }

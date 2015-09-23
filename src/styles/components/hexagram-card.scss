@@ -6,7 +6,10 @@
   align-items: stretch;
   flex-wrap: wrap;
   margin: 5% 5%;
-  transform: translateY(-40px);
+
+  .hex-img {
+    height: 125px;
+  }
 
   .title {
     flex: 1;
@@ -22,6 +25,7 @@
       font-size: 1.4em;
       padding-left: 24px;
     }
+
     .trigrams > div {
       padding-left: 24px;
     }

@@ -15,16 +15,17 @@ let ListPage = React.createClass({
 
   render: function() {
     let hexNodes = _.chain(IchingTable.getAllHexagrams()).map( (hex) => {
+      console.log( hex.name, hex, hex.trigrams.above );
       return (
             <ListItem
                 onClick={this.details.bind(this,hex)}
                 key={hex.number}
-                leftAvatar={<Avatar><HexagramImage name={hex.name}/></Avatar>}
+                leftAvatar={<Avatar><HexagramImage below={hex.trigrams.below} above={hex.trigrams.above} /></Avatar>}
                 primaryText={<p><b>{hex.name}</b> - {hex.description}</p>}
                 secondaryText={
                   <p>
                     <span style={{color: Styles.Colors.darkBlack}}>{hex.trigrams.above}</span><br/>
-                    {hex.trigrams.bellow}
+                      {hex.trigrams.bellow}
                   </p>
                 }
                 secondaryTextLines={2} />
@@ -42,7 +43,7 @@ let ListPage = React.createClass({
 
   details: function( hex ) {
     console.log('Selected this fucker', hex);
-    this.transitionTo('hexagram-details', {name: hex.name});
+    this.transitionTo('hexagram-details', {hex: hex} );
   },
 });
 export default ListPage;
