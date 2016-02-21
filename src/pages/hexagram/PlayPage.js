@@ -29,11 +29,8 @@ let PlayPage = React.createClass({
       <div className="playpage-container">
 
         <div className="canvas">
-          <div className="question">
-              <TextField
-                fullWidth
-                hintText="Make a question "
-                defaultValue="Make a question" />
+          <div className="question" ref="question">
+            <h1>Concentrate on your question</h1>
           </div>
 
           <div className="ichingDragArea">
@@ -73,6 +70,7 @@ let PlayPage = React.createClass({
   },
   onGongoRelease() {
     ReactDOM.findDOMNode( this.refs.gongo ).className = 'gongo hit';
+    ReactDOM.findDOMNode( this.refs.question ).className = 'question hidden';
   },
 
 

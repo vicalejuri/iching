@@ -29,6 +29,15 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+      text-align: center;
+
+      transition: all 500ms ease-in-out;
+      opacity: 1;
+
+      &.hidden {
+        opacity: 0;
+        transform: translateY(-100px);
+      }
     }
 
     .ichingDragArea {
@@ -43,29 +52,28 @@
 
       .gongo {
         border-radius: 50%;
-        width: 120px;
-        height: 120px;
-        color: #f00;
+        width: 240px;
+        height: 240px;
 
         border: none;
         cursor: pointer;
-        background-image: url(/styles/img/gongo-256.png);
+        background-color: transparent;
+        background-image: url(/styles/img/iching-daylight.png);
         background-size: contain;
 
-        box-shadow: 0px 0px 60px 1px rgba(0, 0, 0, 0.3);
-        will-change: transform, box-shadow;
+        will-change: transform;
         transform: scale(1.0);
 
         animation: forwards;
 
         &.down {
-          transform: scale(0.95); box-shadow: 0px 0px 30px 1px rgba(0, 0, 0, 0.5);
+          transform: scale(0.95);
           transition: transform 150ms ease-in;
         }
 
         &.hit {
-          -moz-animation: bounceOut 5.5s ease-in-out;
-          -webkit-animation: bounceOut 5.5s ease-in-out;
+          -moz-animation: spin 4.5s ease-out;
+          -webkit-animation: spin 4.5s ease-out;
         }
       }
 
