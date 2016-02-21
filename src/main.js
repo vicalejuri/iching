@@ -24,12 +24,14 @@ function configureStore( initialState ) {
 
   return store;
 }
-const store = configureStore();
+let store = window.store = configureStore();
+
+// <Route name="hexagram-day" path="/day" component={DayPage} />
 
 render(
   <Provider store={store}>
     <ReduxRouter>
-      <Route path="/" component={AppContainer}>
+      <Route path="/" name="Iching of the day" component={AppContainer}>
         <Route name="hexagram-play" path="/play" component={PlayPage} />
         <Route name="hexagram-list" path="/list" component={ListPage} />
         <Route name="hexagram-details" path="/details/:name" component={DetailPage} />

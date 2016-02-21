@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
 import * as _ from 'lodash';
 
 import * as HexagramActions from 'actions/HexagramActions.js';
@@ -9,10 +8,10 @@ import HexagramImage from 'components/HexagramImage';
 import { List, ListItem, Avatar, Icons, IconButton, FontIcon, Styles } from 'material-ui';
 
 import Router, {Link} from 'react-router';
+import { connect , dispatch } from 'react-redux'
+import { pushState } from 'redux-router'
 
 let ListPage = React.createClass({
-  mixins: [ Router.Navigation ],
-
   render() {
     let hexNodes = _.chain(IchingTable.getAllHexagrams()).map( (hex) => {
       return (
@@ -20,14 +19,8 @@ let ListPage = React.createClass({
                 onClick={this.details.bind(this,hex)}
                 key={hex.number}
                 leftAvatar={<Avatar className="avatar"><HexagramImage below={hex.trigrams.below} above={hex.trigrams.above} /></Avatar>}
-                primaryText={<p><b>{hex.name}</b> - {hex.description}</p>}
-                secondaryText={
-                  <div>
-                    <span>{hex.trigrams.above.wilhelm}</span><br/>
-                    <span>{hex.trigrams.below.wilhelm}</span>
-                  </div>
-                }
-                secondaryTextLines={2} />
+                primaryText={<div><b>{hex.name}</b> - {hex.description}</div>}
+                />
       );
     }).value();
 
@@ -41,7 +34,12 @@ let ListPage = React.createClass({
   },
 
   details(hex) {
-    this.transitionTo('hexagram-details', {name: hex.name} );
-  },
+    window.store.dispatch( pushState(null,`/details/${hex.name}` , '') )
+  }
 });
-export default ListPage;
+
+
+export default connect(
+  (state) => {return {}},
+  { pushState }
+)(ListPage);

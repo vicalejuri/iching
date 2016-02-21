@@ -7,13 +7,13 @@ let Footer = React.createClass({
     return (
       <div className="icon-bar">
 
-       <Link to="hexagram-play" className="active">
+       <Link to="/play" className="active">
          <div><i className="material-icons">brightness_high</i></div>
        </Link>
-       <Link to="hexagram-list">
-        <div><i className="material-icons">power_input</i></div>
+       <Link to="/day">
+        <div><i className="material-icons">explore</i></div>
        </Link>
-       <Link to="settings-about">
+       <Link to="/list">
         <div><i className="material-icons">menu</i></div>
        </Link>
 

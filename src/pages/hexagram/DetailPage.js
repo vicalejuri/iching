@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
 import * as _ from 'lodash';
 
 import * as HexagramActions from 'actions/HexagramActions.js';
@@ -8,13 +7,13 @@ import * as IchingTable from 'constants/lookup.js';
 import HexagramInfoCard from 'components/HexagramInfoCard';
 import { List, ListItem, Avatar, Icons, IconButton, FontIcon, Styles } from 'material-ui';
 
-let Router = require('react-router');
+import { connect } from 'react-redux'
+import { pushState } from 'redux-router'
 
 let DetailPage = React.createClass({
-  mixins: [Router.State],
 
   render() {
-    let p = this.getParams();
+    let p        = this.props.q
     let hex      = IchingTable.getHexagram( p.name );
     return (
       <div className="details">
@@ -35,4 +34,12 @@ let DetailPage = React.createClass({
   },
 });
 
-export default DetailPage;
+
+export default connect(
+  state => {
+    return {
+      q: state.router.params,
+    }
+  },
+  { pushState }
+)(DetailPage);

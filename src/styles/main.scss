@@ -12,7 +12,7 @@ html , body {
   background-image: linear-gradient(260deg, #2376ae 0%, #c16ecf 100%);
 
   /* Support for all WebKit browsers. */
-  -webkit-font-smoothing: antialiased;
+  -webkit-font-smoothing: subpixel-antialiased;
   /* Support for Safari and Chrome. */
   text-rendering: optimizeLegibility;
 
@@ -22,7 +22,6 @@ html , body {
   /* Support for IE. */
   font-feature-settings: 'liga';
 }
-
 
 *:focus {
     outline: 0;

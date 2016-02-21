@@ -20,8 +20,6 @@ let PlayPage = React.createClass({
     hexagram: PropTypes.object,
     dispatch: PropTypes.func,
   },
-  mixins: [ Router.Navigation ],
-
 
   render() {
     const { kuas } = this.props;
@@ -30,7 +28,7 @@ let PlayPage = React.createClass({
 
         <div className="canvas">
           <div className="question" ref="question">
-            <h1>Concentrate on your question</h1>
+            <h1>Concentrate and make your question</h1>
           </div>
 
           <div className="ichingDragArea">
@@ -53,7 +51,7 @@ let PlayPage = React.createClass({
 
   renderPreviewCard() {
     let { hexagram } = this.props;
-    if ( !_.isEmpty( hexagram )) {
+    if ( ! _.isEmpty( hexagram )) {
       return (
         <ReactCSSTransitionGroup component="div" transitionName="hexagram-preview">
           <HexagramInfoCard hexagram={hexagram} full={false}
@@ -69,6 +67,8 @@ let PlayPage = React.createClass({
     ReactDOM.findDOMNode( this.refs.gongo ).className = 'gongo down';
   },
   onGongoRelease() {
+    this.play()
+
     ReactDOM.findDOMNode( this.refs.gongo ).className = 'gongo hit';
     ReactDOM.findDOMNode( this.refs.question ).className = 'question hidden';
   },
