@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import * as _ from 'lodash';
 
@@ -30,7 +31,7 @@ let PlayPage = React.createClass({
         <div className="canvas">
           <div className="question">
               <TextField
-                fullWidth={"true"}
+                fullWidth
                 hintText="Make a question "
                 defaultValue="Make a question" />
           </div>
@@ -68,10 +69,10 @@ let PlayPage = React.createClass({
 
 
   onGongoHold() {
-    React.findDOMNode( this.refs.gongo ).className = 'gongo down';
+    ReactDOM.findDOMNode( this.refs.gongo ).className = 'gongo down';
   },
   onGongoRelease() {
-    React.findDOMNode( this.refs.gongo ).className = 'gongo hit';
+    ReactDOM.findDOMNode( this.refs.gongo ).className = 'gongo hit';
   },
 
 
@@ -81,7 +82,7 @@ let PlayPage = React.createClass({
   },
 
   play(ev) {
-    let au = React.findDOMNode( this.refs.gongosound );
+    let au = ReactDOM.findDOMNode( this.refs.gongosound );
     au.currentTime = 0.0;
     au.play();
 

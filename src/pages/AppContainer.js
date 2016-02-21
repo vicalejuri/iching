@@ -11,18 +11,12 @@ const { pushPath } = require('redux-simple-router');
 
 
 let AppContainer = React.createClass({
-  propTypes: {
-    children: PropTypes.array
-  },
-
   render() {
     return (
       <div className="app-wrap">
        <Header/>
         <div className="content">
-        {this.props.children}
-
-
+          {this.props.children}
         </div>
         <Footer/>
       </div>

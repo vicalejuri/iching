@@ -3,8 +3,7 @@ import React, { Component, PropTypes } from 'react';
 import Router, {Link, History, State} from 'react-router';
 
 let Footer = React.createClass({
-  mixins: [State],
-  render: () => {
+  render() {
     return (
       <div className="icon-bar">
 
@@ -22,3 +21,5 @@ let Footer = React.createClass({
     );
   },
 });
+
+export default Footer;
