@@ -12,6 +12,14 @@
     "react/jsx-uses-vars": 2,
     "react/react-in-jsx-scope": 2,
     "react/prop-types": 0,
+    "react/sort-comp": [1, {
+      "order": [
+        "lifecycle",
+        "state",
+        "render",
+        "everything-else"
+      ]
+    }],
 
     // Temporarirly disabled due to a possible bug in babel-eslint (todomvc example)
     "block-scoped-var": 0,
@@ -20,6 +28,8 @@
     "padded-blocks": 0,
     "no-console": 0,
 
+     "comma-dangle": 0,
+     "no-else-return": 0,
      "no-unused-expressions": 0,
      "no-multiple-empty-lines": 0,
      "no-multi-spaces": 0,
@@ -31,8 +41,14 @@
      "comma-spacing": 0,
      "func-names": 0,
      "camelcase": 0,
-
+     "semi": 0,
+     "indent": 0,
+     "object-curly-spacing": 0,
+     "space-in-parens": 0,
+     "react/jsx-indent-props": 0,
+     "react/jsx-closing-bracket-location": 0,
      "react/no-multi-comp": 0,
+     "array-bracket-spacing": 0,
   },
   "plugins": [
     "react"

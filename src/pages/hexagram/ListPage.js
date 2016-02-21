@@ -8,12 +8,12 @@ import * as IchingTable from 'constants/lookup.js';
 import HexagramImage from 'components/HexagramImage';
 import { List, ListItem, Avatar, Icons, IconButton, FontIcon, Styles } from 'material-ui';
 
-let Router = require('react-router');
+import Router, {Link} from 'react-router';
 
 let ListPage = React.createClass({
   mixins: [ Router.Navigation ],
 
-  render: function() {
+  render() {
     let hexNodes = _.chain(IchingTable.getAllHexagrams()).map( (hex) => {
       return (
             <ListItem
@@ -40,7 +40,7 @@ let ListPage = React.createClass({
     );
   },
 
-  details: function( hex ) {
+  details(hex) {
     this.transitionTo('hexagram-details', {name: hex.name} );
   },
 });

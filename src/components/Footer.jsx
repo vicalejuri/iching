@@ -1,8 +1,10 @@
 import React, { Component, PropTypes } from 'react';
-import Router, {Link} from 'react-router';
 
-export default class Footer extends Component {
-  render() {
+import Router, {Link, History, State} from 'react-router';
+
+let Footer = React.createClass({
+  mixins: [State],
+  render: () => {
     return (
       <div className="icon-bar">
 
@@ -18,5 +20,5 @@ export default class Footer extends Component {
 
      </div>
     );
-  }
-}
+  },
+});

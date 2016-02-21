@@ -12,7 +12,12 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var path = require('path');
 var node_modules = path.resolve(__dirname, 'node_modules');
-var pathToReact = path.resolve(node_modules, 'react/dist/react.min.js');
+
+var pathToReact = path.resolve(node_modules, 'react');
+var pathToMaterialUI = path.resolve(node_modules, 'material-ui');
+var pathToRedux = path.resolve(node_modules, 'redux-devtools');
+var pathToReactRedux = path.resolve(node_modules, 'react-redux');
+var pathToSockJS = path.resolve(node_modules, 'sockjs-client');
 
 module.exports = {
 
@@ -58,7 +63,7 @@ module.exports = {
     loaders: [
     { test: /\.(js|jsx)$/,
       exclude: /node_modules/,
-      loaders: ['react-hot', 'babel']
+      loader: 'babel-loader',
     },
     { test: /\.scss/,
       loader: ExtractTextPlugin.extract('css-loader?sourceMap!sass-loader?sourceMap')
@@ -79,7 +84,10 @@ module.exports = {
     },
      ],
 
-    //noParse: [ pathToReact , ],
+     /*
+    noParse: [ pathToReact , pathToRedux, pathToReactRedux,
+               pathToSockJS, pathToMaterialUI ],
+      */
   },
 
   plugins: [
@@ -88,7 +96,7 @@ module.exports = {
     new ExtractTextPlugin('main.css'),
     new webpack.DefinePlugin({
       __DEVELOPMENT__: true,
-      __DEVTOOLS__: false
+      __DEVTOOLS__: true
     }),
 
   ]

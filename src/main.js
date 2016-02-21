@@ -1,48 +1,55 @@
 import React from 'react';
-import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
-import { devTools } from 'redux-devtools';
-import { DevTools, DebugPanel, LogMonitor } from 'redux-devtools/lib/react';
-import thunk from 'redux-thunk';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { Provider  } from 'react-redux';
+import { render } from 'react-dom';
+import thunk from 'redux-thunk';
+import invariant from 'redux-immutable-state-invariant';
 
+import { Router, Route, Link , IndexRoute} from 'react-router';
+import { AppContainer, PlayPage , ListPage, DetailPage } from './pages';
+
+
+import { createHistory } from 'history';
+const { syncReduxAndRouter, routeReducer } = require('redux-simple-router');
+
+import reducers from './reducers';
+import { Routes } from './Routes';
+
+// Compose reducers
+let history = createHistory();
+//let middleware = syncHistory(history);
+
+function configureStore( initialState ) {
+  const store = createStore( reducers, initialState, compose(
+    applyMiddleware( invariant(), thunk ),
+    window.devToolsExtension ? window.devToolsExtension() : f => f
+  ));
+
+  return store;
+}
+const store = configureStore();
+
+
+render(
+  <Provider store={store}>
+    <Router history={history}>
+      <Route path="/" component={AppContainer}>
+        <Route name="hexagram-play" path="/play" component={PlayPage} />
+        <Route name="hexagram-list" path="/list" component={ListPage} />
+        <Route name="hexagram-details" path="/details/:name" component={DetailPage} />
+
+        <IndexRoute component={PlayPage} />
+      </Route>
+    </Router>
+  </Provider>,
+  document.getElementById('app-mount')
+);
+
+/* Start tap events
 import injectTapEventPlugin from 'react-tap-event-plugin';
-injectTapEventPlugin();
+injectTapEventPlugin(); */
 React.initializeTouchEvents(true);
 
-//import * as store from './store.js';
-import * as reducers from './reducers';
-let composed_functions = ( __DEVTOOLS__ ?
-                          [applyMiddleware(thunk), devTools(), createStore] :
-                          [applyMiddleware(thunk), createStore] );
-
-const finalCreateStore = compose( ...composed_functions );
-
-let reducer = combineReducers(reducers);
-let store = finalCreateStore(reducer);
-parent.store = store;
-import { Tashuo } from './Tashuo';
-
-// Start routes
-import Router from 'react-router';
-Router.run( Tashuo, Router.HashLocation, (Root, routerState) => {
-  let debugTools = (
-    <DebugPanel top right bottom>
-      <DevTools store={store} monitor={LogMonitor} />
-    </DebugPanel>
-  );
-  let currentPath = {routerState};
-  console.log('path', currentPath);
-  // store.dispatch 'PATH_CHANGED', currentPath
-
-  React.render(
-    <div>
-      <Provider store={store}>
-        {() => <Root routerState={routerState} />}
-      </Provider>
-      { __DEVTOOLS__ ? debugTools : '' }
-    </div>,
-    document.body);
-} );
 
 // Import/Compile css
 import 'styles/main.scss';

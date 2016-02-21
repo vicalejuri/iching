@@ -11,9 +11,9 @@ import { List, ListItem, Avatar, Icons, IconButton, FontIcon, Styles } from 'mat
 let Router = require('react-router');
 
 let DetailPage = React.createClass({
-  mixins: [ Router.State ],
+  mixins: [Router.State],
 
-  render: function() {
+  render() {
     let p = this.getParams();
     console.log( p );
     let hex      = IchingTable.getHexagram( p.name );

@@ -1,4 +1,9 @@
-export { default as kuas ,
+import { kuaCreated as kuas ,
          hexagramCreated as hexagram} from './hexagram';
 
-export { routes as routes } from './routes';
+import { combineReducers, compose } from 'redux';
+
+export default combineReducers({
+  kuas,
+  hexagram
+});

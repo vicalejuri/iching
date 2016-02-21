@@ -4,11 +4,8 @@ import * as _ from 'lodash';
 import * as HexagramActions from '../actions/HexagramActions.js';
 import * as IchingTable from 'constants/lookup.js';
 
+window.IchingTable = IchingTable;
 
-/*
- * True = head
- * False = tails
- */
 function throwCoin() {
   return (Math.random() >= 0.5);
 }
@@ -20,7 +17,7 @@ function throwCoin() {
  */
 export function generateKua() {
 
-  // Throw 3 coins
+  // Throw 3 coins, head = 3, tails = 2
   const coins = _.times(3, throwCoin );
 
   const coinsValue = _.map( coins, coin => {
@@ -35,7 +32,7 @@ export function generateKua() {
   * 6 = 3 tails = Old Yin
   */
   const kuaSum  = _.sum( coinsValue );
-  const kuaName = (sum) => {
+  let kuaName = ( sum ) => {
     switch (sum) {
       case 9:
         return 'old-yang'; // yang change to yin
@@ -48,21 +45,25 @@ export function generateKua() {
       default:
         return 'shit';
     }
-  }(kuaSum);
+  }
+  kuaName(kuaSum)
 
-  const kuaYinOrYang =  () => {
+  // Yang is 0, Yin is 1
+  let kuaYinOrYang = () => {
     if (kuaName === 'old-yang' || kuaName === 'young-yang') return 0;
     return 1;
-  }();
+  };
+  kuaYinOrYang()
 
-  return {value: kuaSum, name: kuaName, yin_yang: kuaYinOrYang};
+  //
+  return kuaYinOrYang;
 }
 
 
 
 
 // Single Line KUA Reducer
-export default function kuaCreated(state = [], action) {
+export function kuaCreated(state = [], action) {
   switch (action.type) {
     case HEXAGRAM_GENERATE_KUA:
       return [...state , generateKua()];
@@ -77,7 +78,6 @@ export default function kuaCreated(state = [], action) {
 export function hexagramCreated(state = {}, action) {
   switch (action.type) {
     case HEXAGRAM_GENERATED:
-      console.log('HEXAGRAM_GENERATED');
       return IchingTable.getHexagram( window.store.getState().kuas );
     case HEXAGRAM_CLEAR:
       return {};

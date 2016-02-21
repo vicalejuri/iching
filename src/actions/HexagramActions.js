@@ -22,9 +22,9 @@ export function generateKua() {
     let hexx = getState().kuas;
 
     // hexagram complete with 6!
-    if (hexx.length <= 5) {
+    if ( !hexx || hexx.length <= 5) {
       dispatch({type: HEXAGRAM_GENERATE_KUA});
-    } else {
+    } else if ( hexx && hexx.length >= 6) {
       dispatch(generatedHexagram(hexx));
     }
 

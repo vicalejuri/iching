@@ -60,8 +60,8 @@ export function getTrigramByName( trigram_name ) {
 
 
 export function getHexagramNumberByKuas( kuas ) {
-  let below = _.pluck( kuas.slice(0,3) , 'yin_yang' );
-  let above = _.pluck( kuas.slice(3)   , 'yin_yang' );
+  let below = kuas.slice(0,3);
+  let above = kuas.slice(3);
 
   let belowTrigram =  getTrigram( below );
   let aboveTrigram =  getTrigram( above );
@@ -80,6 +80,7 @@ export function getHexagramNumberByKuas( kuas ) {
  *
  * hex = array of kuas
  * or the hexagram number
+ * or hexagram name
  */
 export function getHexagram( hex ) {
 
@@ -91,19 +92,27 @@ export function getHexagram( hex ) {
   } else if ( _.isString(hex) ) {
     hexNumber = _.find( ICHING,  {'name': hex} ).number;
   } else {
-    console.error('getHexagram', 'Argument ',hex,' is not of valid type (Number or Array of Kuas)');
+    console.error('getHexagram', 'Argument ',hex,' is not of valid type (Number,Name or Array of Kuas)');
     return {};
   }
 
   // And finally the interpretation
-  let hexInterpretation = _.find( ICHING, {'number': hexNumber});
+  let hexInterpretation = _.extend({}, _.find( ICHING, {'number': hexNumber}) );
 
-  if (hexNumber === 32) {
-    console.log( hexNumber, hexInterpretation );
+  /* Aggregate full trigram info plz
+  let below = _.extend( {} , getTrigramByName( hexInterpretation.trigrams.below ) );
+  let above = _.extend( {} , getTrigramByName( hexInterpretation.trigrams.above ) );
+  hexInterpretation.trigrams.below = below;
+  hexInterpretation.trigrams.above = above;
+
+  if (hexInterpretation.trigrams.below === undefined ||
+      hexInterpretation.trigrams.below === undefined) {
+    console.error( hexInterpretation , ' failed!');
+    console.log( hex );
+    console.log( hexNumber );
+    debugger;
   }
-
-  hexInterpretation.trigrams.below = getTrigramByName( hexInterpretation.trigrams.below );
-  hexInterpretation.trigrams.above = getTrigramByName( hexInterpretation.trigrams.above );
+  */
 
   return hexInterpretation;
 }

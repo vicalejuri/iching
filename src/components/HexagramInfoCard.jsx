@@ -4,7 +4,7 @@ import * as _ from 'lodash';
 
 import * as HexagramActions from 'actions/HexagramActions.js';
 import ICHING from '!json!constants/iching.json';
-
+import { getTrigramByName } from 'constants/lookup.js';
 import HexagramImage from './HexagramImage.jsx';
 
 import { Card, CardHeader, CardTitle, CardText, Avatar, Icons, FlatButton, IconButton, FontIcon, Styles } from 'material-ui';
@@ -27,13 +27,14 @@ export default class HexagramInfoCard extends Component {
 
   innerTrigrams( ) {
     let {is_full} = this.props.full || true;
-    let {trigrams} = this.props.hexagram;
+    let above = getTrigramByName( this.props.hexagram.above );
+    let below = getTrigramByName( this.props.hexagram.below );
 
     if ( is_full ) {
       return (
         <div className="trigrams">
-          <div id="above">Above: {trigrams.above.name} - {trigrams.above.image}</div>
-          <div id="below">Below: {trigrams.below.name} - {trigrams.below.image}</div>
+          <div id="above">Above: {above.name} - {above.image}</div>
+          <div id="below">Below: {below.name} - {below.image}</div>
         </div>
       );
     }
