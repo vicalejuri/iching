@@ -6,7 +6,7 @@
  */
 
 import * as _ from 'lodash';
-import ICHING from '!json!constants/iching.json';
+import ICHING from '!json!constants/iching_deoxy.json';
 
 // yang => 0 => ---
 // yin  => 1 => - -

@@ -8,7 +8,7 @@ import del from 'del';
 import RunSequence from 'run-sequence';
 import scraper from 'scraperjs'
 
-import scrapeIchingTable from './src/scrape/scrape.js'
+import scrapeIchingTable from './src/scrape/scrape_deoxy.js'
 
 const $ = gulpLoadPlugins();
 let options = {};
