@@ -15,23 +15,18 @@
   }
 
   .title {
-    flex: 1 1 60%;
+    flex: 1 1 50%;
 
-    h3 {
-      margin: 0px;
-      font-size: 1.2em;
-      padding-left: 24px;
-      font-weight: 300;
-      text-transform: uppercase;
-    }
-    h2 {
-      margin: 0px;
+    h1 {
       font-size: 1.4em;
-      padding-left: 24px;
+      font-weight: bold;
     }
+  }
 
-    .trigrams > div {
-      padding-left: 24px;
-    }
+  .trigrams {
+    flex: 0 0 25%;
+    font-size: 0.75em;
+    min-height: 100px;
+    height: 100px;
   }
 }

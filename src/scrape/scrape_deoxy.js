@@ -32,7 +32,6 @@ export default function scrapeIchingTable() {
         let tbody = $('#_header ~ p:last-of-type table').get()
         let title = $('tr:nth-of-type(2) h2', tbody);
 
-
         // X. Name / Description
         let fname = title.text().split(' / ');
         let [ num, name, description ] = [
@@ -47,7 +46,7 @@ export default function scrapeIchingTable() {
         trigrams_raw.map( (v) => {
             let text = $(v).text().replace('above','').replace('below','')
                                   .replace('\'','').trim().split('\n');
-            trigrams.push( {title: text[0], description: text[1]} );
+            trigrams.push( {title: text[0].toLowerCase(), description: text[1]} );
         })
 
         /* Get interpretation fields 'introduction','judgment','image','lines') */
@@ -70,10 +69,10 @@ export default function scrapeIchingTable() {
 
         // TODO.
         // FETCH LAST LINE, which is not in regular regexp format.
-
+        console.log(`Scraped ${name} - ${description}`)
         return {
           number: num,
-          name:  name, description: description,
+          name, description,
           trigrams: { above: trigrams[0], below: trigrams[1]},
           interpretation: {
             resume, judgment, image, lines

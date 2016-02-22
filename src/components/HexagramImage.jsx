@@ -37,10 +37,10 @@ export default class HexagramImage extends Component {
     render() {
 
       let { below, above } = this.props;
-      if ( _.isString(below) ||
-           _.isString(above) ) {
-        below = getTrigramByName( below );
-        above = getTrigramByName( above );
+      if ( _.isString(below.title) ||
+           _.isString(above.title) ) {
+        below = getTrigramByName( below.title );
+        above = getTrigramByName( above.title );
       }
 
       let below_image = this.trigramImage( below );
@@ -66,6 +66,25 @@ export default class HexagramImage extends Component {
       let lines = ( kua  && <YangLine key={i} /> || <YinLine key={i}/> );
 
       return lines;
-
     }
+}
+
+/*
+ * Single trigram image
+ */
+export class TrigramImage extends HexagramImage {
+  render() {
+    let { tri } = this.props;
+    if ( _.isString(tri.title) ) {
+      tri = getTrigramByName( tri.title );
+    }
+
+    let tri_image = this.trigramImage( this.props.trigram )
+
+    return (
+      <div className="tri-img">
+        { tri_image }
+      </div>
+    )
+  }
 }

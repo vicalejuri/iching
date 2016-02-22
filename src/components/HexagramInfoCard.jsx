@@ -5,13 +5,15 @@ import * as _ from 'lodash';
 import * as HexagramActions from 'actions/HexagramActions.js';
 import ICHING from '!json!constants/iching.json';
 import { getTrigramByName } from 'constants/lookup.js';
-import HexagramImage from './HexagramImage.jsx';
+import { HexagramImage , TrigramImage } from './HexagramImage.jsx';
 
 import { Card, CardHeader, CardTitle, CardText, Avatar, Icons, FlatButton, IconButton, FontIcon, Styles } from 'material-ui';
 
 export default class HexagramInfoCard extends Component {
   render() {
     let {trigrams, name, number, description} = this.props.hexagram;
+    let innerTrigrams = this.innerTrigrams( this.props.trigrams || false )
+
     return (
       <div className="hexagram-card">
         <HexagramImage below={trigrams.below} above={trigrams.above} />
@@ -19,24 +21,32 @@ export default class HexagramInfoCard extends Component {
         <div className="title">
           <h3>{number}: {name}</h3>
           <h2>{description}</h2>
-          {this.innerTrigrams()}
         </div>
+
+        {innerTrigrams}
       </div>
     );
   }
 
-  innerTrigrams( ) {
-    let {is_full} = this.props.full || true;
-    let above = getTrigramByName( this.props.hexagram.above );
-    let below = getTrigramByName( this.props.hexagram.below );
+  innerTrigrams( enabled ) {
+    let above = getTrigramByName( this.props.hexagram.trigrams.above.title );
+    let below = getTrigramByName( this.props.hexagram.trigrams.below.title );
 
-    if ( is_full ) {
+    if ( enabled ) {
       return (
         <div className="trigrams">
-          <div id="above">Above: {above.name} - {above.image}</div>
-          <div id="below">Below: {below.name} - {below.image}</div>
+          <div id="above">
+            <TrigramImage tri={above} />
+            <div className="title">{above.name} - {above.image}</div>
+          </div>
+          <div id="below">
+            <TrigramImage tri={below} />
+            <div className="title">{below.name} - {below.image}</div>
+          </div>
         </div>
       );
+    } else {
+      return (<div></div>);
     }
   }
 

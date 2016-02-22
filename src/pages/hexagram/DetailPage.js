@@ -15,19 +15,31 @@ let DetailPage = React.createClass({
   render() {
     let p        = this.props.q
     let hex      = IchingTable.getHexagram( p.name );
+
+    let lines    = _.chain( hex.interpretation.lines ).map( (line) => {
+          return (
+            <div className="line">
+              <blockquote>{line.poem}</blockquote>
+              <p>{line.expl}</p>
+            </div>
+          );
+    }).value()
+
     return (
       <div className="details">
-          <HexagramInfoCard hexagram={hex} />
+          <HexagramInfoCard hexagram={hex} trigrams />
 
           <div className="interpretation">
-            <h3>Introduction</h3>
-            <p>{hex.interpretation.introduction}</p>
+            <p>{hex.interpretation.resume}</p>
 
-            <h3>Judgement</h3>
-            <p>{hex.interpretation.judgement}</p>
+            <h3>The Judgement</h3>
+            <p>{hex.interpretation.judgment}</p>
 
-            <h3>Image</h3>
+            <h3>The Image</h3>
             <p>{hex.interpretation.image}</p>
+
+            <h3>The Lines</h3>
+            {lines}
           </div>
       </div>
     );
