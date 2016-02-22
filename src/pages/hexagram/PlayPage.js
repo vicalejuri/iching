@@ -67,7 +67,7 @@ let PlayPage = React.createClass({
     ReactDOM.findDOMNode( this.refs.gongo ).className = 'gongo down';
   },
   onGongoRelease() {
-    this.play()
+    //this.play()
 
     ReactDOM.findDOMNode( this.refs.gongo ).className = 'gongo hit';
     ReactDOM.findDOMNode( this.refs.question ).className = 'question hidden';

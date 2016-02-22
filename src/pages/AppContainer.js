@@ -2,6 +2,9 @@ import React, { Component, PropTypes  } from 'react';
 import { connect } from 'react-redux';
 const ReactCSSTransitionGroup = require('react-addons-css-transition-group');
 
+import ThemeManager from 'material-ui/lib/styles/theme-manager';
+import MuiTheme from 'constants/MuiTheme';
+
 import Header from '../components/Header.jsx';
 import Footer from '../components/Footer.jsx';
 
@@ -11,6 +14,16 @@ const { pushPath } = require('redux-simple-router');
 
 
 let AppContainer = React.createClass({
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext() {
+    return {
+      muiTheme: ThemeManager.getMuiTheme(MuiTheme),
+    }
+  },
+
   render() {
     return (
       <div className="app-wrap">

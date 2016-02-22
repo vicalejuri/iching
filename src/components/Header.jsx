@@ -8,27 +8,10 @@ import { AppBar, Card, CardHeader, CardTitle, CardText, Avatar, Icons, FlatButto
 import  NavigationArrowBack from 'material-ui/lib/svg-icons/navigation/arrow-back';
 import BrightnessHigh from 'material-ui/lib/svg-icons/image/brightness-7';
 
-let headerPathToTitle = (path, params) => {
-  /* Translate a route to it's title name */
-  if (path === `/list`) {
-      return {icon: <IconButton><NavigationArrowBack /></IconButton>,
-              name: `All Hexagrams`}
-  } else if (path === `/` || path === `/play`) {
-      return {icon: <IconButton><BrightnessHigh /></IconButton>,
-              name: `I-ching of the day`}
-  } else if ( path.startsWith('/details') ) {
-      return {icon: <IconButton><NavigationArrowBack /></IconButton>,
-              name: `${params.name}`}
-  } else {
-    return {icon: <IconButton/>,
-            name: 'I-ching'}
-  }
-}
-
 let Header = React.createClass({
 
   render() {
-    let info = headerPathToTitle(this.props.path, this.props.params)
+    let info = this.headerPathToTitle(this.props.path, this.props.params)
     return (
       <div>
         <AppBar
@@ -38,6 +21,23 @@ let Header = React.createClass({
         />
       </div>
     );
+  },
+
+  headerPathToTitle(path, params) {
+    /* Translate a route to it's title name */
+    if (path === `/list`) {
+        return {icon: <IconButton onTouchTap={ this.handleBackButton } onClick={ this.handleBackButton }><NavigationArrowBack /></IconButton>,
+                name: `All Hexagrams`}
+    } else if (path === `/` || path === `/play`) {
+        return {icon: <IconButton><BrightnessHigh /></IconButton>,
+                name: `I-ching of the day`}
+    } else if ( path.startsWith('/details') ) {
+        return {icon: <IconButton onTouchTap={ this.handleBackButton } onClick={ this.handleBackButton }><NavigationArrowBack /></IconButton>,
+                name: `${params.name}`}
+    } else {
+      return {icon: <IconButton/>,
+              name: 'I-ching'}
+    }
   },
 
   handleBackButton( ev ) {

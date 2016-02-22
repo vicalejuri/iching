@@ -43,11 +43,10 @@ render(
   document.getElementById('app-mount')
 );
 
-/* Start tap events
+/* Start tap events */
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
-React.initializeTouchEvents(true);
-*/
+
 
 // Import/Compile css
 import 'styles/main.scss';
