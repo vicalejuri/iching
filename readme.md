@@ -1,7 +1,11 @@
 # Readme
 
-I-ching app made with ES6+ , React and Redux.
-For learning purposes, both programming and iching divination.
+A simple I-ching divination app made with ES6+ , React and Redux.
+
+![alt tag](https://raw.githubusercontent.com/barrabinfc/react-iching/master/src/constants/screenshots/play.png)
+![alt tag](https://raw.githubusercontent.com/barrabinfc/react-iching/master/src/constants/screenshots/all.png)
+![alt tag](https://raw.githubusercontent.com/barrabinfc/react-iching/master/src/constants/screenshots/detail.png)
+
 
 ## Run
 
@@ -10,24 +14,14 @@ For learning purposes, both programming and iching divination.
 
 ## Todo
 
-- [ ] Implement the 'changed hexagram'
-- [ ] Implement the old method of Yarrow-stalks
+- [ ] Implement 'iching of the day' based on chinese calendar
+- [X] Implement the old method of Yarrow-stalks
 - [X] Implement the 3 coin method
 - [X] Add Header/Content/Footer in mobile format
 - [ ] Implement the 'moving lines' interpretation
-- [X] Get the 64 Hexagrams from Richard Wilhelm
-    - [X] Install and create a scraper using `jake`
-    - [X] Parse http://ichingfortune.com/hexagrams.php
-    - [X] Save each hexagram info to a json
-    - [X] Aggregate all hexagrams into a single json
-    - [X] Load JSON using WEBPACK inline json loader require()
-    - [ ] Download all 64 hexagrams svg from wikipedia
+- [X] Get the 64 Hexagrams interpretation from Richard Wilhelm
 - [X] Create a Page using ListView where ListItem = hexagram (listPage)
-- [ ] Create a Page for showing each hexagram  (detailPage)
-- [X] Create a Page for trowing coins / kua generation (playPage)
-  - [ ] Fix playCanvas interaction / Layout
-  - [ ] Fix hexagramCard layout
-  - [ ] Add click -> detailPage
+- [X] Create a Page for showing each hexagram  (detailPage)
 
 ## info
 
