@@ -29,7 +29,11 @@ let AppContainer = React.createClass({
       <div className="app-wrap">
        <Header/>
         <div className="content">
-          {this.props.children}
+          <ReactCSSTransitionGroup transitionName="page-transition"
+                                   transitionEnterTimeout={300} transitionLeaveTimeout={300}
+                                   transitionAppear transitionAppearTimeout={300} >
+                                   {this.props.children}
+          </ReactCSSTransitionGroup>
         </div>
         <Footer/>
       </div>

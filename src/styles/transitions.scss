@@ -6,7 +6,6 @@ $easing: cubic-bezier(0.23, 1, 0.32, 1) ;
  */
 .page-transition-enter {
   position: absolute;
-  transition: all $time $easing;
   opacity: 0;
   will-change: transform, opacity;
   transform: translateX(100%);
@@ -14,10 +13,11 @@ $easing: cubic-bezier(0.23, 1, 0.32, 1) ;
 .page-transition-enter.page-transition-enter-active {
   opacity: 1;
   transform: translateX(0px);
+  transition: all $time $easing;
 }
+
 .page-transition-leave {
   position: absolute;
-  transition: all $time $easing;
   opacity: 1;
   will-change: transform, opacity;
 }
@@ -25,8 +25,19 @@ $easing: cubic-bezier(0.23, 1, 0.32, 1) ;
 .page-transition-leave.page-transition-leave-active {
   opacity: 0;
   transform: translateX(-100%);
+  transition: all $time $easing;
 }
 
+.page-transition-appear {
+  position: absolute;
+  opacity: 0;
+}
+
+.page-transition-appear.page-transition-appear-active {
+  opacity: 1;
+  transform: translateX(0px);
+  transition: all $time $easing;
+}
 
 
 

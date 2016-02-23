@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import * as _ from 'lodash';
 
 import Router, {Link} from 'react-router';
+import { pushState } from 'redux-router'
 
 import * as HexagramActions from 'actions/HexagramActions.js';
 import Kua from 'components/Kua.jsx';
@@ -31,6 +32,10 @@ let PlayPage = React.createClass({
             <h1>Concentrate and make your question</h1>
           </div>
 
+          <div className="iching-card" ref="card" onTouchTap={this.goToHexagram} onClick={this.goToHexagram}>
+            {this.renderPreviewCard()}
+          </div>
+
           <div className="ichingDragArea">
             <button ref="gongo" className="gongo"
               onMouseDown={this.onGongoHold}
@@ -42,8 +47,6 @@ let PlayPage = React.createClass({
           </div>
         </div>
 
-        {this.renderPreviewCard()}
-
       </div>
     );
   },
@@ -53,9 +56,10 @@ let PlayPage = React.createClass({
     let { hexagram } = this.props;
     if ( ! _.isEmpty( hexagram )) {
       return (
-        <ReactCSSTransitionGroup component="div" transitionName="hexagram-preview">
-          <HexagramInfoCard hexagram={hexagram} full={false}
-                            onTouchTap={this.goToHexagram} />
+        <ReactCSSTransitionGroup transitionName="hexagram-preview"
+                                  transitionEnterTimeout={2500} transitionLeaveTimeout={700}
+                                  transitionAppear transitionAppearTimeout={400}>
+          <HexagramInfoCard hexagram={hexagram} trigrams />
         </ReactCSSTransitionGroup>
       );
     }
@@ -67,7 +71,7 @@ let PlayPage = React.createClass({
     ReactDOM.findDOMNode( this.refs.gongo ).className = 'gongo down';
   },
   onGongoRelease() {
-    //this.play()
+    this.play()
 
     ReactDOM.findDOMNode( this.refs.gongo ).className = 'gongo hit';
     ReactDOM.findDOMNode( this.refs.question ).className = 'question hidden';
@@ -76,7 +80,8 @@ let PlayPage = React.createClass({
 
 
   goToHexagram() {
-    console.log('Show hexagram page', this);
+    console.log(`Hello world go to Hexagram`)
+    window.store.dispatch( pushState(null,`/details/${this.props.hexagram.name}` , '') )
   },
 
   play(ev) {
@@ -97,4 +102,4 @@ export default connect(state => {
     kuas: state.kuas,
     hexagram: state.hexagram,
   };
-})(PlayPage);
+}, { pushState })(PlayPage);

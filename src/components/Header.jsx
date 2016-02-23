@@ -30,7 +30,7 @@ let Header = React.createClass({
                 name: `All Hexagrams`}
     } else if (path === `/` || path === `/play`) {
         return {icon: <IconButton><BrightnessHigh /></IconButton>,
-                name: `I-ching of the day`}
+                name: `I-ching oracle`}
     } else if ( path.startsWith('/details') ) {
         return {icon: <IconButton onTouchTap={ this.handleBackButton } onClick={ this.handleBackButton }><NavigationArrowBack /></IconButton>,
                 name: `${params.name}`}

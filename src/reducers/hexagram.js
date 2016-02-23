@@ -10,6 +10,21 @@ function throwCoin() {
   return (Math.random() >= 0.5);
 }
 
+function kuaName( sum ) {
+  switch (sum) {
+    case 9:
+      return 'old-yang'; // yang change to yin
+    case 8:
+      return 'young-yang';
+    case 7:
+      return 'young-yin';
+    case 6:
+      return 'old-yin'; // yin change to yang
+    default:
+      return 'shit';
+  }
+}
+
 /**
  * Generate a single kua.  3 coins method.
  *
@@ -32,31 +47,16 @@ export function generateKua() {
   * 6 = 3 tails = Old Yin
   */
   const kuaSum  = _.sum( coinsValue );
-  let kuaName = ( sum ) => {
-    switch (sum) {
-      case 9:
-        return 'old-yang'; // yang change to yin
-      case 8:
-        return 'young-yang';
-      case 7:
-        return 'young-yin';
-      case 6:
-        return 'old-yin'; // yin change to yang
-      default:
-        return 'shit';
-    }
-  }
-  kuaName(kuaSum)
+  let kua       = kuaName( kuaSum );
 
   // Yang is 0, Yin is 1
-  let kuaYinOrYang = () => {
-    if (kuaName === 'old-yang' || kuaName === 'young-yang') return 0;
-    return 1;
-  };
-  kuaYinOrYang()
+  if (kua === 'old-yang' || kua === 'young-yang') {
+    kua = 0;
+  } else {
+    kua = 1;
+  }
 
-  //
-  return kuaYinOrYang;
+  return kua;
 }
 
 

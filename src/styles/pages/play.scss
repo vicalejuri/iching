@@ -9,7 +9,7 @@
   flex-direction: column;
   align-items: center;
   background-color: #fff;
-  
+
   position: absolute;
   top: 0px;
 
@@ -24,7 +24,6 @@
 
     .question {
       min-width: 100%;
-      margin: 10% 0;
       flex: 1;
       display: flex;
       flex-direction: column;
@@ -86,12 +85,14 @@
     }
   }
 
-  .hexagram-card {
-    position: absolute;
-    bottom: 0em;
-    left: 0px;
-    min-width: 90%;
-    height: 20%;
-    cursor: pointer;
+  .iching-card {
+    flex: 1 1 100%;
+    align-self: center;
+    width: 90%;
+    
+    .hexagram-card {
+      cursor: pointer;
+      border-radius: 2px;
+    }
   }
 }
