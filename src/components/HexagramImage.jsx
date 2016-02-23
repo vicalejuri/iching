@@ -43,8 +43,8 @@ export class HexagramImage extends Component {
         above = getTrigramByName( above.title );
       }
 
-      let below_image = this.trigramImage( below );
-      let above_image = this.trigramImage( above );
+      let below_image = _.chain( this.trigramImage( below ) ).reverse().value();
+      let above_image = _.chain( this.trigramImage( above ) ).reverse().value();
 
       return (
         <div className="hex-img">
@@ -79,7 +79,7 @@ export class TrigramImage extends HexagramImage {
       tri = getTrigramByName( tri.title );
     }
 
-    let tri_image = this.trigramImage( tri )
+    let tri_image = _.chain( this.trigramImage( tri ) ).reverse().value()
 
     return (
       <div className="tri-img">

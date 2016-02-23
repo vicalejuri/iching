@@ -6,7 +6,6 @@ import { pushState } from 'redux-router'
 
 let Footer = React.createClass({
   render() {
-    console.log(this.props.path)
     return (
       <div className="icon-bar">
 

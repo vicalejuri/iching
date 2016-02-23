@@ -16,6 +16,10 @@ let DetailPage = React.createClass({
     let p        = this.props.q
     let hex      = IchingTable.getHexagram( p.name );
 
+    if ( ! hex ) {
+      return (<div/>);
+    }
+
     let lines    = _.chain( hex.interpretation.lines ).map( (line,i) => {
           return (
             <div className="line" key={i}>
