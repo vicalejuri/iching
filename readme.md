@@ -15,11 +15,15 @@ A simple I-ching divination app made with ES6+ , React and Redux.
 ## Todo
 
 - [ ] Implement 'iching of the day' based on chinese calendar
+- [ ] Implement the 'moving lines' interpretation
+- [ ] Fix iChing Image rendering (correct = kuas from bottom to up)
+- [ ] Fix ReactCSSTransitionGroup not working.
+
 - [X] Implement the old method of Yarrow-stalks
 - [X] Implement the 3 coin method
 - [X] Add Header/Content/Footer in mobile format
-- [ ] Implement the 'moving lines' interpretation
 - [X] Get the 64 Hexagrams interpretation from Richard Wilhelm
+- [X] Get Portuguese hexagram interpretation
 - [X] Create a Page using ListView where ListItem = hexagram (listPage)
 - [X] Create a Page for showing each hexagram  (detailPage)
 

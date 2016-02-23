@@ -1,4 +1,4 @@
-$time: .3s;
+$time: .4s;
 $easing: cubic-bezier(0.23, 1, 0.32, 1) ;
 
 /*
@@ -49,26 +49,63 @@ $easing: cubic-bezier(0.23, 1, 0.32, 1) ;
  * (translateY , from bottom hidden to bottom of screen)
  */
 .hexagram-preview-enter {
-  position: absolute;
   transition: all $time $easing;
   opacity: 0;
   will-change: transform, opacity;
-  transform: translateY(-50%);
+  transform: translateY(100%);
 }
 
-.hexagram-preview-enter.page-transition-enter-active {
+.hexagram-preview-enter.hexagram-preview-enter-active {
   opacity: 1;
-  transform: translateX(0px);
+  transform: translateY(0px);
 }
 
 .hexagram-preview-leave {
-  position: absolute;
+  transition: all $time $easing;
+  opacity: 1;
+  will-change: transform, opacity;
+  transform: translateY(0px);
+}
+
+.hexagram-preview-leave.hexagram-preview-leave-active {
+  opacity: 0;
+  transform: translateY(-100%);
+}
+
+.hexagram-preview-appear {
+  transition: all $time $easing;
+  opacity: 0;
+  will-change: transform, opacity;
+  transform: translateY(100%);
+}
+.hexagram-preview-appear.hexagram-preview-appear-active {
+  opacity: 1;
+  transform: translateY(0px);
+}
+
+
+/*
+ * Question animation
+ */
+.question-enter {
+  transition: all $time $easing;
+  opacity: 0;
+  will-change: transform, opacity , width;
+  transform: translateY(-100%);
+  width: 10%;
+}
+.question-enter.queston-enter-active  {
+  width: 100%;
+  opacity: 1;
+  transform: translateY(0px);
+}
+
+.question-leave {
   transition: all $time $easing;
   opacity: 1;
   will-change: transform, opacity;
 }
-
-.hexagram-preview-leave.page-transition-leave-active {
+.question-leave.question-leave-active {
   opacity: 0;
   transform: translateY(-100%);
 }

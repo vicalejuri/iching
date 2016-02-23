@@ -99,21 +99,6 @@ export function getHexagram( hex ) {
   // And finally the interpretation
   let hexInterpretation = _.extend({}, _.find( ICHING, {'number': hexNumber}) );
 
-  /* Aggregate full trigram info plz
-  let below = _.extend( {} , getTrigramByName( hexInterpretation.trigrams.below ) );
-  let above = _.extend( {} , getTrigramByName( hexInterpretation.trigrams.above ) );
-  hexInterpretation.trigrams.below = below;
-  hexInterpretation.trigrams.above = above;
-
-  if (hexInterpretation.trigrams.below === undefined ||
-      hexInterpretation.trigrams.below === undefined) {
-    console.error( hexInterpretation , ' failed!');
-    console.log( hex );
-    console.log( hexNumber );
-    debugger;
-  }
-  */
-
   return hexInterpretation;
 }
 

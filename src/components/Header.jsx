@@ -4,6 +4,8 @@ import Router, {History, State} from 'react-router';
 import { connect } from 'react-redux'
 import { pushState } from 'redux-router'
 
+import * as HexagramActions from 'actions/HexagramActions.js';
+
 import { AppBar, Card, CardHeader, CardTitle, CardText, Avatar, Icons, FlatButton, IconButton, FontIcon, Styles } from 'material-ui';
 import  NavigationArrowBack from 'material-ui/lib/svg-icons/navigation/arrow-back';
 import BrightnessHigh from 'material-ui/lib/svg-icons/image/brightness-7';
@@ -29,7 +31,7 @@ let Header = React.createClass({
         return {icon: <IconButton onTouchTap={ this.handleBackButton } onClick={ this.handleBackButton }><NavigationArrowBack /></IconButton>,
                 name: `All Hexagrams`}
     } else if (path === `/` || path === `/play`) {
-        return {icon: <IconButton><BrightnessHigh /></IconButton>,
+        return {icon: <IconButton onTouchTap={ this.clearHexagram } onClick={ this.clearHexagram }><BrightnessHigh /></IconButton>,
                 name: `I-ching oracle`}
     } else if ( path.startsWith('/details') ) {
         return {icon: <IconButton onTouchTap={ this.handleBackButton } onClick={ this.handleBackButton }><NavigationArrowBack /></IconButton>,
@@ -41,9 +43,12 @@ let Header = React.createClass({
   },
 
   handleBackButton( ev ) {
-    console.log(ev.target)
     history.back()
   },
+
+  clearHexagram( ev ) {
+    window.store.dispatch(HexagramActions.clearHexagram());
+  }
 
 });
 
