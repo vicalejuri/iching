@@ -4,6 +4,27 @@
     margin: 5% 5%;
     text-align: justify;
 
+    .highlight {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+
+      .tarot {
+        flex: 1 1 40%;
+
+        img {
+          width: 100%;
+          height: auto;
+        }
+      }
+
+      .oracle {
+        flex: 1 1 60%;
+        font-style: italic;
+      }
+    }
+
     p {
       /* font-family: 'Shadows Into Light Two', cursive; */
       /* font-family: 'Coming Soon', cursive; */

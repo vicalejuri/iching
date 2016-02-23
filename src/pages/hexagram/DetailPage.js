@@ -25,23 +25,33 @@ let DetailPage = React.createClass({
           );
     }).value()
 
+    let tarot_card = `styles/img/tarot/Tao_${hex.number}.jpg`
+
     return (
       <div className="details">
           <HexagramInfoCard hexagram={hex} trigrams />
 
           <div className="interpretation">
-            <blockquote>{hex.interpretation.resume}</blockquote>
 
-            <Divider />
+            <div className="highlight">
+              <div className="tarot">
+                <img src={tarot_card} />
+              </div>
+              <div className="oracle">
+                <blockquote>{hex.interpretation.resume}</blockquote>
+              </div>
+            </div>
+
             <h3>The Judgement</h3>
+            <Divider />
             <p>{hex.interpretation.judgment}</p>
 
-            <Divider />
             <h3>The Image</h3>
+            <Divider />
             <p>{hex.interpretation.image}</p>
 
-            <Divider />
             <h3>The Lines</h3>
+            <Divider />
             {lines}
           </div>
       </div>
