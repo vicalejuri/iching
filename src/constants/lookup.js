@@ -14,14 +14,14 @@ import ICHING from '!json!constants/iching_deoxy.json';
 // TRIGRAMS: Always bottom to UP
 export const Trigrams = [
      // chien , tui , li, chen, sun, kan, ken, kun
-    { trigrams: [0,0,0], image: '⛅',       name: 'chien', body: 'head',  animal: 'horse',          wilhelm: 'The Creative, Heaven'},
-    { trigrams: [0,0,1], image: '🏊',       name: 'tui',   body: 'mouth', animal: ['sheep','goat'], wilhelm: 'The Joyous, Lake'},
-    { trigrams: [0,1,0], image: '🔥',       name: 'li',    body: 'eye',   animal: 'pheasant',       wilhelm: 'The Clinging, Flame'},
-    { trigrams: [0,1,1], image: '⚡',        name: 'chên',  body: 'foot',  animal: 'dragon',         wilhelm: 'The Arousing, Thunder'},
-    { trigrams: [1,0,0], image: '🎏',       name: 'sun',   body: 'thigh', animal: 'fowl',           wilhelm: 'The Gentle, Wind'},
-    { trigrams: [1,0,1], image: '🌊',       name: 'kan',   body: 'ear',   animal: 'pig',            wilhelm: 'The Abysmal, Water'},
-    { trigrams: [1,1,0], image: '🗻',       name: 'kên',   body: 'hand',  animal: ['wolf','dog'],   wilhelm: 'Keeping Still, Mountain'},
-    { trigrams: [1,1,1], image: '🌍',       name: 'kun',   body: 'belly', animal: 'cow',            wilhelm: 'The Receptive, Earth'},
+    { trigrams: [0,0,0], image: '⛅',   image_name: 'heaven',     name: 'chien', body: 'head',  animal: '🐴',    animal_name: 'horse',          wilhelm: 'The Creative, Heaven'},
+    { trigrams: [0,0,1], image: '🏊',   image_name: 'lake',       name: 'tui',   body: 'mouth', animal: '🐐',    animal_name: 'goat',           wilhelm: 'The Joyous, Lake'},
+    { trigrams: [0,1,0], image: '🔥',   image_name: 'fire',       name: 'li',    body: 'eye',   animal: '🐔',    animal_name: 'pheasant',       wilhelm: 'The Clinging, Flame'},
+    { trigrams: [0,1,1], image: '⚡',    image_name: 'thunder',    name: 'chên',  body: 'foot',  animal: '🐉',    animal_name: 'dragon',         wilhelm: 'The Arousing, Thunder'},
+    { trigrams: [1,0,0], image: '🎏',   image_name: 'wind',       name: 'sun',   body: 'thigh', animal: '🐓',    animal_name: 'fowl',           wilhelm: 'The Gentle, Wind'},
+    { trigrams: [1,0,1], image: '🌊',   image_name: 'water',      name: 'kan',   body: 'ear',   animal: '🐖',    animal_name: 'pig',            wilhelm: 'The Abysmal, Water'},
+    { trigrams: [1,1,0], image: '🗻',   image_name: 'mountain',   name: 'kên',   body: 'hand',  animal: '🐕',    animal_name: 'dog',           wilhelm: 'Keeping Still, Mountain'},
+    { trigrams: [1,1,1], image: '🌍',   image_name: 'earth',      name: 'kun',   body: 'belly', animal: '🐄',    animal_name: 'cow',            wilhelm: 'The Receptive, Earth'},
 ];
 
 //  This order is called king wen sequence

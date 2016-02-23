@@ -7,8 +7,8 @@ import invariant from 'redux-immutable-state-invariant';
 
 import { AppContainer, PlayPage , ListPage, DetailPage } from './pages';
 
-import { createHistory } from 'history'
-//import { createHashHistory } from 'history';
+//import { createHistory } from 'history'
+import { createHashHistory as createHistory } from 'history';
 import { Router, Route, Link , IndexRoute} from 'react-router';
 import { reduxReactRouter, routerStateReducer, ReduxRouter } from 'redux-router';
 
@@ -17,7 +17,6 @@ import reducers from './reducers';
 function configureStore( initialState ) {
   let fCreateStore = compose(
     reduxReactRouter({createHistory}),
-    //reduxReactRouter({createHashHistory}),
     applyMiddleware( invariant(), thunk ),
     window.devToolsExtension ? window.devToolsExtension() : f => f
   )(createStore);

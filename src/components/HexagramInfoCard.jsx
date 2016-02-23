@@ -12,7 +12,8 @@ import { Card, Paper, Divider, Popover, Avatar, Icons, FlatButton, IconButton, F
 
 const styles = {
   popover: {
-    padding: 20,
+    padding: 10,
+    font_size: '2.0em',
   }
 }
 
@@ -67,14 +68,16 @@ export default class HexagramInfoCard extends Component {
             open={this.state.popover_open}
             anchorEl={this.state.anchorEl}
             anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
-            targetOrigin={{horizontal: 'left', vertical: 'top'}}
+            targetOrigin={{horizontal: 'right', vertical: 'top'}}
             onRequestClose={this.handleRequestClose}
           >
             <div style={styles.popover}>
-              <div>
-                <h3>{this.state.trigram.name} - {this.state.trigram.wilhelm}</h3>
-                <div><b>Image: </b>{this.state.trigram.image}</div>
-                <div><b>Body: </b>{this.state.trigram.body}</div>
+              <div className="popover-trigram">
+                <h4 className="title">{this.state.trigram.name} - {this.state.trigram.wilhelm}</h4>
+                <Divider/>
+                <div className="image"><b>Image: </b>{this.state.trigram.image} , {this.state.trigram.image_name}</div>
+                <div className="animal"><b>Animal: </b>{this.state.trigram.animal} , {this.state.trigram.animal_name}</div>
+                <div className="body"><b>Body: </b>{this.state.trigram.body}</div>
               </div>
             </div>
           </Popover>
@@ -88,19 +91,19 @@ export default class HexagramInfoCard extends Component {
 
 
   handleTouchTap = (event) => {
-    console.log( event.currentTarget )
+    let trigram = getTrigramByName( this.props.hexagram.trigrams[event.currentTarget.className].title );
     this.setState({
       popover_open: true,
       anchorEl: event.currentTarget,
-      trigram: this.props.trigrams[event.currentTarget.attr('class')]
+      trigram
     })
-  }
+  };
 
   handleRequestClose = () => {
     this.setState({
       popover_open: false,
     });
-  }
+  };
 
 
 }
