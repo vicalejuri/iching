@@ -1,19 +1,19 @@
 import React, { Component, PropTypes } from 'react';
-
 import Router, {Link, History, State} from 'react-router';
+
+import { connect } from 'react-redux'
+import { pushState } from 'redux-router'
 
 let Footer = React.createClass({
   render() {
+    console.log(this.props.path)
     return (
       <div className="icon-bar">
 
-       <Link to="/play" className="active">
+       <Link to="/play" className={ (this.props.path === `/play`) ? 'active' : 'normal' } ref="play">
          <div><i className="material-icons">brightness_high</i></div>
        </Link>
-       <Link to="/day">
-        <div><i className="material-icons">explore</i></div>
-       </Link>
-       <Link to="/list">
+       <Link to="/list" className={ (this.props.path === `/list` || this.props.path.startsWith(`/details`)) ? 'active' : 'normal' } ref="list">
         <div><i className="material-icons">menu</i></div>
        </Link>
 
@@ -22,4 +22,18 @@ let Footer = React.createClass({
   },
 });
 
-export default Footer;
+/*
+<Link to="/day">
+ <div><i className="material-icons">explore</i></div>
+</Link>
+*/
+
+export default connect(
+  state => {
+    return {
+      path: state.router.location.pathname,
+      params: state.router.params
+    }
+  },
+  { pushState }
+)(Footer);

@@ -51,7 +51,7 @@ $easing: cubic-bezier(0.23, 1, 0.32, 1) ;
 .hexagram-preview-enter {
   transition: all $time $easing;
   opacity: 0;
-  will-change: transform, opacity;
+  will-change: transform, opacity, width;
   transform: translateY(100%);
 }
 
@@ -90,9 +90,8 @@ $easing: cubic-bezier(0.23, 1, 0.32, 1) ;
 .question-enter {
   transition: all $time $easing;
   opacity: 0;
-  will-change: transform, opacity , width;
+  will-change: transform, opacity;
   transform: translateY(-100%);
-  width: 10%;
 }
 .question-enter.queston-enter-active  {
   width: 100%;
