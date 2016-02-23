@@ -27,7 +27,7 @@ export class YangLine extends Component {
   }
 }
 
-export default class HexagramImage extends Component {
+export class HexagramImage extends Component {
 
   /*
    * Draw a hexagram image.
@@ -79,7 +79,7 @@ export class TrigramImage extends HexagramImage {
       tri = getTrigramByName( tri.title );
     }
 
-    let tri_image = this.trigramImage( this.props.trigram )
+    let tri_image = this.trigramImage( tri )
 
     return (
       <div className="tri-img">
