@@ -29,7 +29,7 @@ let DetailPage = React.createClass({
           );
     }).value()
 
-    let tarot_card = `styles/img/tarot/Tao_${hex.number}.jpg`
+    let tarot_card = `assets/img/tarot/Tao_${hex.number}.jpg`
 
     return (
       <div className="details">

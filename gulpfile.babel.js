@@ -5,6 +5,7 @@ import WebpackDevServer from 'webpack-dev-server';
 
 import * as _ from 'lodash';
 import del from 'del';
+
 import RunSequence from 'run-sequence';
 import scraper from 'scraperjs'
 
@@ -14,7 +15,7 @@ const $ = gulpLoadPlugins();
 let options = {};
 
 gulp.task('clean', (cb) => {
-  del(['dist/'], cb);
+  return del(['dist/']);
 });
 
 // Scrape ichingfortune and save to #{./src/public/iching.json}
@@ -43,13 +44,13 @@ gulp.task('bundle:dist', (cb) => {
 });
 
 gulp.task('assets', (cb) => {
-  return gulp.src('src/public/**')
+  gulp.src('src/public/**')
     .pipe(gulp.dest('dist/assets/'))
     .pipe($.size({title: 'assets'}));
 });
 
 gulp.task('copy', (cb) => {
-  return gulp.src(['./src/*.html','./src/*.ico'])
+  gulp.src(['./src/*.html','./src/*.ico'])
              .pipe(gulp.dest('dist/'));
 });
 

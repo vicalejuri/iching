@@ -48,6 +48,9 @@ render(
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
+/* Hide loading */
+let load_el = document.getElementById('loading');
+load_el.parentNode.removeChild(load_el);
 
 // Import/Compile css
 import 'styles/main.scss';

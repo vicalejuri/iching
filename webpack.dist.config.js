@@ -10,11 +10,15 @@ var webpack = require('webpack');
 var assetPath = require('path').join(__dirname, 'dist/assets');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+var path = require('path');
+var node_modules = path.resolve(__dirname, 'node_modules');
+
 module.exports = {
 
   output: {
     path: assetPath,
     filename: 'main.js',
+    publicPath: 'assets/'
   },
   devtool: 'source-map',
   progress: true,
@@ -43,12 +47,12 @@ module.exports = {
     preLoaders: [{
       test: /\.(js|jsx)$/,
       exclude: /node_module/,
-      loader: 'eslint-loader'
+      loaders: ['eslint-loader',]
     }],
     loaders: [{
       test: /\.(js|jsx)$/,
       exclude: /node_modules/,
-      loader: 'react-hot!babel'
+      loader: 'babel-loader'
     },
     { test: /\.scss/,
       loader: ExtractTextPlugin.extract('css-loader?sourceMap!sass-loader?sourceMap')
@@ -78,7 +82,8 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       __DEVELOPMENT__: false,
-      __DEVTOOLS__: false  // <-------- DISABLE redux-devtools HERE
+      __DEVTOOLS__: false,
+      'process.env.NODE_ENV': '"production"'
     }),
     new ExtractTextPlugin('main.css'),
     new webpack.optimize.DedupePlugin(),

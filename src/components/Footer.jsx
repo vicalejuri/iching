@@ -9,7 +9,7 @@ let Footer = React.createClass({
     return (
       <div className="icon-bar">
 
-       <Link to="/play" className={ (this.props.path === `/play`) ? 'active' : 'normal' } ref="play">
+       <Link to="/play" className={ (this.props.path === `/play` || this.props.path === '/') ? 'active' : 'normal' } ref="play">
          <div><i className="material-icons">brightness_high</i></div>
        </Link>
        <Link to="/list" className={ (this.props.path === `/list` || this.props.path.startsWith(`/details`)) ? 'active' : 'normal' } ref="list">
