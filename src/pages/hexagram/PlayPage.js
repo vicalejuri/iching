@@ -16,7 +16,7 @@ import { Toolbar, ToolbarGroup, ToolbarSeparator } from 'material-ui';
 const ReactCSSTransitionGroup = require('react-addons-css-transition-group');
 
 const opts = {
-  hexagram_timeout: 1500,
+  hexagram_timeout: 3500,
 }
 
 let PlayPage = React.createClass({
@@ -99,6 +99,7 @@ let PlayPage = React.createClass({
     au.currentTime = 0.0;
     au.play();
 
+    window.store.dispatch(HexagramActions.clearHexagram());
     this.setState({already_played: true})
     setTimeout( () => {
       this.play()
@@ -112,7 +113,6 @@ let PlayPage = React.createClass({
   },
 
   play(ev) {
-    window.store.dispatch(HexagramActions.clearHexagram());
     window.store.dispatch(HexagramActions.generateHexagram());
   },
 
