@@ -6,6 +6,9 @@ A simple I-ching divination app made with ES6+ , React and Redux.
 ![alt tag](https://raw.githubusercontent.com/barrabinfc/react-iching/master/src/constants/screenshots/all.png)
 ![alt tag](https://raw.githubusercontent.com/barrabinfc/react-iching/master/src/constants/screenshots/detail.png)
 
+## Demo
+
+https://barrabinfc.github.io/react-iching/
 
 ## Run
 
