@@ -47,7 +47,6 @@ export const Lookup =  {
 // Get a trigram full representation from a array of 3 kuas
 export function getTrigram( trigram_bitfield ) {
   return _.find( Trigrams,  (tri) => {
-    console.log( tri.trigrams , trigram_bitfield , _.isEqual( tri.trigrams, trigram_bitfield ) );
     return _.isEqual( tri.trigrams, trigram_bitfield);
   } );
 }
@@ -94,11 +93,8 @@ export function getHexagram( hex ) {
     hexNumber = _.find( ICHING,  {'name': hex} ).number;
   } else {
     console.error('getHexagram', 'Argument ',hex,' is not of valid type (Number,Name or Array of Kuas)');
-    return {};
+    return undefined;
   }
-
-  console.log( `HexNumber`, hexNumber );
-  console.log( ICHING );
 
   // And finally the interpretation
   let hexInterpretation = _.extend({}, _.find( ICHING, {'number': hexNumber}) );

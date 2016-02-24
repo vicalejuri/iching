@@ -4,6 +4,13 @@
     margin: 5% 5%;
     text-align: justify;
 
+    pre {
+      font-family: 'Open Sans', 'Helvetica Neue', helvetica, sans-serif !important;
+      font-style: italic;
+      text-transform: capitalize;
+      text-align: left;
+    }
+
     .highlight {
       display: flex;
       flex-direction: row;
@@ -11,7 +18,7 @@
       align-items: center;
 
       .tarot {
-        flex: 1 1 40%;
+        flex: 1 1 50%;
 
         img {
           width: 100%;
@@ -20,14 +27,15 @@
       }
 
       .oracle {
-        flex: 1 1 60%;
+        flex: 1 1 50%;
         font-style: italic;
+        font-weight: bold;
+        text-transform: capitalize;
+        text-align: left;
       }
     }
 
     p {
-      /* font-family: 'Shadows Into Light Two', cursive; */
-      /* font-family: 'Coming Soon', cursive; */
       font-weight: lighter;
     }
 

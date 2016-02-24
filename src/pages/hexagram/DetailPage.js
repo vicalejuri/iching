@@ -15,7 +15,6 @@ let DetailPage = React.createClass({
   render() {
     let p        = this.props.q
     let hex      = IchingTable.getHexagram( p.name );
-
     if ( ! hex ) {
       return (<div/>);
     }
@@ -42,17 +41,20 @@ let DetailPage = React.createClass({
                 <img src={tarot_card} />
               </div>
               <div className="oracle">
-                <blockquote>{hex.interpretation.resume}</blockquote>
+                <blockquote>{hex.interpretation.oracle}</blockquote>
               </div>
             </div>
-
-            <h3>The Judgement</h3>
-            <Divider />
-            <p>{hex.interpretation.judgment}</p>
+            <p>{hex.interpretation.resume}</p>
 
             <h3>The Image</h3>
             <Divider />
-            <p>{hex.interpretation.image}</p>
+            <pre>{hex.interpretation.image.oracle}</pre>
+            <p>{hex.interpretation.image.image}</p>
+
+            <h3>The Judgement</h3>
+            <Divider />
+            <pre>{hex.interpretation.oracle}</pre>
+            <p>{hex.interpretation.judgment}</p>
 
             <h3>The Lines</h3>
             <Divider />

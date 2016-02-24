@@ -83,7 +83,7 @@ export default function scrapeIchingTable() {
 
     // Download all 64 hexagrams
     let URL_HEXAGRAM = (id) => `http://deoxy.org/iching/${id}`;
-    let JSON_OUTPUT = './src/constants/iching_deoxy.json';
+    let JSON_OUTPUT = './src/constants/iching_deoxy_raw.json';
 
     let urls = _.range(1,65).map( URL_HEXAGRAM );
     let iching = [];
