@@ -8,23 +8,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-
-  <link href="assets/main.css" main.css" type="text/css" rel="stylesheet">
   <style>
     body {
-      font-family: 'Open Sans', 'Helvetica Neue', helvetica, sans-serif;
-      background-image: linear-gradient(260deg, #2376ae 0%, #c16ecf 100%);
-
-      /* Support for all WebKit browsers. */
-      -webkit-font-smoothing: subpixel-antialiased;
-      /* Support for Safari and Chrome. */
-      text-rendering: optimizeLegibility;
-
-      /* Support for Firefox. */
-      -moz-osx-font-smoothing: grayscale;
-
-      /* Support for IE. */
-      font-feature-settings: 'liga';
+      background-color: #fff;
     }
     #loading {
       font-size: 2.0em;
@@ -36,6 +22,7 @@
       color: #000;
     }
   </style>
+
 </head>
 <body>
   <!--[if lt IE 8]>
@@ -45,6 +32,7 @@
   <div id="loading">Loading...</div>
   <div id="app-mount"></div>
 
-  <script type="text/javascript" src="assets/main.js"></script>
+  <script type="text/javascript" src="assets/main.js" async></script>
+  <link href="assets/main.css" main.css" type="text/css" rel="stylesheet" lazyload>
 </body>
 </html>
