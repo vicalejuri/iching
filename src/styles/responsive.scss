@@ -12,9 +12,49 @@
 
 }
 
-/* Smartphones (landscape) ----------- */ @media only screen and (min-width : 321px) { /* Styles */ }
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width : 321px) { /* Styles */ }
 
-/* Smartphones (portrait) ----------- */ @media only screen and (max-width : 320px) { /* Styles */ }
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 320px) {
+
+  body {
+    font-size: 0.75em;
+  }
+
+  /* Smaller header and footer */
+  .header {
+    min-height: 48px !important;
+    height: 48px !important;
+    > div:nth-of-type(1) {
+      margin-top: 0px !important
+    }
+    h1 {
+      font-size: 1.5em !important;
+      line-height: 48px !important;
+    }
+  }
+  .footer.icon-bar i {
+    font-size: 2.0em !important;
+  }
+
+  /* Smaller icons and title for hexagram-card */
+  .hexagram-card {
+    font-size: 1.0em !important;
+    .title {
+      flex: 0 0 55%;
+    }
+    .trigrams {
+      flex: 0 0 20%;
+    }
+  }
+
+  /* Smaller gongo */
+  .ichingDragArea .gongo {
+    width: 180px !important;
+    height: 180px !important;
+  }
+}
 
 /* iPads (portrait and landscape) ----------- */
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {

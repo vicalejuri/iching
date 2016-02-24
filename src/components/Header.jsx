@@ -17,6 +17,7 @@ let Header = React.createClass({
     return (
       <div>
         <AppBar
+        className="header"
         title={info.name}
         iconElementLeft={info.icon}
         onLeftIconButtonTouchTap={this.handleBackButton}

@@ -72,7 +72,7 @@ module.exports = {
       loader: ExtractTextPlugin.extract("css-loader")
     },
     { test: /\.(png|jpg)$/,
-      loader: 'file-loader?limit=8192'
+      loader: 'url-loader?limit=500000'
     },
     /*
     { test: /\.(woff|woff2|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,

@@ -79,7 +79,7 @@
         border: none;
         cursor: pointer;
         background-color: transparent;
-        background-image: url(img/iching-daylight.png);
+        background-image: url(/public/img/iching.png);
         background-size: contain;
 
         will-change: transform;
@@ -91,7 +91,7 @@
           transform: scale(0.95);
           box-shadow: 0px 0px 10px #000;
           transition: all 350ms ease-in-out;
-          transform: rotate(-30deg);
+          transform: rotate(-60deg);
         }
 
         &.hit {

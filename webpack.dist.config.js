@@ -18,7 +18,7 @@ module.exports = {
   output: {
     path: assetPath,
     filename: 'main.js',
-    publicPath: 'assets/'
+    publicPath: '/react-iching/assets/'
   },
   devtool: 'source-map',
   progress: true,
@@ -32,7 +32,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['', '.js', '.jsx','.json'],
+    extensions: ['', '.js', '.jsx','.json','.css','.jpg','.png','.gif'],
     alias: {
       'styles': __dirname + '/src/styles',
       'components': __dirname + '/src/components/',
@@ -61,7 +61,7 @@ module.exports = {
       loader: ExtractTextPlugin.extract("css-loader")
     },
     { test: /\.(png|jpg)$/,
-      loader: 'url-loader?limit=8192'
+      loader: 'url-loader?limit=500000'
     },
     /*
     { test: /\.(woff|woff2|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,

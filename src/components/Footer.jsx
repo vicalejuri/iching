@@ -7,7 +7,7 @@ import { pushState } from 'redux-router'
 let Footer = React.createClass({
   render() {
     return (
-      <div className="icon-bar">
+      <div className="footer icon-bar">
 
        <Link to="/play" className={ (this.props.path === `/play` || this.props.path === '/') ? 'active' : 'normal' } ref="play">
          <div><i className="material-icons">brightness_high</i></div>

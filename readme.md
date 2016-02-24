@@ -19,8 +19,9 @@ https://barrabinfc.github.io/react-iching/
 
 - [ ] Implement 'iching of the day' based on chinese calendar
 - [ ] Implement the 'moving lines' interpretation
-- [ ] Fix iChing Image rendering (correct = kuas from bottom to up)
-- [ ] Fix ReactCSSTransitionGroup not working.
+- [ ] Fix ReactCSSTransitionGroup over PageTransition working.
+- [ ] Fix touchTap not firing
+- [ ] Fix Layout for Smartphones (width: 320px)
 
 - [X] Implement the old method of Yarrow-stalks
 - [X] Implement the 3 coin method
@@ -29,6 +30,7 @@ https://barrabinfc.github.io/react-iching/
 - [X] Get Portuguese hexagram interpretation
 - [X] Create a Page using ListView where ListItem = hexagram (listPage)
 - [X] Create a Page for showing each hexagram  (detailPage)
+- [X] Fix iChing Image rendering (correct = kuas from bottom to up)
 
 ## info
 
