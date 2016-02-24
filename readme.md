@@ -21,6 +21,7 @@ https://barrabinfc.github.io/react-iching/
 - [ ] Implement the 'moving lines' interpretation
 - [ ] Fix ReactCSSTransitionGroup over PageTransition working.
 - [ ] Fix touchTap not firing
+- [ ] Add FB/Twitter sharing (meta tags, buttons and preview)
 
 - [X] Implement the old method of Yarrow-stalks
 - [X] Implement the 3 coin method

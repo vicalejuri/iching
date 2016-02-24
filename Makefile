@@ -4,7 +4,7 @@ build:
 build_dist:
 	gulp build:dist;
 	cp src/public/img/tarot/* dist/assets/img/tarot/;
-	sed -i -e 's/\public//g' dist/assets/main.css
+	sed -i -e 's/\/public\///g' dist/assets/main.css
 
 publish: build_dist
 	echo "Done. Cloning into /tmp/react-iching"
