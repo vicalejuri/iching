@@ -23,17 +23,42 @@
 
   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
   <style>
-    body {
-      background-color: #fff;
+
+    @-webkit-keyframes loading {
+      0%{background-position:0% 2%}
+      50%{background-position:100% 99%}
+      100%{background-position:0% 99%}
     }
+
     #loading {
-      font-size: 2.0em;
       width: 100%;
       height: 150px;
-      text-align: center;
       position: absolute;
       top: 45%;
       color: #000;
+    }
+    #loading .title {
+      font-size: 2.0em;
+      width: 100%;
+      text-align: center;
+    }
+
+    .load-bar {
+      width: 50%;
+      margin: 0px auto;
+      height: 5px;
+
+      background: linear-gradient(260deg, #2E76B0, #FF4081);
+      background-size: 400% 400%;
+    }
+
+    .load-anim {
+      animation-duration: 2s;
+      animation-name: loading;
+      animation-timing-function: ease-in-out;
+      animation-fill-mode: both;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
     }
   </style>
 
@@ -43,10 +68,15 @@
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
 
-  <div id="loading">Loading...</div>
+
+  <div id="loading">
+    <div class="title">Loading...</div>
+    <div class="load-bar load-anim"></div>
+  </div>
+
   <div id="app-mount"></div>
 
-  <script type="text/javascript" src="assets/main.js" async></script>
+  <!--<script type="text/javascript" src="assets/main.js" async></script>-->
   <link href="assets/main.css" main.css" type="text/css" rel="stylesheet" lazyload>
 </body>
 </html>

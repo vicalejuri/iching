@@ -61,7 +61,7 @@ let PlayPage = React.createClass({
               onTouchStart={this.onGongoHold}
               onTouchEnd={this.onGongoRelease}
               onTouchTap={this.play} />
-            <audio ref="gongosound" src="assets/audio/bell-gongo-resonance2.mp3" preload="auto"></audio>
+            <audio ref="gongosound" src="assets/audio/bell-square.mp3" preload="auto"></audio>
           </div>
         </div>
 

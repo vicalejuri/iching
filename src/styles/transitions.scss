@@ -49,38 +49,52 @@ $easing: cubic-bezier(0.23, 1, 0.32, 1) ;
  * (translateY , from bottom hidden to bottom of screen)
  */
 .hexagram-preview-enter {
+  /*
   transition: all $time $easing;
   opacity: 0;
   will-change: transform, opacity, width;
   transform: translateY(100%);
+  */
+
+  animation-duration: $time;
+  animation-timing-function: $easing;
+  animation-fill-mode: both;
 }
 
 .hexagram-preview-enter.hexagram-preview-enter-active {
+  animation-name: bounceIn;
+  /*
   opacity: 1;
   transform: translateY(0px);
+  */
 }
 
 .hexagram-preview-leave {
+  animation-name: bounceOut;
+  /*
   transition: all $time $easing;
   opacity: 1;
   will-change: transform, opacity;
   transform: translateY(0px);
+  */
 }
 
 .hexagram-preview-leave.hexagram-preview-leave-active {
+  animation-name: bounceOut;
+  /*
   opacity: 0;
   transform: translateY(-100%);
+  */
 }
 
 .hexagram-preview-appear {
-  transition: all $time $easing;
-  opacity: 0;
-  will-change: transform, opacity;
-  transform: translateY(100%);
+  animation-duration: $time;
+  animation-timing-function: $easing;
+  animation-fill-mode: both;
+
 }
 .hexagram-preview-appear.hexagram-preview-appear-active {
-  opacity: 1;
-  transform: translateY(0px);
+  animation-name: bounceIn;
 }
 
 
