@@ -70,7 +70,10 @@ $easing: cubic-bezier(0.23, 1, 0.32, 1) ;
 }
 
 .hexagram-preview-leave {
-  animation-name: bounceOut;
+  animation-duration: $time;
+  animation-timing-function: $easing;
+  animation-fill-mode: both;
+
   /*
   transition: all $time $easing;
   opacity: 1;
@@ -91,7 +94,6 @@ $easing: cubic-bezier(0.23, 1, 0.32, 1) ;
   animation-duration: $time;
   animation-timing-function: $easing;
   animation-fill-mode: both;
-
 }
 .hexagram-preview-appear.hexagram-preview-appear-active {
   animation-name: bounceIn;
