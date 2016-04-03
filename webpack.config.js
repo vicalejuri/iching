@@ -17,24 +17,22 @@ var pathToReact = path.resolve(node_modules, 'react');
 var pathToMaterialUI = path.resolve(node_modules, 'material-ui');
 var pathToRedux = path.resolve(node_modules, 'redux-devtools');
 var pathToReactRedux = path.resolve(node_modules, 'react-redux');
-var pathToSockJS = path.resolve(node_modules, 'sockjs-client');
 
 module.exports = {
 
   output: {
     path: assetPath,
     filename: 'main.js',
-    publicPath: 'assets/'
+    publicPath: '/assets/'
   },
 
   cache: true,
   debug: true,
   devtool: 'sourcemap',
-  entry: [
-    'webpack-dev-server/client?http://localhost:9999',
-    'webpack/hot/only-dev-server',
-    './src/main.js'
-  ],
+  entry: {
+    app: './src/main.js',
+    vendor: ['react','react-dom','redux','react-redux','material-ui'],
+  },
 
   stats: {
     colors: true,
@@ -51,7 +49,8 @@ module.exports = {
       'constants': __dirname + '/src/constants/',
       'pages': __dirname + '/src/pages/',
       'public': __dirname + '/src/public',
-      //'react': pathToReact,
+
+      'react': pathToReact,
     }
   },
   module: {
@@ -74,25 +73,18 @@ module.exports = {
     { test: /\.(png|jpg)$/,
       loader: 'url-loader?limit=500000'
     },
-    /*
     { test: /\.(woff|woff2|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
       loader: 'file-loader'
-    },*/
-    {
-      test: /\.(woff|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-      loader: 'base64-font-loader'
     },
-     ],
+  ],
 
-     /*
-    noParse: [ pathToReact , pathToRedux, pathToReactRedux,
-               pathToSockJS, pathToMaterialUI ],
-      */
+    //noParse: [ pathToReact ], pathToRedux, pathToReactRedux],
   },
 
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
+    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js',Infinity),
+    //new webpack.HotModuleReplacementPlugin(),
+    //new webpack.NoErrorsPlugin(),
     new ExtractTextPlugin('main.css'),
     new webpack.DefinePlugin({
       __DEVELOPMENT__: true,

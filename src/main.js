@@ -14,6 +14,8 @@ import { reduxReactRouter, routerStateReducer, ReduxRouter } from 'redux-router'
 
 import reducers from './reducers';
 
+console.info(`main.js loaded... Starting`)
+
 function configureStore( initialState ) {
   let fCreateStore = compose(
     reduxReactRouter({createHistory}),
@@ -48,9 +50,10 @@ render(
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
-/* Hide loading */
+/* Loading complete */
 let load_el = document.getElementById('loading');
 load_el.parentNode.removeChild(load_el);
+document.body.class += 'loaded';
 
 /* Update cache */
 // Check if a new cache is available on page load.
@@ -69,5 +72,5 @@ window.addEventListener('load', function (e) {
 
 }, false);
 
-// Import/Compile css
+// force to import&compile css
 import 'styles/main.scss';

@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import * as _ from 'lodash';
+import classNames from 'classNames';
 
 import * as HexagramActions from 'actions/HexagramActions.js';
 import * as IchingTable from 'constants/lookup.js';
@@ -28,8 +29,7 @@ let DetailPage = React.createClass({
           );
     }).value()
 
-    let tarot_card = `assets/img/tarot/Tao_${hex.number}.jpg`
-
+    let tarot_class = classNames({[`icon-Tao_${hex.number}`]: true});
     return (
       <div className="details">
           <HexagramInfoCard hexagram={hex} trigrams />
@@ -38,7 +38,7 @@ let DetailPage = React.createClass({
 
             <div className="highlight">
               <div className="tarot">
-                <img src={tarot_card} />
+                <div className={tarot_class}/>
               </div>
               <div className="oracle">
                 <blockquote>{hex.interpretation.oracle}</blockquote>

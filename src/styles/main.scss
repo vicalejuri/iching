@@ -1,5 +1,6 @@
 /* Stiziles */
 @import 'fonts/material-icons/material-ui.css';
+@import 'fonts/Open_Sans/open_sans.css';
 @import 'utils/easing.scss';
 @import 'transitions.scss';
 
@@ -10,7 +11,6 @@ html , body {
   font-family: 'Open Sans', 'Helvetica Neue', helvetica, sans-serif;
   font-weight: 100;
   margin: 0;
-  background-image: linear-gradient(260deg, #2376ae 0%, #c16ecf 100%);
 
   /* Support for all WebKit browsers. */
   -webkit-font-smoothing: subpixel-antialiased;
@@ -23,6 +23,11 @@ html , body {
   /* Support for IE. */
   font-feature-settings: 'liga';
 }
+body.loaded {
+  background-color: #fff;
+  color: #000;
+}
+
 
 *:focus {
     outline: 0;
@@ -36,4 +41,5 @@ html , body {
 
 @import 'components/hexagram-card.scss';
 @import 'components/hexagram-image.scss';
+@import 'components/tarot_sprites.css';
 @import 'responsive.scss';

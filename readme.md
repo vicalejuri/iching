@@ -22,10 +22,11 @@ https://barrabinfc.github.io/react-iching/
 - [ ] Fix ReactCSSTransitionGroup over PageTransition working.
 - [ ] Fix touchTap not firing
 
-- [ ] Add paper texture
-- [ ] Change bell to a synthesis bell one.
+- [ ] Implement mobile packages for ios/android
 
-- [ ] Add FB/Twitter sharing (meta tags, buttons and preview)
+- [X] Use CSS Sprites for tarot images
+- [X] Embed Open Sans font.
+- [X] Change bell to a synthesis bell.
 
 - [X] Implement the old method of Yarrow-stalks
 - [X] Implement the 3 coin method

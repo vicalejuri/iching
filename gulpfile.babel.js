@@ -49,6 +49,16 @@ gulp.task('assets', (cb) => {
     .pipe($.size({title: 'assets'}));
 });
 
+gulp.task('sprites', function() {
+  let tarot = gulp.src('extra/tarot/*.jpg')
+                   .pipe($.spritesmith({cssName: "tarot_sprites.css",
+                         imgName: 'tarot-sprite.png',
+                        }))
+
+  tarot.img.pipe( gulp.dest('src/public/img/tarot/') )
+  tarot.css.pipe( gulp.dest('src/styles/components/'))
+});
+
 gulp.task('copy', (cb) => {
   gulp.src(['./src/*.html','./src/*.ico'])
              .pipe(gulp.dest('dist/'));
@@ -74,14 +84,16 @@ gulp.task('serve', () => {
   const config = require('./webpack.config');
   const bundler = webpack(config);
   let server = new WebpackDevServer(bundler, {
+    host: '0.0.0.0',
     contentBase: './src',
     publicPath: '/assets/',
     hot: true,
+    historyApiFallback: false,
     stats: {
       colors: true
     },
   });
   server.listen('9999', 'localhost', (err) => {
-    console.log('server listen at 9999');
+    console.log('server listen at http://0.0.0.0:9999');
   });
 });

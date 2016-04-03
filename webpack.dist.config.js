@@ -60,14 +60,18 @@ module.exports = {
     { test: /\.css$/,
       loader: ExtractTextPlugin.extract("css-loader")
     },
+    /*
     { test: /\.(png|jpg)$/,
       loader: 'url-loader?limit=500000'
     },
-    /*
-    { test: /\.(woff|woff2|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-      loader: 'file-loader'
-    },
     */
+    {
+      test: /.*\.(gif|png|jpe?g|svg)$/i,
+      loaders: [
+        'file?hash=sha512&digest=hex&name=[hash].[ext]',
+        'image-webpack?{progressive:true, optimizationLevel: 7, interlaced: false, pngquant:{quality: "65-90", speed: 4}}'
+      ]
+    },
     {
       test: /\.(woff|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
       loader: 'base64-font-loader'
