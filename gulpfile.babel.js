@@ -44,12 +44,13 @@ gulp.task('bundle:dist', (cb) => {
 });
 
 gulp.task('assets', (cb) => {
-  gulp.src('src/public/**')
+  gulp.src('src/public/**/*')
     .pipe(gulp.dest('dist/assets/'))
     .pipe($.size({title: 'assets'}));
 });
 
 gulp.task('sprites', function() {
+  // Create sprite from tarot images
   let tarot = gulp.src('extra/tarot/*.jpg')
                    .pipe($.spritesmith({cssName: "tarot_sprites.css",
                          imgName: 'tarot-sprite.png',

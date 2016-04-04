@@ -18,13 +18,14 @@ module.exports = {
   output: {
     path: assetPath,
     filename: 'main.js',
-    publicPath: '/react-iching/assets/'
+    publicPath: '/assets/'
   },
   devtool: 'source-map',
   progress: true,
-  entry: [
-    './src/main.js'
-  ],
+  entry: {
+    app: './src/main.js',
+    vendor: ['react','react-dom','redux','react-redux','material-ui'],
+  },
 
   stats: {
     colors: true,
@@ -60,30 +61,18 @@ module.exports = {
     { test: /\.css$/,
       loader: ExtractTextPlugin.extract("css-loader")
     },
-    /*
     { test: /\.(png|jpg)$/,
       loader: 'url-loader?limit=500000'
     },
-    */
-    {
-      test: /.*\.(gif|png|jpe?g|svg)$/i,
-      loaders: [
-        'file?hash=sha512&digest=hex&name=[hash].[ext]',
-        'image-webpack?{progressive:true, optimizationLevel: 7, interlaced: false, pngquant:{quality: "65-90", speed: 4}}'
-      ]
-    },
-    {
-      test: /\.(woff|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-      loader: 'base64-font-loader'
-    },
-    /*
-    {
-      test: /\.(png|jpg|svg|eot|ttf|woff|woff2)$/,
-      loader: 'url-loader?limit=8192'
-    }*/],
+    { test: /\.(woff|woff2|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+      loader: 'file-loader'
+    }
+  ],
+
   },
 
   plugins: [
+    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js',Infinity),
     new webpack.DefinePlugin({
       __DEVELOPMENT__: false,
       __DEVTOOLS__: false,

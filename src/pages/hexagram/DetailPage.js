@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import * as _ from 'lodash';
-import classNames from 'classNames';
+import classNames from 'classnames';
 
 import * as HexagramActions from 'actions/HexagramActions.js';
 import * as IchingTable from 'constants/lookup.js';

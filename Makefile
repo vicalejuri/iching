@@ -3,6 +3,8 @@ PROJECT_PATH=/Users/frangossauro/workspace/projects/react-iching/
 ADDRESS=14Cfnhat4wniiSAtk7vx6qKreo3qteBvEb
 ZERO_PATH=/Users/frangossauro/workspace/Codes/ZeroNet
 
+MOBILE_PROJECT_PATH=/Users/frangossauro/workspace/mobile_apps/xyz.frangossauro.iching/iching/www/
+
 build:
 	gulp build
 

@@ -14,8 +14,6 @@ import { reduxReactRouter, routerStateReducer, ReduxRouter } from 'redux-router'
 
 import reducers from './reducers';
 
-console.info(`main.js loaded... Starting`)
-
 function configureStore( initialState ) {
   let fCreateStore = compose(
     reduxReactRouter({createHistory}),
@@ -74,3 +72,15 @@ window.addEventListener('load', function (e) {
 
 // force to import&compile css
 import 'styles/main.scss';
+
+
+// Report Errors
+// err: error message
+// fileName: which file error occurs in
+// lineNumber: what line error occurs on
+if ( __DEVELOPMENT__ ) {
+  window.onerror = function (err, fileName, lineNumber) {
+   // alert or console.log a message
+   alert(fileName, 'Line:', lineNumber, 'Error:', err.message);
+  };
+}
