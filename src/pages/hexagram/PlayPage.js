@@ -3,8 +3,7 @@ import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import * as _ from 'lodash';
 
-import Router, {Link} from 'react-router';
-import { pushState } from 'redux-router'
+import Router, {Link, History} from 'react-router';
 
 import * as HexagramActions from 'actions/HexagramActions.js';
 import Kua from 'components/Kua.jsx';
@@ -20,12 +19,14 @@ const opts = {
 }
 
 let PlayPage = React.createClass({
+
   propTypes: {
     kuas:     PropTypes.arrayOf(PropTypes.number),
     hexagram: PropTypes.object,
     dispatch: PropTypes.func,
   },
 
+  mixins: [ History ],
   getInitialState() {
     return {already_played: ( ! _.isEmpty( this.props.hexagram ) ) }
   },
@@ -109,7 +110,7 @@ let PlayPage = React.createClass({
 
 
   goToHexagram() {
-    window.store.dispatch( pushState(null,`/details/${this.props.hexagram.name}` , '') )
+    this.history.pushState(null,`/details/${this.props.hexagram.name}` );
   },
 
   play(ev) {
@@ -125,4 +126,4 @@ export default connect(state => {
     kuas: state.kuas,
     hexagram: state.hexagram,
   };
-}, { pushState })(PlayPage);
+})(PlayPage);

@@ -9,10 +9,10 @@ let Footer = React.createClass({
     return (
       <div className="footer icon-bar">
 
-       <Link to="/play" className={ (this.props.path === `/play` || this.props.path === '/') ? 'active' : 'normal' } ref="play">
+       <Link to="/play" activeClassName="active" ref="play">
          <div><i className="material-icons">brightness_high</i></div>
        </Link>
-       <Link to="/list" className={ (this.props.path === `/list` || this.props.path.startsWith(`/details`)) ? 'active' : 'normal' } ref="list">
+       <Link to="/list" activeClassName="active" ref="list">
         <div><i className="material-icons">menu</i></div>
        </Link>
 
@@ -21,18 +21,8 @@ let Footer = React.createClass({
   },
 });
 
-/*
-<Link to="/day">
- <div><i className="material-icons">explore</i></div>
-</Link>
-*/
 
 export default connect(
-  state => {
-    return {
-      path: state.router.location.pathname,
-      params: state.router.params
-    }
-  },
+  state => { return {} },
   { pushState }
 )(Footer);

@@ -44,6 +44,7 @@
      "camelcase": 0,
      "semi": 0,
      "indent": 0,
+     "no-trailing-space": 0,
      "object-curly-spacing": 0,
      "space-in-parens": 0,
      "react/jsx-indent-props": 0,

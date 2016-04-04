@@ -9,13 +9,17 @@ import HexagramInfoCard from 'components/HexagramInfoCard';
 import { List, ListItem, Avatar, Icons, IconButton, FontIcon, Styles , Divider } from 'material-ui';
 
 import { connect } from 'react-redux'
-import { pushState } from 'redux-router'
 
 let DetailPage = React.createClass({
 
+  componentDidMount() {
+    let name = this.props.params.name;
+    //this.setState({name: name});
+  },
+
   render() {
-    let p        = this.props.q
-    let hex      = IchingTable.getHexagram( p.name );
+    console.log( this.props.params );
+    let hex      = IchingTable.getHexagram( this.props.params.name );
     if ( ! hex ) {
       return (<div/>);
     }
@@ -67,10 +71,5 @@ let DetailPage = React.createClass({
 
 
 export default connect(
-  state => {
-    return {
-      q: state.router.params,
-    }
-  },
-  { pushState }
+  state => { return {} }
 )(DetailPage);

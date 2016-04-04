@@ -9,14 +9,12 @@ import { AppContainer, PlayPage , ListPage, DetailPage } from './pages';
 
 //import { createHistory } from 'history'
 import { createHashHistory as createHistory } from 'history';
-import { Router, Route, Link , IndexRoute} from 'react-router';
-import { reduxReactRouter, routerStateReducer, ReduxRouter } from 'redux-router';
+import { Router, Route, Link , IndexRoute, browserHistory} from 'react-router';
 
 import reducers from './reducers';
 
 function configureStore( initialState ) {
   let fCreateStore = compose(
-    reduxReactRouter({createHistory}),
     applyMiddleware( invariant(), thunk ),
     window.devToolsExtension ? window.devToolsExtension() : f => f
   )(createStore);
@@ -31,22 +29,21 @@ let store = window.store = configureStore();
 
 render(
   <Provider store={store}>
-    <ReduxRouter>
+    <Router history={browserHistory}>
       <Route path="/" name="Iching of the day" component={AppContainer}>
         <Route name="hexagram-play" path="/play" component={PlayPage} />
         <Route name="hexagram-list" path="/list" component={ListPage} />
         <Route name="hexagram-details" path="/details/:name" component={DetailPage} />
-
         <IndexRoute component={PlayPage} />
       </Route>
-    </ReduxRouter>
+    </Router>
   </Provider>,
   document.getElementById('app-mount')
 );
 
 /* Start tap events */
-import injectTapEventPlugin from 'react-tap-event-plugin';
-injectTapEventPlugin();
+// import injectTapEventPlugin from 'react-tap-event-plugin';
+//injectTapEventPlugin();
 
 /* Loading complete */
 let load_el = document.getElementById('loading');
