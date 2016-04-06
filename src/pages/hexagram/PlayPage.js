@@ -70,7 +70,6 @@ let PlayPage = React.createClass({
     );
   },
 
-
   renderPreviewCard() {
     let { hexagram } = this.props;
     if ( ! _.isEmpty( hexagram )) {
@@ -110,7 +109,7 @@ let PlayPage = React.createClass({
 
 
   goToHexagram() {
-    this.history.pushState(null,`/details/${this.props.hexagram.name}` );
+    this.history.pushState(null,`/details/${this.props.hexagram.number}/${this.props.hexagram.name}` );
   },
 
   play(ev) {

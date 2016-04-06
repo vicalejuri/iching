@@ -13,6 +13,11 @@ import { Router, Route, Link } from 'react-router';
 const ReactCSSTransitionGroup = require('react-addons-css-transition-group');
 
 let AppContainer = React.createClass({
+  contextTypes: {
+    location: React.PropTypes.object,
+    params: React.PropTypes.object
+  },
+
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
@@ -28,9 +33,9 @@ let AppContainer = React.createClass({
       <div className="app-wrap">
        <Header/>
         <div className="content">
-          <ReactCSSTransitionGroup component="div" transitionName="hexagram-preview" transitionAppear
-                                   transitionEnterTimeout={500} transitionLeaveTimeout={500}>
-            {React.cloneElement(this.props.children, {key: this.props.path})}
+          <ReactCSSTransitionGroup component="div" transitionName="page-transition" transitionAppear
+                transitionAppearTimeout={500} transitionEnterTimeout={500} transitionLeaveTimeout={500}>
+            {React.cloneElement(this.props.children, {key: this.context.location.pathname})}
           </ReactCSSTransitionGroup>
         </div>
         <Footer/>
