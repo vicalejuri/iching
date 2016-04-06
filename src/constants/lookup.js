@@ -58,7 +58,6 @@ export function getTrigramByName( trigram_name ) {
   } );
 }
 
-
 export function getHexagramNumberByKuas( kuas ) {
   let below = kuas.slice(0,3);
   let above = kuas.slice(3);

@@ -7,11 +7,11 @@ import invariant from 'redux-immutable-state-invariant';
 
 import { AppContainer, PlayPage , ListPage, DetailPage } from './pages';
 
-//import { createHistory } from 'history'
-import { createHashHistory as createHistory } from 'history';
+import { createHistory } from 'history';
 import { Router, Route, Link , IndexRoute, browserHistory} from 'react-router';
 
 import reducers from './reducers';
+const history = createHistory();
 
 function configureStore( initialState ) {
   let fCreateStore = compose(
@@ -29,11 +29,11 @@ let store = window.store = configureStore();
 
 render(
   <Provider store={store}>
-    <Router history={browserHistory}>
+    <Router history={history}>
       <Route path="/" name="Iching of the day" component={AppContainer}>
         <Route name="hexagram-play" path="/play" component={PlayPage} />
         <Route name="hexagram-list" path="/list" component={ListPage} />
-        <Route name="hexagram-details" path="/details/:name" component={DetailPage} />
+        <Route name="hexagram-details" path="/details/:number/:name" component={DetailPage} />
         <IndexRoute component={PlayPage} />
       </Route>
     </Router>

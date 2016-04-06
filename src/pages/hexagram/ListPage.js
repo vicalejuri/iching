@@ -35,7 +35,7 @@ let ListPage = React.createClass({
   },
 
   details(hex) {
-    this.history.pushState( null,`/details/${hex.name}` );
+    this.history.pushState( null,`/details/${hex.number}/${hex.name}` );
   }
 });
 

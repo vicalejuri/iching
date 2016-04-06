@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import Router, {Link, History, State} from 'react-router';
 
 import { connect } from 'react-redux'
-import { pushState } from 'redux-router'
 
 let Footer = React.createClass({
   render() {
@@ -21,8 +20,6 @@ let Footer = React.createClass({
   },
 });
 
-
 export default connect(
   state => { return {} },
-  { pushState }
 )(Footer);

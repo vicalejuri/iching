@@ -2,7 +2,6 @@
 import React, { Component, PropTypes } from 'react';
 import Router, {History, State} from 'react-router';
 import { connect } from 'react-redux'
-import { pushState } from 'redux-router'
 
 import * as HexagramActions from 'actions/HexagramActions.js';
 
@@ -62,5 +61,4 @@ let Header = React.createClass({
 
 export default connect( state => {
   return {};
-}
-,{ pushState })(Header);
+})(Header);

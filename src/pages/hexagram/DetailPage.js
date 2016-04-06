@@ -10,17 +10,14 @@ import { List, ListItem, Avatar, Icons, IconButton, FontIcon, Styles , Divider }
 
 import { connect } from 'react-redux'
 
+
 let DetailPage = React.createClass({
 
-  componentDidMount() {
-    let name = this.props.params.name;
-    //this.setState({name: name});
-  },
-
   render() {
-    console.log( this.props.params );
-    let hex      = IchingTable.getHexagram( this.props.params.name );
+    let hexNumber = _.toNumber( this.props.params.number );
+    let hex      = IchingTable.getHexagram( hexNumber );
     if ( ! hex ) {
+      console.error(`Something is wrong on DetailPage. Hex shouldn't be = ${hex}`);
       return (<div/>);
     }
 
