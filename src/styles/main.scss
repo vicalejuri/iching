@@ -12,16 +12,12 @@ html , body {
   font-weight: 100;
   margin: 0;
 
-  /* Support for all WebKit browsers. */
-  -webkit-font-smoothing: subpixel-antialiased;
-  /* Support for Safari and Chrome. */
   text-rendering: optimizeLegibility;
+  font-feature-settings: "kern";
+  font-kerning: normal;
 
   /* Support for Firefox. */
   -moz-osx-font-smoothing: grayscale;
-
-  /* Support for IE. */
-  font-feature-settings: 'liga';
 }
 body.loaded {
   background-color: #fff;

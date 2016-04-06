@@ -75,7 +75,7 @@ let PlayPage = React.createClass({
     let { hexagram } = this.props;
     if ( ! _.isEmpty( hexagram )) {
       return (
-        <HexagramInfoCard hexagram={hexagram} trigrams />
+        <HexagramInfoCard key={hexagram.number} hexagram={hexagram} trigrams />
       );
     }
   },
@@ -83,7 +83,7 @@ let PlayPage = React.createClass({
   renderQuestion() {
     if ( ! this.state.already_played ) {
       return (
-          <h1>Concentrate and make your question</h1>
+          <h1 key="question">Concentrate and make your question</h1>
       )
     }
   },

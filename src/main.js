@@ -7,11 +7,15 @@ import invariant from 'redux-immutable-state-invariant';
 
 import { AppContainer, PlayPage , ListPage, DetailPage } from './pages';
 
-import { createHistory } from 'history';
+import { createHashHistory, createHistory } from 'history';
 import { Router, Route, Link , IndexRoute, browserHistory} from 'react-router';
 
 import reducers from './reducers';
-const history = createHistory();
+
+let history = createHistory()
+if ( __DEVELOPMENT__ ) {
+  history = createHashHistory();
+}
 
 function configureStore( initialState ) {
   let fCreateStore = compose(
@@ -25,7 +29,6 @@ function configureStore( initialState ) {
 }
 let store = window.store = configureStore();
 
-// <Route name="hexagram-day" path="/day" component={DayPage} />
 
 render(
   <Provider store={store}>
@@ -49,6 +52,7 @@ render(
 let load_el = document.getElementById('loading');
 load_el.parentNode.removeChild(load_el);
 document.body.class += 'loaded';
+
 
 /* Update cache */
 // Check if a new cache is available on page load.

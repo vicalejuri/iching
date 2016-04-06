@@ -32,7 +32,7 @@ let DetailPage = React.createClass({
 
     let tarot_class = classNames({[`icon-Tao_${hex.number}`]: true});
     return (
-      <div className="details">
+      <div className="detailspage-container">
           <HexagramInfoCard hexagram={hex} trigrams />
 
           <div className="interpretation">

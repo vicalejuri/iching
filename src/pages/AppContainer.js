@@ -1,6 +1,5 @@
 import React, { Component, PropTypes  } from 'react';
 import { connect } from 'react-redux';
-const ReactCSSTransitionGroup = require('react-addons-css-transition-group');
 
 import ThemeManager from 'material-ui/lib/styles/theme-manager';
 import MuiTheme from 'constants/MuiTheme';
@@ -11,6 +10,7 @@ import Footer from '../components/Footer.jsx';
 import { render } from 'react-dom';
 import { Router, Route, Link } from 'react-router';
 
+const ReactCSSTransitionGroup = require('react-addons-css-transition-group');
 
 let AppContainer = React.createClass({
   childContextTypes: {
@@ -28,10 +28,9 @@ let AppContainer = React.createClass({
       <div className="app-wrap">
        <Header/>
         <div className="content">
-          <ReactCSSTransitionGroup transitionName="page-transition"
-                                   transitionEnterTimeout={300} transitionLeaveTimeout={300}
-                                   transitionAppear transitionAppearTimeout={300} >
-                                   {this.props.children}
+          <ReactCSSTransitionGroup component="div" transitionName="hexagram-preview" transitionAppear
+                                   transitionEnterTimeout={500} transitionLeaveTimeout={500}>
+            {React.cloneElement(this.props.children, {key: this.props.path})}
           </ReactCSSTransitionGroup>
         </div>
         <Footer/>
