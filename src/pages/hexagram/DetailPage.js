@@ -18,6 +18,7 @@ let DetailPage = React.createClass({
     let hex      = IchingTable.getHexagram( hexNumber );
     if ( ! hex ) {
       console.error(`Something is wrong on DetailPage. Hex shouldn't be = ${hex}`);
+      console.log('props = ', this.props);
       return (<div/>);
     }
 
@@ -67,6 +68,4 @@ let DetailPage = React.createClass({
 });
 
 
-export default connect(
-  state => { return {} }
-)(DetailPage);
+export default DetailPage;

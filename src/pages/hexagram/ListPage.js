@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 import * as _ from 'lodash';
 
 import * as HexagramActions from 'actions/HexagramActions.js';
@@ -11,9 +12,17 @@ import Router, {Link, History}  from 'react-router';
 import { connect , dispatch } from 'react-redux'
 
 let ListPage = React.createClass({
-  mixins: [ History ],
+  mixins: [ History , PureRenderMixin],
+
+  getInitialState() {
+    return {hexagrams: IchingTable.getAllHexagrams()};
+  },
+
   render() {
-    let hexNodes = _.chain(IchingTable.getAllHexagrams()).map( (hex) => {
+    console.log('re-render listPage');
+    let hexNodes = this.state.hexagrams;
+    /*
+    let hexNodes = _.chain( this.state.hexagrams ).map( (hex) => {
       return (
             <ListItem
                 onClick={this.details.bind(this,hex)}
@@ -24,15 +33,27 @@ let ListPage = React.createClass({
                 />
       );
     }).value();
+    */
 
     return (
       <div className="listpage-container">
         <List subheader="The King Wen sequence">
-          {hexNodes}
+          {
+            hexNodes.map( (hex) => {
+              return ( <ListItem
+                  onClick={this.details.bind(this,hex)}
+                  onTouchTap={this.details.bind(this,hex)}
+                  key={hex.number}
+                  leftAvatar={<Avatar className="avatar"><HexagramImage below={hex.trigrams.below} above={hex.trigrams.above} /></Avatar>}
+                  primaryText={<div><b>{hex.name}</b> - {hex.description}</div>}
+                  /> )
+            } )
+          }
         </List>
       </div>
     );
   },
+
 
   details(hex) {
     this.history.pushState( null,`/details/${hex.number}/${hex.name}` );
@@ -40,6 +61,4 @@ let ListPage = React.createClass({
 });
 
 
-export default connect(
-  (state) => {return {}},
-)(ListPage);
+export default ListPage;
