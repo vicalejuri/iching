@@ -7,8 +7,7 @@
     pre {
       font-family: 'Open Sans', 'Helvetica Neue', helvetica, sans-serif !important;
       font-style: italic;
-      text-transform: capitalize;
-      text-align: left;
+      text-align: justify;
     }
 
     .highlight {
@@ -37,6 +36,7 @@
 
     p {
       font-weight: lighter;
+      letter-spacing: -0.5px;
     }
 
     h3 {
