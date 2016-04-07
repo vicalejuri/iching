@@ -17,6 +17,7 @@ module.exports = {
 
   output: {
     path: assetPath,
+
     filename: 'main.js',
     publicPath: '/assets/'
   },
@@ -74,6 +75,7 @@ module.exports = {
   plugins: [
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js',Infinity),
     new webpack.DefinePlugin({
+      __PHONEGAP__: true,
       __DEVELOPMENT__: false,
       __DEVTOOLS__: false,
       'process.env.NODE_ENV': '"production"'

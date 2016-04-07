@@ -13,22 +13,33 @@ https://barrabinfc.github.io/react-iching/
 ## Run
 
 `npm install` to install dependencies
-`gulp serve` to start a hot reload server
+`gulp serve` to start a development server.
+`gulp build:dist` to compile for distribution ( dist/ )
+
+Change to branch `phonegap` to compile for ios/android
+
+```
+$ git checkout phonegap
+$ gulp build:dist
+```
 
 ## Todo
 
+- [ ] Add Localization (i18n) libraries.
+- [ ] Revert to old style single tarot images.
 - [ ] Implement 'iching of the day' based on chinese calendar
 - [ ] Implement the 'moving lines' interpretation
 - [ ] Fix touchTap not firing
 
 - [ ] Fix DetailPage => Tarot layout in some mobile devices (< 320px)
 - [ ] Fix Header/Footer links
-- [ ] Fix css BG bug when load complete 
+- [ ] Fix css BG bug when load complete
 
+### Phonegap
+- [ ] Add deviceready event
 - [ ] Implement mobile packages for ios/android
 
-- [ ] Add Localization (i18n) libraries.
-- [ ] Revert to old style single tarot images.
+### Done:
 - [X] Fix ReactCSSTransitionGroup over PageTransition working.
 - [X] Use CSS Sprites for tarot images
 - [X] Embed Open Sans font.
