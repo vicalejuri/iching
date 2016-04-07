@@ -43,6 +43,13 @@ gulp.task('bundle:dist', (cb) => {
   RunSequence('bundle', cb);
 });
 
+// Bundle everything for phonegap
+gulp.task('bundle:phonegap', ['clean'], (cb) => {
+  options.dist = true;
+  RunSequence(['assets','copy','bundle','phonegap:update'])
+})
+
+
 gulp.task('assets', (cb) => {
   gulp.src('src/public/**/*')
     .pipe(gulp.dest('dist/assets/'))
@@ -64,6 +71,11 @@ gulp.task('copy', (cb) => {
   gulp.src(['./src/*.html','./src/*.ico'])
              .pipe(gulp.dest('dist/'));
 });
+
+gulp.task('phonegap:update', (cb) => {
+  gulp.src(['dist/**/*'])
+      .pipe( gulp.dest('phonegap/www/') );
+})
 
 gulp.task('build', ['clean'], (cb) => {
   RunSequence(['assets', 'copy','bundle'], cb)

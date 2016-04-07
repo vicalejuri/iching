@@ -20,7 +20,9 @@ Change to branch `phonegap` to compile for ios/android
 
 ```
 $ git checkout phonegap
-$ gulp build:dist
+$ gulp bundle:phonegap
+$ cd phonegap
+$ cordova run
 ```
 
 ## Todo
