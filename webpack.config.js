@@ -87,7 +87,7 @@ module.exports = {
     //new webpack.NoErrorsPlugin(),
     new ExtractTextPlugin('main.css'),
     new webpack.DefinePlugin({
-      __PHONEGAP__: true,
+      __PHONEGAP__: false,
       __DEVELOPMENT__: true,
       __DEVTOOLS__: true
     }),

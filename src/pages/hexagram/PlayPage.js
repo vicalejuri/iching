@@ -82,7 +82,7 @@ let PlayPage = React.createClass({
   renderQuestion() {
     if ( ! this.state.already_played ) {
       return (
-          <h1 key="question">Concentrate and make your question</h1>
+          <h1 key="question">Concentrate and make a question</h1>
       )
     }
   },

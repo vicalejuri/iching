@@ -75,7 +75,7 @@ module.exports = {
   plugins: [
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js',Infinity),
     new webpack.DefinePlugin({
-      __PHONEGAP__: true,
+      __PHONEGAP__: false,
       __DEVELOPMENT__: false,
       __DEVTOOLS__: false,
       'process.env.NODE_ENV': '"production"'

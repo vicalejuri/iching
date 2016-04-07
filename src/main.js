@@ -75,6 +75,7 @@ window.addEventListener('load', function (e) {
   }, false);
 
   // deviceready for ios/android
+  console.log(`PHONEGAP? `, __PHONEGAP__ );
   if ( __PHONEGAP__ ) {
     document.addEventListener( 'deviceready', start );
   } else {

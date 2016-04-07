@@ -7,6 +7,12 @@
   border-bottom-width: 70px;
   border-radius:10px;
   box-shadow:0 0 50px  rgba(0,0,0,0.3);
+
+  animation-name: slideIn;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+
 }
 
 .app-wrap {
