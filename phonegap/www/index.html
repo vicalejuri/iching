@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>I-Ching Divination</title>
+  <meta name="description" content="Iching oracle">
+  <meta name="author" content="bbfc">
+  <meta name="copyright" content="Open Source - GPL v3">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <!-- for Facebook -->
+  <meta property="og:title" content="I-ching oracle" />
+  <meta property="og:image" content="https://raw.githubusercontent.com/barrabinfc/react-iching/master/src/constants/screenshots/detail.png" />
+  <meta property="og:url" content="https://barrabinfc.github.io/react-iching/" />
+  <meta property="og:description" content="The chinese book of changes" />
+
+  <!-- for Twitter -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="I-ching oracle" />
+  <meta name="twitter:description" content="The chinese book of changes" />
+  <meta name="twitter:image" content="https://raw.githubusercontent.com/barrabinfc/react-iching/master/src/constants/screenshots/detail.png" />
+
+  <style>
+    body, html  {
+      background-color: #6D6D6D;
+      color: #000;
+
+      will-change: background-color;
+      transition: background-color 0.25s ease-out;
+    }
+
+    #loading {
+      width: 100%;
+      height: 150px;
+      position: absolute;
+      top: 45%;
+    }
+    #loading .title {
+      font-size: 2.0em;
+      width: 100%;
+      text-align: center;
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+
+      position: relative;
+      margin: 20px auto;
+    }
+
+    .double-bounce1, .double-bounce2 {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background-color: #eee;
+      opacity: 0.6;
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+      animation: sk-bounce 2.0s infinite ease-in-out;
+    }
+
+    .double-bounce2 {
+      -webkit-animation-delay: -1.0s;
+      animation-delay: -1.0s;
+    }
+
+    @-webkit-keyframes sk-bounce {
+      0%, 100% { -webkit-transform: scale(0.0) }
+      50% { -webkit-transform: scale(1.0) }
+    }
+
+    @keyframes sk-bounce {
+      0%, 100% {
+        transform: scale(0.0);
+        -webkit-transform: scale(0.0);
+      } 50% {
+        transform: scale(1.0);
+        -webkit-transform: scale(1.0);
+      }
+    }
+  </style>
+
+</head>
+<body>
+
+  <div id="loading">
+    <div class="title">Loading...</div>
+      <div class="spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+      </div>
+  </div>
+
+  <div id="app-mount"></div>
+
+  <script type="text/javascript" src="assets/vendor.js"></script>
+  <script type="text/javascript" src="assets/main.js" async></script>
+  <link href="assets/main.css" main.css" type="text/css" rel="stylesheet" lazyload>
+</body>
+</html>
