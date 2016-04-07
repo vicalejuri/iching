@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import * as _ from 'lodash';
 
 import * as HexagramActions from 'actions/HexagramActions.js';
-import ICHING from '!json!constants/iching.json';
 import { getTrigramByName } from 'constants/lookup.js';
 
 import { HexagramImage , TrigramImage } from './HexagramImage.jsx';

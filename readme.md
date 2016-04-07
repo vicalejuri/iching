@@ -19,11 +19,17 @@ https://barrabinfc.github.io/react-iching/
 
 - [ ] Implement 'iching of the day' based on chinese calendar
 - [ ] Implement the 'moving lines' interpretation
-- [ ] Fix ReactCSSTransitionGroup over PageTransition working.
 - [ ] Fix touchTap not firing
+
+- [ ] Fix DetailPage => Tarot layout in some mobile devices (< 320px)
+- [ ] Fix Header/Footer links
+- [ ] Fix css BG bug when load complete 
 
 - [ ] Implement mobile packages for ios/android
 
+- [ ] Add Localization (i18n) libraries.
+- [ ] Revert to old style single tarot images.
+- [X] Fix ReactCSSTransitionGroup over PageTransition working.
 - [X] Use CSS Sprites for tarot images
 - [X] Embed Open Sans font.
 - [X] Change bell to a synthesis bell.
