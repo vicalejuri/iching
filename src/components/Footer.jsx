@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 
 let Footer = React.createClass({
   render() {
+    console.log('footer:render')
     return (
       <div className="footer icon-bar">
 

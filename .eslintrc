@@ -47,6 +47,7 @@
      "no-trailing-space": 0,
      "object-curly-spacing": 0,
      "space-in-parens": 0,
+     "react/jsx-no-bind": 1,
      "react/jsx-indent-props": 0,
      "react/jsx-closing-bracket-location": 0,
      "react/no-multi-comp": 0,
@@ -56,7 +57,7 @@
     "react"
   ],
   "globals": {
-    "__PHONEGAP__": true,
+    "__PHONEGAP__": false,
     "__DEVELOPMENT__": true,
     "__CLIENT__": true,
     "__SERVER__": true,

@@ -11,53 +11,55 @@ import { List, ListItem, Avatar, Icons, IconButton, FontIcon, Styles } from 'mat
 import Router, {Link, History}  from 'react-router';
 import { connect , dispatch } from 'react-redux'
 
+/*
+ * A single list item
+ */
+let HexItem = React.createClass({
+  mixins: [ History ],
+
+  render() {
+    let hex = this.props.hex;
+    return ( <ListItem
+        onClick={this.details}
+        onTouchTap={this.details}
+        key={hex.number}
+        leftAvatar={<Avatar className="avatar"><HexagramImage below={hex.trigrams.below} above={hex.trigrams.above} /></Avatar>}
+        primaryText={<div><b>{hex.name}</b> - {hex.description}</div>}
+        /> )
+  },
+
+  details() {
+    let hex = this.props.hex;
+    this.history.pushState( null,`/details/${hex.number}/${hex.name}` );
+  }
+});
+
+
 let ListPage = React.createClass({
-  mixins: [ History , PureRenderMixin],
+  mixins: [ PureRenderMixin],
 
   getInitialState() {
-    return {hexagrams: IchingTable.getAllHexagrams()};
+    return {hexagrams: IchingTable.getAllHexagrams(), rendered_page: false};
   },
 
   render() {
     console.log('re-render listPage');
     let hexNodes = this.state.hexagrams;
-    /*
-    let hexNodes = _.chain( this.state.hexagrams ).map( (hex) => {
-      return (
-            <ListItem
-                onClick={this.details.bind(this,hex)}
-                onTouchTap={this.details.bind(this,hex)}
-                key={hex.number}
-                leftAvatar={<Avatar className="avatar"><HexagramImage below={hex.trigrams.below} above={hex.trigrams.above} /></Avatar>}
-                primaryText={<div><b>{hex.name}</b> - {hex.description}</div>}
-                />
-      );
-    }).value();
-    */
 
-    return (
+    let rendered_page =  (
       <div className="listpage-container">
         <List subheader="The King Wen sequence">
           {
             hexNodes.map( (hex) => {
-              return ( <ListItem
-                  onClick={this.details.bind(this,hex)}
-                  onTouchTap={this.details.bind(this,hex)}
-                  key={hex.number}
-                  leftAvatar={<Avatar className="avatar"><HexagramImage below={hex.trigrams.below} above={hex.trigrams.above} /></Avatar>}
-                  primaryText={<div><b>{hex.name}</b> - {hex.description}</div>}
-                  /> )
+              return ( <HexItem hex={hex} key={hex.number}/>)
             } )
           }
         </List>
       </div>
     );
+    return rendered_page;
   },
 
-
-  details(hex) {
-    this.history.pushState( null,`/details/${hex.number}/${hex.name}` );
-  }
 });
 
 

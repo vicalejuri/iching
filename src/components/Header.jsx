@@ -10,13 +10,10 @@ import  NavigationArrowBack from 'material-ui/lib/svg-icons/navigation/arrow-bac
 import BrightnessHigh from 'material-ui/lib/svg-icons/image/brightness-7';
 
 let Header = React.createClass({
-  contextTypes: {
-    location: React.PropTypes.object,
-    params: React.PropTypes.object
-  },
 
   render() {
-    let info = this.headerPathToTitle(this.context.location, this.context.params)
+    console.log(`header:render`);
+    let info = this.headerPathToTitle(this.props.location, this.props.params)
     return (
       <div>
         <AppBar
@@ -31,7 +28,6 @@ let Header = React.createClass({
 
   headerPathToTitle( mlocation, params) {
     let path = mlocation.pathname;
-    console.log( this.context );
 
     /* Translate a route to it's title name */
     if (path === `/list`) {
@@ -42,7 +38,7 @@ let Header = React.createClass({
                 name: `I-ching oracle`}
     } else if ( path.startsWith('/details') ) {
         return {icon: <IconButton onTouchTap={ this.handleBackButton } onClick={ this.handleBackButton }><NavigationArrowBack /></IconButton>,
-                name: `${path}`}
+                name: `${params.name}`}
     } else {
       return {icon: <IconButton/>,
               name: 'I-ching'}
