@@ -30,7 +30,7 @@ module.exports = {
   debug: true,
   devtool: 'sourcemap',
   entry: {
-    app: './src/main.js',
+    app:   './src/main.js',
     vendor: ['react','react-dom','redux','react-redux','material-ui'],
   },
 
@@ -74,7 +74,10 @@ module.exports = {
       loader: 'url-loader?limit=500000'
     },
     { test: /\.(woff|woff2|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-      loader: 'file-loader'
+      loader: 'file-loader',
+      query: {
+        name: path.join( 'fonts' , '/[name]-[hash].[ext]')
+      }
     },
   ],
 
@@ -85,6 +88,7 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js',Infinity),
     //new webpack.HotModuleReplacementPlugin(),
     //new webpack.NoErrorsPlugin(),
+    //new ExtractTextPlugin('fonts.css'),
     new ExtractTextPlugin('main.css'),
     new webpack.DefinePlugin({
       __PHONEGAP__: false,

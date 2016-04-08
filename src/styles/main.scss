@@ -1,7 +1,7 @@
-/* Stiziles */
+/* Styles */
 @import 'fonts/material-icons/material-ui.css';
-@import 'fonts/Open_Sans/open_sans.css';
-@import 'utils/easing.scss';
+//@import 'fonts/Open_Sans/open_sans.css';
+@import 'utils/animations.scss';
 @import 'transitions.scss';
 
 
@@ -9,7 +9,8 @@ html , body {
   box-sizing: border-box;
   font-size: 1.0em;
   font-family: 'Open Sans', 'Helvetica Neue', helvetica, sans-serif;
-  font-weight: 100;
+  font-weight: lighter;
+  letter-spacing: -1px;
   margin: 0;
 
   text-rendering: optimizeLegibility;

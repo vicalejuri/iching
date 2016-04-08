@@ -10,6 +10,11 @@
     border: 0;
   }
 
+  .hexagram-card {
+    .trigrams {
+      font-size: 1.5em;
+    }
+  }
 }
 
 /* Smartphones (landscape) ----------- */
@@ -46,6 +51,7 @@
     }
     .trigrams {
       flex: 0 0 20%;
+
     }
   }
 
