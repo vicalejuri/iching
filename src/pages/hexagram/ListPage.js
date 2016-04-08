@@ -43,6 +43,10 @@ let ListPage = React.createClass({
   },
 
   render() {
+    if ( this.cache.rendered ) {
+      return this.cache.rendered;
+    }
+
     console.log('re-render listPage');
     let hexNodes = this.state.hexagrams;
 
@@ -57,8 +61,16 @@ let ListPage = React.createClass({
         </List>
       </div>
     );
+    this.cache.rendered = rendered_page;
     return rendered_page;
   },
+
+  /*
+   * render cache
+   */
+  cache: {
+    rendered: false,
+  }
 
 });
 
