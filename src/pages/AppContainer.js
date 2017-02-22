@@ -24,17 +24,16 @@ let AppContainer = React.createClass({
   },
 
   render() {
-    console.log( this.props );
     return (
       <div className="app-wrap">
-       <Header location={this.props.location} params={this.props.params} />
-        <div className="content">
-          <ReactCSSTransitionGroup component="div" transitionName="page-transition" transitionAppear
-                transitionAppearTimeout={500} transitionEnterTimeout={500} transitionLeaveTimeout={500}>
-            {React.cloneElement(this.props.children, {key: this.props.location.pathname})}
-          </ReactCSSTransitionGroup>
-        </div>
-        <Footer location={this.props.location} />
+          <Header location={this.props.location} params={this.props.params} />
+          <div className="content">
+              <ReactCSSTransitionGroup component="div" transitionName="page-transition" transitionAppear
+              transitionAppearTimeout={500} transitionEnterTimeout={500} transitionLeaveTimeout={500}>
+                  {React.cloneElement(this.props.children, {key: this.props.location.pathname})}
+              </ReactCSSTransitionGroup>
+          </div>
+          <Footer location={this.props.location} />
       </div>
     );
   },

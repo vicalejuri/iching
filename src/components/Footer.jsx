@@ -5,18 +5,17 @@ import { connect } from 'react-redux'
 
 let Footer = React.createClass({
   render() {
-    console.log('footer:render')
     return (
       <div className="footer icon-bar">
 
-       <Link to="/play" activeClassName="active" ref="play">
-         <div><i className="material-icons">brightness_high</i></div>
-       </Link>
-       <Link to="/list" activeClassName="active" ref="list">
-        <div><i className="material-icons">menu</i></div>
-       </Link>
+          <Link to="/play" activeClassName="active" ref="play">
+              <div><i className="material-icons">brightness_high</i></div>
+          </Link>
+          <Link to="/list" activeClassName="active" ref="list">
+              <div><i className="material-icons">menu</i></div>
+          </Link>
 
-     </div>
+      </div>
     );
   },
 });

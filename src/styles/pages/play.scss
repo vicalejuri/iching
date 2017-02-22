@@ -9,6 +9,9 @@
   flex-direction: column;
   align-items: center;
 
+  // avoid scrollbars
+  overflow: hidden;
+
   position: absolute;
   top: 0px;
 

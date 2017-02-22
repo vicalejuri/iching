@@ -36,14 +36,14 @@ function start() {
 
   render(
     <Provider store={store}>
-      <Router history={history}>
-        <Route path="/" name="Iching of the day" component={AppContainer}>
-          <Route name="hexagram-play" path="/play" component={PlayPage} />
-          <Route name="hexagram-list" path="/list" component={ListPage} />
-          <Route name="hexagram-details" path="/details/:number/:name" component={DetailPage} />
-          <IndexRoute component={PlayPage} />
-        </Route>
-      </Router>
+        <Router history={history}>
+            <Route path="/" name="Iching of the day" component={AppContainer}>
+                <Route name="hexagram-play" path="/play" component={PlayPage} />
+                <Route name="hexagram-list" path="/list" component={ListPage} />
+                <Route name="hexagram-details" path="/details/:number/:name" component={DetailPage} />
+                <IndexRoute component={PlayPage} />
+            </Route>
+        </Router>
     </Provider>,
     document.getElementById('app-mount')
   );
