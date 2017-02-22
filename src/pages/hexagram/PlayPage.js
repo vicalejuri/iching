@@ -94,11 +94,11 @@ let PlayPage = React.createClass({
     }
   },
 
-  onGongoHold() {
+  onGongoHold(ev) {
     ReactDOM.findDOMNode(this.refs.gongo).className = 'gongo down';
   },
 
-  onGongoRelease() {
+  onGongoRelease(ev) {
     ReactDOM.findDOMNode(this.refs.gongo).className = 'gongo hit';
     let au = ReactDOM.findDOMNode(this.refs.gongosound);
     if (au.play) {

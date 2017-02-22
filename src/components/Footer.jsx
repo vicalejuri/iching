@@ -8,7 +8,7 @@ let Footer = React.createClass({
     return (
       <div className="footer icon-bar">
 
-          <Link to="/play" activeClassName="active" ref="play">
+          <Link to="/" activeClassName="active" ref="play">
               <div><i className="material-icons">brightness_high</i></div>
           </Link>
           <Link to="/list" activeClassName="active" ref="list">

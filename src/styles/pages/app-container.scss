@@ -1,6 +1,6 @@
 /* Wrapper */
 .app-wrap {
-  max-width:540px;
+  max-width: 420px;
   height: 80vh;
   margin: 5vh auto 5vh auto;
   border:10px solid rgba(0,0,0,0.8);
@@ -34,7 +34,7 @@
 */
 
 .content {
-  overflow-y:  scroll;
+  overflow-y:  overlay;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
   height: 100%;

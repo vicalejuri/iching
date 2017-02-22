@@ -14,10 +14,10 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import reducers from './reducers';
 
-let history = createHistory()
-if ( __DEVELOPMENT__ ) {
+let history = createHashHistory()
+/*if ( __DEVELOPMENT__ ) {
   history = createHashHistory();
-}
+}*/
 
 function configureStore( initialState ) {
   let fCreateStore = compose(
@@ -38,7 +38,7 @@ function start() {
     <Provider store={store}>
         <Router history={history}>
             <Route path="/" name="Iching of the day" component={AppContainer}>
-                <Route name="hexagram-play" path="/play" component={PlayPage} />
+                <Route name="hexagram-play" path="/" component={PlayPage} />
                 <Route name="hexagram-list" path="/list" component={ListPage} />
                 <Route name="hexagram-details" path="/details/:number/:name" component={DetailPage} />
                 <IndexRoute component={PlayPage} />
@@ -95,6 +95,6 @@ import 'styles/main.scss';
 if ( __DEVELOPMENT__ ) {
   window.onerror = function (err, fileName, lineNumber) {
    // alert or console.log a message
-   alert(fileName, 'Line:', lineNumber, 'Error:', err.message);
+   console.error(fileName, 'Line:', lineNumber, 'Error:', err.message);
   };
 }
