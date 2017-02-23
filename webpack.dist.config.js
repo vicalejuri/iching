@@ -19,7 +19,7 @@ module.exports = {
     path: assetPath,
 
     filename: 'main.js',
-    publicPath: 'react-iching/assets/'
+    publicPath: 'assets/'
   },
   devtool: 'source-map',
   progress: true,
