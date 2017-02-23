@@ -27,18 +27,19 @@ $ cordova run
 
 ## Todo
 
-- [ ] Add Localization (i18n) libraries.
+- [ ] Minimize lodash/react and extra size optimizations
 - [ ] Revert to old style single tarot images.
+- [ ] Add Localization (i18n) to portuguese.
+- [ ] Minor Layout fixes for emojis in linux (firefox/chrome)
 - [ ] Implement 'iching of the day' based on chinese calendar
 - [ ] Implement the 'moving lines' interpretation
-- [ ] Fix touchTap not firing
-
-- [ ] Fix DetailPage => Tarot layout in some mobile devices (< 320px)
-- [ ] Fix Header/Footer links
-- [ ] Fix css BG bug when load complete
+- [x] Fix touchTap not firing
+- [x] Fix DetailPage => Tarot layout in some mobile devices (< 320px)
+- [x] Fix Header/Footer links
+- [x] Fix css BG bug when load complete
 
 ### Phonegap
-- [ ] Add deviceready event
+- [x] Add deviceready event
 - [ ] Implement mobile packages for ios/android
 
 ### Done:
