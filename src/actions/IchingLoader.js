@@ -3,16 +3,13 @@ import { ICHING_INTERPRETATION_LOAD, ICHING_INTERPRETATION_LOADED } from '../con
 // fetch JSON file using Browser Fetch
 export function fetchIchingJSON( json_uri ) {
   return (dispatch, getState) => {
-    dispatch( {
-      type: ICHING_INTERPRETATION_LOAD,
-      payload: json_uri,
-    })
-
-    return fetch( json_uri ).then( (json_data) => {
-      if ( json_data.status !== 200 ) { throw `fetch failed -> ${json_uri} : ${json_data.status}` }
-      dispatch( {
-        type: ICHING_INTERPRETATION_LOADED,
-        payload: json_data,
+    return fetch( json_uri ).then( (response) => {
+      if ( response.status !== 200 ) { throw `fetch failed -> ${json_uri} : ${response.status}` }
+      response.json().then( (json_data) => {
+        dispatch( {
+          type: ICHING_INTERPRETATION_LOADED,
+          payload: json_data,
+        })
       })
     })
   };

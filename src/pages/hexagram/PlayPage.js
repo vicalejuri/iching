@@ -124,7 +124,6 @@ let PlayPage = React.createClass({
   },
 
   play(ev) {
-    console.log('click')
     window.store.dispatch(HexagramActions.generateHexagram());
   }
 });

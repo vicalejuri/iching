@@ -7,9 +7,8 @@
 
 import * as _ from 'lodash';
 
-//import ICHING from '!json!constants/iching_deoxy.json';
 function getIching() {
-  return window.store.getState().interpretation
+  return window.store.getState().iching
 }
 
 // yang => 0 => ---
@@ -109,9 +108,11 @@ export function getHexagram( hex ) {
 
 /*
  * Return a list (in order) of all hexagrams
+ * ** Deprecated , use state.iching **
  */
 export function getAllHexagrams( ) {
-  let sortedSeq = _.chain( Lookup ).values().flatten().sortBy().value();
+  if ( getIching().length === 0) return []
 
+  let sortedSeq = _.chain( Lookup ).values().flatten().sortBy().value();
   return _.map( sortedSeq , getHexagram );
 }

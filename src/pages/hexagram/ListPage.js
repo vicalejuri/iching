@@ -20,11 +20,11 @@ let HexItem = React.createClass({
   render() {
     let hex = this.props.hex;
     return ( <ListItem
-        onClick={this.details}
-        onTouchTap={this.details}
-        key={hex.number}
-        leftAvatar={<Avatar className="avatar"><HexagramImage below={hex.trigrams.below} above={hex.trigrams.above} /></Avatar>}
-        primaryText={<div><b>{hex.name}</b> - {hex.description}</div>}
+    onClick={this.details}
+    onTouchTap={this.details}
+    key={hex.number}
+    leftAvatar={<Avatar className="avatar"><HexagramImage below={hex.trigrams.below} above={hex.trigrams.above} /></Avatar>}
+    primaryText={<div><b>{hex.name}</b> - {hex.description}</div>}
         /> )
   },
 
@@ -38,30 +38,21 @@ let HexItem = React.createClass({
 let ListPage = React.createClass({
   mixins: [ PureRenderMixin],
 
-  getInitialState() {
-    return {hexagrams: IchingTable.getAllHexagrams(), rendered_page: false};
-  },
-
   render() {
-    if ( this.cache.rendered ) {
-      return this.cache.rendered;
-    }
-
-    console.log('re-render listPage');
-    let hexNodes = this.state.hexagrams;
+    let hexNodes = this.props.hexagrams;
 
     let rendered_page =  (
       <div className="listpage-container">
-        <List subheader="The King Wen sequence">
-          {
-            hexNodes.map( (hex) => {
-              return ( <HexItem hex={hex} key={hex.number}/>)
-            } )
-          }
-        </List>
+          <List subheader="The King Wen sequence">
+              {
+                  hexNodes.map( (hex) => {
+                      return ( <HexItem hex={hex} key={hex.number}/>)
+                  } )
+              }
+          </List>
       </div>
     );
-    this.cache.rendered = rendered_page;
+
     return rendered_page;
   },
 
@@ -75,4 +66,6 @@ let ListPage = React.createClass({
 });
 
 
-export default ListPage;
+export default connect(state => {
+  return {hexagrams: state.iching};
+})(ListPage);
