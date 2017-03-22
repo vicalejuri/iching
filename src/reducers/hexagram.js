@@ -2,7 +2,7 @@ import { HEXAGRAM_GENERATE_KUA, HEXAGRAM_GENERATED, HEXAGRAM_CLEAR } from '../co
 import * as _ from 'lodash';
 
 import * as HexagramActions from '../actions/HexagramActions.js';
-import * as IchingTable from 'constants/lookup.js';
+import * as IchingTable from 'constants/IchingLookup.js';
 
 window.IchingTable = IchingTable;
 
@@ -48,6 +48,10 @@ export function generateKua() {
   */
   const kuaSum  = _.sum( coinsValue );
   let kua       = kuaName( kuaSum );
+
+  /* Ignore old-yang and young-yang, these
+   * are called moving lines and you dont use them
+   * at this stage */
 
   // Yang is 0, Yin is 1
   if (kua === 'old-yang' || kua === 'young-yang') {

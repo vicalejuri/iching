@@ -6,7 +6,11 @@
  */
 
 import * as _ from 'lodash';
-import ICHING from '!json!constants/iching_deoxy.json';
+
+//import ICHING from '!json!constants/iching_deoxy.json';
+function getIching() {
+  return window.store.getState().interpretation
+}
 
 // yang => 0 => ---
 // yin  => 1 => - -
@@ -89,14 +93,14 @@ export function getHexagram( hex ) {
   } else if ( _.isNumber(hex) ) {
     hexNumber = hex;
   } else if ( _.isString(hex) ) {
-    hexNumber = _.find( ICHING,  {'name': hex} ).number;
+    hexNumber = _.find( getIching(),  {'name': hex} ).number;
   } else {
     console.error('getHexagram', 'Argument ',hex,' is not of valid type (Number,Name or Array of Kuas)');
     return undefined;
   }
 
   // And finally the interpretation
-  let hexInterpretation = _.extend({}, _.find( ICHING, {'number': hexNumber}) );
+  let hexInterpretation = _.extend({}, _.find( getIching(), {'number': hexNumber}) );
 
   return hexInterpretation;
 }

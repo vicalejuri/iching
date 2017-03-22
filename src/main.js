@@ -5,14 +5,17 @@ import { render } from 'react-dom';
 import thunk from 'redux-thunk';
 import invariant from 'redux-immutable-state-invariant';
 
-import { AppContainer, PlayPage , ListPage, DetailPage } from './pages';
-
 import { createHashHistory, createHistory } from 'history';
 import { Router, Route, Link , IndexRoute, browserHistory} from 'react-router';
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
+
+import { fetchIchingJSON } from './actions/IchingLoader';
+import { getAsset } from './constants/utils';
 import reducers from './reducers';
+
+import { AppContainer, PlayPage , ListPage, DetailPage } from './pages';
 
 let history = createHashHistory()
 /*if ( __DEVELOPMENT__ ) {
@@ -30,12 +33,29 @@ function configureStore( initialState ) {
   return store;
 }
 
-function start() {
+/*
+ * Prefetch critical assets
+ */
+function bootstrap() {
   // Create store
-  let store = window.store = configureStore();
+  window.store = configureStore();
 
+  // load Iching JSON File
+  let x = window.store.dispatch( fetchIchingJSON( getAsset('json/iching_deoxy.json') ) )
+  x.catch( (e) => {
+    throw e;
+  }).then( (e) => {
+    console.log('Loaded ICHING json correctly')
+    start();
+  })
+}
+
+/*
+ * Render routes and display html
+ */
+function start() {
   render(
-    <Provider store={store}>
+    <Provider store={window.store}>
         <Router history={history}>
             <Route path="/" name="Iching of the day" component={AppContainer}>
                 <Route name="hexagram-play" path="/" component={PlayPage} />
@@ -57,36 +77,18 @@ function start() {
   document.body.class += 'loaded';
 }
 
-
-/* Update cache */
-// Check if a new cache is available on page load.
-window.addEventListener('load', function (e) {
-
-  // Reset cache
-  window.applicationCache.addEventListener('updateready', function () {
-    if (window.applicationCache.status === window.applicationCache.UPDATEREADY) {
-      // Browser downloaded a new app cache.
-      // Swap it in and reload the page to get the new hotness.
-      window.applicationCache.swapCache();
-      window.location.reload();
-    } else {
-      // Manifest didn't changed. Nothing new to server.
-    }
-  }, false);
-
-  // deviceready for ios/android
-  console.log(`PHONEGAP? `, __PHONEGAP__ );
-  if ( __PHONEGAP__ ) {
-    document.addEventListener( 'deviceready', start );
-  } else {
-    start();
-  }
-
-}, false);
+/*
+if ( __PHONEGAP__ ) {
+  document.addEventListener( 'deviceready', start );
+} else {
+  document.addEventListener('DOMContentLoaded', (e) => {
+    console.log('"wtf"',e)
+    bootstrap();
+  });
+}*/
 
 // force to import&compile css
 import 'styles/main.scss';
-
 
 // Report Errors
 // err: error message
@@ -98,3 +100,5 @@ if ( __DEVELOPMENT__ ) {
    console.error(fileName, 'Line:', lineNumber, 'Error:', err.message);
   };
 }
+
+bootstrap();

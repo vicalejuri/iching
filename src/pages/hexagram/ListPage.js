@@ -3,7 +3,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import * as _ from 'lodash';
 
 import * as HexagramActions from 'actions/HexagramActions.js';
-import * as IchingTable from 'constants/lookup.js';
+import * as IchingTable from 'constants/IchingLookup.js';
 
 import { HexagramImage } from 'components/HexagramImage';
 import { List, ListItem, Avatar, Icons, IconButton, FontIcon, Styles } from 'material-ui';

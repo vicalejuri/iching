@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as _ from 'lodash';
 
-import { getTrigramByName } from 'constants/lookup.js';
+import { getTrigramByName } from 'constants/IchingLookup.js';
 
 // Single Line
 export class YinLine extends Component {

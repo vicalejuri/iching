@@ -52,6 +52,7 @@
      "react/jsx-closing-bracket-location": 0,
      "react/no-multi-comp": 0,
      "array-bracket-spacing": 0,
+     "no-throw-literal": 0,
   },
   "plugins": [
     "react"

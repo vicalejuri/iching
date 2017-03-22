@@ -3,7 +3,7 @@ import * as _ from 'lodash';
 import classNames from 'classnames';
 
 import * as HexagramActions from 'actions/HexagramActions.js';
-import * as IchingTable from 'constants/lookup.js';
+import * as IchingTable from 'constants/IchingLookup.js';
 
 import HexagramInfoCard from 'components/HexagramInfoCard';
 import { List, ListItem, Avatar, Icons, IconButton, FontIcon, Styles , Divider } from 'material-ui';

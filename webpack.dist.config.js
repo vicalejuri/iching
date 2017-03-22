@@ -60,10 +60,10 @@ module.exports = {
       loader: ExtractTextPlugin.extract('css-loader?sourceMap!sass-loader?sourceMap')
     },
     { test: /\.css$/,
-      loader: ExtractTextPlugin.extract("css-loader")
+      loader: ExtractTextPlugin.extract('css-loader')
     },
     { test: /\.(png|jpg)$/,
-      loader: 'url-loader?limit=500000'
+      loader: 'url-loader?limit=5000'
     },
     { test: /\.(woff|woff2|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
       loader: 'file-loader'

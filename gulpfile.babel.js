@@ -3,6 +3,8 @@ import gulpLoadPlugins from 'gulp-load-plugins';
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 
+var path = require('path');
+
 import * as _ from 'lodash';
 import del from 'del';
 
@@ -98,7 +100,8 @@ gulp.task('serve', () => {
   const bundler = webpack(config);
   let server = new WebpackDevServer(bundler, {
     host: '0.0.0.0',
-    contentBase: './src',
+    contentBase: [path.join(__dirname, "src")],
+
     publicPath: '/assets/',
     hot: true,
     historyApiFallback: false,

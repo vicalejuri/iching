@@ -12,7 +12,6 @@ import BrightnessHigh from 'material-ui/lib/svg-icons/image/brightness-7';
 let Header = React.createClass({
 
   render() {
-    console.log(`header:render`);
     let info = this.headerPathToTitle(this.props.location, this.props.params)
     return (
       <div>

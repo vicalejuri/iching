@@ -60,10 +60,10 @@ let PlayPage = React.createClass({
 
               </div>
 
-          <div className="ichingDragArea">
-            <button ref="gongo" className="gongo" onMouseDown={this.onGongoHold} onMouseUp={this.onGongoRelease} onTouchStart={this.onGongoHold} onTouchEnd={this.onGongoRelease} onTouchTap={this.play}/>
-            <audio ref="gongosound" src="assets/audio/bell-square.mp3" preload="auto"></audio>
-          </div>
+              <div className="ichingDragArea">
+                  <button ref="gongo" className="gongo" onMouseDown={this.onGongoHold} onMouseUp={this.onGongoRelease} onTouchStart={this.onGongoHold} onTouchEnd={this.onGongoRelease} onTouchTap={this.play}/>
+                  <audio ref="gongosound" src="assets/audio/bell-square.mp3" preload="auto"></audio>
+              </div>
         </div>
 
       </div>

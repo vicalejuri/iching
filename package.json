@@ -65,7 +65,7 @@
     "style-loader": "~0.13.0",
     "url-loader": "~0.5.7",
     "webpack": "~1.12.9",
-    "webpack-dev-server": "~1.14.0"
+    "webpack-dev-server": "~1.16.3"
   },
   "devDependencies": {
     "gulp.spritesmith": "^4.1.1",
