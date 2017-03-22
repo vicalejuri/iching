@@ -48,8 +48,8 @@ export class HexagramImage extends Component {
 
       return (
         <div className="hex-img">
-          { above_image }
-          { below_image }
+            { above_image }
+            { below_image }
         </div>
       );
     }

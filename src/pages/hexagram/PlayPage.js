@@ -9,6 +9,8 @@ import * as HexagramActions from 'actions/HexagramActions.js';
 import Kua from 'components/Kua.jsx';
 import HexagramInfoCard from 'components/HexagramInfoCard.jsx';
 
+import { getAsset } from 'constants/utils'
+
 import {FloatingActionButton, RaisedButton, ToggleStar, TextField, Colors} from 'material-ui';
 import {Toolbar, ToolbarGroup, ToolbarSeparator} from 'material-ui';
 
@@ -62,9 +64,9 @@ let PlayPage = React.createClass({
 
               <div className="ichingDragArea">
                   <button ref="gongo" className="gongo" onMouseDown={this.onGongoHold} onMouseUp={this.onGongoRelease} onTouchStart={this.onGongoHold} onTouchEnd={this.onGongoRelease} onTouchTap={this.play}/>
-                  <audio ref="gongosound" src="assets/audio/bell-square.mp3" preload="auto"></audio>
+                  <audio ref="gongosound" src={getAsset('audio/bell-square.mp3')} preload="auto"></audio>
               </div>
-        </div>
+          </div>
 
       </div>
     );
@@ -99,11 +101,14 @@ let PlayPage = React.createClass({
   },
 
   onGongoRelease(ev) {
+    // add animation
     ReactDOM.findDOMNode(this.refs.gongo).className = 'gongo hit';
+
+    // play sound
     let au = ReactDOM.findDOMNode(this.refs.gongosound);
     if (au.play) {
       au.currentTime = 0.0;
-      //au.play();
+      au.play();
     }
 
     window.store.dispatch(HexagramActions.clearHexagram());
@@ -119,6 +124,7 @@ let PlayPage = React.createClass({
   },
 
   play(ev) {
+    console.log('click')
     window.store.dispatch(HexagramActions.generateHexagram());
   }
 });

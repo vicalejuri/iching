@@ -9,6 +9,7 @@ var webpack = require('webpack');
 
 var assetPath = require('path').join(__dirname, 'dist/assets');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 var path = require('path');
 var node_modules = path.resolve(__dirname, 'node_modules');
@@ -92,6 +93,7 @@ module.exports = {
         dead_code: true,
       }
     }),
+    new BundleAnalyzerPlugin()
   ]
 
 };

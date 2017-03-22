@@ -70,6 +70,7 @@
   "devDependencies": {
     "gulp.spritesmith": "^4.1.1",
     "image-webpack-loader": "^1.6.3",
-    "lodash": "^4.0.0"
+    "lodash": "^4.0.0",
+    "webpack-bundle-analyzer": "^2.3.1"
   }
 }

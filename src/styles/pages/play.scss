@@ -95,19 +95,21 @@
 
         will-change: transform;
         transform: scale(1.0);
-        transition: transform 350ms ease-in-out;
+        transition: transform 150ms ease-in;
 
         animation: forwards;
 
         &.down {
-          transform: scale(0.95);
-          transform: rotate(-60deg);
+          transform: scale(0.95) rotate(-60deg);
         }
 
         &.hit {
           transform: scale(1.0);
-          -moz-animation: spin 3.0s cubic-bezier(0.645, 0.045, 0.355, 1.000);
-          -webkit-animation: spin 3.0s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+          //-moz-animation: spin 3.0s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+          //-webkit-animation: spin 3.0s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+          //-webkit-animation: spin 3.0s cubic-bezier(.15,.58,.43,.99);
+          -webkit-animation: spin 3.0s cubic-bezier(.06,.21,.43,.99);
+
         }
       }
 
