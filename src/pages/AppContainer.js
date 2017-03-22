@@ -1,4 +1,5 @@
 import React, { Component, PropTypes  } from 'react';
+import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 
 import ThemeManager from 'material-ui/lib/styles/theme-manager';
@@ -23,11 +24,15 @@ let AppContainer = React.createClass({
     }
   },
 
+  componentWillUpdate() {
+    this.scrollTopTop()
+  },
+
   render() {
     return (
       <div className="app-wrap">
           <Header location={this.props.location} params={this.props.params} />
-          <div className="content">
+          <div className="content" ref="content">
               <ReactCSSTransitionGroup component="div" transitionName="page-transition" transitionAppear
               transitionAppearTimeout={500} transitionEnterTimeout={500} transitionLeaveTimeout={500}>
                   {React.cloneElement(this.props.children, {key: this.props.location.pathname})}
@@ -38,9 +43,13 @@ let AppContainer = React.createClass({
     );
   },
 
-});
+  scrollTopTop() {
+    let el = this.refs.content
+    el.scrollTop = 0
+    //debugger
+  },
 
-//    <ReactCSSTransitionGroup component="div" transitionName="page-transition" />
+});
 
 export default connect(
   null

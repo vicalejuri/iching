@@ -12,21 +12,16 @@ import { connect } from 'react-redux'
 
 
 let DetailPage = React.createClass({
-
   render() {
     let hexNumber = _.toNumber( this.props.params.number );
     let hex      = IchingTable.getHexagram( hexNumber );
-    if ( ! hex ) {
-      console.error(`Something is wrong on DetailPage. Hex shouldn't be = ${hex}`);
-      console.log('props = ', this.props);
-      return (<div/>);
-    }
+    console.assert(hex, `Invalid Hexagram number ${hexNumber}`);
 
     let lines    = _.chain( hex.interpretation.lines ).map( (line,i) => {
           return (
             <div className="line" key={i}>
-              <blockquote>{line.poem}</blockquote>
-              <p>{line.expl}</p>
+                <blockquote>{line.poem}</blockquote>
+                <p>{line.expl}</p>
             </div>
           );
     }).value()
@@ -38,33 +33,34 @@ let DetailPage = React.createClass({
 
           <div className="interpretation">
 
-            <div className="highlight">
-              <div className="tarot">
-                <div className={tarot_class}/>
+              <div className="highlight">
+                  <div className="tarot">
+                      <div className={tarot_class}/>
+                  </div>
+                  <div className="oracle">
+                      <blockquote>{hex.interpretation.oracle}</blockquote>
+                  </div>
               </div>
-              <div className="oracle">
-                <blockquote>{hex.interpretation.oracle}</blockquote>
-              </div>
-            </div>
-            <p>{hex.interpretation.resume}</p>
+              <p>{hex.interpretation.resume}</p>
 
-            <h3>The Image</h3>
-            <Divider />
-            <pre>{hex.interpretation.image.oracle}</pre>
-            <p>{hex.interpretation.image.image}</p>
+              <h3>The Image</h3>
+              <Divider />
+              <pre>{hex.interpretation.image.oracle}</pre>
+              <p>{hex.interpretation.image.image}</p>
 
-            <h3>The Judgement</h3>
-            <Divider />
-            <pre>{hex.interpretation.oracle}</pre>
-            <p>{hex.interpretation.judgment}</p>
+              <h3>The Judgement</h3>
+              <Divider />
+              <pre>{hex.interpretation.oracle}</pre>
+              <p>{hex.interpretation.judgment}</p>
 
-            <h3>The Lines</h3>
-            <Divider />
-            {lines}
+              <h3>The Lines</h3>
+              <Divider />
+              {lines}
           </div>
       </div>
     );
   },
+
 });
 
 
