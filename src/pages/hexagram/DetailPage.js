@@ -14,8 +14,12 @@ import { connect } from 'react-redux'
 let DetailPage = React.createClass({
   render() {
     let hexNumber = _.toNumber( this.props.params.number );
-    let hex      = IchingTable.getHexagram( hexNumber );
-    console.assert(hex, `Invalid Hexagram number ${hexNumber}`);
+
+    // get hexagram, or display nothing if not already loaded
+    let hex       = this.props.hexagrams[hexNumber];
+    if (!hex) {
+      return <div/>
+    }
 
     let lines    = _.chain( hex.interpretation.lines ).map( (line,i) => {
           return (
@@ -64,4 +68,6 @@ let DetailPage = React.createClass({
 });
 
 
-export default DetailPage;
+export default connect(state => {
+  return {hexagrams: state.iching};
+})(DetailPage);

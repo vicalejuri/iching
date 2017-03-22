@@ -33,9 +33,11 @@
 */
 
 .content {
-  overflow-y:  overlay;
   overflow-x: hidden;
+  /* Trick: https://css-tricks.com/snippets/css/momentum-scrolling-on-ios-overflow-elements/ */
+  overflow-y:  overlay;
   -webkit-overflow-scrolling: touch;
+
   height: 100%;
   padding: 0px 0px;
   //background-image: linear-gradient(260deg, #2376ae 0%, #c16ecf 100%);
