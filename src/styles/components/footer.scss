@@ -8,7 +8,13 @@
 .icon-bar a {
   flex:1;
   text-align: center;
-  padding:1.0rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 15px 0;
+
   border-left:1px solid rgba(0,0,0,0.1);
   background:#EFCA51;
   color:rgba(0,0,0,0.5);
@@ -26,7 +32,7 @@
 }
 
 .icon-bar a.normal {
-  
+
 }
 
 .icon-bar {

@@ -9,10 +9,10 @@ let Footer = React.createClass({
       <div className="footer icon-bar">
 
           <Link to="/" activeClassName="active" ref="play">
-              <div><i className="material-icons">brightness_high</i></div>
+              <i className="material-icons">brightness_high</i>
           </Link>
           <Link to="/list" activeClassName="active" ref="list">
-              <div><i className="material-icons">menu</i></div>
+              <i className="material-icons">menu</i>
           </Link>
 
       </div>

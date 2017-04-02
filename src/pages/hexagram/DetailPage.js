@@ -16,7 +16,7 @@ let DetailPage = React.createClass({
     let hexNumber = _.toNumber( this.props.params.number );
 
     // get hexagram, or display nothing if not already loaded
-    let hex       = this.props.hexagrams[hexNumber];
+    let hex       = this.props.hexagrams[hexNumber-1];
     if (!hex) {
       return <div/>
     }

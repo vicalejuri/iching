@@ -4,6 +4,9 @@
 @import 'utils/animations.scss';
 @import 'transitions.scss';
 
+* {
+  box-sizing: border-box;
+}
 
 html , body {
   box-sizing: border-box;
