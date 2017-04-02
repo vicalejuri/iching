@@ -1,15 +1,37 @@
-# Readme
+![icon](./extra/icon_128x128.png) <h1>Iching React App</h1>
 
-A I-ching oracle webapp of Richard Wilheim iconic book,
+-----
+
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](https://github.com/barrabinfc/react-iching)
+![gluten](https://img.shields.io/badge/gluten-free-brightgreen.svg?style=flat-square
+)
+
+
+Free offline I-ching oracle webapp of Richard Wilheim iconic book,
 built with ES6, React and Redux.
+
+Features:
+  - Full interpretation with the moving lines.
+  - Great text from the classic book of `Richard Wilhelm`
+  - Beautiful Tarot images by [Ma Deva Padma](http://thetaooracle.com)
+  - No bullshit & ads.
+  - Offline, no need for internet.
 
 ![alt tag](https://raw.githubusercontent.com/barrabinfc/react-iching/master/src/constants/screenshots/iching-main.png)
 ![alt tag](https://raw.githubusercontent.com/barrabinfc/react-iching/master/src/constants/screenshots/all.png)
 ![alt tag](https://raw.githubusercontent.com/barrabinfc/react-iching/master/src/constants/screenshots/detail.png)
 
-## App
+## Demo/App
 
 https://barrabinfc.github.io/react-iching/
+
+## Author
+
+* Vitor Calejuri  <barrabin.fc@gmail.com>
+
+## LICENSE
+
+MIT License
 
 ## For developers
 
@@ -61,6 +83,6 @@ $ cordova run
 
 ## Credits & info
 
-Built by Vitor Calejuri, with javascript ES6, React and Redux.
-Interpretation by Richard Wilheim
-Tarot art by Ma Deva Padma ( http://thetaooracle.com) 
+- Built by Vitor Calejuri, with javascript ES6, React and Redux.
+- Interpretation by `Richard Wilheim` and
+Tarot art by [Ma Deva Padma](http://thetaooracle.com)

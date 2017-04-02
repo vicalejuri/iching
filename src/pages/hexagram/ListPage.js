@@ -43,13 +43,11 @@ let ListPage = React.createClass({
 
     let rendered_page =  (
       <div className="listpage-container">
-          <List subheader="The King Wen sequence">
-              {
-                  hexNodes.map( (hex) => {
-                      return ( <HexItem hex={hex} key={hex.number}/>)
-                  } )
+      <List subheader="The King Wen sequence">
+      {
+      hexNodes.map( hex => ( <HexItem hex={hex} key={hex.number} />) )
               }
-          </List>
+        </List>
       </div>
     );
 
@@ -66,6 +64,4 @@ let ListPage = React.createClass({
 });
 
 
-export default connect(state => {
-  return {hexagrams: state.iching};
-})(ListPage);
+export default connect(state => ({hexagrams: state.iching}))(ListPage);

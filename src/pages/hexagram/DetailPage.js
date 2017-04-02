@@ -16,51 +16,49 @@ let DetailPage = React.createClass({
     let hexNumber = _.toNumber( this.props.params.number );
 
     // get hexagram, or display nothing if not already loaded
-    let hex       = this.props.hexagrams[hexNumber-1];
+    let hex       = this.props.hexagrams[hexNumber - 1];
     if (!hex) {
-      return <div/>
+      return <div />
     }
 
-    let lines    = _.chain( hex.interpretation.lines ).map( (line,i) => {
-          return (
-            <div className="line" key={i}>
-                <blockquote>{line.poem}</blockquote>
-                <p>{line.expl}</p>
-            </div>
-          );
-    }).value()
+    let lines    = _.chain( hex.interpretation.lines ).map( (line,i) => (
+      <div className="line" key={i}>
+        <blockquote>{line.poem}</blockquote>
+        <p>{line.expl}</p>
+      </div>
+          )).value()
 
     let tarot_class = classNames({[`icon-Tao_${hex.number}`]: true});
     return (
       <div className="detailspage-container">
-          <HexagramInfoCard hexagram={hex} trigrams />
+        <HexagramInfoCard hexagram={hex} trigrams />
 
-          <div className="interpretation">
+        <div className="interpretation">
 
-              <div className="highlight">
-                  <div className="tarot">
-                      <div className={tarot_class}/>
-                  </div>
-                  <div className="oracle">
-                      <blockquote>{hex.interpretation.oracle}</blockquote>
-                  </div>
-              </div>
-              <p>{hex.interpretation.resume}</p>
-
-              <h3>The Image</h3>
-              <Divider />
-              <pre>{hex.interpretation.image.oracle}</pre>
-              <p>{hex.interpretation.image.image}</p>
-
-              <h3>The Judgement</h3>
-              <Divider />
-              <pre>{hex.interpretation.oracle}</pre>
-              <p>{hex.interpretation.judgment}</p>
-
-              <h3>The Lines</h3>
-              <Divider />
-              {lines}
+          <div className="highlight">
+            <div className="tarot">
+              <div className={tarot_class} />
+            </div>
+            <div className="oracle">
+              <blockquote>{hex.interpretation.oracle}</blockquote>
+            </div>
           </div>
+          <p>{hex.interpretation.resume}</p>
+
+          <h3>The Image</h3>
+          <Divider />
+          <pre>{hex.interpretation.image.oracle}</pre>
+          <p>{hex.interpretation.image.image}</p>
+
+          <h3>The Judgement</h3>
+          <Divider />
+          <pre>{hex.interpretation.oracle}</pre>
+          <p>{hex.interpretation.judgment}</p>
+
+          <h3>The Lines</h3>
+          <Divider />
+          {lines}
+        </div>
       </div>
     );
   },
@@ -68,6 +66,4 @@ let DetailPage = React.createClass({
 });
 
 
-export default connect(state => {
-  return {hexagrams: state.iching};
-})(DetailPage);
+export default connect(state => ({hexagrams: state.iching}))(DetailPage);
