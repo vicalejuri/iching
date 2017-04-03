@@ -8,6 +8,10 @@
   box-sizing: border-box;
 }
 
+a {
+  color: #ff4081;
+}
+
 html , body {
   box-sizing: border-box;
   font-size: 1.0em;
@@ -28,7 +32,6 @@ body.loaded {
   background-color: #fff;
   color: #000;
 }
-
 
 *:focus {
     outline: 0;

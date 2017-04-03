@@ -3,12 +3,24 @@
   .interpretation {
     margin: 5% 5%;
     text-align: justify;
+    line-height: 1.5em;
 
-    pre {
+    q {
       font-family: 'Open Sans', 'Helvetica Neue', helvetica, sans-serif !important;
-      font-style: italic;
       text-align: justify;
+      max-width: 100%;
+      display: block;
+      quotes: "\201C" "\201D";
+      white-space: pre-wrap;
+      font-style: italic;
+      font-size: 1.3em;
     }
+
+    q:before , q:after {
+      font-family: -webkit-pictograph, fantasy;
+      font-size: 1.5em;
+    }
+
 
     .highlight {
       display: flex;
@@ -24,18 +36,19 @@
       .oracle {
         flex: 1 1 50%;
         font-style: italic;
-        font-weight: 600;
         text-align: left;
-
-        blockquote {
-          margin: 0;
-        }
       }
     }
 
     p {
       font-weight: lighter;
       letter-spacing: -0.5px;
+    }
+
+    /* subQuotes */
+    hr + .subQuote,
+    .line > .subQuote {
+      margin: 1em;
     }
 
     h3 {
