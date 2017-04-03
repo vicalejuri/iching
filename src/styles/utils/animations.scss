@@ -8,6 +8,57 @@
   }
 }
 
+/* sliding from Bottom (showing )*/
+@keyframes slideFromBottom {
+  from {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+/* Slide from up (showing) */
+@keyframes slideFromTop {
+  from {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+/* slide to Top  (hidding )*/
+@keyframes slideToBottom {
+  from {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+}
+
+@keyframes slideToTop {
+  from {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+}
+
+
 
 @keyframes bounceIn {
   from, 20%, 40%, 60%, 80%, to {
@@ -70,12 +121,12 @@
 }
 
 /*
- * Slide Down
+ * Slide Bounce Down
  */
 
-.slideDown{
-	animation-name: slideDown;
-	-webkit-animation-name: slideDown;
+.slideBounceDown{
+	animation-name: slideBounceDown;
+	-webkit-animation-name: slideBounceDown;
 
 	animation-duration: 1s;
 	-webkit-animation-duration: 1s;
@@ -86,34 +137,22 @@
 	visibility: visible !important;
 }
 
-@keyframes slideDown {
-	0% {
-		transform: translateY(-100%);
-	}
-	50%{
-		transform: translateY(4%);
-	}
-	65%{
-		transform: translateY(-2%);
-	}
-	80%{
-		transform: translateY(2%);
-	}
-	95%{
-		transform: translateY(-1%);
-	}
-	100% {
-		transform: translateY(0%);
-	}
+@keyframes slideBounceDown {
+	0% { transform: translateY(-100%); }
+	50%{ transform: translateY(4%); }
+	65%{ transform: translateY(-2%); }
+	80%{ transform: translateY(2%); }
+	95%{ transform: translateY(-1%); }
+	100% { transform: translateY(0%); }
 }
 
 /*
  * Slide Up
  */
 
- .slideUp{
- 	animation-name: slideUp;
- 	-webkit-animation-name: slideUp;
+ .slideBounceUp{
+ 	animation-name: slideBounceUp;
+ 	-webkit-animation-name: slideBounceUp;
 
  	animation-duration: 1s;
  	-webkit-animation-duration: 1s;
@@ -124,23 +163,11 @@
  	visibility: visible !important;
  }
 
- @keyframes slideUp {
- 	0% {
- 		transform: translateY(100%);
- 	}
- 	50%{
- 		transform: translateY(-4%);
- 	}
- 	65%{
- 		transform: translateY(2%);
- 	}
- 	80%{
- 		transform: translateY(-2%);
- 	}
- 	95%{
- 		transform: translateY(1%);
- 	}
- 	100% {
- 		transform: translateY(0%);
- 	}
+ @keyframes slideBounceUp {
+ 	0% { transform: translateY(100%); }
+ 	50%{ transform: translateY(-4%); }
+ 	65%{ transform: translateY(2%); }
+ 	80%{ transform: translateY(-2%); }
+ 	95%{ transform: translateY(1%); }
+ 	100% { transform: translateY(0%); }
  }
