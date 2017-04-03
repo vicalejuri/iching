@@ -1,14 +1,16 @@
-import React, { Component, PropTypes } from 'react';
 import * as _ from 'lodash';
 import classNames from 'classnames';
 
-import * as HexagramActions from 'actions/HexagramActions.js';
-import * as IchingTable from 'constants/IchingLookup.js';
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux'
 
-import HexagramInfoCard from 'components/HexagramInfoCard';
 import { List, ListItem, Avatar, Icons, IconButton, FontIcon, Styles , Divider } from 'material-ui';
 
-import { connect } from 'react-redux'
+import * as HexagramActions from '../../actions/HexagramActions';
+import * as IchingTable from '../../constants/IchingLookup';
+import { getAsset } from '../../constants/utils'
+
+import HexagramInfoCard from '../../components/HexagramInfoCard';
 
 
 let DetailPage = React.createClass({
@@ -28,7 +30,8 @@ let DetailPage = React.createClass({
       </div>
     )).value()
 
-    let tarot_class = classNames({[`icon-Tao_${hex.number}`]: true});
+    //let tarot_class = classNames({[`icon-Tao_${hex.number}`]: true});
+    let tarot_image = getAsset(`img/tarot/Tao_${hex.number}.jpg`)
     return (
       <div className="detailspage-container">
           <HexagramInfoCard hexagram={hex} trigrams />
@@ -36,37 +39,36 @@ let DetailPage = React.createClass({
           <div className="interpretation">
               <div className="highlight">
                   <div className="tarot">
-                      <div className={tarot_class} />
+                      <img src={tarot_image} />
+                      {/* <div className={tarot_class} /> */}
                   </div>
-                  <div className="oracle">
-                      <q>{this.formatQuote(hex.interpretation.oracle)}</q>
-                  </div>
-              </div>
-              {this.formatText(hex.interpretation.resume)}
+                <div className="oracle">
+                    <q>{this.formatQuote(hex.interpretation.oracle)}</q>
+                </div>
+            </div>
+            {this.formatText(hex.interpretation.resume)}
 
-              <h3>The Image</h3>
-              <Divider />
-              <q className="subQuote">{this.formatQuote(hex.interpretation.image.oracle)}</q>
-              {this.formatText(hex.interpretation.image.image)}
+            <h3>The Image</h3>
+            <Divider />
+            <q className="subQuote">{this.formatQuote(hex.interpretation.image.oracle)}</q>
+            {this.formatText(hex.interpretation.image.image)}
 
-              <h3>The Judgement</h3>
-              <Divider />
-              <q className="subQuote">{this.formatQuote(hex.interpretation.oracle)}</q>
-              {this.formatText(hex.interpretation.judgment)}
+            <h3>The Judgement</h3>
+            <Divider />
+            <q className="subQuote">{this.formatQuote(hex.interpretation.oracle)}</q>
+            {this.formatText(hex.interpretation.judgment)}
 
-              <h3>The Lines</h3>
-              <Divider />
-              {lines}
-          </div>
-      </div>
+            <h3>The Lines</h3>
+            <Divider />
+            {lines}
+        </div>
+    </div>
     );
   },
 
   formatText(text) {
     let paragraphs = text.split('\n\n')
-    let fmted = paragraphs.map((p) => {
-      return (<p>{p}</p>)
-    })
+    let fmted = paragraphs.map(p => (<p>{p}</p>))
     return fmted
   },
 
