@@ -5,14 +5,15 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import * as _ from 'lodash';
 
-import * as HexagramActions from 'actions/HexagramActions.js';
-import * as IchingTable from 'constants/IchingLookup.js';
-
-import { TrigramImage } from 'components/HexagramImage';
 import { List, ListItem, Avatar, Icons, IconButton, Snackbar , Subheader} from 'material-ui';
 
 import Router, {Link, History}  from 'react-router';
 import { connect , dispatch } from 'react-redux'
+
+import * as HexagramActions from '../../actions/HexagramActions';
+import * as IchingTable from '../../constants/IchingLookup';
+
+import { TrigramImage } from '../../components/HexagramImage';
 
 let TrigramItem = React.createClass({
   render() {
