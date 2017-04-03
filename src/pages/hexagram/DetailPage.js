@@ -23,8 +23,8 @@ let DetailPage = React.createClass({
 
     let lines    = _.chain( hex.interpretation.lines ).map( (line,i) => (
       <div className="line" key={i}>
-        <q className="subQuote">{line.poem}</q>
-        <p>{line.expl}</p>
+          <q className="subQuote">{this.formatQuote(line.poem)}</q>
+          {this.formatText(line.expl)}
       </div>
     )).value()
 
@@ -42,17 +42,17 @@ let DetailPage = React.createClass({
                       <q>{this.formatQuote(hex.interpretation.oracle)}</q>
                   </div>
               </div>
-              <p>{hex.interpretation.resume}</p>
+              {this.formatText(hex.interpretation.resume)}
 
               <h3>The Image</h3>
               <Divider />
               <q className="subQuote">{this.formatQuote(hex.interpretation.image.oracle)}</q>
-              <p>{hex.interpretation.image.image}</p>
+              {this.formatText(hex.interpretation.image.image)}
 
               <h3>The Judgement</h3>
               <Divider />
               <q className="subQuote">{this.formatQuote(hex.interpretation.oracle)}</q>
-              <p>{hex.interpretation.judgment}</p>
+              {this.formatText(hex.interpretation.judgment)}
 
               <h3>The Lines</h3>
               <Divider />
@@ -60,6 +60,14 @@ let DetailPage = React.createClass({
           </div>
       </div>
     );
+  },
+
+  formatText(text) {
+    let paragraphs = text.split('\n\n')
+    let fmted = paragraphs.map((p) => {
+      return (<p>{p}</p>)
+    })
+    return fmted
   },
 
   formatQuote(text) {

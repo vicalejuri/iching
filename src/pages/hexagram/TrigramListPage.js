@@ -67,7 +67,7 @@ let TrigramItem = React.createClass({
     return rendered_page;
    },
 
-   handleTrigramTouch(tri_part='lower', ev) {
+   handleTrigramTouch( tri_part = 'lower' , ev) {
      let state = this.state
      console.log(tri_part, ev)
      //state[tri_part] =
