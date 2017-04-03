@@ -75,8 +75,8 @@ export class HexagramImage extends Component {
 export class TrigramImage extends HexagramImage {
   render() {
     let { tri } = this.props;
-    if ( _.isString(tri.title) ) {
-      tri = getTrigramByName( tri.title );
+    if ( _.isString(tri.name) ) {
+      tri = getTrigramByName( tri.name );
     }
 
     let tri_image = _.chain( this.trigramImage( tri ) ).reverse().value()

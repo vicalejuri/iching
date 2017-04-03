@@ -43,11 +43,11 @@ let ListPage = React.createClass({
 
     let rendered_page =  (
       <div className="listpage-container">
-      <List subheader="The King Wen sequence">
-      {
-      hexNodes.map( hex => ( <HexItem hex={hex} key={hex.number} />) )
+          <List subheader="The King Wen sequence">
+              {
+                  hexNodes.map( hex => ( <HexItem hex={hex} key={hex.number} />) )
               }
-        </List>
+          </List>
       </div>
     );
 

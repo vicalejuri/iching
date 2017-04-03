@@ -12,10 +12,6 @@ import { connect } from 'react-redux'
 
 
 let DetailPage = React.createClass({
-  formatQuote(text) {
-    return text.replace(/\t/g,'')
-  },
-
   render() {
     let hexNumber = _.toNumber( this.props.params.number );
 
@@ -27,8 +23,8 @@ let DetailPage = React.createClass({
 
     let lines    = _.chain( hex.interpretation.lines ).map( (line,i) => (
       <div className="line" key={i}>
-          <q className="subQuote">{line.poem}</q>
-          <p>{line.expl}</p>
+        <q className="subQuote">{line.poem}</q>
+        <p>{line.expl}</p>
       </div>
     )).value()
 
@@ -38,7 +34,6 @@ let DetailPage = React.createClass({
           <HexagramInfoCard hexagram={hex} trigrams />
 
           <div className="interpretation">
-
               <div className="highlight">
                   <div className="tarot">
                       <div className={tarot_class} />
@@ -65,6 +60,10 @@ let DetailPage = React.createClass({
           </div>
       </div>
     );
+  },
+
+  formatQuote(text) {
+    return text.replace(/\t/g,'')
   },
 
 });

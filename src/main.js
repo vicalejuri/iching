@@ -15,7 +15,7 @@ import { fetchIchingJSON } from './actions/IchingLoader';
 import { getAsset } from './constants/utils';
 import reducers from './reducers';
 
-import { AppContainer, PlayPage , ListPage, DetailPage } from './pages';
+import { AppContainer, PlayPage , ListPage, TrigramListPage, DetailPage } from './pages';
 
 let history = createHashHistory()
 /*if ( __DEVELOPMENT__ ) {
@@ -60,6 +60,7 @@ function start() {
             <Route path="/" name="Iching of the day" component={AppContainer}>
                 <Route name="hexagram-play" path="/" component={PlayPage} />
                 <Route name="hexagram-list" path="/list" component={ListPage} />
+                <Route name="trigram-list" path="/trigram-list" component={TrigramListPage} />
                 <Route name="hexagram-details" path="/details/:number/:name" component={DetailPage} />
                 <IndexRoute component={PlayPage} />
             </Route>

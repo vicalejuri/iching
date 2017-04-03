@@ -1,6 +1,6 @@
 /* Styles */
 @import 'fonts/material-icons/material-ui.css';
-//@import 'fonts/Open_Sans/open_sans.css';
+@import 'fonts/roboto/Roboto.css';
 @import 'utils/animations.scss';
 @import 'transitions.scss';
 
@@ -15,7 +15,7 @@ a {
 html , body {
   box-sizing: border-box;
   font-size: 1.0em;
-  font-family: 'Open Sans', 'Helvetica Neue', helvetica, sans-serif;
+  font-family: 'Roboto', 'Helvetica Neue', helvetica, sans-serif;
   font-weight: lighter;
   letter-spacing: -1px;
   margin: 0;
@@ -40,6 +40,7 @@ body.loaded {
 @import 'pages/app-container.scss';
 @import 'pages/play.scss';
 @import 'pages/list.scss';
+@import 'pages/trigramlist.scss';
 @import 'pages/details.scss';
 
 
