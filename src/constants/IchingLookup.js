@@ -18,7 +18,7 @@ function getIching() {
 export const Trigrams = [
      // chien , tui , li, chen, sun, kan, ken, kun
     { trigrams: [0,0,0], image: '⛅',   image_name: 'heaven',     name: 'chien', body: 'head',  animal: '🐴',    animal_name: 'horse',          wilhelm: 'Heaven'},
-    { trigrams: [0,0,1], image: '🌈',   image_name: 'lake',       name: 'tui',   body: 'mouth', animal: '🐐',    animal_name: 'goat',           wilhelm: 'Lake'},
+    { trigrams: [0,0,1], image: '💦',   image_name: 'lake',       name: 'tui',   body: 'mouth', animal: '🐐',    animal_name: 'goat',           wilhelm: 'Lake'},
     { trigrams: [0,1,0], image: '🔥',   image_name: 'fire',       name: 'li',    body: 'eye',   animal: '🐦',    animal_name: 'pheasant',       wilhelm: 'Flame'},
     { trigrams: [0,1,1], image: '⚡',   image_name: 'thunder',    name: 'chên',  body: 'foot',  animal: '🐉',    animal_name: 'dragon',         wilhelm: 'Thunder'},
     { trigrams: [1,0,0], image: '🎐',   image_name: 'wind',       name: 'sun',   body: 'thigh', animal: '🐓',    animal_name: 'fowl',           wilhelm: 'Wind'},
