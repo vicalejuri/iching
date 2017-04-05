@@ -1,4 +1,4 @@
-![icon](./extra/icon_128x128.png) <h1>Iching React App</h1>
+![icon](./extra/icon_128x128.png) # I Ching React App
 
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](https://github.com/barrabinfc/react-iching)
 ![gluten](https://img.shields.io/badge/gluten-free-brightgreen.svg?style=flat-square
