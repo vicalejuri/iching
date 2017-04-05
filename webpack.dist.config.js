@@ -93,7 +93,7 @@ module.exports = {
         dead_code: true,
       }
     }),
-    new BundleAnalyzerPlugin()
+    //new BundleAnalyzerPlugin()
   ]
 
 };

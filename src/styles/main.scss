@@ -1,6 +1,7 @@
 /* Styles */
 @import 'fonts/material-icons/material-ui.css';
 @import 'fonts/roboto/Roboto.css';
+@import 'fonts/abril-fatface/abril-fatface.css';
 @import 'utils/animations.scss';
 @import 'transitions.scss';
 
@@ -36,6 +37,7 @@ body.loaded {
 *:focus {
     outline: 0;
 }
+
 
 @import 'pages/app-container.scss';
 @import 'pages/play.scss';

@@ -18,14 +18,15 @@
   .canvas {
     flex: 1;
     min-height: 100%;
-    min-width: 90%;
+    width: 90%;
 
     flex-direction: column;
     display: flex;
     justify-content: space-around;
 
     .infoArea {
-      min-width: 90%;
+      width: 100%;
+      margin: 0px auto;
       min-height: 150px;
       flex: 1;
       display: flex;
@@ -73,8 +74,8 @@
       flex-direction: row;
 
       .gongo {
-        width: 150px;
-        height: 150px;
+        width: 128px;
+        height: 128px;
 
         // Disable selection
         user-select: none;

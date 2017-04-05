@@ -1,6 +1,7 @@
 $time: .5s;
 $easeBounce: cubic-bezier(0.23, 1, 0.32, 1) ;
 $easeOutQuart: cubic-bezier(0.165, 0.840, 0.440, 1.000);
+$easeSoftOut: cubic-bezier(0.52, 0.01, 0.16, 1);
 
 /*
  * Transitions from pages (left/right translate)
@@ -51,7 +52,7 @@ $easeOutQuart: cubic-bezier(0.165, 0.840, 0.440, 1.000);
  */
 .hexagram-preview-enter {
   animation-duration: $time;
-  animation-timing-function: $easeOutQuart;
+  animation-timing-function: $easeSoftOut;
   animation-fill-mode: both;
   opacity: 0;
 }
@@ -62,7 +63,7 @@ $easeOutQuart: cubic-bezier(0.165, 0.840, 0.440, 1.000);
 
 .hexagram-preview-leave {
   animation-duration: $time;
-  animation-timing-function: $easeOutQuart;
+  animation-timing-function: $easeSoftOut;
   animation-fill-mode: both;
   opacity: 1;
 }
@@ -73,7 +74,7 @@ $easeOutQuart: cubic-bezier(0.165, 0.840, 0.440, 1.000);
 
 .hexagram-preview-appear {
   animation-duration: $time;
-  animation-timing-function: $easeOutQuart;
+  animation-timing-function: $easeSoftOut;
   animation-fill-mode: both;
 }
 .hexagram-preview-appear.hexagram-preview-appear-active {

@@ -6,19 +6,30 @@
     line-height: 1.5em;
 
     q {
-      font-family: 'Open Sans', 'Helvetica Neue', helvetica, sans-serif !important;
-      text-align: justify;
+      font-family: 'Abril Fatface', cursive !important;
+      text-align: left;
       max-width: 100%;
       display: block;
       quotes: "\201C" "\201D";
+
       white-space: pre-wrap;
       font-style: italic;
       font-size: 1.3em;
+      letter-spacing: 0em;
+      
+      word-wrap: break-word;
+      word-break: break-word;
+      hyphens: auto;
     }
 
-    q:before , q:after {
-      font-family: -webkit-pictograph, fantasy;
+    q:before {
+      font-family: 'Abril Fatface', cursive;
       font-size: 1.5em;
+      position: absolute;
+      transform: translate(-20px,-5px);
+    }
+    q:after {
+      display: none;
     }
 
 
@@ -39,15 +50,16 @@
       }
 
       .oracle {
-        flex: 1 1 50%;
-        font-style: italic;
-        text-align: left;
+        width: 90%;
+        margin: 0px auto;
       }
     }
 
     p {
       font-weight: lighter;
       letter-spacing: -0.5px;
+      margin: 1.4em 1em;
+      hyphens: auto;
     }
 
     /* subQuotes */

@@ -40,11 +40,10 @@ let DetailPage = React.createClass({
               <div className="highlight">
                   <div className="tarot">
                       <img src={tarot_image} />
-                      {/* <div className={tarot_class} /> */}
                   </div>
-                <div className="oracle">
-                    <q>{this.formatQuote(hex.interpretation.oracle)}</q>
-                </div>
+                  <div className="oracle">
+                      <q>{this.formatQuote(hex.interpretation.oracle)}</q>
+                  </div>
             </div>
             {this.formatText(hex.interpretation.resume)}
 
