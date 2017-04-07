@@ -40,7 +40,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['', '.js','jsx','.json'],
+    extensions: ['', '.js', '.jsx','.json','.css','.jpg','.png','.gif'],
     alias: {
       'styles': __dirname + '/src/styles',
       'components': __dirname + '/src/components/',
