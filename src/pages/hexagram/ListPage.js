@@ -2,14 +2,15 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import * as _ from 'lodash';
 
-import * as HexagramActions from 'actions/HexagramActions.js';
-import * as IchingTable from 'constants/IchingLookup.js';
-
-import { HexagramImage } from 'components/HexagramImage';
 import { List, ListItem, Avatar, Icons, IconButton, FontIcon, Styles } from 'material-ui';
 
 import Router, {Link, History}  from 'react-router';
 import { connect , dispatch } from 'react-redux'
+
+import * as HexagramActions from '../../actions/HexagramActions';
+import * as IchingTable from '../../constants/IchingLookup';
+
+import { HexagramImage } from '../../components/HexagramImage';
 
 /*
  * A single list item
@@ -23,7 +24,10 @@ let HexItem = React.createClass({
     onClick={this.details}
     onTouchTap={this.details}
     key={hex.number}
-    leftAvatar={<Avatar className="avatar"><HexagramImage below={hex.trigrams.below} above={hex.trigrams.above} /></Avatar>}
+    leftAvatar={
+      <Avatar className="avatar">
+        <HexagramImage below={hex.trigrams.below} above={hex.trigrams.above} />
+      </Avatar>}
     primaryText={<div><b>{hex.name}</b> - {hex.description}</div>}
         /> )
   },

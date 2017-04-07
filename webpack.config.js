@@ -40,7 +40,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['', '.js','.json'],
+    extensions: ['', '.js','jsx','.json'],
     alias: {
       'styles': __dirname + '/src/styles',
       'components': __dirname + '/src/components/',
@@ -55,12 +55,12 @@ module.exports = {
   },
   module: {
     preLoaders: [{
-      test: /\.(js)$/,
+      test: /\.(js|jsx)$/,
       exclude: /node_module/,
       loaders: ['eslint-loader', ],
     }],
     loaders: [
-    { test: /\.(js)$/,
+    { test: /\.(js|jsx)$/,
       exclude: /node_modules/,
       loader: 'babel-loader',
     },
