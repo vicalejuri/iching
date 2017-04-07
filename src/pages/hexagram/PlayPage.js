@@ -23,7 +23,7 @@ const opts = {
 let PlayPage = React.createClass({
 
   propTypes: {
-    kuas: PropTypes.arrayOf(PropTypes.number),
+    kuas: PropTypes.arrayOf(PropTypes.object),
     hexagram: PropTypes.object,
     dispatch: PropTypes.func
   },
@@ -36,37 +36,36 @@ let PlayPage = React.createClass({
   },
 
   render() {
-    const {kuas} = this.props;
     return (
       <div className="playpage-container">
 
-          <div className="canvas">
+        <div className="canvas">
 
-              <div className="infoArea">
-                  <ReactCSSTransitionGroup transitionName="question" transitionEnterTimeout={400} transitionLeaveTimeout={400}>
-                      {this.isFirstPlay() ? (
-                          <div className="question" ref="question">
-                              {this.renderQuestion()}
-                          </div>
+          <div className="infoArea">
+            <ReactCSSTransitionGroup transitionName="question" transitionEnterTimeout={400} transitionLeaveTimeout={400}>
+              {this.isFirstPlay() ? (
+                <div className="question" ref="question">
+                  {this.renderQuestion()}
+                </div>
                       ) : (false) }
-                  </ReactCSSTransitionGroup>
+            </ReactCSSTransitionGroup>
 
-                  <ReactCSSTransitionGroup transitionName="hexagram-preview" transitionEnterTimeout={400} transitionLeaveTimeout={400}>
-                      {this.hasHexagram()
-                          ? (
-                              <div className="iching-card" ref="card" onTouchTap={this.goToHexagram} onClick={this.goToHexagram}>
-                                  {this.renderPreviewCard()}
-                              </div>
-                          ) : (false)}
-                  </ReactCSSTransitionGroup>
+            <ReactCSSTransitionGroup transitionName="hexagram-preview" transitionEnterTimeout={400} transitionLeaveTimeout={400}>
+              {this.hasHexagram() &&
+                          (
+                          <div className="iching-card" ref="card" onTouchTap={this.goToHexagram} onClick={this.goToHexagram}>
+                            {this.renderPreviewCard()}
+                          </div>
+                          ) }
+            </ReactCSSTransitionGroup>
 
-              </div>
-
-              <div className="ichingDragArea">
-                  <button ref="gongo" className="gongo" onMouseDown={this.onGongoHold} onMouseUp={this.onGongoRelease} onTouchStart={this.onGongoHold} onTouchEnd={this.onGongoRelease} onTouchTap={this.play}/>
-                  <audio ref="gongosound" src={getAsset('audio/bell-square.mp3')} preload="auto"></audio>
-              </div>
           </div>
+
+          <div className="ichingDragArea">
+            <button ref="gongo" className="gongo" onMouseDown={this.onGongoHold} onMouseUp={this.onGongoRelease} onTouchStart={this.onGongoHold} onTouchEnd={this.onGongoRelease} onTouchTap={this.play} />
+            <audio ref="gongosound" src={getAsset('audio/bell-square.mp3')} preload="auto" />
+          </div>
+        </div>
 
       </div>
     );
@@ -84,7 +83,7 @@ let PlayPage = React.createClass({
   renderPreviewCard() {
     let {hexagram} = this.props;
     if (!_.isEmpty(hexagram)) {
-      return (<HexagramInfoCard key={hexagram.number} hexagram={hexagram} trigrams/>);
+      return (<HexagramInfoCard key={hexagram.number} hexagram={hexagram} trigrams />);
     }
   },
 
@@ -128,6 +127,4 @@ let PlayPage = React.createClass({
   }
 });
 
-export default connect(state => {
-  return {kuas: state.kuas, hexagram: state.hexagram};
-})(PlayPage);
+export default connect(state => ({kuas: state.kuas, hexagram: state.hexagram}))(PlayPage);

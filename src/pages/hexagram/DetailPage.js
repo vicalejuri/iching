@@ -24,9 +24,9 @@ let DetailPage = React.createClass({
     }
 
     let lines    = _.chain( hex.interpretation.lines ).map( (line,i) => (
-      <div className="line" key={i}>
-          <q className="subQuote">{this.formatQuote(line.poem)}</q>
-          {this.formatText(line.expl)}
+      <div className="line" key={this.lineId(line.poem)}>
+        <q className="subQuote">{this.formatQuote(line.poem)}</q>
+        {this.formatText(line.expl)}
       </div>
     )).value()
 
@@ -34,35 +34,40 @@ let DetailPage = React.createClass({
     let tarot_image = getAsset(`img/tarot/Tao_${hex.number}.jpg`)
     return (
       <div className="detailspage-container">
-          <HexagramInfoCard hexagram={hex} trigrams />
+        <HexagramInfoCard hexagram={hex} trigrams />
 
-          <div className="interpretation">
-              <div className="highlight">
-                  <div className="tarot">
-                      <img src={tarot_image} />
-                  </div>
-                  <div className="oracle">
-                      <q>{this.formatQuote(hex.interpretation.oracle)}</q>
-                  </div>
+        <div className="interpretation">
+          <div className="highlight">
+            <div className="tarot">
+              <img src={tarot_image} alt={hex.description} />
             </div>
-            {this.formatText(hex.interpretation.resume)}
+            <div className="oracle">
+              <q>{this.formatQuote(hex.interpretation.oracle)}</q>
+            </div>
+          </div>
+          {this.formatText(hex.interpretation.resume)}
 
-            <h3>The Image</h3>
-            <Divider />
-            <q className="subQuote">{this.formatQuote(hex.interpretation.image.oracle)}</q>
-            {this.formatText(hex.interpretation.image.image)}
+          <h3>The Image</h3>
+          <Divider />
+          <q className="subQuote">{this.formatQuote(hex.interpretation.image.oracle)}</q>
+          {this.formatText(hex.interpretation.image.image)}
 
-            <h3>The Judgement</h3>
-            <Divider />
-            <q className="subQuote">{this.formatQuote(hex.interpretation.oracle)}</q>
-            {this.formatText(hex.interpretation.judgment)}
+          <h3>The Judgement</h3>
+          <Divider />
+          <q className="subQuote">{this.formatQuote(hex.interpretation.oracle)}</q>
+          {this.formatText(hex.interpretation.judgment)}
 
-            <h3>The Lines</h3>
-            <Divider />
-            {lines}
+          <h3>The Lines</h3>
+          <Divider />
+          {lines}
         </div>
-    </div>
+      </div>
     );
+  },
+
+  lineId(text) {
+    return text.split('\n')[0]
+            .toLowerCase()
   },
 
   formatText(text) {

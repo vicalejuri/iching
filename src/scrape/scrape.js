@@ -5,11 +5,11 @@ import fs from 'fs';
 import http from 'http';
 import async from 'async';
 
-let download = function(url, dest, cb) {
-  var file = fs.createWriteStream(dest);
-  var request = http.get(url, function(response) {
+let download = function (url, dest, cb) {
+  let file = fs.createWriteStream(dest);
+  let request = http.get(url, (response) => {
     response.pipe(file);
-    file.on('finish', function() {
+    file.on('finish', () => {
       file.close(cb);
     });
   });
@@ -20,7 +20,7 @@ export default function scrapeIchingTable() {
      * Scrape iching table / interpretation from ichingfortune.com
      * Save a JSON to ./src/public/iching.json
      */
-    let URL_BASE = "http://ichingfortune.com";
+    let URL_BASE = 'http://ichingfortune.com';
     let URL_HEXAGRAM_FORMAT = 'https?://ichingfortune.com/hexagrams/:id.:f'
 
     let router = new scraper.Router();
@@ -46,43 +46,51 @@ export default function scrapeIchingTable() {
             let title = $(v).text().toLowerCase();
             let interp = $(v).next('p').text().trim();
 
-            switch ( title ){
-              // TODO:
-              case "the lines":
+            switch ( title ) {
+              // TODO: To parse lines correctly for now just save it raw
+              case 'the lines':
                 return undefined;
-              case "the image":
-                title = "image";
+              case 'the image':
+                title = 'image';
+                break;
+              default:
+                title = 'Unknow';
             }
 
             return [ title ,  interp ];
         })).reject( _.isUndefined ).zipObject().value();
 
         // Download image locally
-        let IMAGE_OUTPUT = (iname) => `./src/images/iching/${iname}.gif`;
-        let image_url = [ URL_BASE, $('article > img').attr('src').substr(3) ].join('/');
+        let IMAGE_OUTPUT = iname => `./src/images/iching/${iname}.gif`;
+        let image_url = [ URL_BASE,
+                        $('article > img').attr('src').substr(3) ]
+                        .join('/');
         download(image_url, IMAGE_OUTPUT(name));
         let image = `./images/${name}.gif`;
 
         // Get Trigrams of hexagram
         let getTrigram = (tri) => {
-          let tri_name = $(tri).text().replace(/Above|Below|\'/,'').trim().splice(' ')[0].toLowerCase();
+          let tri_name = $(tri).text().replace(/Above|Below|'/,'')
+                               .trim().splice(' ')[0].toLowerCase();
           return tri_name;
         }
         let { above, below } = [ getTrigram(trigrams[0]), getTrigram(trigrams[2]) ];
 
         return {
-          name:  name, description: description, number: num,
+          name,
+description,
+number: num,
           trigrams: {
-            above: above,
-            below: below,
+            above,
+            below,
           },
-          interpretation: interpretation
+          interpretation
         };
     });
 
 
     // Download all 64 hexagrams
-    let URL_HEXAGRAM = (id) => `http://ichingfortune.com/hexagrams/${id}.php`;
+    let URL_HEXAGRAM = id => `http://ichingfortune.com/hexagrams/${id}.php`;
     let JSON_OUTPUT = './src/constants/iching.json';
 
     let urls = _.range(1,65).map( URL_HEXAGRAM );
@@ -90,14 +98,14 @@ export default function scrapeIchingTable() {
 
     async.eachLimit( urls, 2 , (url, done) => {
       router.route(url, (found,returned) => {
-        if (found && returned){
+        if (found && returned) {
             iching.push(returned);
         }
         done();
       });
     }, (err) => {
       // Save JSON
-      var ichingTable = _._(iching).sortBy('number').value();
+      let ichingTable = _._(iching).sortBy('number').value();
       fs.writeFile( JSON_OUTPUT , JSON.stringify(ichingTable, null, 4));
     })
 }

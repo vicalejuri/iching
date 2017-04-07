@@ -5,7 +5,7 @@ import { HEXAGRAM_GENERATE_KUA, HEXAGRAM_GENERATED, HEXAGRAM_CLEAR,
 export function generatedHexagram( kuas ) {
   return {
     type: HEXAGRAM_GENERATED,
-    //payload: kuas,
+    payload: kuas,
   };
 }
 
@@ -35,7 +35,7 @@ export function generateKua() {
 export function generateHexagram() {
   return (dispatch, getState) => {
     // Throw 6 coins
-    for (let i of [1,2,3,4,5,6]) {
+    for (let i = 0; i < 8; i += 1) {
       dispatch(generateKua());
     }
 
@@ -48,7 +48,7 @@ export function generateHexagram() {
 export function generateTrigram() {
   return (dispatch, getState) => {
     // Throw 3 coins
-    for (let i of [1,2,3]) {
+    for (let i = 0; i < 3; i += 1) {
       dispatch(generateKua());
     }
 

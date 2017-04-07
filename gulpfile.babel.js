@@ -3,7 +3,7 @@ import gulpLoadPlugins from 'gulp-load-plugins';
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 
-var path = require('path');
+import eslint from 'gulp-eslint';
 
 import * as _ from 'lodash';
 import del from 'del';
@@ -14,16 +14,26 @@ import scraper from 'scraperjs'
 import scrapeIchingTable from './src/scrape/scrape_deoxy.js'
 
 const $ = gulpLoadPlugins();
+var path = require('path');
+
 let options = {};
 
 gulp.task('clean', (cb) => {
   return del(['dist/']);
 });
 
+
 // Scrape ichingfortune and save to #{./src/public/iching.json}
 gulp.task('scrape', (cb) => {
     scrapeIchingTable();
 });
+
+gulp.task('lint', () => {
+    return gulp.src(['src/**/*.js'])
+                .pipe(eslint())
+                .pipe(eslint.format())
+                .pipe(eslint.failAfterError())
+})
 
 // run webpack bundler
 gulp.task('bundle', (cb) => {
@@ -53,9 +63,8 @@ gulp.task('bundle:phonegap', ['clean'], (cb) => {
 
 
 gulp.task('assets', (cb) => {
-  gulp.src('src/public/**/*')
-    .pipe(gulp.dest('dist/assets/'))
-    .pipe($.size({title: 'assets'}));
+  return gulp.src('src/public/**/*')
+            .pipe(gulp.dest('dist/assets/'))
 });
 
 gulp.task('sprites', function() {

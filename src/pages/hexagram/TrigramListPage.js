@@ -15,20 +15,18 @@ import * as IchingTable from '../../constants/IchingLookup';
 
 import { TrigramImage } from '../../components/HexagramImage';
 
-let TrigramItem = React.createClass({
-  render() {
+let TrigramItem = function ( props ) {
     let tri = this.props.tri
     return (<ListItem
-    onTouchTap={this.props.onTouchTap} onClick={this.props.onTouchTap}
-    leftAvatar={<Avatar className="avatar"><TrigramImage tri={tri} /></Avatar>}
-    primaryText={<b>{tri.name}</b>}
-    secondaryText={<div>{tri.wilhelm}</div>}
-    rightIcon={<div>{tri.image}</div>}
+        onTouchTap={this.props.onTouchTap} onClick={this.props.onTouchTap}
+        leftAvatar={<Avatar className="avatar"><TrigramImage tri={tri} /></Avatar>}
+        primaryText={<b>{tri.name}</b>}
+        secondaryText={<div>{tri.wilhelm}</div>}
+        rightIcon={<div>{tri.image}</div>}
     />)
-  }
-})
+}
 
- let TrigramsListPage = React.createClass({
+const TrigramsListPage = React.createClass({
    mixins: [ PureRenderMixin],
    getInitialState() {
      return {previewopen: false,
@@ -43,26 +41,26 @@ let TrigramItem = React.createClass({
      let upperTrigramHandle = this.handleTrigramTouch.bind(this, 'upper')
 
      let rendered_page =  (
-           <div className="trigramlistpage-container">
-               <div className="lower-trigrams lineseparated">
-                   <List subheader="Lower trigrams">
-                       {
-                           revTriNodes.map( tri => ( <TrigramItem
+       <div className="trigramlistpage-container">
+         <div className="lower-trigrams lineseparated">
+           <List subheader="Lower trigrams">
+             {
+               revTriNodes.map( tri => ( <TrigramItem
                            tri={tri} key={tri.name}
                            onTouchTap={lowerTrigramHandle}  />) )
-                       }
-                   </List>
-               </div>
-               <div className="upper-trigrams">
-                   <List subheader="Upper trigrams">
-                       {
-                           triNodes.map( tri => ( <TrigramItem
+            }
+           </List>
+         </div>
+         <div className="upper-trigrams">
+           <List subheader="Upper trigrams">
+             {
+               triNodes.map( tri => ( <TrigramItem
                            tri={tri} key={tri.name}
                            onTouchTap={upperTrigramHandle} />))
-                       }
-                   </List>
-               </div>
-           </div>
+            }
+           </List>
+         </div>
+       </div>
     );
 
     return rendered_page;
@@ -75,6 +73,6 @@ let TrigramItem = React.createClass({
      this.setState({previewopen: true})
    },
 
- });
+});
 
 export default TrigramsListPage;

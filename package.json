@@ -12,6 +12,7 @@
   "mainOutput": "main",
   "dependencies": {
     "async": "^1.5.1",
+    "babel": "^6.23.0",
     "babel-core": "^6.0.20",
     "babel-eslint": "^5.0.0",
     "babel-loader": "^6.0.1",
@@ -23,12 +24,15 @@
     "css-loader": "~0.23.1",
     "del": "^2.2.0",
     "eslint": "^1.10.3",
-    "eslint-config-airbnb": "2.1.1",
+    "eslint-config-airbnb": "14.1.0",
     "eslint-loader": "^1.2.0",
-    "eslint-plugin-react": "^3.13.1",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.3",
     "extract-text-webpack-plugin": "^0.9.1",
     "file-loader": "^0.8.5",
     "gulp": "^3.9.0",
+    "gulp-eslint": "^3.0.1",
     "gulp-load-plugins": "^1.1.0",
     "gulp-sass": "^2.1.1",
     "gulp-serve": "^1.2.0",
@@ -48,6 +52,7 @@
     "radium": "^0.15.3",
     "react": "^0.14.7",
     "react-addons-css-transition-group": "^0.14.7",
+    "react-addons-pure-render-mixin": "^15.4.2",
     "react-dom": "^0.14.0",
     "react-motion": "^0.3.1",
     "react-page-transitions": "^1.2.0",
@@ -68,9 +73,9 @@
     "webpack-dev-server": "~1.16.3"
   },
   "devDependencies": {
-    "gulp.spritesmith": "^4.1.1",
+    "babel": "^6.23.0",
+    "gulp-install": "^1.1.0",
     "image-webpack-loader": "^1.6.3",
-    "lodash": "^4.0.0",
     "webpack-bundle-analyzer": "^2.3.1"
   }
 }

@@ -5,11 +5,11 @@ import fs from 'fs';
 import http from 'http';
 import async from 'async';
 
-let download = function(url, dest, cb) {
-  var file = fs.createWriteStream(dest);
-  var request = http.get(url, function(response) {
+let download = function (url, dest, cb) {
+  let file = fs.createWriteStream(dest);
+  let request = http.get(url, (response) => {
     response.pipe(file);
-    file.on('finish', function() {
+    file.on('finish', () => {
       file.close(cb);
     });
   });
@@ -20,12 +20,13 @@ export default function scrapeIchingTable() {
      * Scrape iching table / interpretation from deoxy.org/iching
      * Save a JSON to ./src/public/iching.json
      */
-    let URL_BASE = "http://deoxy.org/iching";
+    let URL_BASE = 'http://deoxy.org/iching';
     let URL_HEXAGRAM_FORMAT = 'https?://deoxy.org/iching/:id'
 
     let router = new scraper.Router();
     router.otherwise( (url) => {
       console.error(`${url} could not be scraped`);
+      return false;
     })
 
     router.on(URL_HEXAGRAM_FORMAT).createStatic().scrape( ($) => {
@@ -45,26 +46,29 @@ export default function scrapeIchingTable() {
         let trigrams = []
         trigrams_raw.map( (v) => {
             let text = $(v).text().replace('above','').replace('below','')
-                                  .replace('\'','').trim().split('\n');
-            trigrams.push( {title: text[0].toLowerCase(), description: text[1]} );
+                                  .replace('\'','')
+                                  .trim()
+                                  .split('\n');
+            return {title: text[0].toLowerCase(), description: text[1]};
         })
 
         /* Get interpretation fields 'introduction','judgment','image','lines') */
         let interp_raw = $('tr:nth-of-type(4) tr td pre', tbody).text()
         let resume   = interp_raw.match(/[\s\S]*?THE JUDGMENT/)[0].replace('THE JUDGMENT','')
-        let judgment = interp_raw.match(/THE JUDGMENT[\s\S]*?THE IMAGE/)[0].replace('THE JUDGMENT','').replace('THE IMAGE','')
-        let image    = interp_raw.match(/THE IMAGE[\s\S]*?THE LINES/)[0].replace('THE IMAGE','').replace('THE LINES','')
+        let judgment = interp_raw.match(/THE JUDGMENT[\s\S]*?THE IMAGE/)[0]
+                        .replace('THE JUDGMENT','').replace('THE IMAGE','')
+        let image    = interp_raw.match(/THE IMAGE[\s\S]*?THE LINES/)[0]
+                        .replace('THE IMAGE','').replace('THE LINES','')
 
         let lines_raw   = $('tr:nth-of-type(4) tr td pre p',tbody).text()
         let lines_clean = lines_raw.match(/THE LINES[\s\S]*?$/)[0].replace('THE LINES','')
 
-        let xlines = lines_clean.match(/\t[\s\S]*?\n\n\n/g)
-        let lines = []
-        xlines.map( (xl) => {
+        let lines = lines_clean.match(/\t[\s\S]*?\n\n\n/g)
+        lines.map( (xl) => {
           let i       = xl.match(/\t[\s\S]*?\n\n/)[0].replace(/\t/g,'').split('\n')
-          let poem    = _._( i ).reject( (i) => { return (i === '\n' || i === '')}).value().join('\n')
+          let poem    = _._( i ).reject( l => (l === '\n' || l === '')).value().join('\n')
           let expl    = xl.match(/\n\n[\s\S]*?$/)[0].replace(/\n/g,'')
-          lines.push({poem, expl})
+          return {poem, expl}
         })
 
         // TODO.
@@ -72,7 +76,8 @@ export default function scrapeIchingTable() {
         console.log(`Scraped ${name} - ${description}`)
         return {
           number: num,
-          name, description,
+          name,
+description,
           trigrams: { above: trigrams[0], below: trigrams[1]},
           interpretation: {
             resume, judgment, image, lines
@@ -82,7 +87,7 @@ export default function scrapeIchingTable() {
 
 
     // Download all 64 hexagrams
-    let URL_HEXAGRAM = (id) => `http://deoxy.org/iching/${id}`;
+    let URL_HEXAGRAM = id => `http://deoxy.org/iching/${id}`;
     let JSON_OUTPUT = './src/constants/iching_deoxy_raw.json';
 
     let urls = _.range(1,65).map( URL_HEXAGRAM );
@@ -90,14 +95,14 @@ export default function scrapeIchingTable() {
 
     async.eachLimit( urls, 2 , (url, done) => {
       router.route(url, (found,returned) => {
-        if (found && returned){
+        if (found && returned) {
             iching.push(returned);
         }
         done();
       });
     }, (err) => {
       // Save JSON
-      var ichingTable = _._(iching).sortBy('number').value();
+      let ichingTable = _._(iching).sortBy('number').value();
       fs.writeFile( JSON_OUTPUT , JSON.stringify(ichingTable, null, 4));
     })
 }

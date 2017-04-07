@@ -1,10 +1,10 @@
-import { HEXAGRAM_GENERATE_KUA, HEXAGRAM_GENERATED, HEXAGRAM_CLEAR } from '../constants/ActionTypes';
 import * as _ from 'lodash';
 
-import * as HexagramActions from '../actions/HexagramActions.js';
-import * as IchingTable from 'constants/IchingLookup.js';
+import { HEXAGRAM_GENERATE_KUA, HEXAGRAM_GENERATED,
+         HEXAGRAM_CLEAR } from '../constants/ActionTypes';
 
-window.IchingTable = IchingTable;
+import * as HexagramActions from '../actions/HexagramActions';
+import * as IchingTable from '../constants/IchingLookup';
 
 function throwCoin() {
   return (Math.random() >= 0.5);
@@ -25,20 +25,31 @@ function kuaName( sum ) {
   }
 }
 
+/* Simplify moving lines */
+function simplifyKua( sum ) {
+  return (sum === '9' && 8)
+         || (sum === '6' ? 7 : sum)
+}
+
+/*
+ * Reduce kuas to hexagram notation.
+ * @params {kuaArray} Array of kuas [{value: 8, yin: 1}, ...]
+ * @returns {hexNotation} Array of simple kuas [1,0,1,0,1]
+ */
+export function reduceKuaToHexNotation( kuaArray ) {
+  return _.map( k => k.yin, kuaArray )
+}
+
 /**
  * Generate a single kua.  3 coins method.
  *
- * {value: 8 , name: 'young-yin'}
+ * {value: 8 , name: 'young-yin', yin: 1}
  */
 export function generateKua() {
 
   // Throw 3 coins, head = 3, tails = 2
-  const coins = _.times(3, throwCoin );
-
-  const coinsValue = _.map( coins, coin => {
-    if (coin) return 3;
-    return 2;
-  });
+  const coins      = _.times(3, throwCoin );
+  const coinsValue = _.map( coins, coin => (coin ? 3 : 2) )
 
   /* Iching Coin Method
   * 9 = 3 heads = Old Yang
@@ -46,24 +57,17 @@ export function generateKua() {
   * 7 = 2 tails = Young Yin
   * 6 = 3 tails = Old Yin
   */
-  const kuaSum  = _.sum( coinsValue );
-  let kua       = kuaName( kuaSum );
+  const sum  = _.sum( coinsValue );
+  let name   = kuaName( sum );
 
-  /* Ignore old-yang and young-yang, these
-   * are called moving lines and you dont use them
-   * at this stage */
+  /* Simplify moving lines */
+  // yang => 0 => ---
+  // yin  => 1 => - -
+  let simpleKua = simplifyKua( sum )
+  let yin       = (simpleKua === 7 ? 1 : 0)
 
-  // Yang is 0, Yin is 1
-  if (kua === 'old-yang' || kua === 'young-yang') {
-    kua = 0;
-  } else {
-    kua = 1;
-  }
-
-  return kua;
+  return {value: sum, name, yin}
 }
-
-
 
 
 // Single Line KUA Reducer
@@ -82,7 +86,7 @@ export function kuaCreated(state = [], action) {
 export function hexagramCreated(state = {}, action) {
   switch (action.type) {
     case HEXAGRAM_GENERATED:
-      return IchingTable.getHexagram( window.store.getState().kuas );
+      return IchingTable.getHexagram( reduceKuaToHexNotation(window.store.getState().kuas) );
     case HEXAGRAM_CLEAR:
       return {};
     default:
