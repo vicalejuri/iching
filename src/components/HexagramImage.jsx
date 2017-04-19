@@ -17,7 +17,7 @@ function YangLine() {
  * Given `below` and `above`, as an array of kuas.
  * Or `below` and `above`, as it trigram name
  */
-export const HexagramImage = React.createClass({
+export class HexagramImage extends React.Component {
     render() {
 
       let { below, above } = this.props;
@@ -36,27 +36,27 @@ export const HexagramImage = React.createClass({
         { below_image }
         </div>
       );
-    },
+    }
 
     // Generate a single trigram
     trigramImage( trigram ) {
       let image = _.chain(trigram.trigrams).map( this.kuaTag ).value();
       return image;
-    },
+    }
 
     // Generate a single Yin or Yang line
-    kuaTag( kua , i) {
+    static kuaTag( kua , i) {
       let klass = (kua ? 'yiang' : 'yin');
       let lines = ( kua  ? <YangLine key={i} /> : <YinLine key={i} /> );
 
       return lines;
     }
-})
+}
 
 /*
  * Single trigram image
  */
-export const TrigramImage = React.createClass({
+export class TrigramImage extends HexagramImage {
   render() {
     let { tri } = this.props;
     if ( _.isString(tri.name) ) {
@@ -66,9 +66,7 @@ export const TrigramImage = React.createClass({
     let tri_image = _.chain( this.trigramImage( tri ) ).reverse().value()
 
     return (
-      <div className="tri-img">
-      { tri_image }
-      </div>
+      <div className="tri-img">{ tri_image }</div>
     )
   }
-})
+}

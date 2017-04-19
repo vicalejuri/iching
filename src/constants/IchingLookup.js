@@ -141,14 +141,16 @@ export function getHexagram( hex ) {
   let hexNumber = 1;
 
   if ( _.isArray(hex) ) {
-    let kuas = _.map( k => k.yin, hex )
+    let kuas = _.map( hex, k => k.yin )
     hexNumber = getHexagramNumberByKuas( kuas )
+    console.trace()
+    console.log(kuas, hexNumber);
   } else if ( _.isNumber(hex) ) {
     hexNumber = hex;
   } else if ( _.isString(hex) ) {
     hexNumber = _.find( getIching(),  {name: hex} ).number;
   } else {
-    console.error('getHexagram', `Argument ${hex} is not of valid type 
+    console.error('getHexagram', `Argument ${hex} is not of valid type
             (Number,Name or Array of Kuas)`);
     return undefined;
   }

@@ -31,15 +31,6 @@ function simplifyKua( sum ) {
          || (sum === '6' ? 7 : sum)
 }
 
-/*
- * Reduce kuas to hexagram notation.
- * @params {kuaArray} Array of kuas [{value: 8, yin: 1}, ...]
- * @returns {hexNotation} Array of simple kuas [1,0,1,0,1]
- */
-export function reduceKuaToHexNotation( kuaArray ) {
-  return _.map( k => k.yin, kuaArray )
-}
-
 /**
  * Generate a single kua.  3 coins method.
  *
@@ -82,11 +73,12 @@ export function kuaCreated(state = [], action) {
   }
 }
 
+
 // From 6 given kuas, fetch the interpretation
 export function hexagramCreated(state = {}, action) {
   switch (action.type) {
     case HEXAGRAM_GENERATED:
-      return IchingTable.getHexagram( reduceKuaToHexNotation(window.store.getState().kuas) );
+      return IchingTable.getHexagram( action.payload );
     case HEXAGRAM_CLEAR:
       return {};
     default:
