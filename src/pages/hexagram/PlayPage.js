@@ -5,14 +5,15 @@ import * as _ from 'lodash';
 
 import Router, {Link, History} from 'react-router';
 
-import * as HexagramActions from 'actions/HexagramActions.js';
-import Kua from 'components/Kua.jsx';
-import HexagramInfoCard from 'components/HexagramInfoCard.jsx';
+import {Toolbar, ToolbarGroup, ToolbarSeparator,
+        FloatingActionButton, RaisedButton, ToggleStar, TextField, Colors} from 'material-ui';
 
-import { getAsset } from 'constants/utils'
 
-import {FloatingActionButton, RaisedButton, ToggleStar, TextField, Colors} from 'material-ui';
-import {Toolbar, ToolbarGroup, ToolbarSeparator} from 'material-ui';
+import * as HexagramActions from '../../actions/HexagramActions';
+import Kua from '../../components/Kua';
+import HexagramInfoCard from '../../components/HexagramInfoCard';
+
+import { getAsset } from '../../constants/utils'
 
 const ReactCSSTransitionGroup = require('react-addons-css-transition-group');
 
@@ -24,11 +25,16 @@ let PlayPage = React.createClass({
 
   propTypes: {
     kuas: PropTypes.arrayOf(PropTypes.object),
-    hexagram: PropTypes.object,
-    dispatch: PropTypes.func
+    hexagram: PropTypes.shape(),
   },
 
   mixins: [History],
+
+  getDefaultProps() {
+    return {kuas: [],
+            hexagram: {}}
+  },
+
   getInitialState() {
     return {
       already_played: (!_.isEmpty(this.props.hexagram))
@@ -39,33 +45,35 @@ let PlayPage = React.createClass({
     return (
       <div className="playpage-container">
 
-        <div className="canvas">
+          <div className="canvas">
 
-          <div className="infoArea">
-            <ReactCSSTransitionGroup transitionName="question" transitionEnterTimeout={400} transitionLeaveTimeout={400}>
-              {this.isFirstPlay() ? (
-                <div className="question" ref="question">
-                  {this.renderQuestion()}
-                </div>
-                      ) : (false) }
-            </ReactCSSTransitionGroup>
-
-            <ReactCSSTransitionGroup transitionName="hexagram-preview" transitionEnterTimeout={400} transitionLeaveTimeout={400}>
-              {this.hasHexagram() &&
-                          (
-                          <div className="iching-card" ref="card" onTouchTap={this.goToHexagram} onClick={this.goToHexagram}>
-                            {this.renderPreviewCard()}
+              <div className="infoArea">
+                  <ReactCSSTransitionGroup transitionName="question" transitionEnterTimeout={400} transitionLeaveTimeout={400}>
+                      {this.isFirstPlay() ? (
+                          <div className="question" ref="question">
+                              {this.renderQuestion()}
                           </div>
+                      ) : (false) }
+                  </ReactCSSTransitionGroup>
+
+                  <ReactCSSTransitionGroup transitionName="hexagram-preview" transitionEnterTimeout={400} transitionLeaveTimeout={400}>
+                      {this.hasHexagram() &&
+                          (
+                              <div className="iching-card" ref="card" onTouchTap={this.goToHexagram} onClick={this.goToHexagram}>
+                                  {this.renderPreviewCard()}
+                              </div>
                           ) }
-            </ReactCSSTransitionGroup>
+                  </ReactCSSTransitionGroup>
 
-          </div>
+              </div>
 
-          <div className="ichingDragArea">
-            <button ref="gongo" className="gongo" onMouseDown={this.onGongoHold} onMouseUp={this.onGongoRelease} onTouchStart={this.onGongoHold} onTouchEnd={this.onGongoRelease} onTouchTap={this.play} />
-            <audio ref="gongosound" src={getAsset('audio/bell-square.mp3')} preload="auto" />
+              <div className="ichingDragArea">
+                  <button className="gongo" ref={el => this.gongo = el}
+                  onMouseDown={this.onGongoHold} onMouseUp={this.onGongoRelease}
+                  onTouchStart={this.onGongoHold} onTouchEnd={this.onGongoRelease} onTouchTap={this.play} />
+                  <audio ref={el => this.gongosound = el} src={getAsset('audio/bell-square.mp3')} preload="auto" />
+              </div>
           </div>
-        </div>
 
       </div>
     );
@@ -96,15 +104,15 @@ let PlayPage = React.createClass({
   },
 
   onGongoHold(ev) {
-    ReactDOM.findDOMNode(this.refs.gongo).className = 'gongo down';
+    this.gongo.className = 'gongo down';
   },
 
   onGongoRelease(ev) {
     // add animation
-    ReactDOM.findDOMNode(this.refs.gongo).className = 'gongo hit';
+    this.gongo.className = 'gongo hit';
 
     // play sound
-    let au = ReactDOM.findDOMNode(this.refs.gongosound);
+    let au = this.gongosound;
     if (au.play) {
       au.currentTime = 0.0;
       au.play();

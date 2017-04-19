@@ -2,12 +2,13 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as _ from 'lodash';
 
-import * as HexagramActions from 'actions/HexagramActions.js';
-import { getTrigramByName } from 'constants/IchingLookup.js';
+import { Card, Paper, Divider, Popover, Avatar,
+         Icons, FlatButton, IconButton, FontIcon, Styles } from 'material-ui';
 
-import { HexagramImage , TrigramImage } from './HexagramImage.jsx';
+import * as HexagramActions from '../actions/HexagramActions';
+import { getTrigramByName } from '../constants/IchingLookup';
 
-import { Card, Paper, Divider, Popover, Avatar, Icons, FlatButton, IconButton, FontIcon, Styles } from 'material-ui';
+import { HexagramImage , TrigramImage } from './HexagramImage';
 
 const styles = {
   popover: {
@@ -16,33 +17,31 @@ const styles = {
   }
 }
 
-export default class HexagramInfoCard extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      popover_open: false,
-      trigram: this.props.hexagram.trigrams.above
-    };
-  }
-
+const HexagramInfoCard = React.createClass({
   render() {
     let {trigrams, name, number, description} = this.props.hexagram;
     let innerTrigrams = this.innerTrigrams( this.props.trigrams || false )
 
     return (
       <div className="hexagram-card">
-        <HexagramImage below={trigrams.below} above={trigrams.above} />
+      <HexagramImage below={trigrams.below} above={trigrams.above} />
 
-        <div className="title">
-          <h3>{number}: {name}</h3>
-          <h2>{description}</h2>
-        </div>
+      <div className="title">
+      <h3>{number}: {name}</h3>
+      <h2>{description}</h2>
+      </div>
 
-        {innerTrigrams}
+      {innerTrigrams}
       </div>
     );
-  }
+  },
+
+  getDefaultState() {
+    return {
+      popover_open: false,
+      trigram: this.props.hexagram.trigrams.above
+    }
+  },
 
   innerTrigrams( enabled ) {
     let above = getTrigramByName( this.props.hexagram.trigrams.above.title );
@@ -52,57 +51,55 @@ export default class HexagramInfoCard extends Component {
       return (
         <div className="trigrams">
 
-          <div className="above" onTouchTap={this.handleTouchTap} onClick={this.handleTouchTap}>
-            <TrigramImage tri={above} />
-            <div className="label">{above.image}</div>
-          </div>
-          <Divider/>
-          <div className="below" onTouchTap={this.handleTouchTap} onClick={this.handleTouchTap}>
-            <TrigramImage tri={below} />
-            <div className="label">{below.image}</div>
-          </div>
+        <div className="above" onTouchTap={this.handleTouchTap} onClick={this.handleTouchTap}>
+          <TrigramImage tri={above} />
+          <div className="label">{above.image}</div>
+        </div>
+        <Divider />
+        <div className="below" onTouchTap={this.handleTouchTap} onClick={this.handleTouchTap}>
+          <TrigramImage tri={below} />
+          <div className="label">{below.image}</div>
+        </div>
 
-
-          <Popover
-            open={this.state.popover_open}
-            anchorEl={this.state.anchorEl}
-            anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
-            targetOrigin={{horizontal: 'right', vertical: 'top'}}
-            onRequestClose={this.handleRequestClose}
-          >
-            <div style={styles.popover}>
-              <div className="popover-trigram">
-                <h4 className="title">{this.state.trigram.name} - {this.state.trigram.wilhelm}</h4>
-                <Divider/>
-                <div className="image"><b>Image: </b>{this.state.trigram.image} , {this.state.trigram.image_name}</div>
-                <div className="animal"><b>Animal: </b>{this.state.trigram.animal} , {this.state.trigram.animal_name}</div>
-                <div className="body"><b>Body: </b>{this.state.trigram.body}</div>
-              </div>
+        <Popover
+          open={this.state.popover_open}
+          anchorEl={this.state.anchorEl}
+          anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
+          targetOrigin={{horizontal: 'right', vertical: 'top'}}
+          onRequestClose={this.handleRequestClose} >
+          <div style={styles.popover}>
+            <div className="popover-trigram">
+              <h4 className="title">{this.state.trigram.name} - {this.state.trigram.wilhelm}</h4>
+              <Divider />
+              <div className="image"><b>Image: </b>{this.state.trigram.image} , {this.state.trigram.image_name}</div>
+              <div className="animal"><b>Animal: </b>{this.state.trigram.animal} , {this.state.trigram.animal_name}</div>
+              <div className="body"><b>Body: </b>{this.state.trigram.body}</div>
             </div>
-          </Popover>
+          </div>
+        </Popover>
 
         </div>
       );
     } else {
-      return (<div></div>);
+      return <div />;
     }
-  }
+  },
 
-
-  handleTouchTap = (event) => {
+  handleTouchTap: (event) => {
     let trigram = getTrigramByName( this.props.hexagram.trigrams[event.currentTarget.className].title );
     this.setState({
       popover_open: true,
       anchorEl: event.currentTarget,
       trigram
     })
-  };
+  },
 
-  handleRequestClose = () => {
+  handleRequestClose: () => {
     this.setState({
       popover_open: false,
     });
-  };
+  }
 
+})
 
-}
+export default HexagramInfoCard
