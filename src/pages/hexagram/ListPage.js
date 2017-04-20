@@ -1,10 +1,9 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import * as _ from 'lodash';
 
 import { List, ListItem, Avatar, Icons, IconButton, FontIcon, Styles } from 'material-ui';
 
-import Router, {Link, History}  from 'react-router';
 import { connect , dispatch } from 'react-redux'
 
 import * as HexagramActions from '../../actions/HexagramActions';
@@ -15,8 +14,7 @@ import { HexagramImage } from '../../components/HexagramImage';
 /*
  * A single list item
  */
-let HexItem = React.createClass({
-  mixins: [ History ],
+class HexItem extends React.Component {
 
   render() {
     let hex = this.props.hex;
@@ -30,17 +28,16 @@ let HexItem = React.createClass({
       </Avatar>}
     primaryText={<div><b>{hex.name}</b> - {hex.description}</div>}
         /> )
-  },
+  }
 
   details() {
     let hex = this.props.hex;
     this.history.pushState( null,`/details/${hex.number}/${hex.name}` );
   }
-});
+}
 
 
-let ListPage = React.createClass({
-  mixins: [ PureRenderMixin],
+class ListPage extends React.Component {
 
   render() {
     let hexNodes = this.props.hexagrams;
@@ -56,16 +53,8 @@ let ListPage = React.createClass({
     );
 
     return rendered_page;
-  },
-
-  /*
-   * render cache
-   */
-  cache: {
-    rendered: false,
   }
 
-});
-
+}
 
 export default connect(state => ({hexagrams: state.iching}))(ListPage);

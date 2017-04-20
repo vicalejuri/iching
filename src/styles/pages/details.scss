@@ -1,7 +1,14 @@
 .detailspage-container {
 
+  .hexagram-card {
+    width: 100%;
+    position: absolute;
+    top: 0; left: 0;
+  }
+
   .interpretation {
     margin: 5% 5%;
+    margin-top: calc( 120px + 5%);
 
     q {
       position: relative;

@@ -8,22 +8,16 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { Provider  } from 'react-redux';
 import { render } from 'react-dom';
 
-import { createHashHistory, createHistory } from 'history';
-import { Router, Route, Link , IndexRoute, browserHistory} from 'react-router';
+import { BrowserRouter as Router, Route, Link , IndexRoute } from 'react-router-dom';
 
 import { fetchIchingJSON } from './actions/IchingLoader';
 import { getAsset } from './constants/utils';
 import reducers from './reducers';
 
-import { AppContainer, PlayPage , ListPage, TrigramListPage, DetailPage } from './pages';
+import { AppContainer } from './pages';
 
 // force to import&compile css
 import './styles/main.scss';
-
-let history = createHashHistory()
-/*if ( __DEVELOPMENT__ ) {
-  history = createHashHistory();
-}*/
 
 function configureStore( initialState ) {
   let fCreateStore = compose(
@@ -42,14 +36,16 @@ function configureStore( initialState ) {
 function start() {
   render(
     <Provider store={window.store}>
-      <Router history={history}>
-        <Route path="/" name="Iching of the day" component={AppContainer}>
+      <Router>
+        <AppContainer />
+        { /*
+        <Route path="/" name="Iching of the day" component={AppContainer} children>
           <Route name="hexagram-play" path="/" component={PlayPage} />
           <Route name="hexagram-list" path="/list" component={ListPage} />
-          <Route name="trigram-list" path="/trigram-list" component={TrigramListPage} />
           <Route name="hexagram-details" path="/details/:number/:name" component={DetailPage} />
           <IndexRoute component={PlayPage} />
         </Route>
+        */ }
       </Router>
     </Provider>,
     document.getElementById('app-mount')

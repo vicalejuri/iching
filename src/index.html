@@ -32,7 +32,7 @@
   <style>
     body, html  {
       font-family: 'Helvetica Neue', helvetica, sans-serif;
-      font-weight: 300;
+      font-weight: 100;
       background: #ddd;
       color: #333;
       overflow: hidden;
@@ -56,6 +56,10 @@
       top: 30%;
       text-align: center;
     }
+    #loading h1,
+    #loading h3 {
+        font-weight: normal;
+    }
 
     @keyframes hexagramRotate {
       0% { transform: rotate(0deg); }
@@ -66,7 +70,7 @@
     .icon-loading {
       width: 128px;
       height: 128px;
-      animation: hexagramRotate 3.0s infinite cubic-bezier(0.645, 0.045, 0.355, 1.000);
+      animation: hexagramRotate 3.0s infinite cubic-bezier(0.52, 0.01, 0.16, 1)
     }
   </style>
 
@@ -85,8 +89,6 @@
   <div id="app-mount"></div>
 
   <div id="copyleft">
-    <a href="https://github.com/barrabinfc/react-iching"><img src="https://img.shields.io/badge/madeby-bbfc-ff69b4.svg"></a>
-    <img src="https://img.shields.io/badge/gluten-free-brightgreen.svg" />
   </div>
 
   <script type="text/javascript" src="/public/vendor/fontfaceobserver.standalone.js" async></script>

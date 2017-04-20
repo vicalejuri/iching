@@ -143,8 +143,6 @@ export function getHexagram( hex ) {
   if ( _.isArray(hex) ) {
     let kuas = _.map( hex, k => k.yin )
     hexNumber = getHexagramNumberByKuas( kuas )
-    console.trace()
-    console.log(kuas, hexNumber);
   } else if ( _.isNumber(hex) ) {
     hexNumber = hex;
   } else if ( _.isString(hex) ) {

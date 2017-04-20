@@ -21,14 +21,16 @@ let BeautifulText = new Hypher(english)
 function noWidows(phrase) {
   let words = phrase.trim().split(" ")
   if (words.length > 1) {
+    // add &nbsp;
     words[words.length - 2] = `${words[words.length - 2]}\u00a0${words[words.length - 1]}`
+    // remove soft-hyphen from last word
     words[words.length - 2] = words[words.length - 2].replace(/\u00ad/g, '')
     words.pop()
   }
   return words.join(" ")
 }
 
-let DetailPage = React.createClass({
+class DetailPage extends React.Component {
   render() {
     let hexNumber = _.toNumber( this.props.params.number );
 
@@ -78,11 +80,11 @@ let DetailPage = React.createClass({
         </div>
       </div>
     );
-  },
+  }
 
   lineId(text) {
     return text.split('\n')[0].toLowerCase()
-  },
+  }
 
   /* Format text paragraphs between <p> */
   formatText(text) {
@@ -90,7 +92,7 @@ let DetailPage = React.createClass({
     let txtHyphenated = paragraphs.map( p => BeautifulText.hyphenateText(p) )
     let fmted         = txtHyphenated.map(p => (<p>{p}</p>))
     return fmted
-  },
+  }
 
   /* Format quote */
   formatQuote(text) {
@@ -99,9 +101,8 @@ let DetailPage = React.createClass({
                         .split('\n')
                         .map( phrase => noWidows(phrase) )
                         .join('\n')
-  },
+  }
 
-});
-
+}
 
 export default connect(state => ({hexagrams: state.iching}))(DetailPage);

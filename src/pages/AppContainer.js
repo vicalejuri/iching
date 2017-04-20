@@ -3,54 +3,49 @@ import ReactDOM , { render } from 'react-dom';
 import { connect } from 'react-redux';
 
 import { Router, Route, Link } from 'react-router';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 
-import ThemeManager from 'material-ui/lib/styles/theme-manager';
-import MuiTheme from '../constants/MuiTheme';
-
-import Header from '../components/Header';
 import Footer from '../components/Footer';
 
-const ReactCSSTransitionGroup = require('react-addons-css-transition-group');
+import { PlayPage , ListPage, DetailPage } from './index'
 
-let AppContainer = React.createClass({
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
 
-  getChildContext() {
-    return {
-      muiTheme: ThemeManager.getMuiTheme(MuiTheme),
-    }
-  },
+
+class AppContainer extends React.Component {
 
   componentWillUpdate() {
     this.scrollTopTop()
-  },
+  }
 
   render() {
+    console.log(this.props)
     /* <Header location={this.props.location} params={this.props.params} /> */
     return (
       <div className="app-wrap">
         <div className="content" ref="content">
-          <ReactCSSTransitionGroup
+          <CSSTransitionGroup
             component="div"
             transitionName="page-transition" transitionAppear
             transitionAppearTimeout={500} transitionEnterTimeout={500} transitionLeaveTimeout={500}>
-            {React.cloneElement(this.props.children, {key: this.props.location.pathname})}
-          </ReactCSSTransitionGroup>
+
+            <Route path="/" component={PlayPage} />
+            <Route path="/list" component={ListPage} />
+            <Route path="/details/:number/:name" component={DetailPage} />
+
+            { /* {React.cloneElement(this.props.children, {key: this.props.location.pathname})} */ }
+           </CSSTransitionGroup>
         </div>
         <Footer location={this.props.location} />
       </div>
     );
-  },
+  }
 
   scrollTopTop() {
     let el = this.refs.content
     el.scrollTop = 0
-    //debugger
-  },
+  }
 
-});
+}
 
 export default connect(
   null

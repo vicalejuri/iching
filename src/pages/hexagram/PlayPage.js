@@ -1,9 +1,9 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
 import * as _ from 'lodash';
 
-import Router, {Link, History} from 'react-router';
+import Router from 'react-router';
 
 import {Toolbar, ToolbarGroup, ToolbarSeparator,
         FloatingActionButton, RaisedButton, ToggleStar, TextField, Colors} from 'material-ui';
@@ -16,33 +16,21 @@ import HexagramInfoCard from '../../components/HexagramInfoCard';
 
 import { getAsset } from '../../constants/utils'
 
-/*
-const ReactCSSTransitionGroup = require('react-addons-css-transition-group');
-*/
 
 const opts = {
   hexagram_timeout: 3000
 }
 
-let PlayPage = React.createClass({
+class PlayPage extends React.Component {
 
-  propTypes: {
-    kuas: PropTypes.arrayOf(PropTypes.object),
-    hexagram: PropTypes.shape(),
-  },
+  props = {
+    kuas: [],
+    hexagram: {}
+  }
 
-  mixins: [History],
-
-  getDefaultProps() {
-    return {kuas: [],
-            hexagram: {}}
-  },
-
-  getInitialState() {
-    return {
-      already_played: (!_.isEmpty(this.props.hexagram))
-    }
-  },
+  state = {
+    already_played: false
+  }
 
   render() {
     console.log("play page render")
@@ -76,16 +64,16 @@ let PlayPage = React.createClass({
 
       </div>
     );
-  },
+  }
 
   isFirstPlay() {
     return (!this.state.already_played)
-  },
+  }
 
   hasHexagram() {
     let {hexagram} = this.props;
     return !_.isEmpty(hexagram)
-  },
+  }
 
   renderPreviewCard() {
     let {hexagram} = this.props;
@@ -94,7 +82,7 @@ let PlayPage = React.createClass({
     } else {
       return <span />
     }
-  },
+  }
 
   renderQuestion() {
     if (!this.state.already_played) {
@@ -102,11 +90,11 @@ let PlayPage = React.createClass({
         <h2 className="title" key="question">Concentrate and ask a question</h2>
       )
     }
-  },
+  }
 
   onGongoHold(ev) {
     this.gongo.className = 'gongo down';
-  },
+  }
 
   onGongoRelease(ev) {
     // add animation
@@ -125,16 +113,16 @@ let PlayPage = React.createClass({
       this.play()
     }, opts.hexagram_timeout);
 
-  },
+  }
 
   goToHexagram() {
     this.history.pushState(null, `/details/${this.props.hexagram.number}/${this.props.hexagram.name}`);
-  },
+  }
 
   play(ev) {
     console.log("play called")
     window.store.dispatch(HexagramActions.generateHexagram());
   }
-});
+}
 
 export default connect(state => ({kuas: state.kuas, hexagram: state.hexagram}))(PlayPage);
