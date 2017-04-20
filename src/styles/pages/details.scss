@@ -17,7 +17,7 @@
 
       word-wrap: break-word;
       word-break: break-word;
-      hyphens: auto;
+      hyphens: manual;
     }
 
     q:before {
@@ -55,9 +55,8 @@
     }
 
     p {
-      font-weight: lighter;
       letter-spacing: -0.5px;
-      hyphens: auto;
+      hyphens: manual;
     }
 
     /* subQuotes */

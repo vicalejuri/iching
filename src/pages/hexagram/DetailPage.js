@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux'
 
-import { List, ListItem, Avatar, Icons, IconButton, FontIcon, Styles , Divider } from 'material-ui';
+import { Divider } from 'material-ui';
 
 import * as HexagramActions from '../../actions/HexagramActions';
 import * as IchingTable from '../../constants/IchingLookup';
@@ -12,6 +12,10 @@ import { getAsset } from '../../constants/utils'
 
 import HexagramInfoCard from '../../components/HexagramInfoCard';
 
+const Hypher = require('hypher')
+const english = require('hyphenation.en-us')
+
+let BeautifulText = new Hypher(english)
 
 let DetailPage = React.createClass({
   render() {
@@ -71,14 +75,16 @@ let DetailPage = React.createClass({
 
   /* Format text paragraphs between <p> */
   formatText(text) {
-    let paragraphs = text.split('\n\n')
-    let fmted = paragraphs.map(p => (<p>{p}</p>))
+    let paragraphs    = text.split('\n\n')
+    let txtHyphenated = paragraphs.map( p => BeautifulText.hyphenateText(p) )
+    let fmted         = txtHyphenated.map(p => (<p>{p}</p>))
     return fmted
   },
 
   /* Format quote */
   formatQuote(text) {
-    return text.replace(/\t/g,'')
+    let quote = text.replace(/\t/g,'')
+    return BeautifulText.hyphenateText(quote)
   },
 
 });
