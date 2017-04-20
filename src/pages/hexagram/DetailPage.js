@@ -17,6 +17,17 @@ const english = require('hyphenation.en-us')
 
 let BeautifulText = new Hypher(english)
 
+/* Clean widow phrase */
+function noWidows(phrase) {
+  let words = phrase.trim().split(" ")
+  if (words.length > 1) {
+    words[words.length - 2] = `${words[words.length - 2]}\u00a0${words[words.length - 1]}`
+    words[words.length - 2] = words[words.length - 2].replace(/\u00ad/g, '')
+    words.pop()
+  }
+  return words.join(" ")
+}
+
 let DetailPage = React.createClass({
   render() {
     let hexNumber = _.toNumber( this.props.params.number );
@@ -85,6 +96,9 @@ let DetailPage = React.createClass({
   formatQuote(text) {
     let quote = text.replace(/\t/g,'')
     return BeautifulText.hyphenateText(quote)
+                        .split('\n')
+                        .map( phrase => noWidows(phrase) )
+                        .join('\n')
   },
 
 });
