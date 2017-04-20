@@ -22,7 +22,7 @@ module.exports = {
 
   output: {
     path: assetPath,
-    filename: 'main.js',
+    filename: '[name].js',
     publicPath: '/assets/'
   },
 

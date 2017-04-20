@@ -2,11 +2,9 @@
 
   .interpretation {
     margin: 5% 5%;
-    text-align: justify;
     line-height: 1.5em;
 
     q {
-      font-family: 'Abril Fatface', cursive !important;
       text-align: left;
       max-width: 100%;
       display: block;
@@ -14,22 +12,23 @@
 
       white-space: pre-wrap;
       font-style: italic;
-      font-size: 1.3em;
-      letter-spacing: 0em;
-      
+      font-size: 1.25em;
+      letter-spacing: 0;
+
       word-wrap: break-word;
       word-break: break-word;
       hyphens: auto;
     }
 
     q:before {
-      font-family: 'Abril Fatface', cursive;
       font-size: 1.5em;
       position: absolute;
       transform: translate(-20px,-5px);
     }
     q:after {
-      display: none;
+      font-size: 1.5em;
+      position: absolute;
+      transform: translate(0px,5px);
     }
 
 
@@ -58,7 +57,6 @@
     p {
       font-weight: lighter;
       letter-spacing: -0.5px;
-      margin: 1.4em 1em;
       hyphens: auto;
     }
 

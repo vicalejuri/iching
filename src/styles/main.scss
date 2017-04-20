@@ -1,7 +1,7 @@
 /* Styles */
 @import 'fonts/material-icons/material-ui.css';
-@import 'fonts/roboto/Roboto.css';
 @import 'fonts/abril-fatface/abril-fatface.css';
+@import 'fonts/roboto/Roboto.css';
 @import 'utils/animations.scss';
 @import 'transitions.scss';
 
@@ -16,19 +16,39 @@ a {
 html , body {
   box-sizing: border-box;
   font-size: 1.0em;
-  font-family: 'Roboto', 'Helvetica Neue', helvetica, sans-serif;
   font-weight: lighter;
   letter-spacing: -1px;
   margin: 0;
   overflow: hidden;
 
+  /* Support for Firefox. */
   text-rendering: optimizeLegibility;
   font-feature-settings: "kern";
   font-kerning: normal;
-
-  /* Support for Firefox. */
   -moz-osx-font-smoothing: grayscale;
 }
+
+/**
+ * Font loading
+ */
+body { font-family: 'Helvetica Neue', helvetica, sans-serif; }
+.cursive {font-family: cursive; }
+
+.mainfont-loaded {
+  body {
+    font-family: 'RobotoLight', helvetica, sans-serif;
+  }
+}
+.cursivefont-loaded {
+  blockquote , q {
+    font-family: 'Abril Fatface', cursive;
+  }
+  .cursive {
+    font-family: 'Abril Fatface', cursive;
+  }
+}
+
+
 body.loaded {
   background-color: #fff;
   color: #000;
