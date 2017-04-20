@@ -66,16 +66,17 @@ let DetailPage = React.createClass({
   },
 
   lineId(text) {
-    return text.split('\n')[0]
-            .toLowerCase()
+    return text.split('\n')[0].toLowerCase()
   },
 
+  /* Format text paragraphs between <p> */
   formatText(text) {
     let paragraphs = text.split('\n\n')
     let fmted = paragraphs.map(p => (<p>{p}</p>))
     return fmted
   },
 
+  /* Format quote */
   formatQuote(text) {
     return text.replace(/\t/g,'')
   },

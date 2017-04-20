@@ -17,13 +17,13 @@ const styles = {
   }
 }
 
-const HexagramInfoCard = React.createClass({
-  getInitialState() {
-    return {
-      popover_open: false,
-      trigram: this.props.hexagram.trigrams.above
-    }
-  },
+export default class HexagramInfoCard extends React.Component {
+  state = {
+    popover_open: false,
+    trigram: {name: "", wilhelm: "", body: "",
+              animal: "", animal_name: "",
+              image: "", image_name: ""}
+  }
 
   render() {
     let {trigrams, name, number, description} = this.props.hexagram;
@@ -41,7 +41,7 @@ const HexagramInfoCard = React.createClass({
         {innerTrigrams}
       </div>
     );
-  },
+  }
 
   innerTrigrams( enabled ) {
     let above = getTrigramByName( this.props.hexagram.trigrams.above.title );
@@ -83,23 +83,21 @@ const HexagramInfoCard = React.createClass({
     } else {
       return <div />;
     }
-  },
+  }
 
-  handleTouchTap: (event) => {
+  handleTouchTap(event) {
     let trigram = getTrigramByName( this.props.hexagram.trigrams[event.currentTarget.className].title );
     this.setState({
       popover_open: true,
       anchorEl: event.currentTarget,
       trigram
     })
-  },
+  }
 
-  handleRequestClose: () => {
+  handleRequestClose() {
     this.setState({
       popover_open: false,
     });
   }
 
-})
-
-export default HexagramInfoCard
+}

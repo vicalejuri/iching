@@ -58,7 +58,7 @@ $easeSoftOut: cubic-bezier(0.52, 0.01, 0.16, 1);
 }
 
 .hexagram-preview-enter.hexagram-preview-enter-active {
-  animation-name: slideFromBottom;
+  animation-name: slideFromTop;
 }
 
 .hexagram-preview-leave {
@@ -69,7 +69,7 @@ $easeSoftOut: cubic-bezier(0.52, 0.01, 0.16, 1);
 }
 
 .hexagram-preview-leave.hexagram-preview-leave-active {
-  animation-name: slideToTop;
+  animation-name: slideToBottom;
 }
 
 .hexagram-preview-appear {
@@ -78,7 +78,7 @@ $easeSoftOut: cubic-bezier(0.52, 0.01, 0.16, 1);
   animation-fill-mode: both;
 }
 .hexagram-preview-appear.hexagram-preview-appear-active {
-  animation-name: slideFromBottom;
+  animation-name: slideFromTop;
 }
 
 

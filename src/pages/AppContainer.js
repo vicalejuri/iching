@@ -28,9 +28,9 @@ let AppContainer = React.createClass({
   },
 
   render() {
+    /* <Header location={this.props.location} params={this.props.params} /> */
     return (
       <div className="app-wrap">
-        <Header location={this.props.location} params={this.props.params} />
         <div className="content" ref="content">
           <ReactCSSTransitionGroup
             component="div"

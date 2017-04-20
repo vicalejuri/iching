@@ -21,6 +21,7 @@ export class HexagramImage extends React.Component {
     render() {
 
       let { below, above } = this.props;
+
       if ( _.isString(below.title) ||
            _.isString(above.title) ) {
         below = getTrigramByName( below.title );
@@ -32,8 +33,8 @@ export class HexagramImage extends React.Component {
 
       return (
         <div className="hex-img">
-        { above_image }
-        { below_image }
+          { above_image }
+          { below_image }
         </div>
       );
     }
@@ -45,9 +46,8 @@ export class HexagramImage extends React.Component {
     }
 
     // Generate a single Yin or Yang line
-    static kuaTag( kua , i) {
-      let klass = (kua ? 'yiang' : 'yin');
-      let lines = ( kua  ? <YangLine key={i} /> : <YinLine key={i} /> );
+    kuaTag( kua , i) {
+      let lines = ( kua.yin  ? <YangLine key={i} /> : <YinLine key={i} /> );
 
       return lines;
     }

@@ -8,6 +8,7 @@ import Router, {Link, History} from 'react-router';
 import {Toolbar, ToolbarGroup, ToolbarSeparator,
         FloatingActionButton, RaisedButton, ToggleStar, TextField, Colors} from 'material-ui';
 
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 
 import * as HexagramActions from '../../actions/HexagramActions';
 import Kua from '../../components/Kua';
@@ -15,7 +16,9 @@ import HexagramInfoCard from '../../components/HexagramInfoCard';
 
 import { getAsset } from '../../constants/utils'
 
+/*
 const ReactCSSTransitionGroup = require('react-addons-css-transition-group');
+*/
 
 const opts = {
   hexagram_timeout: 3000
@@ -42,35 +45,31 @@ let PlayPage = React.createClass({
   },
 
   render() {
+    console.log("play page render")
     return (
       <div className="playpage-container">
 
-          <div className="canvas">
+          <CSSTransitionGroup className="iching-card"
+                              onTouchTap={this.goToHexagram} onClick={this.goToHexagram}
+                              transitionName="hexagram-preview" transitionEnterTimeout={400} transitionLeaveTimeout={400}>
+                              {this.renderPreviewCard()}
+          </CSSTransitionGroup>
 
+          <div className="canvas">
               <div className="infoArea">
-                  <ReactCSSTransitionGroup transitionName="question" transitionEnterTimeout={400} transitionLeaveTimeout={400}>
+                  <CSSTransitionGroup transitionName="question" transitionEnterTimeout={400} transitionLeaveTimeout={400}>
                       {this.isFirstPlay() ? (
                           <div className="question" ref="question">
                               {this.renderQuestion()}
                           </div>
                       ) : (false) }
-                  </ReactCSSTransitionGroup>
-
-                  <ReactCSSTransitionGroup transitionName="hexagram-preview" transitionEnterTimeout={400} transitionLeaveTimeout={400}>
-                      {this.hasHexagram() &&
-                          (
-                              <div className="iching-card" ref="card" onTouchTap={this.goToHexagram} onClick={this.goToHexagram}>
-                                  {this.renderPreviewCard()}
-                              </div>
-                          ) }
-                  </ReactCSSTransitionGroup>
-
+                  </CSSTransitionGroup>
               </div>
 
               <div className="ichingDragArea">
                   <button className="gongo" ref={el => this.gongo = el}
                   onMouseDown={this.onGongoHold} onMouseUp={this.onGongoRelease}
-                  onTouchStart={this.onGongoHold} onTouchEnd={this.onGongoRelease} onTouchTap={this.play} />
+                  onTouchStart={this.onGongoHold} onTouchEnd={this.onGongoRelease} />
                   <audio ref={el => this.gongosound = el} src={getAsset('audio/bell-square.mp3')} preload="auto" />
               </div>
           </div>
@@ -92,6 +91,8 @@ let PlayPage = React.createClass({
     let {hexagram} = this.props;
     if (!_.isEmpty(hexagram)) {
       return (<HexagramInfoCard key={hexagram.number} hexagram={hexagram} trigrams />);
+    } else {
+      return <span />
     }
   },
 
@@ -131,6 +132,7 @@ let PlayPage = React.createClass({
   },
 
   play(ev) {
+    console.log("play called")
     window.store.dispatch(HexagramActions.generateHexagram());
   }
 });

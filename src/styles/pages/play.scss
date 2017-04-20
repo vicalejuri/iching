@@ -15,6 +15,19 @@
   position: absolute;
   top: 0px;
 
+  .iching-card {
+    position: absolute;
+    top: 0px; left: 0px;
+    flex: 1 1 100%;
+    align-self: center;
+    width: 100%;
+
+    .hexagram-card {
+      cursor: pointer;
+      border-radius: 2px;
+    }
+  }
+
   .canvas {
     flex: 1;
     min-height: 100%;
@@ -48,18 +61,6 @@
           font-weight: 100;
         }
       }
-
-      .iching-card {
-        flex: 1 1 100%;
-        align-self: center;
-        width: 100%;
-
-        .hexagram-card {
-          cursor: pointer;
-          border-radius: 2px;
-        }
-      }
-
 
     }
 
