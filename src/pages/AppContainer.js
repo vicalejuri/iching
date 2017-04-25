@@ -7,7 +7,7 @@ import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 
 import Footer from '../components/Footer';
 
-import { PlayPage , ListPage, DetailPage } from './index'
+import { PlayPage , DetailPage, AboutPage } from './index'
 
 
 
@@ -25,8 +25,8 @@ class AppContainer extends React.Component {
         <div className="content" ref="content">
 
             <Route path="/" component={PlayPage} />
-            <Route path="/list" component={ListPage} />
             <Route path="/details/:number/:name" component={DetailPage} />
+            <Route path="/about" component={AboutPage} />
 
             { /* {React.cloneElement(this.props.children, {key: this.props.location.pathname})} */ }
         </div>

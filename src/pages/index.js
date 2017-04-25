@@ -1,7 +1,7 @@
 import AppContainer from './AppContainer';
 
 import PlayPage from './hexagram/PlayPage';
-import ListPage from './hexagram/ListPage';
+import AboutPage from './hexagram/AboutPage';
 import DetailPage from './hexagram/DetailPage';
 
-export { AppContainer, PlayPage, ListPage, DetailPage };
+export { AppContainer, PlayPage, AboutPage, DetailPage };
