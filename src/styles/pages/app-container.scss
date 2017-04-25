@@ -8,9 +8,6 @@
   border-radius:10px;
   box-shadow:0 0 50px  rgba(0,0,0,0.3);
 
-  animation-name: slideBounceUp;
-  animation-duration: 1.1s;
-  animation-timing-function: ease;
 }
 
 .app-wrap {
@@ -41,8 +38,11 @@
   padding: 0px 0px;
   //background-image: linear-gradient(260deg, #2376ae 0%, #c16ecf 100%);
 
-  background-color: #fff;
-  will-change: transform, opacity;
+  background-color: transparent;
+
+  will-change: transform, opacity, background-color;
+  transition: opacity 5.35s ease-out;
+  opacity: 0;
 }
 
 @import '../components/footer.scss';

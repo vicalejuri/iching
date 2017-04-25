@@ -171,3 +171,20 @@
  	95%{ transform: translateY(1%); }
  	100% { transform: translateY(0%); }
  }
+
+
+
+/*
+ * Body loaded animation
+ */
+body.loaded {
+  .loading {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  & .content {
+    background-color: #fff;
+    opacity: 1;
+  }
+}

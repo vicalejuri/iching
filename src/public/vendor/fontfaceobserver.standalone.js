@@ -12,14 +12,14 @@ z(p,function(a){h=a;u()});t(p,L(c,'"'+c.family+'",monospace'))})})};"undefined"!
 /* My fonts */
 var roboto = new FontFaceObserver('Open Sans')
 roboto.load().then( function() {
-  document.documentElement.className += " mainfont-loaded"
+  document.body.className += " mainfont-loaded"
 }).catch(function(){
   console.error("Could not fetch Open Sans font.")
 });
 
 var cursive = new FontFaceObserver('Cormorant')
 cursive.load().then( function() {
-  document.documentElement.className += " cursivefont-loaded"
+  document.body.className += " cursivefont-loaded"
 }).catch(function(){
   console.error("Could not fetch Cormorant font.")
 })

@@ -1,8 +1,11 @@
 /*
  * Footer
  */
-.icon-bar {
- display:flex;
+.footer.icon-bar {
+  display:flex;
+
+  animation-name: slideToTop;
+  animation-duration: 0.5s;
 }
 
 .icon-bar a {

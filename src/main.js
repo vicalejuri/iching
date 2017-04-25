@@ -48,8 +48,10 @@ function start() {
 
   /* Loading complete */
   let load_el = document.getElementById('loading');
-  load_el.parentNode.removeChild(load_el);
-  document.body.class += 'loaded';
+  //load_el.parentNode.removeChild(load_el);
+  requestAnimationFrame( () => {
+    document.body.className += 'loaded';
+  })
 }
 
 /*
