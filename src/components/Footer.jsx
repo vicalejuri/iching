@@ -15,11 +15,8 @@ function Footer() {
         <Link to="/" >
           <i className="material-icons">brightness_high</i>
         </Link>
-        <Link to="/list" >
-          <i className="material-icons">menu</i>
-        </Link>
         <Link to="/about" >
-          <i className="material-icons">menu</i>
+          <i className="material-icons">link</i>
         </Link>
     </CSSTransitionGroup>
   );
