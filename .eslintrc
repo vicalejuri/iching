@@ -15,6 +15,7 @@
     "jsx-quotes": [2, "prefer-double"],
 
     "react/prefer-es6-class": [1, "always"],
+    "react/prefer-stateless-function": 1,
     "react/no-string-refs": [0, "never"],
     "react/jsx-filename-extension": [0],
     "react/no-unused-prop-types": 0,

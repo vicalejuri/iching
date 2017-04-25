@@ -8,7 +8,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { Provider  } from 'react-redux';
 import { render } from 'react-dom';
 
-import { BrowserRouter as Router, Route, Link , IndexRoute } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 import { fetchIchingJSON } from './actions/IchingLoader';
 import { getAsset } from './constants/utils';

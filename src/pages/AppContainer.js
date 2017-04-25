@@ -1,14 +1,15 @@
-import React, { Component, PropTypes  } from 'react';
-import ReactDOM , { render } from 'react-dom';
-import { connect } from 'react-redux';
+import React, { Component, PropTypes  } from 'react'
+import ReactDOM , { render } from 'react-dom'
+import { connect } from 'react-redux'
 
-import { Router, Route, Link } from 'react-router';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { withRouter } from 'react-router'
+
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 
-import Footer from '../components/Footer';
 
+import Footer from '../components/Footer'
 import { PlayPage , DetailPage, AboutPage } from './index'
-
 
 
 class AppContainer extends React.Component {
@@ -18,17 +19,16 @@ class AppContainer extends React.Component {
   }
 
   render() {
-    console.log(this.props)
     /* <Header location={this.props.location} params={this.props.params} /> */
     return (
+
       <div className="app-wrap">
-        <div className="content" ref="content">
+        <div className="content" ref={(el) => { this.content = el }}>
 
-            <Route path="/" component={PlayPage} />
-            <Route path="/details/:number/:name" component={DetailPage} />
-            <Route path="/about" component={AboutPage} />
+            <Route exact path="/" component={PlayPage} />
+            <Route exact path="/about" component={AboutPage} />
+            { /* <Route path="/details/:number/:name" component={DetailPage} /> */ }
 
-            { /* {React.cloneElement(this.props.children, {key: this.props.location.pathname})} */ }
         </div>
         <Footer />
       </div>
@@ -36,12 +36,12 @@ class AppContainer extends React.Component {
   }
 
   scrollTopTop() {
-    let el = this.refs.content
+    let el = this.content
     el.scrollTop = 0
   }
 
 }
 
-export default connect(
+export default withRouter(connect(
   null
-)(AppContainer);
+)(AppContainer));
