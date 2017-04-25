@@ -9,6 +9,7 @@
   flex:1;
   text-align: center;
 
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,21 +21,32 @@
   color:rgba(0,0,0,0.5);
   text-decoration: none;
   text-transform: lowercase;
-  border-bottom: 5px solid transparent;
-}
 
-.icon-bar a:first-child {
-  border-left: 0;
-}
+  &::after {
+    content: ' ';
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+    height: 5px;
+    background-color: rgba(0,0,0,0.3);
 
-.icon-bar a.active, .icon-bar a:hover {
-  border-bottom: 3px solid rgba(0,0,0,0.3);
-}
+    opacity: 0;
+    will-change: opacity;
+    transition: opacity 150ms ease-in-out;
+  }
 
-.icon-bar a.normal {
+  & i {
+    font-size: 2.0rem;
+  }
 
-}
 
-.icon-bar i {
-  font-size: 2.0rem;
+  &:first-child {
+    border-left: 0;
+  }
+
+  &.active, &:hover {
+    &::after {
+      opacity: 1;
+    }
+  }
 }

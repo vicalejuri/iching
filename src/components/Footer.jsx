@@ -1,24 +1,28 @@
 import React, {Component, PropTypes} from 'react';
-import Router, {Link, History, State} from 'react-router';
 
 import {connect} from 'react-redux'
 
-class Footer extends React.Component {
-  render() {
-    return (
-      <div className="footer icon-bar">
-        <Link to="/" activeClassName="active" ref="play">
+import { Link } from 'react-router-dom';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
+
+function Footer() {
+  return (
+    <CSSTransitionGroup component="div" className="footer icon-bar"
+                          transitionName="footer-appear" transitionAppear
+                          transitionAppearTimeout={1000}
+                          transitionEnterTimeout={1000}
+                          transitionLeaveTimeout={1000}>
+        <Link to="/" >
           <i className="material-icons">brightness_high</i>
         </Link>
-        <Link to="/list" activeClassName="active" ref="list">
+        <Link to="/list" >
           <i className="material-icons">menu</i>
         </Link>
-        <Link to="/about" activeClassName="about" ref="about">
+        <Link to="/about" >
           <i className="material-icons">menu</i>
         </Link>
-      </div>
-    );
-  }
+    </CSSTransitionGroup>
+  );
 }
 
-export default connect(state => ({}))(Footer);
+export default connect( state => ({}) )(Footer);

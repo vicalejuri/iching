@@ -38,14 +38,6 @@ function start() {
     <Provider store={window.store}>
       <Router>
         <AppContainer />
-        { /*
-        <Route path="/" name="Iching of the day" component={AppContainer} children>
-          <Route name="hexagram-play" path="/" component={PlayPage} />
-          <Route name="hexagram-list" path="/list" component={ListPage} />
-          <Route name="hexagram-details" path="/details/:number/:name" component={DetailPage} />
-          <IndexRoute component={PlayPage} />
-        </Route>
-        */ }
       </Router>
     </Provider>,
     document.getElementById('app-mount')

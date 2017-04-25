@@ -23,19 +23,14 @@ class AppContainer extends React.Component {
     return (
       <div className="app-wrap">
         <div className="content" ref="content">
-          <CSSTransitionGroup
-            component="div"
-            transitionName="page-transition" transitionAppear
-            transitionAppearTimeout={500} transitionEnterTimeout={500} transitionLeaveTimeout={500}>
 
             <Route path="/" component={PlayPage} />
             <Route path="/list" component={ListPage} />
             <Route path="/details/:number/:name" component={DetailPage} />
 
             { /* {React.cloneElement(this.props.children, {key: this.props.location.pathname})} */ }
-           </CSSTransitionGroup>
         </div>
-        <Footer location={this.props.location} />
+        <Footer />
       </div>
     );
   }

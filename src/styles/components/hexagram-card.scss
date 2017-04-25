@@ -37,6 +37,11 @@
     align-items: stretch;
     justify-content: space-around;
 
+    hr {
+      margin: 0;
+      border: 1px solid #efefef;
+    }
+
     .tri-img {
       flex: 0 0 50%;
       justify-content: space-around;

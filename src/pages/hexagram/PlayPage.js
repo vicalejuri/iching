@@ -17,20 +17,20 @@ import HexagramInfoCard from '../../components/HexagramInfoCard';
 import { getAsset } from '../../constants/utils'
 
 
-const opts = {
-  hexagram_timeout: 3000
-}
-
 class PlayPage extends React.Component {
-
-  props = {
+  defaultProps = {
     kuas: [],
-    hexagram: {}
+    hexagram: {},
+    animation_timeout: 3000
   }
 
-  state = {
-    already_played: false
+  constructor( props ) {
+    super(props)
+    this.state = {
+      already_played: false
+    }
   }
+
 
   render() {
     console.log("play page render")
@@ -38,7 +38,7 @@ class PlayPage extends React.Component {
       <div className="playpage-container">
 
           <CSSTransitionGroup className="iching-card"
-                              onTouchTap={this.goToHexagram} onClick={this.goToHexagram}
+                              onClick={this.goToHexagram}
                               transitionName="hexagram-preview" transitionEnterTimeout={400} transitionLeaveTimeout={400}>
                               {this.renderPreviewCard()}
           </CSSTransitionGroup>
@@ -47,7 +47,7 @@ class PlayPage extends React.Component {
               <div className="infoArea">
                   <CSSTransitionGroup transitionName="question" transitionEnterTimeout={400} transitionLeaveTimeout={400}>
                       {this.isFirstPlay() ? (
-                          <div className="question" ref="question">
+                          <div className="question" ref={el => this.question = el}>
                               {this.renderQuestion()}
                           </div>
                       ) : (false) }
@@ -92,11 +92,11 @@ class PlayPage extends React.Component {
     }
   }
 
-  onGongoHold(ev) {
+  onGongoHold = (ev) => {
     this.gongo.className = 'gongo down';
   }
 
-  onGongoRelease(ev) {
+  onGongoRelease = (ev) => {
     // add animation
     this.gongo.className = 'gongo hit';
 
@@ -111,15 +111,15 @@ class PlayPage extends React.Component {
     this.setState({already_played: true})
     setTimeout(() => {
       this.play()
-    }, opts.hexagram_timeout);
+    }, this.props.animation_timeout);
 
   }
 
-  goToHexagram() {
+  goToHexagram = () => {
     this.history.pushState(null, `/details/${this.props.hexagram.number}/${this.props.hexagram.name}`);
   }
 
-  play(ev) {
+  play = (ev) => {
     console.log("play called")
     window.store.dispatch(HexagramActions.generateHexagram());
   }

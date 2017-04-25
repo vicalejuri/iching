@@ -2,9 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as _ from 'lodash';
 
-import { Card, Paper, Divider, Popover, Avatar,
-         Icons, FlatButton, IconButton, FontIcon, Styles } from 'material-ui';
-
 import * as HexagramActions from '../actions/HexagramActions';
 import { getTrigramByName } from '../constants/IchingLookup';
 
@@ -55,28 +52,23 @@ export default class HexagramInfoCard extends React.Component {
           <TrigramImage tri={above} />
           <div className="label">{above.image}</div>
         </div>
-        <Divider />
+        <hr />
         <div className="below" onTouchTap={this.handleTouchTap} onClick={this.handleTouchTap}>
           <TrigramImage tri={below} />
           <div className="label">{below.image}</div>
         </div>
 
-        <Popover
-          open={this.state.popover_open}
-          anchorEl={this.state.anchorEl}
-          anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
-          targetOrigin={{horizontal: 'right', vertical: 'top'}}
-          onRequestClose={this.handleRequestClose} >
+        {/*
           <div style={styles.popover}>
             <div className="popover-trigram">
               <h4 className="title">{this.state.trigram.name} - {this.state.trigram.wilhelm}</h4>
-              <Divider />
+              <hr />
               <div className="image"><b>Image: </b>{this.state.trigram.image} , {this.state.trigram.image_name}</div>
               <div className="animal"><b>Animal: </b>{this.state.trigram.animal} , {this.state.trigram.animal_name}</div>
               <div className="body"><b>Body: </b>{this.state.trigram.body}</div>
             </div>
           </div>
-        </Popover>
+        */ }
 
         </div>
       );
