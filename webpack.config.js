@@ -20,6 +20,7 @@ var pathToReactRedux = path.resolve(node_modules, 'react-redux');
 
 module.exports = {
   devServer: {
+    hot: true,
     watchOptions: {
       ignored: /node_modules/
     }
@@ -107,6 +108,8 @@ module.exports = {
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.js'}),
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin(),
+    
     //new webpack.NoErrorsPlugin(),
     //new ExtractTextPlugin('fonts.css'),
     new ExtractTextPlugin('main.css'),

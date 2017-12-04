@@ -85,7 +85,7 @@ class PlayPage extends React.Component {
   renderQuestion() {
     if (!this.state.already_played) {
       return (
-        <h2 className="title" key="question">Concentrate and ask a question</h2>
+        <h2 className="title" key="question">Concentrate and throw the dices</h2>
       )
     }
   }
