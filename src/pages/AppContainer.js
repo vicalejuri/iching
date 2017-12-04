@@ -27,7 +27,7 @@ class AppContainer extends React.Component {
 
             <Route exact path="/" component={PlayPage} />
             <Route exact path="/about" component={AboutPage} />
-            { /* <Route path="/details/:number/:name" component={DetailPage} /> */ }
+            <Route path="/details/:number/:name" component={DetailPage} />
 
         </div>
         <Footer />

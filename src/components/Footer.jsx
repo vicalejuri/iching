@@ -2,8 +2,12 @@ import React, {Component, PropTypes} from 'react';
 
 import {connect} from 'react-redux'
 
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
+
+import { withRouter } from 'react-router'
+
+import YinYangSvg from "../public/icons/yin_yang.svg"
 
 function Footer() {
   return (
@@ -12,14 +16,16 @@ function Footer() {
                           transitionAppearTimeout={1000}
                           transitionEnterTimeout={1000}
                           transitionLeaveTimeout={1000}>
-        <Link to="/" >
-          <i className="material-icons">brightness_high</i>
-        </Link>
-        <Link to="/about" >
-          <i className="material-icons">link</i>
-        </Link>
+        <NavLink to="/" activeClassName="active">
+          <i className="box-block center-block icon my-icon yinyang" />
+          <span className="label">Play</span>
+        </NavLink>
+        <NavLink to="/about" activeClassName="active">
+          <i className="box-block center-block icon material-icons">link</i>
+          <span className="label">About</span>
+        </NavLink>
     </CSSTransitionGroup>
   );
 }
 
-export default connect( state => ({}) )(Footer);
+export default withRouter( connect( state => ({}) )(Footer) );

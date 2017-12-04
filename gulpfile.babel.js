@@ -100,23 +100,28 @@ gulp.task('build:dist', ['clean'], (cb) => {
 gulp.task('build:watch', ['clean'], (cb) => {
   options.watch = true;
   RunSequence(['build'], () => {
-    gulp.watch('src/public/**', ['assets']);
+    gulp.watch('src/styles/**', ['assets']);
   });
 });
 
 gulp.task('serve', () => {
   const config = require('./webpack.config');
   const bundler = webpack(config);
+  
   let server = new WebpackDevServer(bundler, {
     host: '0.0.0.0',
     contentBase: [path.join(__dirname, "src")],
 
     publicPath: '/assets/',
     hot: true,
-    historyApiFallback: false,
     stats: {
       colors: true
     },
+    devServer: {
+      watchOptions: {
+        ignored: /node_modules/
+      }
+    }
   });
   server.listen('9999', 'localhost', (err) => {
     console.log('server listen at http://0.0.0.0:9999');

@@ -1,0 +1,124 @@
+/*
+ * Transitions from pages (left/right translate)
+ */
+.page-transition-enter {
+  position: absolute;
+  opacity: 0;
+  will-change: transform, opacity;
+  transform: translateX(100%);
+}
+.page-transition-enter.page-transition-enter-active {
+  opacity: 1;
+  transform: translateX(0px);
+  transition: all var(--time_trans) var(--quartOut_easing);
+}
+
+.page-transition-leave {
+  position: absolute;
+  opacity: 1;
+  will-change: transform, opacity;
+}
+
+.page-transition-leave.page-transition-leave-active {
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: all var(--time_trans) var(--quartOut_easing);
+}
+
+.page-transition-appear {
+  position: absolute;
+  opacity: 0;
+}
+
+.page-transition-appear.page-transition-appear-acti  ve {
+  opacity: 1;
+  transform: translateX(0px);
+  transition: all var(--time_trans) var(--quartOut_easing);
+}
+
+
+
+
+
+
+/*
+ * Transition for hexagram-preview
+ * (translateY , from bottom hidden to bottom of screen)
+ */
+.hexagram-preview-enter {
+  animation-duration: var(--time_trans);
+  animation-timing-function: var(--softOut_easing);
+  animation-fill-mode: both;
+  opacity: 0;
+}
+
+.hexagram-preview-enter.hexagram-preview-enter-active {
+  animation-name: slideFromTop;
+}
+
+.hexagram-preview-leave {
+  animation-duration: var(--time_trans);;
+  animation-timing-function: var(--softOut_easing);
+  animation-fill-mode: both;
+  opacity: 1;
+}
+
+.hexagram-preview-leave.hexagram-preview-leave-active {
+  animation-name: slideToBottom;
+}
+
+.hexagram-preview-appear {
+  animation-duration: var(--time_trans);
+  animation-timing-function: var(--softOut_easing);
+  animation-fill-mode: both;
+}
+.hexagram-preview-appear.hexagram-preview-appear-active {
+  animation-name: slideFromTop;
+}
+
+
+/*
+ * Question animation
+ *
+.question-enter {
+  transition: all $time ease;
+  opacity: 0;
+  will-change: transform, opacity;
+  transform: translateY(-100%);
+}
+.question-enter.queston-enter-active  {
+  width: 100%;
+  opacity: 1;
+  transform: translateY(0px);
+}
+
+.question-leave {
+  transition: all $time ease;
+  opacity: 1;
+  will-change: transform, opacity;
+}
+.question-leave.question-leave-active {
+  opacity: 0;
+  transform: translateY(-100%);
+}
+
+.question-enter {
+  animation-duration: $time;
+  animation-timing-function: ease-out;
+  animation-fill-mode: both;
+  opacity: 0;
+}
+.question-enter.question-enter-active {
+  animation-name: slideFromBottom;
+}
+*/
+
+.question-leave {
+  animation-duration: var(--time_trans);
+  animation-timing-function: var(--quartOut_easing);
+  animation-fill-mode: both;
+  opacity: 1;
+}
+.question-leave.question-leave-active {
+  animation-name: slideToTop;
+}

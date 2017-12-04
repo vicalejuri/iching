@@ -1,4 +1,4 @@
-PROJECT_PATH=/Users/frangossauro/workspace/projects/react-iching/
+PROJECT_PATH=$(PWD)
 
 ADDRESS=14Cfnhat4wniiSAtk7vx6qKreo3qteBvEb
 ZERO_PATH=/Users/frangossauro/workspace/Codes/ZeroNet
@@ -33,11 +33,11 @@ copy_files:
 	rsync -avz --exclude-from '.ignore' --progress $(PROJECT_PATH)/dist/ $(ZERO_PATH)/data/$(ADDRESS)
 
 watch:
-	watchmedo shell-command --command="make copy_files" --patterns="*.html;*.js;*.coffee;*.css" --recursive $(PROJECT_PATH)
+	watchmedo shell-command --command="make copy_files" --patterns="*.html;*.js;*.coffee;*.css" --recursive $(PROJECT_PATH)/src
 
 serve:
 	make watch & \
-	zeronet --debug;
+	# zeronet --debug;
 
 zero-sign:
 	zeronet siteSign $(ADDRESS);

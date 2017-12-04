@@ -34,7 +34,7 @@ function configureStore( initialState ) {
  * Render routes and display html
  */
 function start() {
-  render(
+  let app = render(
     <Provider store={window.store}>
       <Router>
         <AppContainer />
@@ -52,6 +52,8 @@ function start() {
   requestAnimationFrame( () => {
     document.body.className += 'loaded';
   })
+
+  return app;
 }
 
 /*
@@ -68,19 +70,11 @@ function bootstrap() {
     throw e;
   }).then( (e) => {
     console.log('Loaded ICHING json correctly')
-    start();
-  })
-}
-
-/*
-if ( __PHONEGAP__ ) {
-  document.addEventListener( 'deviceready', start );
-} else {
-  document.addEventListener('DOMContentLoaded', (e) => {
-    console.log('"wtf"',e)
-    bootstrap();
+    window.app = start();
   });
-}*/
+
+  window.React = React;
+}
 
 // Report Errors
 // err: error message

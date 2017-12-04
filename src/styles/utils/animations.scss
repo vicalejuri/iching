@@ -173,18 +173,3 @@
  }
 
 
-
-/*
- * Body loaded animation
- */
-body.loaded {
-  .loading {
-    opacity: 0;
-    visibility: hidden;
-  }
-
-  & .content {
-    background-color: #fff;
-    opacity: 1;
-  }
-}

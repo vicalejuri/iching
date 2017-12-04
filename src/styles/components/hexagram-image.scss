@@ -14,7 +14,7 @@
   color: #000;
   background-color: transparent;
 
-  .yin , .yang {
+  & .yin , & .yang {
     width: 100%;
     height: 10.28%;
 
@@ -26,22 +26,19 @@
     }
   }
 
-  .yang > span {
+  & .yang > span {
     width: 35%;
+    &:first-child { float: left; }
+    &:last-child { float: right; }
   }
 
-  .yang > span:first-child {
-    float: left;
-  }
-
-  .yang > span:last-child {
-      float: right;
-  }
 }
 
-
+/**
+ * Trigram Height
+ */
 .tri-img {
-  .yin , .yang {
+  & .yin , & .yang {
     height: 20%;
   }
 }

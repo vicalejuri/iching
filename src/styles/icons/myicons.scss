@@ -1,0 +1,17 @@
+.my-icon {
+  width: var(--icon_size);
+  height: var(--icon_size);
+  text-indent: -9999px;
+
+  background-size: contain;
+  object-fit: contain;
+  -webkit-mask-size: contain;
+
+  fill: currentColor;
+  background-color: currentColor;
+}
+
+.my-icon.yinyang {
+  -webkit-mask-image: url(/assets/icons/yin_yang.svg);
+  mask-image: url(/assets/icons/yin_yang.svg);
+}

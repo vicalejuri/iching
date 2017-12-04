@@ -15,11 +15,11 @@
   }
 
   .icon-bar {
-    height: 48px;
+    min-height: 48px;
   }
 
   .hexagram-card {
-    .trigrams {
+    & .trigrams {
       font-size: 1.5em;
     }
   }
@@ -43,12 +43,11 @@
   /* Smaller icons and title for hexagram-card */
   .hexagram-card {
     font-size: 1.0em !important;
-    .title {
+    & .title {
       flex: 0 0 55%;
     }
-    .trigrams {
+    & .trigrams {
       flex: 0 0 20%;
-
     }
   }
 

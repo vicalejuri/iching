@@ -1,0 +1,16 @@
+/* Variables in the format noun{-compoust}_property */
+:root {
+  --icon_size: 24px;
+
+  --bg_color: #fff;
+  --fg_color: #000;
+  --fg-soft_color: rgba( var(--fg_color), 0.5);
+  --hr_color: rgba( var(--fg_color), 0.1);
+
+  --pantone-0_color: #EFCA51;
+
+  --time_trans: .5s;
+  --bounce_easing: cubic-bezier(0.23, 1, 0.32, 1) ;
+  --softOut_easing: cubic-bezier(0.52, 0.01, 0.16, 1);
+  --quartOut_easing: cubic-bezier(0.165, 0.840, 0.440, 1.000);
+}

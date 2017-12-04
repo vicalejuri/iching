@@ -1,16 +1,16 @@
 .detailspage-container {
 
-  .hexagram-card {
+  & .hexagram-card {
     width: 100%;
     position: absolute;
     top: 0; left: 0;
   }
 
-  .interpretation {
+  & .interpretation {
     margin: 5% 5%;
     margin-top: calc( 120px + 5%);
 
-    q {
+    & q {
       position: relative;
       font-size: 1.8em;
       text-align: left;
@@ -26,47 +26,47 @@
       hyphens: manual;
     }
 
-    q:before {
+    & q:before {
       position: absolute;
       margin: -0.07em -0.35em;
       top: 0px;
       left: 0px;
     }
-    q:after {
+    & q:after {
       margin: 0px 0px;
     }
 
 
-    .highlight {
+    & .highlight {
       display: flex;
       flex-direction: column-reverse;
       justify-content: space-around;
       align-items: center;
 
-      .tarot {
+      & .tarot {
         flex: 1 1 40%;
         transform: scale3d(0.8,0.8,1.0);
 
-        img {
+        & img {
           max-width: 100%;
           object-fit: cover;
         }
       }
 
-      .oracle {
+      & .oracle {
         width: 90%;
         margin: 0px auto;
       }
     }
 
-    p {
+    & p {
       font-size: 1.15em;
       hyphens: manual;
     }
 
     /* subQuotes */
-    hr + .subQuote,
-    .line > .subQuote {
+    & hr + .subQuote,
+    & .line > .subQuote {
       margin: 1em 1em;
       margin-left: auto;
       margin-right: auto;
@@ -75,7 +75,7 @@
       max-width: 90%;
     }
 
-    h3 {
+    & h3 {
       font-size: 1.4em;
       text-transform: uppercase;
     }

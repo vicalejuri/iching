@@ -3,23 +3,23 @@
   flex-direction: row;
   justify-content: space-around;
 
-  .avatar {
+  & .avatar {
     background-color: transparent !important;
   }
 
-  .lineseparated {
+  & .lineseparated {
     border-right: 1px solid #e0e0e0;
-  }
-  .lineseparated:last-child {
-    border-right: 0;
+    &:last-child {
+      border-right: 0;
+    }
   }
 
-  .lower-trigrams , .upper-trigrams {
+  & .lower-trigrams , & .upper-trigrams {
     width: 50%;
   }
 
 
-  .trigramPreview {
+  & .trigramPreview {
     position: fixed;
     bottom: 0px;
   }

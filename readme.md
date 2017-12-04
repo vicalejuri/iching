@@ -4,9 +4,8 @@
 ![gluten](https://img.shields.io/badge/gluten-free-brightgreen.svg?style=flat-square
 )
 
-
-Free offline I-ching oracle webapp of Richard Wilheim iconic book,
-built with ES6, React and Redux.
+I-ching oracle with interpretation of Richard Wilheim.
+Built with React, redux and ES6.
 
 Features:
   - Full interpretation with the moving lines.

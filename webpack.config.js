@@ -19,6 +19,11 @@ var pathToRedux = path.resolve(node_modules, 'redux-devtools');
 var pathToReactRedux = path.resolve(node_modules, 'react-redux');
 
 module.exports = {
+  devServer: {
+    watchOptions: {
+      ignored: /node_modules/
+    }
+  },
 
   output: {
     path: assetPath,
@@ -27,10 +32,11 @@ module.exports = {
   },
 
   cache: true,
-  debug: true,
   devtool: 'sourcemap',
+  
+  context:   path.resolve(__dirname, 'src'),  
   entry: {
-    app:   './src/main.js',
+    app:    ['webpack/hot/dev-server','./main.js'],
     vendor: ['react','react-dom','redux','react-redux','material-ui'],
   },
 
@@ -40,7 +46,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['', '.js', '.jsx','.json','.css','.jpg','.png','.gif'],
+    extensions: ['.js','.jsx'],
     alias: {
       'styles': __dirname + '/src/styles',
       'components': __dirname + '/src/components/',
@@ -54,30 +60,42 @@ module.exports = {
     }
   },
   module: {
-    preLoaders: [{
-      test: /\.(js|jsx)$/,
-      exclude: /node_module/,
-      loaders: ['eslint-loader', ],
-    }],
     loaders: [
     { test: /\.(js|jsx)$/,
       exclude: /node_modules/,
-      loader: 'babel-loader',
+      use: 'babel-loader',
     },
+    {
+      test: /\.scss/,
+      use: ExtractTextPlugin.extract({
+        fallback: 'style-loader',        
+        use: [{
+          loader: 'css-loader',
+          options: {
+            importLoaders: 1
+          }                    
+        },'postcss-loader']
+      })
+    },
+    /*
     { test: /\.scss/,
-      loader: ExtractTextPlugin.extract('css-loader?sourceMap!sass-loader?sourceMap')
+      use: ['style-loader','css-loader','postcss-loader?importLoaders=1',], //ExtractTextPlugin.extract('style',['css','postcss?importLoaders=1']),
     },
+    
     { test: /\.css$/,
-      loader: ExtractTextPlugin.extract("css-loader")
+      use: ['style-loader','css-loader','postcss-loader?importLoaders=1'], //ExtractTextPlugin.extract("css-loader")
     },
+    */
     { test: /\.(png|jpg)$/,
-      loader: 'url-loader?limit=500000'
+      use: 'url-loader?limit=500000'
     },
     { test: /\.(woff|woff2|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-      loader: 'file-loader',
-      query: {
-        name: path.join( 'fonts' , '/[name]-[hash].[ext]')
-      }
+      use: { loader: 'file-loader',
+             options: {
+               query: {
+                name: path.join( 'fonts' , '/[name].[ext]')
+              }
+            }}
     },
   ],
 
@@ -85,8 +103,8 @@ module.exports = {
   },
 
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js',Infinity),
-    //new webpack.HotModuleReplacementPlugin(),
+    new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.js'}),
+    new webpack.HotModuleReplacementPlugin(),
     //new webpack.NoErrorsPlugin(),
     //new ExtractTextPlugin('fonts.css'),
     new ExtractTextPlugin('main.css'),

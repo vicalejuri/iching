@@ -9,23 +9,23 @@
   padding: 2.5% 2.5%;
   max-height: 120px;
 
-  .hex-img {
+  & .hex-img {
     flex: 0 0 20%;
     min-height: 100px;
     height: 100px;
   }
 
-  > .title {
+  & > .title {
     flex: 0 0 60%;
     margin-left: 2.5%;
 
-    h3 , h2 {
+    & h3 , & h2 {
       margin: 0px;
       font-weight: 300;
     }
   }
 
-  .trigrams {
+  & .trigrams {
     border-radius: 2px;
     background-color: #1DF688;
     padding: 1%;
@@ -37,19 +37,19 @@
     align-items: stretch;
     justify-content: space-around;
 
-    hr {
+    & hr {
       margin: 0;
       border: 1px solid #efefef;
     }
 
-    .tri-img {
+    & .tri-img {
       flex: 0 0 50%;
       justify-content: space-around;
       box-shadow: none;
       text-shadow: none;
     }
 
-    .above , .below {
+    & .above , & .below {
       min-height: 40px;
       height: 40px;
       display: flex;
@@ -64,17 +64,15 @@
 .popover-trigram {
   font-family: monospace !important;
 
-  h4.title {
+  & h4.title {
     text-transform: uppercase !important;
     margin: 0px !important;
     font-weight: 700 !important;
   }
 
-  b {
-    font-weight: 700 !important;
-  }
+  & b, & strong { font-weight: 700 !important; }
 
-  .image , .animal {
+  & .image , & .animal {
     span:nth-of-type(1) {
       font-size: 2.0em !important;
     }
