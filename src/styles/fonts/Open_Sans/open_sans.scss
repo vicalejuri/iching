@@ -3,7 +3,7 @@
   font-style: normal;
   font-weight: 300;
   src: local("./Open Sans Light"), local("./OpenSans-Light"),
-        url(/assets/fonts/OpenSans-Light.ttf) format('truetype');
+        url(fonts/Open_Sans/OpenSans-Light.ttf) format('truetype');
 }
 
 @font-face {
@@ -11,7 +11,7 @@
   font-style: normal;
   font-weight: 400;
   src: local('Open Sans'), local('OpenSans'),
-       url(/assets/fonts/OpenSans-Regular.ttf) format('truetype');
+       url(fonts/Open_Sans/OpenSans-Regular.ttf) format('truetype');
 }
 
 @font-face {
@@ -19,7 +19,7 @@
   font-style: normal;
   font-weight: 600;
   src: local('Open Sans Semibold'), local('OpenSans-Semibold'),
-       url(/assets/fonts/OpenSans-Semibold.ttf) format('truetype');
+       url(fonts/Open_Sans/OpenSans-Semibold.ttf) format('truetype');
 }
 
 @font-face {
@@ -27,7 +27,7 @@
   font-style: normal;
   font-weight: 800;
   src: local('Open Sans Extrabold'), local('OpenSans-Extrabold'),
-       url(/assets/fonts/OpenSans-ExtraBold.ttf) format('truetype');
+       url(fonts/Open_Sans/OpenSans-ExtraBold.ttf) format('truetype');
 }
 
 /* Open Sans condensed

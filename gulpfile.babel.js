@@ -61,7 +61,6 @@ gulp.task('bundle:phonegap', ['clean'], (cb) => {
   RunSequence(['assets','copy','bundle','phonegap:copy'])
 })
 
-
 gulp.task('assets', (cb) => {
   return gulp.src('src/public/**/*')
             .pipe(gulp.dest('dist/assets/'))
@@ -78,8 +77,13 @@ gulp.task('sprites', function() {
   tarot.css.pipe( gulp.dest('src/styles/components/'))
 });
 
+gulp.task('fonts', (cb) => {
+  gulp.src(['./src/styles/fonts/*'])
+      .pipe(gulp.dest('dist/assets/fonts'));
+})
+
 gulp.task('copy', (cb) => {
-  gulp.src(['./src/*.html','./src/*.ico'])
+  gulp.src(['./src/*.html','./src/*.ico', './src/styles/fonts'])
              .pipe(gulp.dest('dist/'));
 });
 
@@ -117,11 +121,6 @@ gulp.task('serve', () => {
     stats: {
       colors: true
     },
-    devServer: {
-      watchOptions: {
-        ignored: /node_modules/
-      }
-    }
   });
   server.listen('9999', 'localhost', (err) => {
     console.log('server listen at http://0.0.0.0:9999');

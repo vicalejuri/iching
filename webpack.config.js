@@ -54,7 +54,9 @@ module.exports = {
       'actions': __dirname + '/src/actions/',
       'constants': __dirname + '/src/constants/',
       'pages': __dirname + '/src/pages/',
-      'public': __dirname + '/src/public',
+
+      'public': __dirname + '/src/public/',
+      'fonts': __dirname + '/src/styles/fonts/',
 
       'react': pathToReact,
     }
