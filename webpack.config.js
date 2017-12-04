@@ -21,6 +21,7 @@ var pathToReactRedux = path.resolve(node_modules, 'react-redux');
 module.exports = {
   devServer: {
     hot: true,
+    watch: true,
     watchOptions: {
       ignored: /node_modules/
     }
@@ -38,7 +39,7 @@ module.exports = {
   context:   path.resolve(__dirname, 'src'),  
   entry: {
     app:    ['webpack/hot/dev-server','./main.js'],
-    vendor: ['react','react-dom','redux','react-redux','material-ui'],
+    vendor: ['react','react-dom','redux','react-redux'],
   },
 
   stats: {

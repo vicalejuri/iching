@@ -4,8 +4,6 @@ import classNames from 'classnames';
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux'
 
-import { Divider } from 'material-ui';
-
 import * as HexagramActions from '../../actions/HexagramActions';
 import * as IchingTable from '../../constants/IchingLookup';
 import { getAsset } from '../../constants/utils'
@@ -65,17 +63,17 @@ class DetailPage extends React.Component {
           {this.formatText(hex.interpretation.resume)}
 
           <h3>The Image</h3>
-          <Divider />
+          <hr />
           <q className="subQuote">{this.formatQuote(hex.interpretation.image.oracle)}</q>
           {this.formatText(hex.interpretation.image.image)}
 
           <h3>The Judgement</h3>
-          <Divider />
+          <hr />
           <q className="subQuote">{this.formatQuote(hex.interpretation.oracle)}</q>
           {this.formatText(hex.interpretation.judgment)}
 
           <h3>The Lines</h3>
-          <Divider />
+          <hr />
           {lines}
         </div>
       </div>

@@ -21,8 +21,8 @@ function Footer() {
           <span className="label">Play</span>
         </NavLink>
         <NavLink to="/about" activeClassName="active">
-          <i className="box-block center-block icon material-icons">link</i>
-          <span className="label">About</span>
+          <i className="box-block center-block icon my-icon link" />
+          <span className="label">Settings</span>
         </NavLink>
     </CSSTransitionGroup>
   );

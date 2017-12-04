@@ -118,6 +118,7 @@ gulp.task('serve', () => {
 
     publicPath: '/assets/',
     hot: true,
+    watch: true,
     stats: {
       colors: true
     },

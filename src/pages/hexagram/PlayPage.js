@@ -3,9 +3,6 @@ import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
 import * as _ from 'lodash';
 
-import {Toolbar, ToolbarGroup, ToolbarSeparator,
-        FloatingActionButton, RaisedButton, ToggleStar, TextField, Colors} from 'material-ui';
-
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 
 import * as HexagramActions from '../../actions/HexagramActions';

@@ -7,7 +7,6 @@ import { withRouter } from 'react-router'
 
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 
-
 import Footer from '../components/Footer'
 import { PlayPage , DetailPage, AboutPage } from './index'
 
@@ -19,7 +18,6 @@ class AppContainer extends React.Component {
   }
 
   render() {
-    /* <Header location={this.props.location} params={this.props.params} /> */
     return (
 
       <div className="app-wrap">
