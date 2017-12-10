@@ -1,29 +1,29 @@
-import preact from 'preact';
+import preact from "preact";
 
-import thunk from 'redux-thunk';
-import invariant from 'redux-immutable-state-invariant';
+import thunk from "redux-thunk";
+import invariant from "redux-immutable-state-invariant";
 
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import { Provider  } from 'preact-redux';
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
+import { Provider } from "preact-redux";
 
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-import { fetchIchingJSON } from './actions/IchingLoader';
-import { getAsset } from './constants/utils';
-import reducers from './reducers';
+import { fetchIchingJSON } from "./actions/IchingLoader";
+import { getAsset } from "./constants/utils";
+import reducers from "./reducers";
 
-import { AppContainer } from './pages';
+import { AppContainer } from "./pages";
 
 // force to import&compile css
-import './styles/main.scss';
+import "./styles/main.scss";
 
-function configureStore( initialState ) {
+function configureStore(initialState) {
   let fCreateStore = compose(
-    applyMiddleware( invariant(), thunk ),
+    applyMiddleware(invariant(), thunk),
     window.devToolsExtension ? window.devToolsExtension() : f => f
   )(createStore);
 
-  const store = fCreateStore( reducers, initialState )
+  const store = fCreateStore(reducers, initialState);
 
   return store;
 }
@@ -38,16 +38,15 @@ function start() {
         <AppContainer />
       </Router>
     </Provider>,
-    document.getElementById('app-mount')
+    document.getElementById("app-mount")
   );
 
-
   /* Loading complete */
-  let load_el = document.getElementById('loading');
+  let load_el = document.getElementById("loading");
   //load_el.parentNode.removeChild(load_el);
-  requestAnimationFrame( () => {
-    document.body.className += 'loaded';
-  })
+  requestAnimationFrame(() => {
+    document.body.className += "loaded";
+  });
 
   return app;
 }
@@ -60,14 +59,18 @@ function bootstrap() {
   window.store = configureStore();
 
   // load Iching JSON File
-  let x = window.store.dispatch( fetchIchingJSON( getAsset('json/iching_deoxy.json') ) )
-  x.catch( (e) => {
-    console.error("Couldnt load ICHING json.")
-    throw e;
-  }).then( (e) => {
-    console.log('Loaded ICHING json correctly')
-    window.app = start();
-  });
+  let x = window.store.dispatch(
+    fetchIchingJSON(getAsset("json/iching_deoxy.json"))
+  );
+  x
+    .catch(e => {
+      console.error("Couldnt load ICHING json.");
+      throw e;
+    })
+    .then(e => {
+      console.log("Loaded ICHING json correctly");
+      window.app = start();
+    });
 
   window.react = preact;
 }
@@ -76,10 +79,10 @@ function bootstrap() {
 // err: error message
 // fileName: which file error occurs in
 // lineNumber: what line error occurs on
-if ( __DEVELOPMENT__ ) {
-  window.onerror = function (err, fileName, lineNumber) {
-   // alert or console.log a message
-   console.error(fileName, 'Line:', lineNumber, 'Error:', err.message);
+if (__DEVELOPMENT__) {
+  window.onerror = function(err, fileName, lineNumber) {
+    // alert or console.log a message
+    console.error(fileName, "Line:", lineNumber, "Error:", err.message);
   };
 }
 

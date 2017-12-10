@@ -8,6 +8,13 @@
   "src": "app",
   "test": "test",
   "dist": "dist",
+  "scripts": {
+    "precommit": "lint-staged",
+  },
+  "lint-staged": {
+    "*.js": ["prettier --write", "eslint", "git add"],
+    "*.jsx": ["prettier --write", "eslint", "git add"],
+  },
   "mainInput": "main",
   "mainOutput": "main",
   "dependencies": {
@@ -29,6 +36,7 @@
     "del": "^2.2.0",
     "eslint": "^3.10.0",
     "eslint-config-airbnb": "14.1.0",
+    "eslint-config-prettier": "^2.9.0",
     "eslint-import-resolver-webpack": "^0.8.3",
     "eslint-loader": "^1.2.0",
     "eslint-plugin-import": "^2.7.0",
