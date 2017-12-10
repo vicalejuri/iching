@@ -1,5 +1,5 @@
-import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
+import { Component } from 'preact';
+import { connect } from 'preact-redux';
 import * as _ from 'lodash';
 
 import { getTrigramByName } from '../constants/IchingLookup';
@@ -17,7 +17,7 @@ function YangLine() {
  * Given `below` and `above`, as an array of kuas.
  * Or `below` and `above`, as it trigram name
  */
-export class HexagramImage extends React.Component {
+export class HexagramImage extends Component {
     render() {
 
       let { below, above } = this.props;

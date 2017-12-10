@@ -1,10 +1,10 @@
-import React, { Component, PropTypes } from 'react';
+import preact from 'preact';
 import Router, {History, State} from 'react-router-dom';
-import { connect } from 'react-redux'
+import { connect } from 'preact-redux'
 
 import * as HexagramActions from '../actions/HexagramActions';
 
-let Header = React.createClass({
+let Header = preact.createClass({
     mixins: [History],
 
     render() {

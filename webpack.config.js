@@ -9,22 +9,34 @@ var webpack = require('webpack');
 
 var assetPath = require('path').join(__dirname, 'dist/assets');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 var path = require('path');
 var node_modules = path.resolve(__dirname, 'node_modules');
 
-var pathToReact = path.resolve(node_modules, 'react');
 var pathToMaterialUI = path.resolve(node_modules, 'material-ui');
+var pathToReact = path.resolve(node_modules, 'react');
 var pathToRedux = path.resolve(node_modules, 'redux-devtools');
-var pathToReactRedux = path.resolve(node_modules, 'react-redux');
+var pathToReactRedux = path.resolve(node_modules, 'preact-redux');
+
 
 module.exports = {
   devServer: {
+    host: '0.0.0.0',
+    publicPath: '/assets/',
+    contentBase: path.resolve(__dirname, 'src'),    
+    watchContentBase: true,
+
+    progress: true,
     hot: true,
-    watch: true,
+    compress: true,    
+
     watchOptions: {
-      ignored: /node_modules/
-    }
+      ignored: 'node_modules'
+    },
+    stats: {
+      colors: true
+    },
   },
 
   output: {
@@ -33,13 +45,12 @@ module.exports = {
     publicPath: '/assets/'
   },
 
-  cache: true,
   devtool: 'sourcemap',
   
   context:   path.resolve(__dirname, 'src'),  
   entry: {
-    app:    ['webpack/hot/dev-server','./main.js'],
-    vendor: ['react','react-dom','redux','react-redux'],
+    app:    ['./main.js'],
+    vendor: ['lodash','preact','redux','react-router','preact-redux'],
   },
 
   stats: {
@@ -60,7 +71,8 @@ module.exports = {
       'public': __dirname + '/src/public/',
       'fonts': __dirname + '/src/styles/fonts/',
 
-      'react': pathToReact,
+      'react': 'preact-compat',
+      'react-dom': 'preact-compat'
     }
   },
   module: {
@@ -102,14 +114,13 @@ module.exports = {
             }}
     },
   ],
-
-    //noParse: [ pathToReact ], pathToRedux, pathToReactRedux],
   },
 
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.js'}),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
+    //new BundleAnalyzerPlugin({}),
     
     //new webpack.NoErrorsPlugin(),
     //new ExtractTextPlugin('fonts.css'),

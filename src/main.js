@@ -1,12 +1,10 @@
-import React from 'react';
-import injectTapEventPlugin from 'react-tap-event-plugin';
+import preact from 'preact';
 
 import thunk from 'redux-thunk';
 import invariant from 'redux-immutable-state-invariant';
 
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import { Provider  } from 'react-redux';
-import { render } from 'react-dom';
+import { Provider  } from 'preact-redux';
 
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
@@ -34,7 +32,7 @@ function configureStore( initialState ) {
  * Render routes and display html
  */
 function start() {
-  let app = render(
+  let app = preact.render(
     <Provider store={window.store}>
       <Router>
         <AppContainer />
@@ -43,8 +41,6 @@ function start() {
     document.getElementById('app-mount')
   );
 
-  // add TapEvent
-  injectTapEventPlugin();
 
   /* Loading complete */
   let load_el = document.getElementById('loading');
@@ -73,7 +69,7 @@ function bootstrap() {
     window.app = start();
   });
 
-  window.React = React;
+  window.react = preact;
 }
 
 // Report Errors

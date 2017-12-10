@@ -1,5 +1,5 @@
-import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
+import { Component } from 'react';
+import { connect } from 'preact-redux';
 import * as _ from 'lodash';
 
 import * as HexagramActions from '../actions/HexagramActions';
@@ -14,7 +14,8 @@ const styles = {
   }
 }
 
-export default class HexagramInfoCard extends React.Component {
+
+export default class HexagramInfoCard extends Component {
   state = {
     popover_open: false,
     trigram: {name: "", wilhelm: "", body: "",
@@ -26,6 +27,7 @@ export default class HexagramInfoCard extends React.Component {
     let {trigrams, name, number, description} = this.props.hexagram;
     let innerTrigrams = this.innerTrigrams( this.props.trigrams || false )
 
+    let detail_url = `/details/${number}/`
     return (
       <div className="hexagram-card">
         <HexagramImage below={trigrams.below} above={trigrams.above} />

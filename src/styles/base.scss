@@ -1,10 +1,15 @@
 * {
   box-sizing: border-box;
-  &:focus { outline: 0; }
 }
 
 a {
   color: #ff4081;
+}
+
+a:active, a:focus , button:active, button:focus {
+  outline: 0;
+  border: none;
+  -moz-outline-style: none
 }
 
 body {

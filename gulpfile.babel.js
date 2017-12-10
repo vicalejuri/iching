@@ -1,5 +1,6 @@
 import gulp from 'gulp';
 import gulpLoadPlugins from 'gulp-load-plugins';
+
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 
@@ -7,6 +8,7 @@ import eslint from 'gulp-eslint';
 
 import * as _ from 'lodash';
 import del from 'del';
+import run from 'gulp-run'
 
 import RunSequence from 'run-sequence';
 import scraper from 'scraperjs'
@@ -108,6 +110,12 @@ gulp.task('build:watch', ['clean'], (cb) => {
   });
 });
 
+gulp.task('dev-server', () => {
+  return run('./node_modules/.bin/webpack-dev-server').exec()
+         .pipe(gulp.dest('output'))
+})
+
+/*
 gulp.task('serve', () => {
   const config = require('./webpack.config');
   const bundler = webpack(config);
@@ -115,10 +123,16 @@ gulp.task('serve', () => {
   let server = new WebpackDevServer(bundler, {
     host: '0.0.0.0',
     contentBase: [path.join(__dirname, "src")],
+    watchContentBase: true,
+    compress: true,
 
     publicPath: '/assets/',
     hot: true,
-    watch: true,
+    watchOptions: {
+      ignored: [/node_modules/,
+                /styles\/icons\/emojione/,
+                /public/,]
+    },
     stats: {
       colors: true
     },
@@ -127,3 +141,4 @@ gulp.task('serve', () => {
     console.log('server listen at http://0.0.0.0:9999');
   });
 });
+*/

@@ -1,7 +1,8 @@
-import React, {Component} from 'react';
-import ReactDOM from 'react-dom';
-import {connect} from 'react-redux';
+import {Component} from 'preact';
+import {connect} from 'preact-redux';
 import * as _ from 'lodash';
+
+import { withRouter } from 'react-router'
 
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 
@@ -11,8 +12,7 @@ import HexagramInfoCard from '../../components/HexagramInfoCard';
 
 import { getAsset } from '../../constants/utils'
 
-
-class PlayPage extends React.Component {
+class PlayPage extends Component {
   defaultProps = {
     kuas: [],
     hexagram: {},
@@ -28,12 +28,11 @@ class PlayPage extends React.Component {
 
 
   render() {
-    console.log("play page render")
     return (
       <div className="playpage-container">
 
           <CSSTransitionGroup className="iching-card"
-                              onClick={this.goToHexagram}
+                              onClick={this.goToHexagram.bind(this)}
                               transitionName="hexagram-preview" transitionEnterTimeout={400} transitionLeaveTimeout={400}>
                               {this.renderPreviewCard()}
           </CSSTransitionGroup>
@@ -111,7 +110,10 @@ class PlayPage extends React.Component {
   }
 
   goToHexagram = () => {
-    this.history.pushState(null, `/details/${this.props.hexagram.number}/${this.props.hexagram.name}`);
+    window.location = `/details/${this.props.hexagram.number}`
+    
+    //debugger;
+    //window.history.pushState(null, `/details/${this.props.hexagram.number}/${this.props.hexagram.name}`);
   }
 
   play = (ev) => {
@@ -120,4 +122,8 @@ class PlayPage extends React.Component {
   }
 }
 
-export default connect(state => ({kuas: state.kuas, hexagram: state.hexagram}))(PlayPage);
+export default withRouter( 
+  connect(
+      state => ({kuas: state.kuas, hexagram: state.hexagram}) 
+  )(PlayPage) 
+);

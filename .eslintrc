@@ -1,13 +1,14 @@
 {
   "parser": "babel-eslint",
-  "extends": "eslint-config-airbnb",
+  "extends": ["eslint-config-airbnb","prettier"],
   "env": {
     "es6": true,
     "browser": true,
-    "node": true
   },
   "rules": {
     "strict": 0,
+    "prettier/semicolons": 0,
+    "prettier/prettier": "error",
     "max-len": [0, 100],
     "jsx-a11y/no-static-element-interactions": 0,
     "quotes": 0,
@@ -76,7 +77,8 @@
      "no-throw-literal": 0,
   },
   "plugins": [
-    "react"
+    "react",
+    "prettier"
   ],
   "globals": {
     "__PHONEGAP__": false,

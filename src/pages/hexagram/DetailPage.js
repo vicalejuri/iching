@@ -1,8 +1,8 @@
 import * as _ from 'lodash';
 import classNames from 'classnames';
 
-import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux'
+import { Component } from 'preact';
+import { connect } from 'preact-redux'
 
 import * as HexagramActions from '../../actions/HexagramActions';
 import * as IchingTable from '../../constants/IchingLookup';
@@ -28,9 +28,9 @@ function noWidows(phrase) {
   return words.join(" ")
 }
 
-class DetailPage extends React.Component {
+class DetailPage extends Component {
   render() {
-    let hexNumber = _.toNumber( this.props.params.number );
+    let hexNumber = _.toNumber( this.props.match.params.number );
 
     // get hexagram, or display nothing if not already loaded
     let hex       = this.props.hexagrams[hexNumber - 1];

@@ -1,6 +1,6 @@
-import React, { Component, PropTypes  } from 'react'
-import ReactDOM , { render } from 'react-dom'
-import { connect } from 'react-redux'
+import preact, { Component  } from 'preact'
+
+import { connect } from 'preact-redux'
 
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import { withRouter } from 'react-router'
@@ -11,7 +11,7 @@ import Footer from '../components/Footer'
 import { PlayPage , DetailPage, AboutPage } from './index'
 
 
-class AppContainer extends React.Component {
+class AppContainer extends Component {
 
   componentWillUpdate() {
     this.scrollTopTop()
@@ -24,8 +24,8 @@ class AppContainer extends React.Component {
         <div className="content" ref={(el) => { this.content = el }}>
 
             <Route exact path="/" component={PlayPage} />
-            <Route exact path="/about" component={AboutPage} />
-            <Route path="/details/:number/:name" component={DetailPage} />
+            <Route path="/about" component={AboutPage} />
+            <Route path="/details/:number" component={DetailPage} />
 
         </div>
         <Footer />
