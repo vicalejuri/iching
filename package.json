@@ -9,7 +9,7 @@
   "test": "test",
   "dist": "dist",
   "scripts": {
-    "precommit": "lint-staged",
+    "precommit": "lint-staged"
   },
   "lint-staged": {
     "*.js": ["prettier --write", "eslint", "git add"],
