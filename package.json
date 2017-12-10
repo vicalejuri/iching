@@ -9,11 +9,13 @@
   "test": "test",
   "dist": "dist",
   "scripts": {
-    "precommit": "lint-staged"
-  },
-  "lint-staged": {
-    "*.js": ["prettier --write", "eslint", "git add"],
-    "*.jsx": ["prettier --write", "eslint", "git add"]
+    {
+      "precommit": "lint-staged"
+    },
+    "lint-staged": {
+      "*.js": ["prettier --write", "eslint", "git add"],
+      "*.jsx": ["prettier --write", "eslint", "git add"]
+    }
   },
   "mainInput": "main",
   "mainOutput": "main",
