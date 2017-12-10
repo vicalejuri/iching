@@ -9,14 +9,13 @@
   "test": "test",
   "dist": "dist",
   "scripts": {
-    {
-      "precommit": "lint-staged"
-    },
-    "lint-staged": {
-      "*.js": ["prettier --write", "eslint", "git add"],
-      "*.jsx": ["prettier --write", "eslint", "git add"]
-    }
+    "lint-staged": "$(yarn bin)/lint-staged"
   },
+  "lint-staged": {
+    "*.js": ["prettier --write", "eslint", "git add"],
+    "*.jsx": ["prettier --write", "eslint", "git add"]
+  },
+  "pre-commit": ["lint-staged"],
   "mainInput": "main",
   "mainOutput": "main",
   "dependencies": {
