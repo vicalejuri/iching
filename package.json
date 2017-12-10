@@ -13,7 +13,7 @@
   },
   "lint-staged": {
     "*.js": ["prettier --write", "eslint", "git add"],
-    "*.jsx": ["prettier --write", "eslint", "git add"],
+    "*.jsx": ["prettier --write", "eslint", "git add"]
   },
   "mainInput": "main",
   "mainOutput": "main",
