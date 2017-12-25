@@ -13,6 +13,11 @@
     "test": "karma start"
   },
   "lint-staged": {
+    "test/**/*.js": [
+      "prettier --write",
+      "eslint",
+      "git add"
+    ],
     "src/*.js": [
       "prettier --write",
       "eslint",
