@@ -6,6 +6,13 @@
     "browser": true,
     "jasmine": true,
   },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["src"]
+      }
+    }
+  },
   "rules": {
     "strict": 0,
     "prettier/semicolons": 0,

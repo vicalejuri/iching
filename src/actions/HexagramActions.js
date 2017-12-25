@@ -27,7 +27,6 @@ export function generateKua() {
     } else if ( hexx && hexx.length >= 6) {
       dispatch(generatedHexagram(hexx));
     }
-
   };
 }
 

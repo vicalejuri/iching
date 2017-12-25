@@ -13,11 +13,6 @@
     "test": "karma start"
   },
   "lint-staged": {
-    "test/**/*.js": [
-      "prettier --write",
-      "eslint",
-      "git add"
-    ],
     "src/*.js": [
       "prettier --write",
       "eslint",
@@ -106,6 +101,7 @@
     "redux": "^3.1.2",
     "redux-devtools": "^3.1.1",
     "redux-immutable-state-invariant": "^2.0.0",
+    "redux-mock-store": "^1.4.0",
     "redux-thunk": "^2.2.0",
     "run-sequence": "^1.1.5",
     "scraperjs": "^1.2.0",
