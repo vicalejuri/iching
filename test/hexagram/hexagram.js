@@ -1,11 +1,14 @@
-import generateKua from 'src/reducers/hexagram';
-import * as _ from 'lodash';
+import { generateKua } from "src/reducers/hexagram.js";
+import * as _ from "lodash";
 
 describe("Hexagram", () => {
-  it("should generate a single valid Kua line", function(){
+  it("should generate a single valid Kua line", function() {
     let kua = generateKua();
 
-    expect(kua).toBeGreaterThan(5);
-    expect(kua).toBeLessThan(10);
+    expect(kua.value).toBeGreaterThan(5);
+    expect(kua.value).toBeLessThan(10);
+  });
+  it("A hexagram should contain 6 kuas", () => {
+    expect(true).toBe(true);
   });
 });

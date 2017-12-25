@@ -1,59 +1,69 @@
-'use strict';
+"use strict";
+/* eslint-disable no-alert, no-console */
 
-var path = require('path');
+let path = require("path");
 
-module.exports = function (config) {
+module.exports = function(config) {
   config.set({
-    basePath: '',
-    frameworks: ['jasmine'],
+    basePath: "",
+    frameworks: ["jasmine"],
     files: [
-      'test/helpers/pack/**/*.js',
-      'test/helpers/react/**/*.js',
-      'test/spec/components/**/*.js',
-      'test/hexagram/*.js'
+      //'test/helpers/pack/**/*.js',
+      //'test/helpers/react/**/*.js',
+      //'test/spec/components/**/*.js',
+      "test/hexagram/*.js"
     ],
     preprocessors: {
-      'test/hexagram/*.js': ['webpack'],
-      'test/helpers/createComponent.js': ['webpack'],
-      'test/spec/components/**/*.js': ['webpack'],
-      'test/spec/components/**/*.jsx': ['webpack']
+      "test/hexagram/*.js": ["webpack"],
+      "test/helpers/createComponent.js": ["webpack"],
+      "test/spec/components/**/*.js": ["webpack"],
+      "test/spec/components/**/*.jsx": ["webpack"]
     },
     webpack: {
-      cache: true,
+      cache: false,
       module: {
-        loaders: [{
-          test: /\.gif/,
-          loader: 'url-loader?limit=10000&mimetype=image/gif'
-        }, {
-          test: /\.jpg/,
-          loader: 'url-loader?limit=10000&mimetype=image/jpg'
-        }, {
-          test: /\.png/,
-          loader: 'url-loader?limit=10000&mimetype=image/png'
-        }, {
-          test: /\.(js|jsx)$/,
-          loader: 'babel-loader',
-          exclude: /node_modules/
-        }, {
-          test: /\.scss/,
-          loader: 'style-loader!css-loader!sass-loader?outputStyle=expanded'
-        }, {
-          test: /\.css$/,
-          loader: 'style-loader!css-loader'
-        }, {
-          test: /\.woff/,
-          loader: 'url-loader?limit=10000&mimetype=application/font-woff'
-        }, {
-          test: /\.woff2/,
-          loader: 'url-loader?limit=10000&mimetype=application/font-woff2'
-        }]
+        loaders: [
+          {
+            test: /\.gif/,
+            loader: "url-loader?limit=10000&mimetype=image/gif"
+          },
+          {
+            test: /\.jpg/,
+            loader: "url-loader?limit=10000&mimetype=image/jpg"
+          },
+          {
+            test: /\.png/,
+            loader: "url-loader?limit=10000&mimetype=image/png"
+          },
+          {
+            test: /\.(js|jsx)$/,
+            loader: "babel-loader",
+            exclude: /node_modules/
+          },
+          {
+            test: /\.scss/,
+            loader: "style-loader!css-loader!sass-loader?outputStyle=expanded"
+          },
+          {
+            test: /\.css$/,
+            loader: "style-loader!css-loader"
+          },
+          {
+            test: /\.woff/,
+            loader: "url-loader?limit=10000&mimetype=application/font-woff"
+          },
+          {
+            test: /\.woff2/,
+            loader: "url-loader?limit=10000&mimetype=application/font-woff2"
+          }
+        ]
       },
       resolve: {
         alias: {
-          'styles': path.join(process.cwd(), './src/styles/'),
-          'components': path.join(process.cwd(), './src/components/'),
-          'src': path.join(process.cwd(), './src/'),
-          'helpers': path.join(process.cwd(), './test/helpers/')
+          styles: path.join(process.cwd(), "./src/styles/"),
+          components: path.join(process.cwd(), "./src/components/"),
+          src: path.join(process.cwd(), "./src/"),
+          helpers: path.join(process.cwd(), "./test/helpers/")
         }
       }
     },
@@ -64,18 +74,19 @@ module.exports = function (config) {
       }
     },
     exclude: [],
-    port: 8080,
+    port: 9090,
     logLevel: config.LOG_INFO,
     colors: true,
     autoWatch: false,
-    browsers: ['PhantomJS'],
-    reporters: ['dots'],
+    browsers: ["PhantomJS"],
+    reporters: ["spec"],
     captureTimeout: 60000,
     singleRun: true,
     plugins: [
-        require('karma-webpack'),
-        require('karma-jasmine'),
-        require('karma-phantomjs-launcher')
+      require("karma-spec-reporter"),
+      require("karma-webpack"),
+      require("karma-jasmine"),
+      require("karma-phantomjs-launcher")
     ]
   });
 };

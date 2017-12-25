@@ -4,6 +4,7 @@
   "env": {
     "es6": true,
     "browser": true,
+    "jasmine": true,
   },
   "rules": {
     "strict": 0,
@@ -78,7 +79,8 @@
   },
   "plugins": [
     "react",
-    "prettier"
+    "prettier",
+    "jasmine",
   ],
   "globals": {
     "__PHONEGAP__": false,

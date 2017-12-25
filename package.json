@@ -6,16 +6,27 @@
   "license": "MIT",
   "author": "bbfc <barrabin.fc@gmail.com>",
   "src": "app",
-  "test": "test",
+  "test": "karma",
   "dist": "dist",
   "scripts": {
-    "lint-staged": "$(yarn bin)/lint-staged"
+    "lint-staged": "$(yarn bin)/lint-staged",
+    "test": "karma start"
   },
   "lint-staged": {
-    "*.js": ["prettier --write", "eslint", "git add"],
-    "*.jsx": ["prettier --write", "eslint", "git add"]
+    "src/*.js": [
+      "prettier --write",
+      "eslint",
+      "git add"
+    ],
+    "src/*.jsx": [
+      "prettier --write",
+      "eslint",
+      "git add"
+    ]
   },
-  "pre-commit": ["lint-staged"],
+  "pre-commit": [
+    "lint-staged"
+  ],
   "mainInput": "main",
   "mainOutput": "main",
   "dependencies": {
@@ -25,7 +36,6 @@
     "babel-cli": "^6.26.0",
     "babel-core": "^6.0.20",
     "babel-eslint": "^7.2.0",
-    "babel-loader": "^7.1.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-es2015": "^6.0.15",
     "babel-preset-react": "^6.24.1",
@@ -58,7 +68,6 @@
     "image-webpack-loader": "^1.6.3",
     "immutable": "^3.7.6",
     "jake": "^8.0.12",
-    "jasmine-core": "^2.4.1",
     "json-loader": "^0.5.4",
     "lint-staged": "^4.2.3",
     "lodash": "^4.8.2",
@@ -106,7 +115,16 @@
     "webpack-dev-server": "^2.9.0"
   },
   "devDependencies": {
+    "babel-loader": "^7.1.2",
     "babel-plugin-transform-class-properties": "^6.24.1",
+    "eslint-plugin-jasmine": "^2.9.1",
+    "jasmine-core": "^2.8.0",
+    "karma": "^2.0.0",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-jasmine": "^1.1.1",
+    "karma-phantomjs-launcher": "^1.0.4",
+    "karma-spec-reporter": "0.0.32",
+    "karma-webpack": "^2.0.9",
     "postcss": "^6.0.14"
   }
 }
