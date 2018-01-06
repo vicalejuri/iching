@@ -9,7 +9,7 @@
   "test": "karma",
   "dist": "dist",
   "scripts": {
-    "lint-staged": "$(yarn bin)/lint-staged",
+    "lint-staged": "lint-staged",
     "test": "karma start"
   },
   "lint-staged": {
