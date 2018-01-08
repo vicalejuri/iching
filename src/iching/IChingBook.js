@@ -1,8 +1,8 @@
-import { toPairs, fromPairs, isString, isArray, isNumber } from 'lodash'
+import { toPairs, fromPairs, findIndex, isString, isArray, isNumber } from 'lodash'
 
 import { is , filterHTTP } from "src/constants/utils";
 
-import TrigramsBook from './TrigramsBook'
+import TrigramsBook , { TrigramsTable } from './TrigramsBook'
 
 /**
  * Iching book contains the interpretation, via a external json file.
@@ -58,10 +58,18 @@ export class IChingBook {
         let belowTrigram =  TrigramsBook.get( below );
         let aboveTrigram =  TrigramsBook.get( above );
 
-        let aboveIndex = TrigramsBook.KUAS.indexOf( aboveTrigram.name )
-        let hexNumber = TrigramsBook.LOOKUP_TABLE[belowTrigram.name][aboveIndex];
+        let aboveIndex = TrigramsTable.KUAS.indexOf( aboveTrigram.name )
+        let hexNumber  = TrigramsTable.LOOKUP_TABLE[belowTrigram.name][aboveIndex];
       
         return hexNumber
+    }
+
+    /**
+     * Get the index of Hexagram by its name
+     * @param {String} name 
+     */
+    indexByName( name ) {
+        return findIndex( IChingBook.chapters,  _ => _.name == name)
     }
 
     /**

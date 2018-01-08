@@ -84,8 +84,8 @@ describe("iching", () => {
       expect(IChingBook.get(1)).toBeUndefined()
     })
 
-    describe("loadJSON() - Load book data via async JSON", () => {
-      it("loadJSON( 'http://tal.xyz/ichingbook.json') - Remotely via HTTP URL ", (end) => {
+    describe("loadJSON() - Load book data", () => {
+      it("loadJSON( 'https://jsonplaceholder.typicode.com/posts/1') - URL retrieved by fetch ", (end) => {
         
         let dummy = jasmine.createSpy('catchDummy')
         let prom = IChingBook.loadJSON( 'https://jsonplaceholder.typicode.com/posts/1' )
@@ -97,7 +97,7 @@ describe("iching", () => {
         })
       })
 
-      it("Graciously use of Promise.catch , when loading failed.", (end) => {
+      it("loadJSON( FAIL) => Graciously use of Promise.catch.", (end) => {
         
         let dummy = jasmine.createSpy('catchDummy')        
         let prom = IChingBook.loadJSON( 'http://google.com/public/json/iching_deoxy.json' )
@@ -114,6 +114,25 @@ describe("iching", () => {
         IChingBook.loadJSON( JSONBook )
         let first = IChingBook.get(0)
         expect(first).toBeDefined()
+      })
+    })
+
+    describe("get(*) - Get Hexagram data ", () => {
+      beforeAll( () => {
+        IChingBook.loadJSON( JSONBook )        
+      })
+
+      it("get(int) - Get hexagram by number index (start at 0)", () => {
+        let first = IChingBook.get(0)
+        expect(first).toBeDefined()
+      })
+      it("get(String) - Get Hexagram by its name", () => {
+        let hex = IChingBook.get("Chien")
+        expect(hex).toBeDefined()   
+      })
+      it("get(Array) - Get Hexagram by a array of 6 kuas [1,1,1,0,0,0]", () => {
+        let hex = IChingBook.get([0,0,0,0,0,0])
+        expect(hex).toBeDefined()
       })
     })
 

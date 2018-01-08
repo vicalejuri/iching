@@ -49,7 +49,7 @@ module.exports = function(config) {
     autoWatch: true,
     browsers: ["PhantomJS", ],
     reporters: ["spec"],
-    captureTimeout: 20000,
+    captureTimeout: 6000,
     singleRun: false,
     plugins: [
       require("karma-spec-reporter"),
