@@ -84,7 +84,7 @@ describe("iching", () => {
       expect(IChingBook.get(1)).toBeUndefined()
     })
 
-    fdescribe("loadJSON() - Load book data via async JSON", () => {
+    describe("loadJSON() - Load book data via async JSON", () => {
       it("loadJSON( 'http://tal.xyz/ichingbook.json') - Remotely via HTTP URL ", (end) => {
         
         let dummy = jasmine.createSpy('catchDummy')
@@ -109,7 +109,7 @@ describe("iching", () => {
           end()
         })
       })
-      
+
       it("loadJSON( [{a: 10, ...}, {a: 20}, ...] ) - Built-in passing a Array of Objects", () => {
         IChingBook.loadJSON( JSONBook )
         let first = IChingBook.get(0)
