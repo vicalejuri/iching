@@ -84,30 +84,33 @@ describe("iching", () => {
       expect(IChingBook.get(1)).toBeUndefined()
     })
 
-    describe("loadJSON() - Load book data via JSON", () => {
-      it("loadJSON( 'http://tal.xyz/ichingbook.json') - Remotely via HTTP URL ", () => {
-        IChingBook.loadJSON( 'http://localhost:8000/public/json/iching_deoxy.json' )
+    fdescribe("loadJSON() - Load book data via async JSON", () => {
+      it("loadJSON( 'http://tal.xyz/ichingbook.json') - Remotely via HTTP URL ", (end) => {
         
-        let first = IChingBook.get(0)
-        expect(first).toBeDefined()
+        let dummy = jasmine.createSpy('catchDummy')
+        let prom = IChingBook.loadJSON( 'https://jsonplaceholder.typicode.com/posts/1' )
+        
+        // Should not call dummy
+        prom.catch( dummy ).then( _ => {
+          expect( dummy ).not.toHaveBeenCalled()
+          end()
+        })
       })
-      it("Graciously use of Promise.catch , when loading failed.", () => {
-        let dis = {
-          'handleOffline': ( err ) => {
-            console.warn("Ohboy, resources are scarse, missing or just wrong!")
-            console.info( err )
-          }
-        }
-        spyOn( dis, 'handleOffline' )
 
-        IChingBook.loadJSON( 'http://google.com/public/json/iching_deoxy.json' )
-                  .then( dis.handleOffline )
+      it("Graciously use of Promise.catch , when loading failed.", (end) => {
         
-        let first = IChingBook.get(0)
-        expect(first).toBeUndefined()
-        expect(dis['handleOffline']).toHaveBeenCalled()      
+        let dummy = jasmine.createSpy('catchDummy')        
+        let prom = IChingBook.loadJSON( 'http://google.com/public/json/iching_deoxy.json' )
+        prom.catch( dummy ).then( () => {
+          let first = IChingBook.get(0)
+          expect(first).toBeUndefined()
+
+          expect( dummy ).toHaveBeenCalled()
+          end()
+        })
       })
-      it("loadJSON( [{a: 10, ...}, {a: 20}, ...] ) - Bult-in via passing a Array of Objects", () => {
+      
+      it("loadJSON( [{a: 10, ...}, {a: 20}, ...] ) - Built-in passing a Array of Objects", () => {
         IChingBook.loadJSON( JSONBook )
         let first = IChingBook.get(0)
         expect(first).toBeDefined()

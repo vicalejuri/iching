@@ -33,9 +33,9 @@ export class IChingBook {
         return fetch( url )
                 .then( filterHTTP(200,300) )
                 .then( _ => _.json() )
-                .then( this.provideJSON )
-
+                .then( this.provideJSON.bind(this) )
     }
+
     provideJSON( book_json_data ) {
         this.loaded = true
         IChingBook.chapters = book_json_data

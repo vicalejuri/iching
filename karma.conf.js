@@ -1,7 +1,15 @@
 "use strict";
 /* eslint-disable no-alert, no-console */
 
-let path = require("path");
+let path          = require("path");
+let webpackConfig = require('./webpack.config.js');
+
+/* disable CommonsChunkPlugin
+ * karma-webpack workaround 
+ * https://github.com/webpack-contrib/karma-webpack/issues/24 
+ */
+const commonsChunkPluginIndex = webpackConfig.plugins.findIndex(plugin => plugin.chunkNames);
+webpackConfig.plugins.splice(commonsChunkPluginIndex, 1);
 
 module.exports = function(config) {
   config.set({
@@ -21,19 +29,19 @@ module.exports = function(config) {
       "test/iching/*.js": ["webpack"],
       "test/models/*.js": ["webpack"],
       "test/hexagram/*.js": ["webpack"],
-      "test/helpers/createComponent.js": ["webpack"],
-      "test/spec/components/**/*.js": ["webpack"],
-      "test/spec/components/**/*.jsx": ["webpack"]
+        
+      //"test/helpers/createComponent.js": ["webpack"],
+      //"test/spec/components/**/*.js": ["webpack"],
+      //"test/spec/components/**/*.jsx": ["webpack"]
     },
+
+    webpack: webpackConfig,
+    /*
     webpack: {
-      cache: false,
+      cache: true,
       devtool: 'inline-source-map',
       module: {
         loaders: [
-          {
-            test: /\.gif/,
-            loader: "url-loader?limit=10000&mimetype=image/gif"
-          },
           {
             test: /\.jpg/,
             loader: "url-loader?limit=10000&mimetype=image/jpg"
@@ -67,13 +75,13 @@ module.exports = function(config) {
       },
       resolve: {
         alias: {
-          styles: path.join(process.cwd(), "./src/styles/"),
+          styles:     path.join(process.cwd(), "./src/styles/"),
           components: path.join(process.cwd(), "./src/components/"),
-          src: path.join(process.cwd(), "./src/"),
-          helpers: path.join(process.cwd(), "./test/helpers/")
+          src:        path.join(process.cwd(), "./src/"),
         }
       },
     },
+    */
     webpackMiddleware: {
       noInfo: true,
       stats: {
@@ -85,15 +93,16 @@ module.exports = function(config) {
     logLevel: config.LOG_INFO,
     colors: true,
     autoWatch: true,
-    browsers: ["PhantomJS"],
+    browsers: ["Chrome"],
     reporters: ["spec"],
-    captureTimeout: 6000,
-    singleRun: true,
+    captureTimeout: 20000,
+    singleRun: false,
     plugins: [
       require("karma-spec-reporter"),
-      require("karma-webpack"),
       require("karma-jasmine"),
-      require("karma-phantomjs-launcher"),
+      require("karma-webpack"),
+      //require("karma-babel-preprocessor"),
+      //require("karma-phantomjs-launcher"),
       require("karma-sourcemap-loader"),
       require("karma-chrome-launcher")
     ],

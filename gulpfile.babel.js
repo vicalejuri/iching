@@ -115,6 +115,10 @@ gulp.task("dev-server", () => {
   return run("webpack-dev-server", { verbosity: 3 }).exec();
 });
 
+gulp.task("tests", () => {
+  return run("karma start", {verbosity: 3}).exec()
+})
+
 /*
 gulp.task('serve', () => {
   const config = require('./webpack.config');
