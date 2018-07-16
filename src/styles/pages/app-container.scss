@@ -16,6 +16,16 @@
 .app-wrap {
   display:flex;
   flex-direction:column;
+
+  animation-name: slideFromTop;
+  animation-fill-mode: forwards;
+
+  animation-delay: 1s;
+  animation-duration: 1s;
+  animation-play-state: running;
+  animation-fill-mode: both;
+  animation-iteration-count: 1;
+
 }
 
 /*
@@ -23,6 +33,7 @@
 */
 .app-wrap > * {
   flex:1 1 auto;
+  
 }
 
 
@@ -39,11 +50,8 @@
 
   height: 100%;
   padding: 0px 0px;
+  background: #fff;
   //background-image: linear-gradient(260deg, #2376ae 0%, #c16ecf 100%);
 
-  background-color: transparent;
-
-  will-change: transform, opacity, background-color;
-  transition: opacity 5.35s ease-out;
-  opacity: 0;
+  will-change: transform, opacity;
 }

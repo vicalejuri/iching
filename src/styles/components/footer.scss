@@ -4,9 +4,6 @@
 .footer.icon-bar {
   display:flex;
 
-  animation-name: slideToTop;
-  animation-duration: 0.5s;
-
   overflow: hidden;
   background: var( --pantone-0_color );
   border-top: 1px solid var( --hr_color );

@@ -41,9 +41,8 @@ function start() {
     document.getElementById("app-mount")
   );
 
-  /* Loading complete */
+  /* Loading complete */ 
   let load_el = document.getElementById("loading");
-
   requestAnimationFrame(() => {
     document.body.className += "loaded";
   });
