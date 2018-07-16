@@ -32,6 +32,7 @@ function configureStore(initialState) {
  * Render routes and display html
  */
 function start() {
+  
   let app = preact.render(
     <Provider store={window.store}>
       <Router>
@@ -43,7 +44,7 @@ function start() {
 
   /* Loading complete */
   let load_el = document.getElementById("loading");
-  //load_el.parentNode.removeChild(load_el);
+
   requestAnimationFrame(() => {
     document.body.className += "loaded";
   });
@@ -59,14 +60,11 @@ function bootstrap() {
   window.store = configureStore();
 
   // load Iching JSON File
-  let x = window.store.dispatch(
-    fetchIchingJSON(getAsset("json/iching_deoxy.json"))
-  );
-  x
-    .catch(e => {
-      console.error("Couldnt load ICHING json.");
-      throw e;
-    })
+  let x = window.store.dispatch(fetchIchingJSON(getAsset("json/iching_deoxy.json")));
+  x.catch(e => {
+    console.error("Couldnt load ICHING json.");
+    throw e;
+  })
     .then(e => {
       console.log("Loaded ICHING json correctly");
       window.app = start();
@@ -79,8 +77,9 @@ function bootstrap() {
 // err: error message
 // fileName: which file error occurs in
 // lineNumber: what line error occurs on
+import 'preact/devtools';
 if (__DEVELOPMENT__) {
-  window.onerror = function(err, fileName, lineNumber) {
+  window.onerror = function (err, fileName, lineNumber) {
     // alert or console.log a message
     console.error(fileName, "Line:", lineNumber, "Error:", err.message);
   };

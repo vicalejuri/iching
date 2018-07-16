@@ -1,5 +1,5 @@
-import {Component} from 'preact';
-import {connect} from 'preact-redux';
+import { Component } from 'preact';
+import { connect } from 'preact-redux';
 import isEmpty from 'lodash/isEmpty';
 
 import { withRouter } from 'react-router'
@@ -7,19 +7,13 @@ import { withRouter } from 'react-router'
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 
 import * as HexagramActions from '../../actions/HexagramActions';
-import Kua from '../../components/Kua';
 import HexagramInfoCard from '../../components/HexagramInfoCard';
 
 import { getAsset } from '../../constants/utils'
 
 class PlayPage extends Component {
-  defaultProps = {
-    kuas: [],
-    hexagram: {},
-    animation_timeout: 3000
-  }
 
-  constructor( props ) {
+  constructor(props) {
     super(props)
     this.state = {
       already_played: false
@@ -31,30 +25,30 @@ class PlayPage extends Component {
     return (
       <div className="playpage-container">
 
-          <CSSTransitionGroup className="iching-card"
-                              onClick={this.goToHexagram.bind(this)}
-                              transitionName="hexagram-preview" transitionEnterTimeout={400} transitionLeaveTimeout={400}>
-                              {this.renderPreviewCard()}
-          </CSSTransitionGroup>
+        <CSSTransitionGroup className="iching-card"
+          onClick={this.goToHexagram.bind(this)}
+          transitionName="hexagram-preview" transitionEnterTimeout={400} transitionLeaveTimeout={400}>
+          {this.renderPreviewCard()}
+        </CSSTransitionGroup>
 
-          <div className="canvas">
-              <div className="infoArea">
-                  <CSSTransitionGroup transitionName="question" transitionEnterTimeout={400} transitionLeaveTimeout={400}>
-                      {this.isFirstPlay() ? (
-                          <div className="question" ref={el => this.question = el}>
-                              {this.renderQuestion()}
-                          </div>
-                      ) : (false) }
-                  </CSSTransitionGroup>
-              </div>
-
-              <div className="ichingDragArea">
-                  <button className="gongo" ref={el => this.gongo = el}
-                  onMouseDown={this.onGongoHold} onMouseUp={this.onGongoRelease}
-                  onTouchStart={this.onGongoHold} onTouchEnd={this.onGongoRelease} />
-                  <audio ref={el => this.gongosound = el} src={getAsset('audio/bell-square.mp3')} preload="auto" />
-              </div>
+        <div className="canvas">
+          <div className="infoArea">
+            <CSSTransitionGroup transitionName="question" transitionEnterTimeout={400} transitionLeaveTimeout={400}>
+              {this.isFirstPlay() ? (
+                <div className="question" ref={el => this.question = el}>
+                  {this.renderQuestion()}
+                </div>
+              ) : (false)}
+            </CSSTransitionGroup>
           </div>
+
+          <div className="ichingDragArea">
+            <button className="gongo" ref={el => this.gongo = el}
+              onMouseDown={this.onGongoHold} onMouseUp={this.onGongoRelease}
+              onTouchStart={this.onGongoHold} onTouchEnd={this.onGongoRelease} />
+            <audio ref={el => this.gongosound = el} src={getAsset('audio/bell-square.mp3')} preload="auto" />
+          </div>
+        </div>
 
       </div>
     );
@@ -65,12 +59,12 @@ class PlayPage extends Component {
   }
 
   hasHexagram() {
-    let {hexagram} = this.props;
+    let { hexagram } = this.props;
     return !isEmpty(hexagram)
   }
 
   renderPreviewCard() {
-    let {hexagram} = this.props;
+    let { hexagram } = this.props;
     if (!isEmpty(hexagram)) {
       return (<HexagramInfoCard key={hexagram.number} hexagram={hexagram} trigrams />);
     } else {
@@ -102,7 +96,7 @@ class PlayPage extends Component {
     }
 
     window.store.dispatch(HexagramActions.clearHexagram());
-    this.setState({already_played: true})
+    this.setState({ already_played: true })
     setTimeout(() => {
       this.play()
     }, this.props.animation_timeout);
@@ -111,7 +105,7 @@ class PlayPage extends Component {
 
   goToHexagram = () => {
     window.location = `/details/${this.props.hexagram.number}`
-    
+
     //debugger;
     //window.history.pushState(null, `/details/${this.props.hexagram.number}/${this.props.hexagram.name}`);
   }
@@ -121,9 +115,15 @@ class PlayPage extends Component {
     window.store.dispatch(HexagramActions.generateHexagram());
   }
 }
+PlayPage.defaultProps = {
+  kuas: [],
+  hexagram: {},
+  animation_timeout: 3000
+};
 
-export default withRouter( 
+
+export default withRouter(
   connect(
-      state => ({kuas: state.kuas, hexagram: state.hexagram}) 
-  )(PlayPage) 
+    state => ({ kuas: state.kuas, hexagram: state.hexagram })
+  )(PlayPage)
 );

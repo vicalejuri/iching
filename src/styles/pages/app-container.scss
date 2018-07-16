@@ -1,18 +1,18 @@
 @import '../components/footer.scss';
 
 
-/* Wrapper */
-.app-wrap {
-  max-width: 420px;
-  height: 90vh;
-  margin: 5vh auto 5vh auto;
+.cellphone-wrap {
+  max-width: 320px;
+  height: 80vh;
+  margin: 10vh auto 10vh auto;
+
   border:10px solid rgba(0,0,0,0.8);
   border-bottom-width: 70px;
   border-radius:10px;
-  box-shadow:0 0 50px  rgba(0,0,0,0.3);
-
+  box-shadow:0 0 50px  rgba(0,0,0,0.70);
 }
 
+/* Wrapper */
 .app-wrap {
   display:flex;
   flex-direction:column;

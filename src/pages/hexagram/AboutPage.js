@@ -3,6 +3,8 @@ import classNames from 'classnames';
 import preact, { Component } from 'preact';
 import { connect } from 'preact-redux';
 
+import { withRouter } from 'react-router'
+
 class AboutPage extends Component {
   render() {
     console.log("About Page render")
@@ -12,4 +14,8 @@ class AboutPage extends Component {
   }
 }
 
-export default connect( false )(AboutPage)
+export default withRouter(
+  connect(
+    state => ({})
+  )(AboutPage)
+);

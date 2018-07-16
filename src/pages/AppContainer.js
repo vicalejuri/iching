@@ -1,4 +1,5 @@
 import preact, { Component } from "preact";
+import classNames from 'classnames';
 
 import { connect } from "preact-redux";
 
@@ -11,13 +12,14 @@ import Footer from "../components/Footer";
 import { PlayPage, DetailPage, AboutPage } from "./index";
 
 class AppContainer extends Component {
+
   componentWillUpdate() {
     this.scrollTopTop();
   }
 
   render() {
     return (
-      <div className="app-wrap">
+      <div className={classNames(["app-wrap", (this.props.isMobile && 'cellphone-wrap' || '')])}>
         <div
           className="content"
           ref={el => {
@@ -37,6 +39,10 @@ class AppContainer extends Component {
     let el = this.content;
     el.scrollTop = 0;
   }
+}
+
+AppContainer.defaultProps = {
+  isMobile: true,
 }
 
 export default withRouter(connect(null)(AppContainer));

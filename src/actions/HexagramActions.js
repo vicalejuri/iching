@@ -34,7 +34,7 @@ export function generateKua() {
 export function generateHexagram() {
   return (dispatch, getState) => {
     // Throw 6 coins
-    for (let i = 0; i < 7; i += 1) {
+    for (let i = 0; i <= 6; i += 1) {
       dispatch(generateKua());
     }
   };

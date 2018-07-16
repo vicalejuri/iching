@@ -81,7 +81,7 @@
     "postcss-nested": "^2.1.2",
     "postcss-nesting": "^4.0.1",
     "pre-commit": "^1.2.2",
-    "preact": "^8.2.6",
+    "preact": "^8.2.9",
     "preact-compat": "^3.17.0",
     "preact-redux": "^2.0.3",
     "prettier": "^1.7.3",
