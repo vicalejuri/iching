@@ -7,7 +7,6 @@ import WebpackDevServer from "webpack-dev-server";
 
 import eslint from "gulp-eslint";
 
-import * as _ from "lodash";
 import del from "del";
 import run from "gulp-run";
 

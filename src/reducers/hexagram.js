@@ -1,4 +1,4 @@
-import * as _ from 'lodash';
+import times from 'lodash/times';
 
 import { HEXAGRAM_GENERATE_KUA, HEXAGRAM_GENERATED,
          HEXAGRAM_CLEAR } from '../constants/ActionTypes';
@@ -39,8 +39,8 @@ function simplifyKua( sum ) {
 export function generateKua() {
 
   // Throw 3 coins, head = 3, tails = 2
-  const coins      = _.times(3, throwCoin );
-  const coinsValue = _.map( coins, coin => (coin ? 3 : 2) )
+  const coins      = times(3, throwCoin );
+  const coinsValue = coins.map( coin => (coin ? 3 : 2) );
 
   /* Iching Coin Method
   * 9 = 3 heads = Old Yang
@@ -48,7 +48,7 @@ export function generateKua() {
   * 7 = 2 tails = Young Yin
   * 6 = 3 tails = Old Yin
   */
-  const sum  = _.sum( coinsValue );
+  const sum  = coins.reduce( (a,b) => (a+b), coinsValue );
   let name   = kuaName( sum );
 
   /* Simplify moving lines */

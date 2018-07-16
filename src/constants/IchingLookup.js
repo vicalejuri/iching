@@ -4,8 +4,10 @@
  * Given two trigrams, get the iching number X
  * THen read the interpretation numbered X.
  */
-
-import { isString, isArray , isNumber, find } from 'lodash';
+import find from 'lodash/find';
+import  isNumber  from 'lodash/isNumber'; 
+import  isArray  from 'lodash/isArray';
+import  isString from 'lodash/isString';
 
 function getIching() {
   return window.store.getState().iching

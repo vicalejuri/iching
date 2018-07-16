@@ -1,4 +1,4 @@
-import * as _ from 'lodash';
+import toNumber from 'lodash/toNumber';
 import classNames from 'classnames';
 
 import { Component } from 'preact';
@@ -30,7 +30,7 @@ function noWidows(phrase) {
 
 class DetailPage extends Component {
   render() {
-    let hexNumber = _.toNumber( this.props.match.params.number );
+    let hexNumber = toNumber( this.props.match.params.number );
 
     // get hexagram, or display nothing if not already loaded
     let hex       = this.props.hexagrams[hexNumber - 1];
@@ -38,12 +38,12 @@ class DetailPage extends Component {
       return <div />
     }
 
-    let lines    = _.chain( hex.interpretation.lines ).map( (line,i) => (
+    let lines    = hex.interpretation.lines.map( (line,i) => (
       <div className="line" key={this.lineId(line.poem)}>
         <q className="subQuote">{this.formatQuote(line.poem)}</q>
         {this.formatText(line.expl)}
       </div>
-    )).value()
+    ))
 
     //let tarot_class = classNames({[`icon-Tao_${hex.number}`]: true});
     let tarot_image = getAsset(`img/tarot/Tao_${hex.number}.jpg`)

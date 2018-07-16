@@ -1,6 +1,6 @@
 import {Component} from 'preact';
 import {connect} from 'preact-redux';
-import * as _ from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 
 import { withRouter } from 'react-router'
 
@@ -66,12 +66,12 @@ class PlayPage extends Component {
 
   hasHexagram() {
     let {hexagram} = this.props;
-    return !_.isEmpty(hexagram)
+    return !isEmpty(hexagram)
   }
 
   renderPreviewCard() {
     let {hexagram} = this.props;
-    if (!_.isEmpty(hexagram)) {
+    if (!isEmpty(hexagram)) {
       return (<HexagramInfoCard key={hexagram.number} hexagram={hexagram} trigrams />);
     } else {
       return <span />

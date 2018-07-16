@@ -1,6 +1,6 @@
 import { Component } from 'preact';
-import { connect } from 'preact-redux';
-import { isString } from 'lodash';
+
+import isString from 'lodash/isString';
 
 import { getTrigramByName } from '../constants/IchingLookup';
 
