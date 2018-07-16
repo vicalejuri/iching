@@ -1,10 +1,30 @@
 /* Utils functions */
-export function getAsset( resource_path ) {
+export function getAsset(resource_path) {
   return (__DEVELOPMENT__ ? `/public/${resource_path}` : `assets/${resource_path}`)
 }
 
-export function CSSVar( varName , rootCtx = document.body) {
+export function CSSVar(varName, rootCtx = document.body) {
   return rootCtx.style.getProperty(varName);
+}
+
+export function parseQS(querystring) {
+  // Has parameters? if none, return early
+  let paramsIdx = querystring.indexOf('?');
+  if(paramsIdx === -1) return []
+
+  // remove any preceding url and split
+  querystring = querystring.substring(paramsIdx + 1).split('&');
+
+  const d = decodeURIComponent;
+  let params = {};
+
+  // march and parse
+  for (var i = querystring.length - 1; i >= 0; i--) {
+    let pair = querystring[i].split('=');
+    params[ d(pair[0]) ] = d(pair[1] || '');
+  }
+
+  return params
 }
 
 /**
