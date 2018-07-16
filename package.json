@@ -9,25 +9,9 @@
   "test": "karma",
   "dist": "dist",
   "scripts": {
-    "lint-staged": "lint-staged",
     "test": "karma start",
     "dev": "gulp dev-server"
   },
-  "lint-staged": {
-    "src/*.js": [
-      "prettier --write",
-      "eslint",
-      "git add"
-    ],
-    "src/*.jsx": [
-      "prettier --write",
-      "eslint",
-      "git add"
-    ]
-  },
-  "pre-commit": [
-    "lint-staged"
-  ],
   "mainInput": "main",
   "mainOutput": "main",
   "dependencies": {

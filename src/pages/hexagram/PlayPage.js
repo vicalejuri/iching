@@ -104,10 +104,9 @@ class PlayPage extends Component {
   }
 
   goToHexagram = () => {
-    window.location = `/details/${this.props.hexagram.number}`
+    //window.location = `/details/${this.props.hexagram.number}`
 
-    //debugger;
-    //window.history.pushState(null, `/details/${this.props.hexagram.number}/${this.props.hexagram.name}`);
+    this.props.history.push(`/details/${this.props.hexagram.number}`);
   }
 
   play = (ev) => {

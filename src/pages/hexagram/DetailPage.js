@@ -2,10 +2,11 @@ import toNumber from 'lodash/toNumber';
 import classNames from 'classnames';
 
 import { Component } from 'preact';
-import { connect } from 'preact-redux'
+import { connect } from 'preact-redux';
+
+import { withRouter } from 'react-router'
 
 import * as HexagramActions from '../../actions/HexagramActions';
-import * as IchingTable from '../../constants/IchingLookup';
 import { getAsset } from '../../constants/utils'
 
 import HexagramInfoCard from '../../components/HexagramInfoCard';
@@ -30,15 +31,15 @@ function noWidows(phrase) {
 
 class DetailPage extends Component {
   render() {
-    let hexNumber = toNumber( this.props.match.params.number );
+    let hexNumber = toNumber(this.props.match.params.number);
 
     // get hexagram, or display nothing if not already loaded
-    let hex       = this.props.hexagrams[hexNumber - 1];
+    let hex = this.props.hexagrams[hexNumber - 1];
     if (!hex) {
       return <div />
     }
 
-    let lines    = hex.interpretation.lines.map( (line,i) => (
+    let lines = hex.interpretation.lines.map((line, i) => (
       <div className="line" key={this.lineId(line.poem)}>
         <q className="subQuote">{this.formatQuote(line.poem)}</q>
         {this.formatText(line.expl)}
@@ -86,21 +87,25 @@ class DetailPage extends Component {
 
   /* Format text paragraphs between <p> */
   formatText(text) {
-    let paragraphs    = text.split('\n\n')
-    let txtHyphenated = paragraphs.map( p => BeautifulText.hyphenateText(p) )
-    let fmted         = txtHyphenated.map(p => (<p>{p}</p>))
+    let paragraphs = text.split('\n\n')
+    let txtHyphenated = paragraphs.map(p => BeautifulText.hyphenateText(p))
+    let fmted = txtHyphenated.map(p => (<p>{p}</p>))
     return fmted
   }
 
   /* Format quote */
   formatQuote(text) {
-    let quote = text.replace(/\t/g,'')
+    let quote = text.replace(/\t/g, '')
     return BeautifulText.hyphenateText(quote)
-                        .split('\n')
-                        .map( phrase => noWidows(phrase) )
-                        .join('\n')
+      .split('\n')
+      .map(phrase => noWidows(phrase))
+      .join('\n')
   }
 
 }
 
-export default connect(state => ({hexagrams: state.iching}))(DetailPage);
+export default withRouter(
+  connect(
+    state => ({ hexagrams: state.iching })
+  )(DetailPage)
+);
