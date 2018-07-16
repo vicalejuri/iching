@@ -1,6 +1,4 @@
 import { Component } from 'react';
-import { connect } from 'preact-redux';
-import * as _ from 'lodash';
 
 import * as HexagramActions from '../actions/HexagramActions';
 import { getTrigramByName } from '../constants/IchingLookup';
