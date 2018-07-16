@@ -1,6 +1,6 @@
 import { Component } from 'preact';
 import { connect } from 'preact-redux';
-import * as _ from 'lodash';
+import { isString } from 'lodash';
 
 import { getTrigramByName } from '../constants/IchingLookup';
 
@@ -22,14 +22,14 @@ export class HexagramImage extends Component {
 
       let { below, above } = this.props;
 
-      if ( _.isString(below.title) ||
-           _.isString(above.title) ) {
+      if ( isString(below.title) ||
+           isString(above.title) ) {
         below = getTrigramByName( below.title );
         above = getTrigramByName( above.title );
       }
 
-      let below_image = _.chain( this.trigramImage( below ) ).reverse().value();
-      let above_image = _.chain( this.trigramImage( above ) ).reverse().value();
+      let below_image = this.trigramImage( below ).reverse();
+      let above_image = this.trigramImage( above ).reverse();
 
       return (
         <div className="hex-img">
@@ -41,7 +41,7 @@ export class HexagramImage extends Component {
 
     // Generate a single trigram
     trigramImage( trigram ) {
-      let image = _.chain(trigram.trigrams).map( this.kuaTag ).value();
+      let image = trigram.trigrams.map( this.kuaTag );
       return image;
     }
 
@@ -59,11 +59,11 @@ export class HexagramImage extends Component {
 export class TrigramImage extends HexagramImage {
   render() {
     let { tri } = this.props;
-    if ( _.isString(tri.name) ) {
+    if ( isString(tri.name) ) {
       tri = getTrigramByName( tri.name );
     }
 
-    let tri_image = _.chain( this.trigramImage( tri ) ).reverse().value()
+    let tri_image = this.trigramImage( tri ).reverse();
 
     return (
       <div className="tri-img">{ tri_image }</div>

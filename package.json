@@ -10,7 +10,8 @@
   "dist": "dist",
   "scripts": {
     "lint-staged": "lint-staged",
-    "test": "karma start"
+    "test": "karma start",
+    "dev": "gulp dev-server"
   },
   "lint-staged": {
     "src/*.js": [

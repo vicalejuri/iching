@@ -50,7 +50,7 @@ module.exports = {
   context:   path.resolve(__dirname, 'src'),  
   entry: {
     app:    ['./main.js'],
-    vendor: ['lodash','preact','redux','react-router','preact-redux'],
+    vendor: ['preact','redux','react-router','preact-redux'],
   },
 
   stats: {

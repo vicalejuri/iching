@@ -47,22 +47,25 @@ $ cordova run
 
 ## Todo
 
-- [ ] Minimize lodash/react and extra size optimizations
-- [ ] Revert to old style single tarot images.
+- [ ] Update to material-ui @2.0 
+- [ ] Add options(layout) over querystring 
+
 - [ ] Add Localization (i18n) to portuguese.
-- [ ] Minor Layout fixes for emojis in linux (firefox/chrome)
 - [ ] Implement 'iching of the day' based on chinese calendar
 - [ ] Implement the 'moving lines' interpretation
-- [x] Fix touchTap not firing
-- [x] Fix DetailPage => Tarot layout in some mobile devices (< 320px)
-- [x] Fix Header/Footer links
-- [x] Fix css BG bug when load complete
 
 ### Phonegap
 - [x] Add deviceready event
 - [ ] Implement mobile packages for ios/android
 
 ### Done:
+- [x] Fix touchTap not firing
+- [x] Fix DetailPage => Tarot layout in some mobile devices (< 320px)
+- [x] Fix Header/Footer links
+- [x] Fix css BG bug when load complete
+- [x] Minimize lodash/react and extra size optimizations
+- [x] Revert to old style single tarot images.
+- [x] Minor Layout fixes for emojis in linux (firefox/chrome)
 - [X] Fix ReactCSSTransitionGroup over PageTransition working.
 - [X] Use CSS Sprites for tarot images
 - [X] Embed Open Sans font.
