@@ -5,7 +5,7 @@
  * THen read the interpretation numbered X.
  */
 
-import * as _ from 'lodash';
+import { isString, isArray , isNumber, find } from 'lodash';
 
 function getIching() {
   return window.store.getState().iching
@@ -121,12 +121,12 @@ export const Lookup =  {
 
 // Get a trigram full representation from a array of 3 kuas
 export function getTrigram( trigram_bitfield ) {
-  return _.find( Trigrams,  tri => _.isEqual( tri.trigrams, trigram_bitfield) );
+  return find( Trigrams,  tri => tri.trigrams === trigram_bitfield );
 }
 
 // Get a trigram full representation from its name
 export function getTrigramByName( trigram_name ) {
-  return _.find( Trigrams, tri => _.isEqual( tri.name, trigram_name ) );
+  return find( Trigrams, tri => tri.name === trigram_name );
 }
 
 export function getHexagramNumberByKuas( kuas ) {
@@ -137,7 +137,7 @@ export function getHexagramNumberByKuas( kuas ) {
   let aboveTrigram =  getTrigram( above );
 
   // Get the index of above trigram
-  let aboveIndex = _.keys( Lookup ).indexOf( aboveTrigram.name );
+  let aboveIndex = Lookup.keys().indexOf( aboveTrigram.name );
 
   // Now get the desired hex number
   let hexNumber = Lookup[belowTrigram.name][aboveIndex];
@@ -156,13 +156,13 @@ export function getHexagram( hex ) {
 
   let hexNumber = 1;
 
-  if ( _.isArray(hex) ) {
-    let kuas = _.map( hex, k => k.yin )
+  if ( isArray(hex) ) {
+    let kuas = hex.map( k => k.yin )
     hexNumber = getHexagramNumberByKuas( kuas )
-  } else if ( _.isNumber(hex) ) {
+  } else if ( isNumber(hex) ) {
     hexNumber = hex;
-  } else if ( _.isString(hex) ) {
-    hexNumber = _.find( getIching(),  {name: hex} ).number;
+  } else if ( isString(hex) ) {
+    hexNumber = find( getIching(),  {name: hex} ).number;
   } else {
     console.error('getHexagram', `Argument ${hex} is not of valid type
             (Number,Name or Array of Kuas)`);
@@ -170,23 +170,8 @@ export function getHexagram( hex ) {
   }
 
   // And finally the interpretation
-  let hexInterpretation = _.extend({}, _.find( getIching(), {number: hexNumber}) );
+  let hexInterpretation = Object.assign({}, find( getIching(), {number: hexNumber}) );
 
   return hexInterpretation;
 }
 
-
-
-/*
- * Return a list (in order) of all hexagrams
- * ** Deprecated , use state.iching **
- */
-export function getAllHexagrams( ) {
-  if ( getIching().length === 0) return []
-
-  let sortedSeq = _.chain( Lookup )
-                    .values()
-                    .flatten().sortBy()
-                    .value();
-  return _.map( sortedSeq , getHexagram );
-}
