@@ -6,13 +6,15 @@
   justify-content: space-around;
   flex-wrap: nowrap;
   background-color: #ddd;
-  padding: 2.5% 2.5%;
+  padding: 10px 10px;
   max-height: 120px;
 
   & .hex-img {
-    flex: 0 0 20%;
+    flex: 1 1 20%;
     min-height: 100px;
-    height: 100px;
+    height: auto;
+    display: flex;
+    justify-content: space-evenly;
   }
 
   & > .title {
@@ -21,7 +23,6 @@
 
     & h3 , & h2 {
       margin: 0px;
-      font-weight: 300;
     }
   }
 

@@ -4,12 +4,8 @@
 body.media-small {
   /* Smaller icons and title for hexagram-card */
   & .hexagram-card {
-    font-size: 1.0em !important;
     & .title {
-      flex: 0 0 55%;
-    }
-    & .trigrams {
-      flex: 0 0 20%;
+      flex: 0 0 60%;
     }
   }
 

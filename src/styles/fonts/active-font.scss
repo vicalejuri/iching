@@ -1,12 +1,14 @@
 /**
  * Font loading
  */
-body { font-family: 'Open Sans', helvetica, sans-serif; }
+/*body { font-family: 'Open Sans', helvetica, sans-serif; }*/
+body { font-family: 'Roboto', helvetica, sans-serif; }
 .cursive {font-family: serif; }
 
 .mainfont-loaded {
   body {
-    font-family: 'Open Sans', helvetica, sans-serif;
+    /*font-family: 'Open Sans', helvetica, sans-serif;*/
+    font-family: 'Roboto';
   }
 }
 blockquote , q {

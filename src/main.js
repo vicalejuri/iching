@@ -33,15 +33,16 @@ function configureStore(initialState) {
 
 /** Changes layout based on device screen real estate */
 function mediaqueries( forceMedia=false ) {
+  console.log("mediaQueries: ", forceMedia);
   const addBodyMedia = (name) => () => (document.body.classList.add(`media-${name}`));
   const rmBodyMedia = (name) => () => (document.body.classList.remove(`media-${name}`));
   const handlers = (name) => ({ 'match': addBodyMedia(name), 'unmatch': rmBodyMedia(name) })
 
-  if(forceMedia != false){
+  if(forceMedia !== false){
     addBodyMedia(forceMedia)();
   } else {
-    enquire.register('screen and (min-width: 320px) and (max-width: 480px)', handlers('small'));
-    enquire.register('screen and (min-width: 768px) and (max-width: 1024px)', handlers('medium'));
+    enquire.register('screen and (min-width: 320px) and (max-width: 767px)', handlers('small'));
+    enquire.register('screen and (min-width: 768px) and (max-width: 1223px)', handlers('medium'));
     enquire.register('screen and (min-width: 1224px)', handlers('large'));
   }
 }
