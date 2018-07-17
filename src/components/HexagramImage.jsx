@@ -47,8 +47,7 @@ export class HexagramImage extends Component {
 
     // Generate a single Yin or Yang line
     kuaTag( kua , i) {
-      debugger;
-      let lines = ( kua ? <YangLine key={i} /> : <YinLine key={i} /> );
+      let lines = ( kua ? <YangLine /> : <YinLine /> );
 
       return lines;
     }

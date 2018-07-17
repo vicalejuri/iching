@@ -13,8 +13,9 @@
     & q {
       position: relative;
       font-size: 1.8em;
-      text-align: left;
+      text-align: center;
       padding-left: 1rem;
+      padding-right: 1rem;
       max-width: 100%;
       display: block;
       quotes: "\201C" "\201D";
@@ -36,7 +37,7 @@
     & q:after {
       font-size: 3rem;
       position: absolute;
-      bottom: -1rem;
+      bottom: -.5rem;
       right: -.5rem;
     }
 
