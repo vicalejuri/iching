@@ -28,8 +28,6 @@ export class HexagramImage extends Component {
         above = getTrigramByName( above.title );
       }
 
-      debugger;
-
       let above_image = this.trigramImage( above ).reverse();
       let below_image = this.trigramImage( below ).reverse();
 

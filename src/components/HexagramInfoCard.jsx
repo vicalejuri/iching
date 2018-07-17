@@ -31,7 +31,9 @@ export default class HexagramInfoCard extends Component {
         <HexagramImage below={trigrams.below} above={trigrams.above} />
 
         <div className="title">
-        <h3>{number}: {name}</h3>
+        {
+          // <h3>{number}: {name}</h3> ==>
+        }
         <h2>{description}</h2>
         </div>
 

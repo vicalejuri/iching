@@ -50,7 +50,7 @@ class DetailPage extends Component {
     let tarot_image = getAsset(`img/tarot/Tao_${hex.number}.jpg`)
     return (
       <div className="detailspage-container">
-        <HexagramInfoCard hexagram={hex} trigrams />
+        <HexagramInfoCard hexagram={hex} display_trigrams />
 
         <div className="interpretation">
           <div className="highlight">

@@ -14,6 +14,7 @@
       position: relative;
       font-size: 1.8em;
       text-align: left;
+      padding-left: 1rem;
       max-width: 100%;
       display: block;
       quotes: "\201C" "\201D";
@@ -27,13 +28,16 @@
     }
 
     & q:before {
+      font-size: 3rem;
       position: absolute;
-      margin: -0.07em -0.35em;
-      top: 0px;
-      left: 0px;
+      top: -1rem;
+      left: -1rem;
     }
     & q:after {
-      margin: 0px 0px;
+      font-size: 3rem;
+      position: absolute;
+      bottom: -1rem;
+      right: -.5rem;
     }
 
 
@@ -54,7 +58,7 @@
       }
 
       & .oracle {
-        width: 90%;
+        width: 100%;
         margin: 0px auto;
       }
     }
@@ -62,6 +66,11 @@
     & p {
       font-size: 1.15em;
       hyphens: manual;
+    }
+
+    & hr {
+      border: 0;
+      border-bottom: 1px solid #dadada;
     }
 
     /* subQuotes */
@@ -78,6 +87,7 @@
     & h3 {
       font-size: 1.4em;
       text-transform: uppercase;
+      margin-bottom: 0;
     }
   }
 }
