@@ -14,15 +14,19 @@
     min-height: 100px;
     height: auto;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
   }
 
   & > .title {
     flex: 0 0 60%;
-    margin-left: 2.5%;
+    text-align: center;
+    display: flex;
+    align-items: center;
 
     & h3 , & h2 {
       margin: 0px;
+      font-weight: 600;
+      font-size: 2rem;
     }
   }
 
