@@ -49,12 +49,16 @@ export default class HexagramInfoCard extends Component {
         <div className="trigrams">
 
         <div className="above" >
-          <TrigramImage tri={above} />
+          {
+            //<TrigramImage tri={above} />
+          }
           <div className="label">{above.image}</div>
         </div>
         <hr />
         <div className="below" >
-          <TrigramImage tri={below} />
+          {
+          //<TrigramImage tri={below} />
+          }
           <div className="label">{below.image}</div>
         </div>
 
