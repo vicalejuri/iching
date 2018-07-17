@@ -7,6 +7,11 @@ export function CSSVar(varName, rootCtx = document.body) {
   return rootCtx.style.getProperty(varName);
 }
 
+/**
+ * Parse querystring as object k=v
+ * @param {String} querystring 
+ * @returns Object
+ */
 export function parseQS(querystring) {
   // Has parameters? if none, return early
   let paramsIdx = querystring.indexOf('?');

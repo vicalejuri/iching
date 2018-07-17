@@ -26,9 +26,8 @@ class PlayPage extends Component {
       <div className="playpage-container">
 
         <CSSTransitionGroup className="iching-card"
-          onClick={this.goToHexagram.bind(this)}
           transitionName="hexagram-preview" transitionEnterTimeout={400} transitionLeaveTimeout={400}>
-          {this.renderPreviewCard()}
+          {this.renderPreviewCard({onClick: this.goToHexagram.bind(this)})}
         </CSSTransitionGroup>
 
         <div className="canvas">
@@ -63,10 +62,11 @@ class PlayPage extends Component {
     return !isEmpty(hexagram)
   }
 
-  renderPreviewCard() {
+  renderPreviewCard( opts={} ) {
     let { hexagram } = this.props;
+    
     if (!isEmpty(hexagram)) {
-      return (<HexagramInfoCard key={hexagram.number} hexagram={hexagram} trigrams />);
+      return (<HexagramInfoCard hexagram={hexagram} display_trigrams {...opts} />);
     } else {
       return <span />
     }
@@ -95,7 +95,7 @@ class PlayPage extends Component {
       au.play();
     }
 
-    window.store.dispatch(HexagramActions.clearHexagram());
+    this.props.clearHexagram(); //window.store.dispatch(HexagramActions.clearHexagram());
     this.setState({ already_played: true })
     setTimeout(() => {
       this.play()
@@ -105,13 +105,13 @@ class PlayPage extends Component {
 
   goToHexagram = () => {
     //window.location = `/details/${this.props.hexagram.number}`
-
     this.props.history.push(`/details/${this.props.hexagram.number}`);
   }
 
   play = (ev) => {
-    console.log("play called")
-    window.store.dispatch(HexagramActions.generateHexagram());
+    console.log("play called");
+    this.props.generateHexagram();
+    //window.store.dispatch(HexagramActions.generateHexagram());
   }
 }
 PlayPage.defaultProps = {
@@ -123,6 +123,11 @@ PlayPage.defaultProps = {
 
 export default withRouter(
   connect(
-    state => ({ kuas: state.kuas, hexagram: state.hexagram })
+    state => ({ kuas: state.kuas, 
+                hexagram: state.hexagram }),
+    dispatch => ({
+        generateHexagram: () => {dispatch(HexagramActions.generateHexagram()); },
+        clearHexagram: () => {dispatch(HexagramActions.clearHexagram()); }
+    })
   )(PlayPage)
 );

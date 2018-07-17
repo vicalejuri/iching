@@ -28,8 +28,10 @@ export class HexagramImage extends Component {
         above = getTrigramByName( above.title );
       }
 
-      let below_image = this.trigramImage( below ).reverse();
+      debugger;
+
       let above_image = this.trigramImage( above ).reverse();
+      let below_image = this.trigramImage( below ).reverse();
 
       return (
         <div className="hex-img">

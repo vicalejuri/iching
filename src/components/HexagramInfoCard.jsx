@@ -22,12 +22,12 @@ export default class HexagramInfoCard extends Component {
   }
 
   render() {
-    let {trigrams, name, number, description} = this.props.hexagram;
-    let innerTrigrams = this.innerTrigrams( this.props.trigrams || false )
+    let {name, number, description, trigrams} = this.props.hexagram;
+    let innerTrigrams = this.innerTrigrams( this.props.display_trigrams || false )
 
     let detail_url = `/details/${number}/`
     return (
-      <div className="hexagram-card">
+      <div className="hexagram-card" onClick={this.props.onClick}>
         <HexagramImage below={trigrams.below} above={trigrams.above} />
 
         <div className="title">
@@ -48,12 +48,12 @@ export default class HexagramInfoCard extends Component {
       return (
         <div className="trigrams">
 
-        <div className="above" onTouchTap={this.handleTouchTap} onClick={this.handleTouchTap}>
+        <div className="above" >
           <TrigramImage tri={above} />
           <div className="label">{above.image}</div>
         </div>
         <hr />
-        <div className="below" onTouchTap={this.handleTouchTap} onClick={this.handleTouchTap}>
+        <div className="below" >
           <TrigramImage tri={below} />
           <div className="label">{below.image}</div>
         </div>
@@ -91,5 +91,13 @@ export default class HexagramInfoCard extends Component {
       popover_open: false,
     });
   }
-
+}
+HexagramInfoCard.defaultProps = {
+  onClick: () => {},
+  hexagram: {
+    name: 'None',
+    number: 0,
+    description: 'Empty',
+    trigrams: {above: {title: ''}, below: {title: ''}}
+  }
 }
