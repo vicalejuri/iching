@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://github.com/barrabinfc/iching/raw/master/extra/masthead.png">
+    <img src="https://github.com/barrabinfc/iching/raw/master/extra/masthead-filled.png">
 </p>
 <p align="center">
     <a href="https://github.com/barrabinfc/iching"><img src="https://camo.githubusercontent.com/87206fb472998a12d7030d61f5a4833b189ed118/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f6c6963656e73652f6d6173686170652f6170697374617475732e7376673f7374796c653d666c61742d737175617265" alt="license" data-canonical-src="https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square" style="max-width:100%;"></a>
