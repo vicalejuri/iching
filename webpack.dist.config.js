@@ -20,13 +20,14 @@ module.exports = {
     path: assetPath,
 
     filename: 'main.js',
-    publicPath: '/react-iching/assets/'
+    publicPath: '/iching/assets/'
   },
   devtool: 'source-map',
-  progress: true,
+  context: path.resolve(__dirname, 'src'),
+
   entry: {
-    app: './src/main.js',
-    vendor: ['react','react-dom','redux','react-redux','material-ui'],
+    app: ['./main.js'],
+    vendor: ['preact', 'redux', 'react-router', 'preact-redux'],
   },
 
   stats: {
@@ -35,7 +36,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['', '.js', '.jsx','.json','.css','.jpg','.png','.gif'],
+    extensions: ['.js', '.jsx'],
     alias: {
       'styles': __dirname + '/src/styles',
       'components': __dirname + '/src/components/',
@@ -43,47 +44,68 @@ module.exports = {
       'actions': __dirname + '/src/actions/',
       'constants': __dirname + '/src/constants/',
       'pages': __dirname + '/src/pages/',
-      'public': __dirname + '/src/public',
+
+      'public': __dirname + '/src/public/',
+      'fonts': __dirname + '/src/styles/fonts/',
+
+      'react':    'preact-compat',
+      'react-dom': 'preact-compat'
     }
   },
   module: {
+    /*
     preLoaders: [{
       test: /\.(js|jsx)$/,
       exclude: /node_module/,
       loaders: ['eslint-loader',]
     }],
+    */
     loaders: [{
       test: /\.(js|jsx)$/,
       exclude: /node_modules/,
-      loader: 'babel-loader'
+      use: 'babel-loader'
     },
-    { test: /\.scss/,
-      loader: ExtractTextPlugin.extract('css-loader?sourceMap!sass-loader?sourceMap')
+    {
+      test: /\.scss/,
+      use: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: [{
+          loader: 'css-loader',
+          options: {
+            importLoaders: 1
+          }
+        }, 'postcss-loader']
+      })
     },
-    { test: /\.css$/,
-      loader: ExtractTextPlugin.extract('css-loader')
+    {
+      test: /\.(png|jpg)$/,
+      use: 'url-loader?limit=5000'
     },
-    { test: /\.(png|jpg)$/,
-      loader: 'url-loader?limit=5000'
-    },
-    { test: /\.(woff|woff2|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-      loader: 'file-loader'
+    {
+      test: /\.(woff|woff2|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+      use: {
+        loader: 'file-loader',
+        options: {
+          query: {
+            name: path.join('fonts', '/[name].[ext]')
+          }
+        }
+      }
     }
-  ],
+    ],
 
   },
 
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js',Infinity),
+    new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.js' }),
+    new webpack.NamedModulesPlugin(),
     new webpack.DefinePlugin({
-      __PHONEGAP__: false,
       __DEVELOPMENT__: false,
       __DEVTOOLS__: false,
       'process.env.NODE_ENV': '"production"'
     }),
     new ExtractTextPlugin('main.css'),
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       mangler: true,
       compress: {

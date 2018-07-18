@@ -24,12 +24,12 @@ module.exports = {
   devServer: {
     host: '0.0.0.0',
     publicPath: '/assets/',
-    contentBase: path.resolve(__dirname, 'src'),    
+    contentBase: path.resolve(__dirname, 'src'),
     watchContentBase: true,
 
     progress: true,
     hot: true,
-    compress: true,    
+    compress: true,
 
     watchOptions: {
       ignored: 'node_modules'
@@ -46,11 +46,11 @@ module.exports = {
   },
 
   devtool: 'sourcemap',
-  
-  context:   path.resolve(__dirname, 'src'),  
+
+  context: path.resolve(__dirname, 'src'),
   entry: {
-    app:    ['./main.js'],
-    vendor: ['preact','redux','react-router','preact-redux'],
+    app: ['./main.js'],
+    vendor: ['preact', 'redux', 'react-router', 'preact-redux'],
   },
 
   stats: {
@@ -59,7 +59,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['.js','.jsx'],
+    extensions: ['.js', '.jsx'],
     alias: {
       'styles': __dirname + '/src/styles',
       'components': __dirname + '/src/components/',
@@ -77,56 +77,60 @@ module.exports = {
   },
   module: {
     loaders: [
-    { test: /\.(js|jsx)$/,
-      exclude: /node_modules/,
-      use: 'babel-loader',
-    },
-    {
-      test: /\.scss/,
-      use: ExtractTextPlugin.extract({
-        fallback: 'style-loader',        
-        use: [{
-          loader: 'css-loader',
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: 'babel-loader',
+      },
+      {
+        test: /\.scss/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [{
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1
+            }
+          }, 'postcss-loader']
+        })
+      },
+      /*
+      { test: /\.scss/,
+        use: ['style-loader','css-loader','postcss-loader?importLoaders=1',], //ExtractTextPlugin.extract('style',['css','postcss?importLoaders=1']),
+      },
+      
+      { test: /\.css$/,
+        use: ['style-loader','css-loader','postcss-loader?importLoaders=1'], //ExtractTextPlugin.extract("css-loader")
+      },
+      */
+      {
+        test: /\.(png|jpg)$/,
+        use: 'url-loader?limit=500000'
+      },
+      {
+        test: /\.(woff|woff2|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        use: {
+          loader: 'file-loader',
           options: {
-            importLoaders: 1
-          }                    
-        },'postcss-loader']
-      })
-    },
-    /*
-    { test: /\.scss/,
-      use: ['style-loader','css-loader','postcss-loader?importLoaders=1',], //ExtractTextPlugin.extract('style',['css','postcss?importLoaders=1']),
-    },
-    
-    { test: /\.css$/,
-      use: ['style-loader','css-loader','postcss-loader?importLoaders=1'], //ExtractTextPlugin.extract("css-loader")
-    },
-    */
-    { test: /\.(png|jpg)$/,
-      use: 'url-loader?limit=500000'
-    },
-    { test: /\.(woff|woff2|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-      use: { loader: 'file-loader',
-             options: {
-               query: {
-                name: path.join( 'fonts' , '/[name].[ext]')
-              }
-            }}
-    },
-  ],
+            query: {
+              name: path.join('fonts', '/[name].[ext]')
+            }
+          }
+        }
+      },
+    ],
   },
 
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.js'}),
+    new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.js' }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     //new BundleAnalyzerPlugin({}),
-    
+
     //new webpack.NoErrorsPlugin(),
     //new ExtractTextPlugin('fonts.css'),
     new ExtractTextPlugin('main.css'),
     new webpack.DefinePlugin({
-      __PHONEGAP__: false,
       __DEVELOPMENT__: true,
       __DEVTOOLS__: true
     }),

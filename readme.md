@@ -1,11 +1,11 @@
-![icon](./extra/icon_128x128.png) # I Ching PWA
+![icon](./extra/icon_128x128.png) # The book of Changes - IChing PWA
 
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](https://github.com/barrabinfc/react-iching)
 ![gluten](https://img.shields.io/badge/gluten-free-brightgreen.svg?style=flat-square
 )
 
 A I ching oracle [Progressive Web App](https://g.co/ProgressiveWebApps)
-Built with ES6, PReact, redux and material-ui.
+Built with ES6, Preact, redux and material-ui.
 
 ## Features:
 

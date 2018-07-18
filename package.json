@@ -1,7 +1,7 @@
 {
   "name": "react-iching",
   "version": "0.0.8",
-  "description": "IChing app made with React",
+  "description": "The book of Changes - IChing PWA",
   "repository": "https://github.com/barrabinfc/react-iching.git",
   "license": "MIT",
   "author": "bbfc <barrabin.fc@gmail.com>",
@@ -10,7 +10,8 @@
   "dist": "dist",
   "scripts": {
     "test": "karma start",
-    "dev": "gulp dev-server"
+    "dev": "gulp dev-server",
+    "build": "gulp build:dist"
   },
   "mainInput": "main",
   "mainOutput": "main",
