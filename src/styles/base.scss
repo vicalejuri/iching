@@ -30,7 +30,7 @@ body.loaded {
     animation-iteration-count: 1;    
   }
 
-  & .icon-loading {
+  & .icon-loading > svg {
     animation-play-state: paused;
   }
 }
