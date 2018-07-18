@@ -5,6 +5,10 @@
 a {
   color: #ff4081;
 }
+::selection {
+  background: rgba(0,0,0,.9);
+  color: #fff;
+}
 
 a:active, a:focus , button:active, button:focus {
   outline: 0;

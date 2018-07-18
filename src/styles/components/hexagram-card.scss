@@ -23,7 +23,7 @@
   & > .title {
     max-width: 70%;
     min-height: 100px;
-    /*flex: 1 1 60%;*/
+    flex: 1 1 70%;
 
     padding: 2.5%;
     text-align: center;
@@ -42,7 +42,7 @@
     & hr {
       margin: 0;
       border: 0;
-      border-bottom: 1px solid #efefef;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
     }
 
     & .tri-img {
