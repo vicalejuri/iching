@@ -80,13 +80,15 @@ gulp.task("sprites", function() {
   tarot.css.pipe(gulp.dest("src/styles/components/"));
 });
 
+/*
 gulp.task("fonts", cb => {
   gulp.src(["./src/styles/fonts/*"]).pipe(gulp.dest("dist/assets/fonts"));
 });
+*/
 
 gulp.task("copy", cb => {
   gulp
-    .src(["./src/*.html", "./src/*.ico", "./src/styles/fonts"])
+    .src(["./src/*.html", "./src/*.ico"])
     .pipe(gulp.dest("dist/"));
 });
 
