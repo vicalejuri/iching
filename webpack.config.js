@@ -50,7 +50,8 @@ module.exports = {
   output: {
     path: assetPath,
     filename: '[name].js',
-    publicPath: '/assets/'
+    publicPath: '/assets/',
+    libraryTarget: 'umd',
   },
 
   devtool: 'sourcemap',
@@ -118,9 +119,8 @@ module.exports = {
         use: {
           loader: 'file-loader',
           options: {
-            query: {
-              name: path.join('fonts', '/[name].[ext]')
-            }
+            outputPath: 'fonts/',
+            name: '[name].[ext]'
           }
         }
       },
