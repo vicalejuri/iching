@@ -116,6 +116,13 @@ gulp.task("dev-server", () => {
   return run("webpack-dev-server", { verbosity: 3 }).exec();
 });
 
+
+gulp.task("gh-publish", cb => {
+  gulp
+    .src(["./dist/*"])
+    .pipe(gulp.dest("docs/"));
+});
+
 /*
 gulp.task('serve', () => {
   const config = require('./webpack.config');

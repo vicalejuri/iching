@@ -11,7 +11,8 @@
   "scripts": {
     "test": "karma start",
     "dev": "gulp dev-server",
-    "build": "gulp build:dist"
+    "build": "gulp build:dist",
+    "gh-publish": "gulp gh-publish"
   },
   "mainInput": "main",
   "mainOutput": "main",
