@@ -3,7 +3,6 @@ import { Provider } from "preact-redux";
 
 import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
-import invariant from "redux-immutable-state-invariant";
 
 import { HashRouter as Router, Route, Link } from "react-router-dom";
 import enquire from 'enquire.js';
@@ -16,13 +15,14 @@ import reducers from "./reducers";
 
 // force to import&compile css
 import "./styles/main.scss";
+require("typeface-eb-garamond");
 
 /**
  * Configure global store
  */
 function configureStore(initialState) {
   let fCreateStore = compose(
-    applyMiddleware(invariant(), thunk),
+    applyMiddleware(thunk),
     window.devToolsExtension ? window.devToolsExtension() : f => f
   )(createStore);
 

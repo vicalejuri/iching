@@ -98,11 +98,10 @@ module.exports = {
       { test: /\.scss/,
         use: ['style-loader','css-loader','postcss-loader?importLoaders=1',], //ExtractTextPlugin.extract('style',['css','postcss?importLoaders=1']),
       },
-      
+      */
       { test: /\.css$/,
         use: ['style-loader','css-loader','postcss-loader?importLoaders=1'], //ExtractTextPlugin.extract("css-loader")
       },
-      */
       {
         test: /\.(png|jpg)$/,
         use: 'url-loader?limit=500000'
