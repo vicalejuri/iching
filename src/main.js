@@ -5,7 +5,7 @@ import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import invariant from "redux-immutable-state-invariant";
 
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { HashRouter as Router, Route, Link } from "react-router-dom";
 import enquire from 'enquire.js';
 
 import { fetchIchingJSON } from "./actions/IchingLoader";

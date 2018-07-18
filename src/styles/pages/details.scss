@@ -32,13 +32,13 @@
       font-size: 3rem;
       position: absolute;
       top: -1rem;
-      left: -1rem;
+      left: 0rem;
     }
     & q:after {
       font-size: 3rem;
       position: absolute;
       bottom: -.5rem;
-      right: -.5rem;
+      right: -0rem;
     }
 
 
@@ -50,11 +50,16 @@
 
       & .tarot {
         flex: 1 1 40%;
-        transform: scale3d(0.8,0.8,1.0);
+        width: 196px;
+        transform: scale3d(1, 1, 1.0);
 
         & img {
           max-width: 100%;
           object-fit: cover;
+          border: 1px solid rgba(255,255,255,.1);
+          
+          border-radius: 4px;
+          box-shadow: 0 1px 0 rgba(0,0,0,.05), 0 2px 6px rgba(0,0,0,.05), 0 10px 20px rgba(0,0,0,.05);  
         }
       }
 
@@ -71,7 +76,7 @@
 
     & hr {
       border: 0;
-      border-bottom: 1px solid #dadada;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
     }
 
     /* subQuotes */
