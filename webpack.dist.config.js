@@ -14,6 +14,15 @@ var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlug
 var path = require('path');
 var node_modules = path.resolve(__dirname, 'node_modules');
 
+/**
+ * Main JS files
+ */
+var chunks = {
+  app: ['./main.js'],
+  vendor: ['preact', 'redux', 'react-router', 'preact-redux'],
+  book: ['./public/json/book.js']
+};
+
 module.exports = {
 
   output: {
@@ -26,10 +35,7 @@ module.exports = {
   devtool: 'source-map',
   context: path.resolve(__dirname, 'src'),
 
-  entry: {
-    app: ['./main.js'],
-    vendor: ['preact', 'redux', 'react-router', 'preact-redux'],
-  },
+  entry: chunks,
 
   stats: {
     colors: true,
@@ -49,7 +55,7 @@ module.exports = {
       'public': __dirname + '/src/public/',
       'fonts': __dirname + '/src/styles/fonts/',
 
-      'react':    'preact-compat',
+      'react': 'preact-compat',
       'react-dom': 'preact-compat'
     }
   },
@@ -79,6 +85,10 @@ module.exports = {
       })
     },
     {
+      test: /\.css$/,
+      use: ['style-loader', 'css-loader', 'postcss-loader?importLoaders=1'], //ExtractTextPlugin.extract("css-loader")
+    },
+    {
       test: /\.(png|jpg)$/,
       use: 'url-loader?limit=5000'
     },
@@ -87,9 +97,8 @@ module.exports = {
       use: {
         loader: 'file-loader',
         options: {
-          query: {
-            name: path.join('fonts', '/[name].[ext]')
-          }
+          outputPath: 'fonts/',
+          name: '[name].[ext]'
         }
       }
     }
@@ -98,7 +107,19 @@ module.exports = {
   },
 
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.js' }),
+    /*new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.js' }),*/
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      filename: 'vendor.js',
+
+      // filter-out book.js
+      chunks: ["app", "vendor"]
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: "book",
+      filename: 'book.js',
+      chunks: ["book"]
+    }),
     new webpack.NamedModulesPlugin(),
     new webpack.DefinePlugin({
       __DEVELOPMENT__: false,
