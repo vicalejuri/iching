@@ -6,7 +6,7 @@
   <link rel="shortcut icon" type="image/ico" href="favicon.ico" />
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>I Ching Oracle</title>
+  <title>The book of Changes</title>
   <meta name="description" content="I Ching - The book of changes">
   <meta name="author" content="bbfc">
   <meta name="copyright" content="Open Source - GPL v2">
@@ -127,17 +127,21 @@
   </div>
 
 
-  <div id="app-mount"></div>
+  <div id="app-mount">
+    <noscript>
+      <h1>❌ Javascript required ❌</h1>
+      <p>We're sorry, but IChing doesn't work without Javascript enabled.</p>
+    </noscript>
+  </div>
 
   <div id="copyleft">
   </div>
 
+  <link rel="preload" href="assets/main.css" as="style" onload="this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="assets/main.css"></noscript>
+
   <script type="text/javascript" src="assets/vendor.js"></script>
   <script type="text/javascript" src="assets/app.js" defer></script>
-
-  <!--
-    Enable on production -->
-  <link href="assets/main.css" type="text/css" rel="stylesheet" lazyload />
   
 </body>
 

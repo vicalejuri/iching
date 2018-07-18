@@ -19,8 +19,9 @@ module.exports = {
   output: {
     path: assetPath,
 
-    filename: 'main.js',
-    publicPath: '/iching/assets/'
+    filename: '[name].js',
+    //publicPath: '/iching/assets/'
+    publicPath: '/assets/'
   },
   devtool: 'source-map',
   context: path.resolve(__dirname, 'src'),

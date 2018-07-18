@@ -9,7 +9,7 @@ import { HashRouter as Router, Route, Link } from "react-router-dom";
 import enquire from 'enquire.js';
 
 import { fetchIchingJSON } from "./actions/IchingLoader";
-import { getAsset , parseQS } from "./constants/utils";
+import { getAsset, parseQS } from "./constants/utils";
 
 import { AppContainer } from "./pages";
 import reducers from "./reducers";
@@ -32,13 +32,12 @@ function configureStore(initialState) {
 }
 
 /** Changes layout based on device screen real estate */
-function mediaqueries( forceMedia=false ) {
-  console.log("mediaQueries: ", forceMedia);
+function mediaqueries(forceMedia = false) {
   const addBodyMedia = (name) => () => (document.body.classList.add(`media-${name}`));
   const rmBodyMedia = (name) => () => (document.body.classList.remove(`media-${name}`));
   const handlers = (name) => ({ 'match': addBodyMedia(name), 'unmatch': rmBodyMedia(name) })
 
-  if(forceMedia !== false){
+  if (forceMedia !== false) {
     addBodyMedia(forceMedia)();
   } else {
     enquire.register('screen and (min-width: 320px) and (max-width: 767px)', handlers('small'));
@@ -63,7 +62,7 @@ function start() {
   /* Loading complete */
   let load_el = document.getElementById("loading");
   requestAnimationFrame(() => {
-    document.body.classList.toggle( "loaded" );
+    document.body.classList.toggle("loaded");
   });
 
   return app;
@@ -74,7 +73,7 @@ function start() {
  */
 function bootstrap() {
   // Parse argv options
-  const argv = parseQS( location.toString() );
+  const argv = parseQS(location.toString());
 
   // Create store
   window.store = configureStore();
@@ -82,28 +81,34 @@ function bootstrap() {
   // Register layout changes
   mediaqueries(argv.media || false);
 
-  // load Iching JSON File
-  let iching_json = window.store.dispatch(
+  /*
+   * load Iching JSON File
+   */
+  let request_start = performance.now();
+  let time_delta = 0;
+
+  window.store.dispatch(
     fetchIchingJSON(getAsset("json/iching_deoxy.json"))
-  );
-  iching_json
-    .catch(e => {
-      console.error("Couldnt load ICHING json.");
+  ).then(() => { time_delta = (performance.now() - request_start).toFixed(2); })
+   .catch(e => {
+      console.error(`❌:${time_delta}ms - Failed loading ICHING json`);
       throw e;
     })
     .then(e => {
-      console.log("Loaded ICHING json correctly");
-      window.app = start();
+      console.log(`✔️:${time_delta}ms - Loaded ICHING json `);
     });
 
-  window.react = preact;
+  requestIdleCallback(() => {
+    window.react = preact;
+    window.app = start();
+  });
 }
 
 // Report Errors
 // err: error message
 // fileName: which file error occurs in
 // lineNumber: what line error occurs on
-import "preact/devtools";
+//import "preact/devtools";
 if (__DEVELOPMENT__) {
   window.onerror = function (err, fileName, lineNumber) {
     // alert or console.log a message
@@ -111,4 +116,4 @@ if (__DEVELOPMENT__) {
   };
 }
 
-bootstrap();
+requestIdleCallback(bootstrap);
