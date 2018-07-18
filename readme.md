@@ -1,20 +1,22 @@
-![icon](./extra/icon_128x128.png) # The book of Changes - IChing PWA
+<p align="center">
+    <img src="https://github.com/barrabinfc/iching/raw/master/extra/masthead.png">
+</p>
 
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](https://github.com/barrabinfc/react-iching)
-![gluten](https://img.shields.io/badge/gluten-free-brightgreen.svg?style=flat-square
-)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](https://github.com/barrabinfc/iching)
+![gluten](https://img.shields.io/badge/gluten-free-brightgreen.svg?style=flat-square)
 
-A I ching oracle [Progressive Web App](https://g.co/ProgressiveWebApps)
+A [I Ching](https://en.wikipedia.org/wiki/I_Ching) oracle [Progressive Web App](https://g.co/ProgressiveWebApps).
+
 Built with ES6, Preact, redux and material-ui.
 
 ## Features:
 
-  - App is lightweight. Interactive under < 3s over slow 3G.
-  - App works offline.
-  - Score over 90/100 using [Lighthouse](https://github.com/GoogleChrome/lighthouse)
+- App is lightweight. Interactive under < 3s over slow 3G.
+- App works offline.
+- Score over 90/100 using [Lighthouse](https://github.com/GoogleChrome/lighthouse)
 
-  - Classic I Ching from the book of `Richard Wilhelm`
-  - Advanced interpretation of the `moving lines`
+- Classic I Ching from the book of `Richard Wilhelm`
+- Advanced interpretation of the `moving lines`
 
 ## Demo/App
 
@@ -27,7 +29,9 @@ MIT License
 ## For developers
 
 `npm install` to install dependencies
+
 `gulp serve` to start a development server.
+
 `gulp build:dist` to compile for distribution ( dist/ )
 
 ## Credits
