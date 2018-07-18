@@ -70,22 +70,22 @@ export const Trigrams = [
   },
   {
     trigrams: [1, 0, 0],
-    image: '🍃',
+    image: '🌬️',
     image_name: 'leaves',
     structure: 'Sense',
-    motivation: 'Soft&Penetrating',
+    motivation: 'Soft, Penetrating',
     name: 'sun',
     body: 'thigh',
     animal: '🐓',
     animal_name: 'rooster',
-    wilhelm: 'Wind'
+    wilhelm: 'Wind/Wood'
   },
   {
     trigrams: [1, 0, 1],
     image: '🌊️',
     image_name: 'ocean',
     structure: 'Soul',
-    motivation: 'Danger&Abyss',
+    motivation: 'Danger, Abyss',
     name: 'kan',
     body: 'ear',
     animal: '🐖',
