@@ -7,7 +7,6 @@ import thunk from "redux-thunk";
 import { HashRouter as Router, Route, Link } from "react-router-dom";
 import enquire from 'enquire.js';
 
-import { fetchIchingJSON } from "./actions/IchingLoader";
 import { getAsset, parseQS } from "./constants/utils";
 
 import { AppContainer } from "./pages";
@@ -86,7 +85,7 @@ function bootstrap() {
    */
   let request_start = performance.now();
   let time_delta = 0;
-
+  /*
   window.store.dispatch(
     fetchIchingJSON(getAsset("json/iching_deoxy.json"))
   ).then(() => { time_delta = (performance.now() - request_start).toFixed(2); })
@@ -97,6 +96,7 @@ function bootstrap() {
     .then(e => {
       console.log(`✔️:${time_delta}ms - Loaded ICHING json `);
     });
+  */
 
   requestIdleCallback(() => {
     window.react = preact;
@@ -116,4 +116,4 @@ if (__DEVELOPMENT__) {
   };
 }
 
-requestIdleCallback(bootstrap);
+bootstrap();

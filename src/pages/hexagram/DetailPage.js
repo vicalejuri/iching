@@ -6,7 +6,6 @@ import { connect } from 'preact-redux';
 
 import { withRouter } from 'react-router'
 
-import * as HexagramActions from '../../actions/HexagramActions';
 import { getAsset } from '../../constants/utils'
 
 import HexagramInfoCard from '../../components/HexagramInfoCard';
@@ -106,6 +105,6 @@ class DetailPage extends Component {
 
 export default withRouter(
   connect(
-    state => ({ hexagrams: state.iching })
+    state => ({ hexagrams: window.Book })
   )(DetailPage)
 );

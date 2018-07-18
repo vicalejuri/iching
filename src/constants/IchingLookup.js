@@ -11,7 +11,7 @@ import isString from 'lodash/isString';
 import isEqual from 'lodash/isEqual';
 
 function getIching() {
-  return window.store.getState().iching
+  return window.Book
 }
 
 // yang => 0 => ---

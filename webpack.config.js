@@ -19,6 +19,14 @@ var pathToReact = path.resolve(node_modules, 'react');
 var pathToRedux = path.resolve(node_modules, 'redux-devtools');
 var pathToReactRedux = path.resolve(node_modules, 'preact-redux');
 
+/**
+ * Main JS files
+ */
+var chunks = {
+  app: ['./main.js'],
+  vendor: ['preact', 'redux', 'react-router', 'preact-redux'],
+  book: ['./public/json/book.js']
+};
 
 module.exports = {
   devServer: {
@@ -48,10 +56,7 @@ module.exports = {
   devtool: 'sourcemap',
 
   context: path.resolve(__dirname, 'src'),
-  entry: {
-    app: ['./main.js'],
-    vendor: ['preact', 'redux', 'react-router', 'preact-redux'],
-  },
+  entry: chunks,
 
   stats: {
     colors: true,
@@ -59,7 +64,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.json'],
     alias: {
       'styles': __dirname + '/src/styles',
       'components': __dirname + '/src/components/',
@@ -99,9 +104,11 @@ module.exports = {
         use: ['style-loader','css-loader','postcss-loader?importLoaders=1',], //ExtractTextPlugin.extract('style',['css','postcss?importLoaders=1']),
       },
       */
-      { test: /\.css$/,
-        use: ['style-loader','css-loader','postcss-loader?importLoaders=1'], //ExtractTextPlugin.extract("css-loader")
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader', 'postcss-loader?importLoaders=1'], //ExtractTextPlugin.extract("css-loader")
       },
+
       {
         test: /\.(png|jpg)$/,
         use: 'url-loader?limit=500000'
@@ -121,7 +128,19 @@ module.exports = {
   },
 
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.js' }),
+    new webpack.optimize.CommonsChunkPlugin({
+        name: 'vendor',
+        filename: 'vendor.js',
+
+        // filter-out book.js
+        chunks: ["app", "vendor"]
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: "book",
+      filename: 'book.js',
+      chunks: ["book"]
+    }),
+
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     //new BundleAnalyzerPlugin({}),

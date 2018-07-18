@@ -1,4 +1,3 @@
-import classNames from 'classnames';
 
 import preact, { Component } from 'preact';
 import { connect } from 'preact-redux';
