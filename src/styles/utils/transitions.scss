@@ -47,29 +47,29 @@
  */
 .hexagram-preview-enter {
   animation-duration: var(--time_trans);
-  animation-timing-function: var(--softOut_easing);
-  animation-fill-mode: both;
-  opacity: 0;
-}
-
-.hexagram-preview-enter.hexagram-preview-enter-active {
-  animation-name: slideFromTop;
-}
-
-.hexagram-preview-leave {
-  animation-duration: var(--time_trans);;
-  animation-timing-function: var(--softOut_easing);
+  animation-timing-function: var(--quartOut_easing);
   animation-fill-mode: both;
   opacity: 1;
 }
 
+.hexagram-preview-enter.hexagram-preview-enter-active {
+  animation-name: slideFromBottom;
+}
+
+.hexagram-preview-leave {
+  animation-duration: var(--time_trans);;
+  animation-timing-function: var(--quartOut_easing);
+  animation-fill-mode: both;
+  opacity: 0;
+}
+
 .hexagram-preview-leave.hexagram-preview-leave-active {
-  animation-name: slideToBottom;
+  animation-name: slideToTop;
 }
 
 .hexagram-preview-appear {
   animation-duration: var(--time_trans);
-  animation-timing-function: var(--softOut_easing);
+  animation-timing-function: var(--quartOut_easing);
   animation-fill-mode: both;
 }
 .hexagram-preview-appear.hexagram-preview-appear-active {

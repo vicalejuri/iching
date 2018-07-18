@@ -20,19 +20,19 @@ class PlayPage extends Component {
     }
   }
 
-
   render() {
     return (
       <div className="playpage-container">
 
         <CSSTransitionGroup className="iching-card"
-          transitionName="hexagram-preview" transitionEnterTimeout={400} transitionLeaveTimeout={400}>
+          transitionEnterTimeout={0} transitionLeaveTimeout={0}
+          transitionName="hexagram-preview">
           {this.renderPreviewCard({onClick: this.goToHexagram.bind(this)})}
         </CSSTransitionGroup>
 
         <div className="canvas">
           <div className="infoArea">
-            <CSSTransitionGroup transitionName="question" transitionEnterTimeout={400} transitionLeaveTimeout={400}>
+            <CSSTransitionGroup transitionName="question" transitionEnterTimeout={400}>
               {this.isFirstPlay() ? (
                 <div className="question" ref={el => this.question = el}>
                   {this.renderQuestion()}
@@ -66,9 +66,9 @@ class PlayPage extends Component {
     let { hexagram } = this.props;
     
     if (!isEmpty(hexagram)) {
-      return (<HexagramInfoCard hexagram={hexagram} display_trigrams {...opts} />);
+      return (<HexagramInfoCard key={hexagram.number} hexagram={hexagram} display_trigrams {...opts} />);
     } else {
-      return <span />
+      return (false);
     }
   }
 
@@ -95,29 +95,25 @@ class PlayPage extends Component {
       au.play();
     }
 
-    this.props.clearHexagram(); //window.store.dispatch(HexagramActions.clearHexagram());
-    this.setState({ already_played: true })
-    setTimeout(() => {
-      this.play()
-    }, this.props.animation_timeout);
+    this.props.clearHexagram();
 
+    setTimeout( () => {
+      this.setState({ already_played: true })
+       //window.store.dispatch(HexagramActions.clearHexagram());
+      this.props.generateHexagram()
+    }, this.props.animation_timeout);
   }
 
   goToHexagram = () => {
-    //window.location = `/details/${this.props.hexagram.number}`
     this.props.history.push(`/details/${this.props.hexagram.number}`);
   }
 
-  play = (ev) => {
-    console.log("play called");
-    this.props.generateHexagram();
-    //window.store.dispatch(HexagramActions.generateHexagram());
-  }
 }
+
 PlayPage.defaultProps = {
   kuas: [],
   hexagram: {},
-  animation_timeout: 3000
+  animation_timeout: 300
 };
 
 

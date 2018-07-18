@@ -10,14 +10,14 @@ import { withRouter } from "react-router";
 import YinYangSvg from "../public/icons/yin_yang.svg";
 
 function Footer() {
-  return (
+  return (<span />);
     /*
     <CSSTransitionGroup component="div" className="footer icon-bar"
                           transitionName="footer-appear" transitionAppear
                           transitionAppearTimeout={1000}
                           transitionEnterTimeout={1000}
                           transitionLeaveTimeout={1000}> */
-
+    /*
     <div className="footer icon-bar">
       <NavLink to="/" activeClassName="active">
         <i className="box-block center-block icon my-icon yinyang" />
@@ -28,10 +28,10 @@ function Footer() {
         <span className="label">Settings</span>
       </NavLink>
     </div>
+    */
     /*
     </CSSTransitionGroup>
     */
-  );
 }
 
 export default connect(state => ({}))(Footer);

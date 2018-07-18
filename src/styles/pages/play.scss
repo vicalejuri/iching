@@ -24,7 +24,6 @@
 
     & .hexagram-card {
       cursor: pointer;
-      border-radius: 2px;
     }
   }
 
@@ -98,22 +97,27 @@
         background-image: url(~public/img/icon_256x256.png);
         background-size: contain;
 
-        will-change: transform;
+        //will-change: transform;
         transform: scale(1.0);
-        transition: transform 150ms ease-in;
+        //transition: transform 150ms ease-in;
 
         animation: forwards;
 
         &.down {
-          transform: scale(0.95) rotate(-60deg);
+          animation: elastic-bounce-in 1000ms linear 1 both;
+          //transform: scale(0.95) rotate(-60deg);
         }
 
         &.hit {
+          animation: elastic-bounce-out 1000ms linear 1 both; 
+
+          /*
           transform: scale(1.0);
-/*           -moz-animation: spin 3.0s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+           -moz-animation: spin 3.0s cubic-bezier(0.645, 0.045, 0.355, 1.000);
           -webkit-animation: spin 3.0s cubic-bezier(0.645, 0.045, 0.355, 1.000);
-          -webkit-animation: spin 3.0s cubic-bezier(.15,.58,.43,.99); */
+          -webkit-animation: spin 3.0s cubic-bezier(.15,.58,.43,.99); 
           -webkit-animation: spin 3.0s cubic-bezier(.06,.21,.43,.99);
+          */
         }
         
       }

@@ -1,5 +1,7 @@
 import { Component } from 'react';
 
+import { Textfit } from 'react-textfit';
+
 import * as HexagramActions from '../actions/HexagramActions';
 import { getTrigramByName } from '../constants/IchingLookup';
 
@@ -31,10 +33,7 @@ export default class HexagramInfoCard extends Component {
         <HexagramImage below={trigrams.below} above={trigrams.above} />
 
         <div className="title">
-        {
-          // <h3>{number}: {name}</h3> ==>
-        }
-        <h2>{description}</h2>
+          {description}
         </div>
 
         {innerTrigrams}
@@ -56,7 +55,6 @@ export default class HexagramInfoCard extends Component {
           }
           <div className="label">{above.image}</div>
         </div>
-        <hr />
         <div className="below" >
           {
           //<TrigramImage tri={below} />

@@ -17,10 +17,10 @@
   & .yin , & .yang {
     width: 100%;
     height: 5px;
-    border-radius: 4px;
     overflow: hidden;
 
     & > span {
+      border-radius: 4px;
       float: left;
       width: 100%;
       height: 100%;
