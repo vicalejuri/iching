@@ -24,15 +24,15 @@ class PlayPage extends Component {
     return (
       <div className="playpage-container">
 
-        <CSSTransitionGroup className="iching-card"
-          transitionEnterTimeout={0} transitionLeaveTimeout={0}
-          transitionName="hexagram-preview">
+        <CSSTransitionGroup className="iching-card" transitionName="hexagram-preview"
+          transitionEnterTimeout={0} transitionLeaveTimeout={0} >
           {this.renderPreviewCard({onClick: this.goToHexagram.bind(this)})}
         </CSSTransitionGroup>
 
         <div className="canvas">
           <div className="infoArea">
-            <CSSTransitionGroup transitionName="question" transitionEnterTimeout={400}>
+            <CSSTransitionGroup transitionName="question" 
+              transitionEnterTimeout={400} transitionLeaveTimeout={0} >
               {this.isFirstPlay() ? (
                 <div className="question" ref={el => this.question = el}>
                   {this.renderQuestion()}

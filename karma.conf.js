@@ -2,6 +2,7 @@
 /* eslint-disable no-alert, no-console */
 
 let path = require("path");
+let cwd  = process.cwd()
 
 module.exports = function(config) {
   config.set({
@@ -15,7 +16,6 @@ module.exports = function(config) {
     ],
     preprocessors: {
       "test/hexagram/*.js": ["webpack"],
-      "test/helpers/createComponent.js": ["webpack"],
       "test/spec/components/**/*.js": ["webpack"],
       "test/spec/components/**/*.jsx": ["webpack"]
     },
@@ -60,10 +60,11 @@ module.exports = function(config) {
       },
       resolve: {
         alias: {
-          styles: path.join(process.cwd(), "./src/styles/"),
-          components: path.join(process.cwd(), "./src/components/"),
-          src: path.join(process.cwd(), "./src/"),
-          helpers: path.join(process.cwd(), "./test/helpers/")
+          styles:     path.join(cwd, "./src/styles/"),
+          components: path.join(cwd, "./src/components/"),
+          src:        path.join(cwd, "./src/"),
+          
+          helpers:    path.join(cwd, "./test/helpers/")
         }
       }
     },

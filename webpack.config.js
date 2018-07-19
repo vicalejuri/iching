@@ -31,9 +31,18 @@ var chunks = {
 module.exports = {
   devServer: {
     host: '0.0.0.0',
-    publicPath: '/assets/',
-    contentBase: path.resolve(__dirname, 'src'),
+    publicPath: 'http://localhost:8080/assets/',
+    contentBase: [path.resolve(__dirname, 'src'), path.resolve(__dirname, 'public')],
     watchContentBase: true,
+
+    /* Match barrabinfc.github.io/iching */
+    proxy: {
+      '/iching/': {
+        target: 'http://localhost:8080',
+        pathRewrite: {'^/iching' : ''},
+        changeOrigin: true,
+      }
+    },
 
     progress: true,
     hot: true,
@@ -143,9 +152,9 @@ module.exports = {
 
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
+    new webpack.NoErrorsPlugin(),
     //new BundleAnalyzerPlugin({}),
 
-    //new webpack.NoErrorsPlugin(),
     //new ExtractTextPlugin('fonts.css'),
     new ExtractTextPlugin('main.css'),
     new webpack.DefinePlugin({

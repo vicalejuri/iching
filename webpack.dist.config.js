@@ -7,12 +7,14 @@
 'use strict';
 var webpack = require('webpack');
 
-var assetPath = require('path').join(__dirname, 'dist/assets');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const assetPath = require('path').join(__dirname, 'dist/assets');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const {GenerateSW} = require('workbox-webpack-plugin');
 
-var path = require('path');
-var node_modules = path.resolve(__dirname, 'node_modules');
+const path = require('path');
+const node_modules = path.resolve(__dirname, 'node_modules');
 
 /**
  * Main JS files
@@ -107,6 +109,8 @@ module.exports = {
   },
 
   plugins: [
+    new CleanWebpackPlugin(['dist']),
+    
     /*new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.js' }),*/
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
@@ -121,6 +125,7 @@ module.exports = {
       chunks: ["book"]
     }),
     new webpack.NamedModulesPlugin(),
+    new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
       __DEVELOPMENT__: false,
       __DEVTOOLS__: false,
@@ -138,6 +143,15 @@ module.exports = {
       }
     }),
     //new BundleAnalyzerPlugin()
+    new GenerateSW({
+      'cacheId': 'iching',
+      'importWorkboxFrom': 'local',
+      'importsDirectory': 'wb-assets',
+      'navigateFallback': '/iching/',
+      'modifyUrlPrefix': {
+        '/public': 'iching/assets'
+      }
+    })
   ]
 
 };
