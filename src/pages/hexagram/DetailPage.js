@@ -1,43 +1,20 @@
 import toNumber from 'lodash/toNumber';
-import classNames from 'classnames';
+import isEmpty from 'lodash/isEmpty';
 
 import { Component } from 'preact';
 import { connect } from 'preact-redux';
-
 import { withRouter } from 'react-router'
+import classNames from 'classnames';
 
-import { getAsset } from '../../constants/utils'
-
-import HexagramInfoCard from '../../components/HexagramInfoCard';
-
-const Hypher = require('hypher')
-const english = require('hyphenation.en-us')
-
-let BeautifulText = new Hypher(english)
-
-/* Clean widow phrase */
-function noWidows(phrase) {
-  let words = phrase.trim().split(" ")
-  if (words.length > 1) {
-    // add &nbsp;
-    words[words.length - 2] = `${words[words.length - 2]}\u00a0${words[words.length - 1]}`
-    // remove soft-hyphen from last word
-    words[words.length - 2] = words[words.length - 2].replace(/\u00ad/g, '')
-    words.pop()
-  }
-  return words.join(" ")
-}
+import { getAsset , hyphenate, noWidows } from 'constants/utils'
+import HexagramInfoCard from 'components/HexagramInfoCard';
 
 class DetailPage extends Component {
   render() {
-    let hexNumber = toNumber(this.props.match.params.number);
+    let   hex = this.props.hexagram;
+    const emptyShell = (hex.number === 0);
 
-    // get hexagram, or display nothing if not already loaded
-    let hex = this.props.hexagrams[hexNumber - 1];
-    if (!hex) {
-      return <div />
-    }
-
+    /* Lines */
     let lines = hex.interpretation.lines.map((line, i) => (
       <div className="line" key={this.lineId(line.poem)}>
         <q className="subQuote">{this.formatQuote(line.poem)}</q>
@@ -45,10 +22,9 @@ class DetailPage extends Component {
       </div>
     ))
 
-    //let tarot_class = classNames({[`icon-Tao_${hex.number}`]: true});
     let tarot_image = getAsset(`img/tarot/Tao_${hex.number}.jpg`)
     return (
-      <div className="detailspage-container">
+      <div className={classNames("detailspage-container", {'empty-shell': emptyShell})}>
         <HexagramInfoCard hexagram={hex} display_trigrams />
 
         <div className="interpretation">
@@ -87,7 +63,7 @@ class DetailPage extends Component {
   /* Format text paragraphs between <p> */
   formatText(text) {
     let paragraphs = text.split('\n\n')
-    let txtHyphenated = paragraphs.map(p => BeautifulText.hyphenateText(p))
+    let txtHyphenated = paragraphs.map(hyphenate)
     let fmted = txtHyphenated.map(p => (<p>{p}</p>))
     return fmted
   }
@@ -95,16 +71,58 @@ class DetailPage extends Component {
   /* Format quote */
   formatQuote(text) {
     let quote = text.replace(/\t/g, '')
-    return BeautifulText.hyphenateText(quote)
+    return hyphenate(quote)
       .split('\n')
-      .map(phrase => noWidows(phrase))
+      .map(noWidows)
       .join('\n')
   }
 
 }
 
-export default withRouter(
-  connect(
-    state => ({ hexagrams: window.Book })
-  )(DetailPage)
-);
+DetailPage.defaultProps = {
+  hexagram: {
+    "number": 0,
+    "name": "",
+    "description": "",
+    "trigrams": {
+        "above": {
+            "title": "",
+            "description": ""
+        },
+        "below": {
+            "title": "",
+            "description": ""
+        }
+    },
+    "interpretation": {
+        "oracle": "",
+        "resume": "",
+        "judgment": "",
+        "image": {
+          "oracle": "",
+          "image": ""
+        },
+        "lines": [
+            {
+                "poem": "",
+                "expl": ""
+            },
+        ]
+    }
+  }
+}
+
+export default withRouter( (props) => {
+  
+  // only select appropriate hexagram
+  let { match } =  props;
+  let hexNumber = toNumber(match.params.number);
+  let hexagram  = (isEmpty(window.Book) ? DetailPage.defaultProps.hexagram : window.Book[hexNumber])
+
+  // Connect to redux, now its a fulfiled with data (integrated)
+  let DetailComplement = connect(
+    state => ({ hexagram: hexagram })
+  )(DetailPage);
+
+  return (<DetailComponent {...props} />);
+});
