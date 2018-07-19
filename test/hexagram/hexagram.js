@@ -1,8 +1,11 @@
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 
+import { Thunk as ThunkTest } from 'redux-testkit';
+
 import * as hexActions from "src/actions/HexagramActions";
 import { generateKua } from "src/reducers/hexagram";
+import "src/assets/json/book";
 
 import reducers from "src/reducers";
 
@@ -57,12 +60,16 @@ describe("Hexagram reduxer", () => {
     let kuas = store.getState().kuas;
     expect(kuas.length).toBe(0);
   });
-  it("actions/hexagram/generateHexagram() should dispatch 6 kuas", () => {
+  it("actions/hexagram/generateHexagram() should dispatch 6 kuas", async () => {
     expect(hexActions.generateHexagram).not.toBeUndefined();
 
-    store.dispatch(hexActions.generateHexagram());
-
-    let kuas = store.getState().kuas;
-    expect(kuas.length).toBe(6);
+    const dispatches = await ThunkTest(hexActions.generateHexagram).execute();
+    expect(dispatches.length).toBe(7);
+    expect(dispatches[0].getAction()).toEqual({ type: 'HEXAGRAM_GENERATE_KUA' });
+    expect(dispatches[6].getAction()).toEqual({ type: 'HEXAGRAM_GENERATED'});
+   
+    //store.dispatch(hexActions.generateHexagram());
+    //let kuas = store.getState().kuas;
+    //expect(kuas.length).toBe(6);
   });
 });
