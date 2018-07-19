@@ -10,7 +10,7 @@ import isArray from 'lodash/isArray';
 import isString from 'lodash/isString';
 import isEqual from 'lodash/isEqual';
 
-function getIching() {
+export function getIchingBook() {
   return window.Book
 }
 
@@ -181,7 +181,7 @@ export function getHexagram(hex) {
   } else if (isNumber(hex)) {
     hexNumber = hex;
   } else if (isString(hex)) {
-    hexNumber = find(getIching(), { name: hex }).number;
+    hexNumber = find(getIchingBook(), { name: hex }).number;
   } else {
     console.error('getHexagram', `Argument ${hex} is not of valid type
             (Number,Name or Array of Kuas)`);
@@ -189,7 +189,7 @@ export function getHexagram(hex) {
   }
 
   // And finally the interpretation
-  let hexInterpretation = Object.assign({}, find(getIching(), { number: hexNumber }));
+  let hexInterpretation = Object.assign({}, find(getIchingBook(), { number: hexNumber }));
 
   return hexInterpretation;
 }

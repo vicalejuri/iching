@@ -12,15 +12,16 @@ module.exports = function(config) {
       //'test/helpers/pack/**/*.js',
       //'test/helpers/react/**/*.js',
       //'test/spec/components/**/*.js',
-      "test/hexagram/*.js"
+      "test/**/*.js"
     ],
     preprocessors: {
-      "test/hexagram/*.js": ["webpack"],
-      "test/spec/components/**/*.js": ["webpack"],
-      "test/spec/components/**/*.jsx": ["webpack"]
+      "test/**/*.js": ["webpack", "sourcemap"],
+      "test/spec/components/**/*.js": ["webpack", "sourcemap"],
+      "test/spec/components/**/*.jsx": ["webpack", "sourcemap"]
     },
     webpack: {
       cache: false,
+      devtool: 'inline-source-map',
       module: {
         loaders: [
           {
@@ -86,6 +87,7 @@ module.exports = function(config) {
     plugins: [
       require("karma-spec-reporter"),
       require("karma-webpack"),
+      require("karma-sourcemap-loader"), 
       require("karma-jasmine"),
       require("karma-phantomjs-launcher")
     ]

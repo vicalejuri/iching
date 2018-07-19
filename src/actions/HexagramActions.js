@@ -1,6 +1,14 @@
+import times from 'lodash/times';
+
 import { HEXAGRAM_GENERATE_KUA, HEXAGRAM_GENERATED, HEXAGRAM_CLEAR,
          HEXAGRAM_GENERATE_TRIGRAM } from '../constants/ActionTypes';
 
+// Generate a single line
+export function generateKua() {
+  return {
+    type: HEXAGRAM_GENERATE_KUA
+  }
+}
 
 export function generatedHexagram( kuas ) {
   return {
@@ -16,27 +24,21 @@ export function clearHexagram() {
 }
 
 
-// Generate a single line
-export function generateKua() {
-  return (dispatch, getState) => {
-    let hexx = getState().kuas;
-
-    // hexagram complete with 6!
-    if ( !hexx || hexx.length <= 5) {
-      dispatch({type: HEXAGRAM_GENERATE_KUA});
-    } else if ( hexx && hexx.length == 6) {
-      dispatch(generatedHexagram(hexx));
-    }
-  };
-}
-
 // 6 lines
 export function generateHexagram() {
   return (dispatch, getState) => {
+    
     // Throw 6 coins
-    for (let i = 0; i <= 6; i += 1) {
-      dispatch(generateKua());
-    }
+    const kua_promises = times(6, () => {
+      dispatch(generateKua())
+      return Promise.resolve();
+    })
+
+    return Promise.all( kua_promises )
+                  .then( () => {
+                    const kuas  = getState().kuas;
+                    dispatch(generatedHexagram(kuas));
+                  })
   };
 }
 
@@ -49,5 +51,6 @@ export function generateTrigram() {
     }
 
     dispatch({type: HEXAGRAM_GENERATE_TRIGRAM});
+    return Promise.resolve();
   };
 }

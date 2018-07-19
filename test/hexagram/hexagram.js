@@ -16,6 +16,10 @@ describe("Hexagram reduxer", () => {
     store = createStore(reducers, applyMiddleware(thunk));
   });
 
+  it("should have window.Book loaded", () => {
+    expect(window.Book).toBeDefined();
+    expect(window.Book.length).toBe(64);
+  });
   it("reducers/hexagram/generateKua() should return a valid Kua", () => {
     let kua = generateKua();
 
@@ -57,19 +61,26 @@ describe("Hexagram reduxer", () => {
 
     store.dispatch(hexActions.clearHexagram());
 
-    let kuas = store.getState().kuas;
-    expect(kuas.length).toBe(0);
+    let hexagram = store.getState().hexagram;
+    expect(hexagram).toEqual({});
   });
   it("actions/hexagram/generateHexagram() should dispatch 6 kuas", async () => {
     expect(hexActions.generateHexagram).not.toBeUndefined();
 
-    const dispatches = await ThunkTest(hexActions.generateHexagram).execute();
+    const dispatches = await ThunkTest(hexActions.generateHexagram)
+                              .withState({kuas: [], hexagram: {}})
+                              .execute();
+    
     expect(dispatches.length).toBe(7);
     expect(dispatches[0].getAction()).toEqual({ type: 'HEXAGRAM_GENERATE_KUA' });
-    expect(dispatches[6].getAction()).toEqual({ type: 'HEXAGRAM_GENERATED'});
-   
-    //store.dispatch(hexActions.generateHexagram());
-    //let kuas = store.getState().kuas;
-    //expect(kuas.length).toBe(6);
+    expect(dispatches[6].getAction()).toEqual({ type: 'HEXAGRAM_GENERATED', payload: []});   
+  });
+  it("actions/hexagram/generateHexagram() should return a valid hexagram from the book", async () => {
+
+    await store.dispatch( hexActions.generateHexagram() )
+
+    const { hexagram } = store.getState();
+    expect(hexagram).toBeDefined();
+    expect(hexagram.number).toBeGreaterThan(0);
   });
 });
