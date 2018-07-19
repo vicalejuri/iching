@@ -1,4 +1,4 @@
-/* Variables in the format noun{-compoust}_property */
+/* Variables in the format noun{-compound}_property */
 :root {
   --icon_size: 24px;
 
@@ -6,8 +6,6 @@
   --fg_color: #000;
   --fg-soft_color: rgba( var(--fg_color), 0.5);
   --hr_color: rgba( var(--fg_color), 0.1);
-
-  --pantone-0_color: #EFCA51;
 
   --time_trans: .5s;
   --bounce_easing: cubic-bezier(0.23, 1, 0.32, 1) ;
