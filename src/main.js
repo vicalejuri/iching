@@ -111,12 +111,9 @@ function bootstrap() {
 // fileName: which file error occurs in
 // lineNumber: what line error occurs on
 //import "preact/devtools";
-if (__DEVELOPMENT__) {
-  window.onerror = function (err, fileName, lineNumber) {
-    // alert or console.log a message
-    console.error(fileName, "Line:", lineNumber, "Error:", err.message);
-  };
+if (!__DEVELOPMENT__) {
+  // SW only on production
+  requestIdleCallback( registerSW );
 }
 
 bootstrap();
-registerSW();

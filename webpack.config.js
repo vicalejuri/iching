@@ -170,7 +170,6 @@ module.exports = {
       __DEVELOPMENT__: true,
       __DEVTOOLS__: true
     }),
-
     new GenerateSW({
       'cacheId': 'iching',
       'importWorkboxFrom': 'local',
@@ -178,7 +177,6 @@ module.exports = {
       'importsDirectory': 'wb-assets',
       'navigateFallback': `${BASE_URL}/`
     })
-
   ]
 
 };
