@@ -10,6 +10,7 @@ var webpack = require('webpack');
 var assetPath = require('path').join(__dirname, 'dist/assets');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const {GenerateSW} = require('workbox-webpack-plugin');
 
 var path = require('path');
 var node_modules = path.resolve(__dirname, 'node_modules');
@@ -28,11 +29,18 @@ var chunks = {
   book: ['./assets/json/book.js']
 };
 
+const BASE_URL    = 'http://localhost:8080'
+const PUBLIC_PATH = `${BASE_URL}/assets/`
+
 module.exports = {
   devServer: {
     host: '0.0.0.0',
-    publicPath: 'http://localhost:8080/assets/',
-    contentBase: [path.resolve(__dirname, 'src'), path.resolve(__dirname, 'assets')],
+    publicPath: PUBLIC_PATH,
+    contentBase: [
+      path.resolve(__dirname, 'src'), 
+      path.resolve(__dirname, 'assets'),
+      path.resolve(__dirname, 'dist')
+    ],
     watchContentBase: true,
 
     /* Match barrabinfc.github.io/iching */
@@ -158,9 +166,18 @@ module.exports = {
     //new ExtractTextPlugin('fonts.css'),
     new ExtractTextPlugin('main.css'),
     new webpack.DefinePlugin({
+      __PUBLIC_PATH__: `'${PUBLIC_PATH}'`,
       __DEVELOPMENT__: true,
       __DEVTOOLS__: true
     }),
+
+    new GenerateSW({
+      'cacheId': 'iching',
+      'importWorkboxFrom': 'local',
+      'swDest': 'sw.js',
+      'importsDirectory': 'wb-assets',
+      'navigateFallback': `${BASE_URL}/`
+    })
 
   ]
 

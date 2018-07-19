@@ -25,13 +25,16 @@ var chunks = {
   book: ['./assets/json/book.js']
 };
 
+const BASE_URL    = '/iching/'
+const PUBLIC_PATH = `${BASE_URL}/assets/`
+
 module.exports = {
 
   output: {
     path: assetPath,
 
     filename: '[name].js',
-    publicPath: '/iching/assets/'
+    publicPath: PUBLIC_PATH
     //publicPath: '/assets/'
   },
   devtool: 'source-map',
@@ -127,6 +130,7 @@ module.exports = {
     new webpack.NamedModulesPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
+      __PUBLIC_PATH__: PUBLIC_PATH,
       __DEVELOPMENT__: false,
       __DEVTOOLS__: false,
       'process.env.NODE_ENV': '"production"'
@@ -146,10 +150,11 @@ module.exports = {
     new GenerateSW({
       'cacheId': 'iching',
       'importWorkboxFrom': 'local',
+      'swDest': 'assets/sw.js',
       'importsDirectory': 'wb-assets',
-      'navigateFallback': '/iching/',
+      'navigateFallback': `${BASE_URL}/`,
       'modifyUrlPrefix': {
-        '/assets': 'iching/assets'
+        '/assets/': PUBLIC_PATH
       }
     })
   ]

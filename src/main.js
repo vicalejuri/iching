@@ -17,6 +17,20 @@ import "./styles/main.scss";
 require("typeface-eb-garamond");
 
 /**
+ * Register (external) service worker
+ */
+const SW_URL = getAsset( 'sw.js' ) 
+function registerSW(){
+  if('serviceWorker' in navigator){
+    navigator.serviceWorker.register( SW_URL ).then( (v) => {
+      console.info('ServiceWorker: ✔️' );
+    }).catch( (err) => {
+      console.error('ServiceWorker: ❌', err)
+    });
+  }
+}
+
+/**
  * Configure global store
  */
 function configureStore(initialState) {
@@ -85,18 +99,6 @@ function bootstrap() {
    */
   let request_start = performance.now();
   let time_delta = 0;
-  /*
-  window.store.dispatch(
-    fetchIchingJSON(getAsset("json/iching_deoxy.json"))
-  ).then(() => { time_delta = (performance.now() - request_start).toFixed(2); })
-   .catch(e => {
-      console.error(`❌:${time_delta}ms - Failed loading ICHING json`);
-      throw e;
-    })
-    .then(e => {
-      console.log(`✔️:${time_delta}ms - Loaded ICHING json `);
-    });
-  */
 
   requestIdleCallback(() => {
     window.react = preact;
@@ -117,3 +119,4 @@ if (__DEVELOPMENT__) {
 }
 
 bootstrap();
+registerSW();
