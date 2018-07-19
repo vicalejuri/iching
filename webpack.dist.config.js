@@ -150,12 +150,9 @@ module.exports = {
     new GenerateSW({
       'cacheId': 'iching',
       'importWorkboxFrom': 'local',
-      'swDest': 'assets/sw.js',
+      'swDest': 'sw.js',
       'importsDirectory': 'wb-assets',
-      'navigateFallback': `${BASE_URL}/`,
-      'modifyUrlPrefix': {
-        '/assets/': PUBLIC_PATH
-      }
+      'navigateFallback': `${BASE_URL}/`
     })
   ]
 

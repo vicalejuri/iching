@@ -118,6 +118,6 @@ gulp.task("dev-server", () => {
 
 gulp.task("gh-publish", cb => {
   gulp
-    .src(["./dist/*"])
+    .src(["./dist/**"])
     .pipe(gulp.dest("docs/"));
 });
