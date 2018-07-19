@@ -22,7 +22,7 @@ const node_modules = path.resolve(__dirname, 'node_modules');
 var chunks = {
   app: ['./main.js'],
   vendor: ['preact', 'redux', 'react-router', 'preact-redux'],
-  book: ['./public/json/book.js']
+  book: ['./assets/json/book.js']
 };
 
 module.exports = {
@@ -54,7 +54,7 @@ module.exports = {
       'constants': __dirname + '/src/constants/',
       'pages': __dirname + '/src/pages/',
 
-      'public': __dirname + '/src/public/',
+      'assets': __dirname + '/src/assets/',
       'fonts': __dirname + '/src/styles/fonts/',
 
       'react': 'preact-compat',
@@ -149,7 +149,7 @@ module.exports = {
       'importsDirectory': 'wb-assets',
       'navigateFallback': '/iching/',
       'modifyUrlPrefix': {
-        '/public': 'iching/assets'
+        '/assets': 'iching/assets'
       }
     })
   ]

@@ -7,7 +7,7 @@ import CSSTransitionGroup from "react-transition-group/CSSTransitionGroup";
 
 import { withRouter } from "react-router";
 
-import YinYangSvg from "../public/icons/yin_yang.svg";
+import YinYangSvg from "assets/icons/yin_yang.svg";
 
 function Footer() {
   return (<span />);

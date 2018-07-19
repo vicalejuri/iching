@@ -24,7 +24,7 @@ gulp.task("clean", cb => {
   return del(["dist/"]);
 });
 
-// Scrape ichingfortune and save to #{./src/public/iching.json}
+// Scrape ichingfortune and save to #{./src/assets/iching.json}
 gulp.task("scrape", cb => {
   scrapeIchingTable();
 });
@@ -64,7 +64,7 @@ gulp.task("bundle:phonegap", ["clean"], cb => {
 });
 
 gulp.task("assets", cb => {
-  return gulp.src("src/public/**/*").pipe(gulp.dest("dist/assets/"));
+  return gulp.src("src/assets/**/*").pipe(gulp.dest("dist/assets/"));
 });
 
 gulp.task("sprites", function() {
@@ -76,7 +76,7 @@ gulp.task("sprites", function() {
     })
   );
 
-  tarot.img.pipe(gulp.dest("src/public/img/tarot/"));
+  tarot.img.pipe(gulp.dest("src/assets/img/tarot/"));
   tarot.css.pipe(gulp.dest("src/styles/components/"));
 });
 
@@ -116,37 +116,8 @@ gulp.task("dev-server", () => {
   return run("webpack-dev-server", { verbosity: 3 }).exec();
 });
 
-
 gulp.task("gh-publish", cb => {
   gulp
     .src(["./dist/*"])
     .pipe(gulp.dest("docs/"));
 });
-
-/*
-gulp.task('serve', () => {
-  const config = require('./webpack.config');
-  const bundler = webpack(config);
-  
-  let server = new WebpackDevServer(bundler, {
-    host: '0.0.0.0',
-    contentBase: [path.join(__dirname, "src")],
-    watchContentBase: true,
-    compress: true,
-
-    publicPath: '/assets/',
-    hot: true,
-    watchOptions: {
-      ignored: [/node_modules/,
-                /styles\/icons\/emojione/,
-                /public/,]
-    },
-    stats: {
-      colors: true
-    },
-  });
-  server.listen('9999', 'localhost', (err) => {
-    console.log('server listen at http://0.0.0.0:9999');
-  });
-});
-*/

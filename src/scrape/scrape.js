@@ -18,7 +18,7 @@ let download = function (url, dest, cb) {
 export default function scrapeIchingTable() {
     /*
      * Scrape iching table / interpretation from ichingfortune.com
-     * Save a JSON to ./src/public/iching.json
+     * Save a JSON to ./src/assets/iching.json
      */
     let URL_BASE = 'http://ichingfortune.com';
     let URL_HEXAGRAM_FORMAT = 'https?://ichingfortune.com/hexagrams/:id.:f'
