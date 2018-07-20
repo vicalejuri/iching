@@ -130,7 +130,7 @@ module.exports = {
     new webpack.NamedModulesPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
-      __PUBLIC_PATH__: PUBLIC_PATH,
+      __PUBLIC_PATH__: `'${PUBLIC_PATH}'`,
       __DEVELOPMENT__: false,
       __DEVTOOLS__: false,
       'process.env.NODE_ENV': '"production"'
