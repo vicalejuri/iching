@@ -46,8 +46,7 @@ class PlayPage extends Component {
 
           <div className="ichingDragArea">
             <button className="gongo" ref={el => this.gongo = el}
-              onMouseDown={this.onGongoHold} onMouseUp={this.onGongoRelease}
-              onTouchStart={this.onGongoHold} onTouchEnd={this.onGongoRelease} />
+              onPointerDown={this.onGongoHold} />
             <audio ref={el => this.gongosound = el} src={getAsset('audio/bell-square.mp3')} preload="auto" />
           </div>
         </div>
@@ -63,8 +62,6 @@ class PlayPage extends Component {
 
   renderPreviewCard( opts={} ) {
     let { hexagram } = this.props;
-
-    debugger;
     
     if (!isEmpty(hexagram)) {
       return (<HexagramInfoCard key={hexagram.number} 
@@ -86,9 +83,12 @@ class PlayPage extends Component {
 
   onGongoHold = (ev) => {
     this.gongo.className = 'gongo down';
+    window.addEventListener('pointerup', this.onGongoRelease);
   }
 
   onGongoRelease = (ev) => {
+    window.removeEventListener('pointerup', this.onGongoRelease);
+
     // add animation
     this.gongo.className = 'gongo hit';
 
