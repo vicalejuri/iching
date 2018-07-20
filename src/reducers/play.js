@@ -1,11 +1,11 @@
 import times from 'lodash/times';
+import isNumber from 'lodash/isNumber';
 
 import {
-  HEXAGRAM_GENERATE_KUA, HEXAGRAM_GENERATED,
-  HEXAGRAM_CLEAR
+  PLAY_GENERATE_KUA, PLAY_CLEAR_KUAS, 
+  PLAY_SET_HEXAGRAM, PLAY_CLEAR_HEXAGRAM
 } from '../constants/ActionTypes';
 
-import * as HexagramActions from '../actions/HexagramActions';
 import * as IchingTable from '../constants/IchingLookup';
 
 function throwCoin() {
@@ -66,9 +66,9 @@ export function generateKua() {
 // Single Line KUA Reducer
 export function kuaCreated(state = [], action) {
   switch (action.type) {
-    case HEXAGRAM_GENERATE_KUA:
+    case PLAY_GENERATE_KUA:
       return [...state, generateKua()];
-    case HEXAGRAM_CLEAR:
+    case PLAY_CLEAR_KUAS:
       return [];
     default:
       return state;
@@ -76,12 +76,14 @@ export function kuaCreated(state = [], action) {
 }
 
 
-// From 6 given kuas, fetch the interpretation
-export function hexagramCreated(state = {}, action) {
+// Fetch the Hexagram interpretation
+export function hexagramSet(state = 0, action ) {
   switch (action.type) {
-    case HEXAGRAM_GENERATED:
-      return IchingTable.getHexagram(action.payload);
-    case HEXAGRAM_CLEAR:
+    case PLAY_SET_HEXAGRAM:
+      console.log("SET_HEXAGRAM PAYLOAD", action.payload)
+      return (isNumber(action.payload) ? action.payload
+                                       : IchingTable.getHexagramNumberByKuas(action.payload));
+    case PLAY_CLEAR_HEXAGRAM:
       return {};
     default:
       return state;

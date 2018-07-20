@@ -1,15 +1,15 @@
+import isEmpty from 'lodash/isEmpty';
+
 import { Component } from 'preact';
 import { connect } from 'preact-redux';
-import isEmpty from 'lodash/isEmpty';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 
 import { withRouter } from 'react-router'
 
-import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
-
-import * as HexagramActions from '../../actions/HexagramActions';
-import HexagramInfoCard from '../../components/HexagramInfoCard';
-
 import { getAsset } from '../../constants/utils'
+import * as actions from '../../actions/play';
+
+import HexagramInfoCard from '../../components/HexagramInfoCard';
 
 class PlayPage extends Component {
 
@@ -119,11 +119,14 @@ PlayPage.defaultProps = {
 
 export default withRouter(
   connect(
-    state => ({ kuas: state.kuas, 
-                hexagram: state.hexagram }),
+    state => ({ kuas:     state.play.kuas, 
+                hexagram: state.play.hexagram }),
     dispatch => ({
-        generateHexagram: () => {dispatch(HexagramActions.generateHexagram()); },
-        clearHexagram: () => {dispatch(HexagramActions.clearHexagram()); }
+        generateHexagram: () => {dispatch(actions.generateHexagram()); },
+        clearHexagram: () => {
+          dispatch(actions.clearHexagram()); 
+          dispatch(actions.clearKuas());
+        }
     })
   )(PlayPage)
 );

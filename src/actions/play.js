@@ -1,30 +1,34 @@
 import times from 'lodash/times';
 
-import { HEXAGRAM_GENERATE_KUA, HEXAGRAM_GENERATED, HEXAGRAM_CLEAR,
-         HEXAGRAM_GENERATE_TRIGRAM } from '../constants/ActionTypes';
+import { PLAY_GENERATE_KUA, PLAY_CLEAR_KUAS,
+         PLAY_SET_HEXAGRAM, PLAY_CLEAR_HEXAGRAM } from '../constants/ActionTypes';
 
 // Generate a single line
 export function generateKua() {
   return {
-    type: HEXAGRAM_GENERATE_KUA
+    type: PLAY_GENERATE_KUA
   }
 }
 
-export function generatedHexagram( kuas ) {
+// Set Active Hexagram Data
+export function setHexagram( kuas_or_hex_number ) {
   return {
-    type: HEXAGRAM_GENERATED,
-    payload: kuas,
+    type: PLAY_SET_HEXAGRAM,
+    payload: kuas_or_hex_number,
   };
 }
+
 
 export function clearHexagram() {
-  return {
-    type: HEXAGRAM_CLEAR,
-  };
+  return { type: PLAY_CLEAR_HEXAGRAM};
+}
+
+export function clearKuas(){
+  return {type: PLAY_CLEAR_KUAS};
 }
 
 
-// 6 lines
+/** Throw dices and create a hexagram */
 export function generateHexagram() {
   return (dispatch, getState) => {
     
@@ -34,15 +38,16 @@ export function generateHexagram() {
       return Promise.resolve();
     })
 
+    
     return Promise.all( kua_promises )
-                  .then( () => {
-                    const kuas  = getState().kuas;
-                    dispatch(generatedHexagram(kuas));
+                  .then( (x) => {
+                    const { kuas }  = getState();
+                    dispatch( setHexagram(kuas) );
                   })
   };
 }
 
-// 3 lines
+/* 3 lines
 export function generateTrigram() {
   return (dispatch, getState) => {
     // Throw 3 coins
@@ -54,3 +59,4 @@ export function generateTrigram() {
     return Promise.resolve();
   };
 }
+*/

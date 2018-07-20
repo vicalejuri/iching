@@ -3,8 +3,8 @@ import thunk from "redux-thunk";
 
 import { Thunk as ThunkTest } from 'redux-testkit';
 
-import * as hexActions from "src/actions/HexagramActions";
-import { generateKua } from "src/reducers/hexagram";
+import * as actions from "src/actions/play";
+import { generateKua } from "src/reducers/play";
 import "src/assets/json/book";
 
 import reducers from "src/reducers";
@@ -20,7 +20,7 @@ describe("Hexagram reduxer", () => {
     expect(window.Book).toBeDefined();
     expect(window.Book.length).toBe(64);
   });
-  it("reducers/hexagram/generateKua() should return a valid Kua", () => {
+  it("generateKua() should return a valid Kua", () => {
     let kua = generateKua();
 
     expect(kua.value).toBeGreaterThan(5);
@@ -28,59 +28,50 @@ describe("Hexagram reduxer", () => {
     expect(kua.name).not.toBeUndefined();
     expect(kua.yin).not.toBeUndefined();
   });
-  it("actions/hexagram/generateKua() should dispatch a single kua", () => {
-    expect(hexActions.generateHexagram).not.toBeUndefined();
+  it("actions/play/generateKua() should dispatch a single kua", () => {
+    expect(actions.generateKua).not.toBeUndefined();
 
-    store.dispatch(hexActions.generateKua());
+    store.dispatch(actions.generateKua());
 
-    let kuas = store.getState().kuas;
+    let {kuas} = store.getState();
     expect(kuas).not.toBeUndefined();
     expect(kuas.length).toBe(1);
-
-    let kua = kuas[0];
-    expect(kua.name).not.toBeUndefined();
+    expect(kuas[0].name).not.toBeUndefined();
   });
-  it("actions/hexagram/clearHexagram() should clear all previous kuas", () => {
-    expect(hexActions.clearHexagram).not.toBeUndefined();
+  it("actions/play/clearKuas() should clear previous kuas", () => {
+    expect(actions.clearKuas).not.toBeUndefined();
+    store.dispatch(actions.clearKuas());
 
-    store.dispatch(hexActions.clearHexagram());
-
-    let kuas = store.getState().kuas;
+    let {kuas} = store.getState();
+    expect(kuas).not.toBeUndefined();
     expect(kuas.length).toBe(0);
   });
-  it("actions/hexagram/generateTrigram() should dispatch 3 kuas", () => {
-    expect(hexActions.generateTrigram).not.toBeUndefined();
+  it("actions/hexagram/generateHexagram() should dispatch 6 GENERATE_KUA and SET_HEXAGRAM", async () => {
+    expect(actions.generateHexagram).not.toBeUndefined();
 
-    store.dispatch(hexActions.generateTrigram());
-
-    let kuas = store.getState().kuas;
-    expect(kuas.length).toBe(3);
-  });
-  it("actions/hexagram/clearHexagram() should clear all previous kuas", () => {
-    expect(hexActions.clearHexagram).not.toBeUndefined();
-
-    store.dispatch(hexActions.clearHexagram());
-
-    let hexagram = store.getState().hexagram;
-    expect(hexagram).toEqual({});
-  });
-  it("actions/hexagram/generateHexagram() should dispatch 6 kuas", async () => {
-    expect(hexActions.generateHexagram).not.toBeUndefined();
-
-    const dispatches = await ThunkTest(hexActions.generateHexagram)
-                              .withState({kuas: [], hexagram: {}})
+    const dispatches = await ThunkTest(actions.generateHexagram)
+                              .withState({kuas: [], play_hexagram: 0})
                               .execute();
     
     expect(dispatches.length).toBe(7);
-    expect(dispatches[0].getAction()).toEqual({ type: 'HEXAGRAM_GENERATE_KUA' });
-    expect(dispatches[6].getAction()).toEqual({ type: 'HEXAGRAM_GENERATED', payload: []});   
+    expect(dispatches[0].getAction()).toEqual({ type: 'PLAY_GENERATE_KUA' });
+    
+    let action = dispatches[6].getAction()  
+    expect(action.type).toEqual('PLAY_SET_HEXAGRAM');
   });
-  it("actions/hexagram/generateHexagram() should return a valid hexagram from the book", async () => {
+  it("actions/hexagram/generateHexagram() should return a valid hexagram number from the book", async () => {
+    await store.dispatch( actions.generateHexagram() )
 
-    await store.dispatch( hexActions.generateHexagram() )
+    const { play_hexagram } = store.getState();
+    expect(play_hexagram).toBeDefined();
+    expect(play_hexagram).toBeGreaterThan(0);
+  });
+  it("actions/play/clearHexagram() should clear all previous hexagram", () => {
+    expect(actions.clearHexagram).not.toBeUndefined();
 
-    const { hexagram } = store.getState();
-    expect(hexagram).toBeDefined();
-    expect(hexagram.number).toBeGreaterThan(0);
+    store.dispatch(actions.clearHexagram());
+
+    let {play_hexagram} = store.getState();
+    expect(play_hexagram).toEqual({});
   });
 });

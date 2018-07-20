@@ -22,9 +22,13 @@ describe("IChing Lookup", () => {
         expect(Trigrams).toBeDefined();
         expect(Trigrams.length).toBe(8);
     })
-    it("getHexagramNumberByKuas", () => {
-        const kuas = kuasMock.map( (k) => k.yin )
-        const hex_num = getHexagramNumberByKuas( kuas )
+    it("getHexagramNumberByKuas by simple Kuas array", () => {
+        const hex_num = getHexagramNumberByKuas( kuasMock.map( (k) => k.yin) );
+
+        expect(hex_num).toBe(24);
+    })
+    it("getHexagramNumberByKuas by complex Kuas array", () => {
+        const hex_num = getHexagramNumberByKuas( kuasMock )
 
         expect(hex_num).toBe(24);
     })

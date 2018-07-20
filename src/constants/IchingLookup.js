@@ -6,6 +6,7 @@
  */
 import find from 'lodash/find';
 import isNumber from 'lodash/isNumber';
+import isObject from 'lodash/isObject';
 import isArray from 'lodash/isArray';
 import isString from 'lodash/isString';
 import isEqual from 'lodash/isEqual';
@@ -149,6 +150,17 @@ export function getTrigramByName(trigram_name) {
 }
 
 export function getHexagramNumberByKuas(kuas) {
+
+  // Array of Kuas, pluck yin property
+  if(kuas.length >= 1 && isObject( kuas[0] ) ){
+    kuas = kuas.map( (k) => k.yin );
+  }
+
+  // Uhmn, bad format!
+  if(kuas.length !== 6){
+    throw Error('getHexagramNumberByKuas: Invalid kuas arrays.');  
+  }  
+ 
   let below = kuas.slice(0, 3);
   let above = kuas.slice(3);
 
@@ -183,14 +195,11 @@ export function getHexagram(hex) {
   } else if (isString(hex)) {
     hexNumber = find(getIchingBook(), { name: hex }).number;
   } else {
-    console.error('getHexagram', `Argument ${hex} is not of valid type
+    throw Error('getHexagram', `Argument ${hex} is not of valid type
             (Number,Name or Array of Kuas)`);
-    return undefined;
   }
 
   // And finally the interpretation
-  let hexInterpretation = Object.assign({}, find(getIchingBook(), { number: hexNumber }));
-
-  return hexInterpretation;
+  return find(getIchingBook(), { number: hexNumber });
 }
 

@@ -1,10 +1,9 @@
 import { combineReducers, compose } from 'redux';
 
 import { kuaCreated as kuas ,
-         hexagramCreated as hexagram} from './hexagram';
-
+        hexagramSet as hexagram} from './play';
 
 export default combineReducers({
-  kuas,
-  hexagram
+  kuas:          kuas,
+  play_hexagram: hexagram,
 });
