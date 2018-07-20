@@ -2,7 +2,6 @@ import { Component } from 'react';
 
 import { Textfit } from 'react-textfit';
 
-import * as HexagramActions from '../actions/HexagramActions';
 import { getTrigramByName } from '../constants/IchingLookup';
 
 import { HexagramImage , TrigramImage } from './HexagramImage';

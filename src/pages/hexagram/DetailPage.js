@@ -114,10 +114,18 @@ DetailPage.defaultProps = {
 
 export default withRouter( (props) => {
   
-  // only select appropriate hexagram
+  // select appropriate hexagram
   let { match } =  props;
   let hexNumber = toNumber(match.params.number);
-  let hexagram  = (isEmpty(window.Book) ? DetailPage.defaultProps.hexagram : window.Book[hexNumber])
+
+  // Render early, if data is not loaded
+  let hexagram  = (isEmpty(window.Book) ? 
+                      DetailPage.defaultProps.hexagram : window.Book[hexNumber]);
+  
+  // But when data arrives late, rerender
+  const unsubscribe = store.subscribe( (action) => {
+    console.log("Store hook: ", action);
+  })
 
   // Connect to redux, now its a fulfiled with data (integrated)
   let DetailComplement = connect(

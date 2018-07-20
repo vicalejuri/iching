@@ -191,7 +191,7 @@ export function getHexagramNumberByName( name ) {
 export function getHexagram(hex) {
 
   let hexNumber = 0;
-
+  debugger;
   if (isArray(hex)) {
     hexNumber = getHexagramNumberByKuas(hex)
   } else if (isNumber(hex)) {

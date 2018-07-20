@@ -77,13 +77,13 @@ export function kuaCreated(state = [], action) {
 
 
 // Fetch the Hexagram interpretation
-export function hexagramSet(state = 0, action ) {
+export function hexagramSet(state = -1, action ) {
   switch (action.type) {
     case PLAY_SET_HEXAGRAM:
       return (isNumber(action.payload) ? action.payload
                                        : IchingTable.getHexagramNumberByKuas(action.payload));
     case PLAY_CLEAR_HEXAGRAM:
-      return {};
+      return -1;
     default:
       return state;
   }

@@ -58,6 +58,7 @@
         opacity: 1;
 
         & .title {
+          font-size: 2rem;
           font-weight: 100;
         }
       }
@@ -75,8 +76,8 @@
       flex-direction: row;
 
       & .gongo {
-        width: 128px;
-        height: 128px;
+        width: 96px;
+        height: 96px;
 
         /* Disable selection */
         user-select: none;
@@ -94,7 +95,8 @@
         cursor: pointer;
         background-color: transparent;
         /*background-image: url(~assets/img/iching.png);*/
-        background-image: url(~assets/img/icon_256x256.png);
+        /*background-image: url(~assets/img/icon_256x256.png);*/
+        background-image: url(~assets/icons/yin_yang_filled.svg);
         background-size: contain;
 
         //will-change: transform;

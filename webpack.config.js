@@ -158,6 +158,12 @@ module.exports = {
       chunks: ["book"]
     }),
 
+    new webpack.DefinePlugin({
+      __PUBLIC_PATH__: `'${PUBLIC_PATH}'`,
+      __DEVELOPMENT__: true,
+      __DEVTOOLS__: true
+    }),
+
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new webpack.NoErrorsPlugin(),
@@ -165,11 +171,6 @@ module.exports = {
 
     //new ExtractTextPlugin('fonts.css'),
     new ExtractTextPlugin('main.css'),
-    new webpack.DefinePlugin({
-      __PUBLIC_PATH__: `'${PUBLIC_PATH}'`,
-      __DEVELOPMENT__: true,
-      __DEVTOOLS__: true
-    }),
     new GenerateSW({
       'cacheId': 'iching',
       'importWorkboxFrom': 'local',

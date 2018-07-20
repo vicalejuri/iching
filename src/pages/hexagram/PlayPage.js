@@ -6,7 +6,9 @@ import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 
 import { withRouter } from 'react-router'
 
-import { getAsset } from '../../constants/utils'
+import { getHexagram } from '../../constants/IchingLookup';
+import { getAsset } from '../../constants/utils';
+
 import * as actions from '../../actions/play';
 
 import HexagramInfoCard from '../../components/HexagramInfoCard';
@@ -57,10 +59,6 @@ class PlayPage extends Component {
     return (!this.state.already_played)
   }
 
-  hasHexagram() {
-    let { hexagram } = this.props;
-    return !isEmpty(hexagram)
-  }
 
   renderPreviewCard( opts={} ) {
     let { hexagram } = this.props;
@@ -75,7 +73,7 @@ class PlayPage extends Component {
   renderQuestion() {
     if (!this.state.already_played) {
       return (
-        <h2 className="title" key="question">Concentrate and throw the dices</h2>
+        <h2 className="title" key="question">Concentrate and ask a question</h2>
       )
     }
   }
@@ -111,7 +109,6 @@ class PlayPage extends Component {
 }
 
 PlayPage.defaultProps = {
-  kuas: [],
   hexagram: {},
   animation_timeout: 300
 };
@@ -119,13 +116,12 @@ PlayPage.defaultProps = {
 
 export default withRouter(
   connect(
-    state => ({ kuas:     state.play.kuas, 
-                hexagram: state.play.hexagram }),
+    state => ({ hexagram: getHexagram( state.play_hexagram ) }),
     dispatch => ({
-        generateHexagram: () => {dispatch(actions.generateHexagram()); },
+        generateHexagram: () => {dispatch(actions.generateHexagram())},
         clearHexagram: () => {
-          dispatch(actions.clearHexagram()); 
           dispatch(actions.clearKuas());
+          dispatch(actions.clearHexagram()); 
         }
     })
   )(PlayPage)
