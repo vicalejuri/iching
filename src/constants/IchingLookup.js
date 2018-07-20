@@ -5,6 +5,7 @@
  * THen read the interpretation numbered X.
  */
 import find from 'lodash/find';
+import times from 'lodash/times';
 import isNumber from 'lodash/isNumber';
 import isObject from 'lodash/isObject';
 import isArray from 'lodash/isArray';
@@ -191,7 +192,7 @@ export function getHexagramNumberByName( name ) {
 export function getHexagram(hex) {
 
   let hexNumber = 0;
-  debugger;
+  
   if (isArray(hex)) {
     hexNumber = getHexagramNumberByKuas(hex)
   } else if (isNumber(hex)) {
@@ -207,3 +208,60 @@ export function getHexagram(hex) {
   return find(getIchingBook(), { number: hexNumber });
 }
 
+
+/**
+ * Kuas
+ */
+function throwCoin() {
+  return (Math.random() >= 0.5);
+}
+
+function kuaName(sum) {
+  switch (sum) {
+    case 9:
+      return 'old-yang'; // yang change to yin
+    case 8:
+      return 'young-yang';
+    case 7:
+      return 'young-yin';
+    case 6:
+      return 'old-yin'; // yin change to yang
+    default:
+      return 'shit';
+  }
+}
+
+/* Simplify moving lines */
+function simplifyKua(sum) {
+  return (sum === 9 && 8)
+    || (sum === 6 ? 7 : sum)
+}
+
+/**
+ * Generate a single kua.  3 coins method.
+ *
+ * {value: 8 , name: 'young-yin', yin: 1}
+ */
+export function generateKua() {
+
+  // Throw 3 coins, head = 3, tails = 2
+  const coins = times(3, throwCoin);
+  const coinsValue = coins.map(coin => (coin ? 3 : 2));
+
+  /* Iching Coin Method
+  * 9 = 3 heads = Old Yang
+  * 8 = 2 heads = Young Yang
+  * 7 = 2 tails = Young Yin
+  * 6 = 3 tails = Old Yin
+  */
+  const sum = coinsValue.reduce((a, b) => (a + b));
+  let name = kuaName(sum);
+
+  /* Simplify moving lines */
+  // yang => 0 => ---
+  // yin  => 1 => - -
+  let simpleKua = simplifyKua(sum)
+  let yin = (simpleKua === 7 ? 1 : 0)
+
+  return { value: sum, name, yin }
+}
