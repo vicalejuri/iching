@@ -2,6 +2,7 @@ import isEmpty from 'lodash/isEmpty';
 
 import { Component } from 'preact';
 import { connect } from 'preact-redux';
+
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 
 import { withRouter } from 'react-router'
@@ -62,9 +63,14 @@ class PlayPage extends Component {
 
   renderPreviewCard( opts={} ) {
     let { hexagram } = this.props;
+
+    debugger;
     
     if (!isEmpty(hexagram)) {
-      return (<HexagramInfoCard key={hexagram.number} hexagram={hexagram} display_trigrams {...opts} />);
+      return (<HexagramInfoCard key={hexagram.number} 
+                                hexagram={hexagram} 
+                                display_trigrams 
+                                {...opts} />);
     } else {
       return (false);
     }
@@ -120,7 +126,6 @@ export default withRouter(
     dispatch => ({
         generateHexagram: () => {dispatch(actions.generateHexagram())},
         clearHexagram: () => {
-          dispatch(actions.clearKuas());
           dispatch(actions.clearHexagram()); 
         }
     })

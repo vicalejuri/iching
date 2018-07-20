@@ -7,6 +7,9 @@ import { withRouter } from 'react-router'
 import classNames from 'classnames';
 
 import { getAsset , hyphenate, noWidows } from 'constants/utils'
+import { getHexagram } from 'constants/IchingLookup';
+
+import { setDetailsHexagram } from 'actions/details';
 import HexagramInfoCard from 'components/HexagramInfoCard';
 
 class DetailPage extends Component {
@@ -119,18 +122,22 @@ export default withRouter( (props) => {
   let hexNumber = toNumber(match.params.number);
 
   // Render early, if data is not loaded
-  let hexagram  = (isEmpty(window.Book) ? 
-                      DetailPage.defaultProps.hexagram : window.Book[hexNumber]);
   
   // But when data arrives late, rerender
-  const unsubscribe = store.subscribe( (action) => {
-    console.log("Store hook: ", action);
+  let store = window.store
+  const unsubscribe = store.subscribe( () => {
+    let {book_loaded} = store.getState();
+    if(book_loaded){
+      // order is important, to avoid infinite loop
+      unsubscribe();
+      store.dispatch( setDetailsHexagram(hexNumber) );
+    }
   })
 
   // Connect to redux, now its a fulfiled with data (integrated)
-  let DetailComplement = connect(
-    state => ({ hexagram: hexagram })
+  let DetailContainer = connect(
+    state => ({ hexagram: getHexagram(hexNumber) || DetailPage.defaultProps.hexagram })
   )(DetailPage);
 
-  return (<DetailComponent {...props} />);
+  return (<DetailContainer {...props} />);
 });

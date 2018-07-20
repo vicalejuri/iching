@@ -19,12 +19,12 @@ require("typeface-eb-garamond");
 /**
  * Register (external) service worker
  */
-const SW_URL = getAsset( 'sw.js' ) 
-function registerSW(){
-  if('serviceWorker' in navigator){
-    navigator.serviceWorker.register( SW_URL ).then( (v) => {
-      console.info('ServiceWorker: ✔️' );
-    }).catch( (err) => {
+const SW_URL = getAsset('sw.js')
+function registerSW() {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register(SW_URL).then((v) => {
+      console.info('ServiceWorker: ✔️');
+    }).catch((err) => {
       console.error('ServiceWorker: ❌', err)
     });
   }
@@ -94,12 +94,6 @@ function bootstrap() {
   // Register layout changes
   mediaqueries(argv.media || false);
 
-  /*
-   * load Iching JSON File
-   */
-  let request_start = performance.now();
-  let time_delta = 0;
-
   requestIdleCallback(() => {
     window.react = preact;
     window.app = start();
@@ -113,7 +107,7 @@ function bootstrap() {
 //import "preact/devtools";
 if (!__DEVELOPMENT__) {
   // SW only on production
-  requestIdleCallback( registerSW );
+  requestIdleCallback(registerSW);
 }
 
 bootstrap();
