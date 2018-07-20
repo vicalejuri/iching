@@ -801,6 +801,7 @@ body.loaded .icon-loading > svg {
   opacity: 1;
 }
 .playpage-container .canvas .infoArea .question .title {
+  font-size: 2rem;
   font-weight: 100;
 }
 .playpage-container .canvas {
@@ -826,8 +827,8 @@ body.loaded .icon-loading > svg {
           flex-direction: row;
 }
 .playpage-container .canvas .ichingDragArea .gongo {
-  width: 128px;
-  height: 128px;
+  width: 96px;
+  height: 96px;
   /*
  Disable selection
  */
@@ -856,39 +857,47 @@ body.loaded .icon-loading > svg {
   /*
  For some Androids
  */
-  /*
- box-shadow: 0px 0px 20px #000;
- */
+  -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, .76), 
+                    0 2px 6px rgba(0, 0, 0, .77), 
+                    0 10px 20px rgba(0, 0, 0, .49);
+          box-shadow: 0 1px 0 rgba(0, 0, 0, .76), 
+                    0 2px 6px rgba(0, 0, 0, .77), 
+                    0 10px 20px rgba(0, 0, 0, .49);
+  border-radius: 50%;
   border: none;
   cursor: pointer;
   background-color: transparent;
   /*
  background-image: url(~assets/img/iching.png);
  */
-  background-image: url(/iching//assets/3aa9878cc10fba6e3ff0ec935d05fa19.png);
+  /*
+ background-image: url(~assets/img/icon_256x256.png);
+ */
+  background-image: url(/iching//assets/fonts/yin_yang_filled.svg);
   background-size: contain;
-  //will-change: transform;
+  will-change: transform, box-shadow;
   -webkit-transform: scale(1.0);
           transform: scale(1.0);
-  //transition: transform 150ms ease-in;
+  -webkit-transition: -webkit-box-shadow 400ms ease-out;
+  transition: -webkit-box-shadow 400ms ease-out;
+  transition: box-shadow 400ms ease-out;
+  transition: box-shadow 400ms ease-out, -webkit-box-shadow 400ms ease-out;
   -webkit-animation: forwards;
           animation: forwards;
 }
 .playpage-container .canvas .ichingDragArea .gongo.down {
   -webkit-animation: elastic-bounce-in 1000ms linear 1 both;
           animation: elastic-bounce-in 1000ms linear 1 both;
-  //transform: scale(0.95) rotate(-60deg);
+  -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, .76), 
+                      0 2px 6px rgba(0, 0, 0, .77), 
+                      0 5px 20px rgba(0, 0, 0, .49);
+          box-shadow: 0 1px 0 rgba(0, 0, 0, .76), 
+                      0 2px 6px rgba(0, 0, 0, .77), 
+                      0 5px 20px rgba(0, 0, 0, .49);
 }
 .playpage-container .canvas .ichingDragArea .gongo.hit {
   -webkit-animation: elastic-bounce-out 2300ms ease-out 1 both;
           animation: elastic-bounce-out 2300ms ease-out 1 both;
-  /*
- transform: scale(1.0);
-           -moz-animation: spin 3.0s cubic-bezier(0.645, 0.045, 0.355, 1.000);
-          -webkit-animation: spin 3.0s cubic-bezier(0.645, 0.045, 0.355, 1.000);
-          -webkit-animation: spin 3.0s cubic-bezier(.15,.58,.43,.99); 
-          -webkit-animation: spin 3.0s cubic-bezier(.06,.21,.43,.99);
- */
 }
 .detailspage-container .hexagram-card {
   width: 100%;
@@ -1124,9 +1133,7 @@ body.loaded .icon-loading > svg {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
 
-  height: 100%;
-  color: #000;
-  background-color: transparent
+  height: 100%
 
 }
 .hex-img .yin, .hex-img .yang, .tri-img .yin, .tri-img .yang {
@@ -1135,7 +1142,7 @@ body.loaded .icon-loading > svg {
   overflow: hidden;
 }
 .hex-img .yin > span, .hex-img .yang > span, .tri-img .yin > span, .tri-img .yang > span {
-  border-radius: 4px;
+  border-radius: 5px;
   float: left;
   width: 100%;
   height: 100%;

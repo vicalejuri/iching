@@ -15,7 +15,7 @@ importScripts("/iching//assets/wb-assets/workbox-v3.4.1/workbox-sw.js");
 workbox.setConfig({modulePathPrefix: "/iching//assets/wb-assets/workbox-v3.4.1"});
 
 importScripts(
-  "/iching//assets/wb-assets/precache-manifest.eab95e0113d558ec2688d5d2f3487c1b.js"
+  "/iching//assets/wb-assets/precache-manifest.440672a915b0db6961106e4336b41737.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "iching"});
