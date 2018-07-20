@@ -557,7 +557,7 @@ body.loaded .icon-loading > svg {
   font-style: italic;
   font-display: fallback;
   font-weight: 400;
-  src: local('Cormorant Italic'), local('Cormorant-Italic'), url(/iching//assets/fonts/Cormorant-Italic.woff2) format('woff2');
+  src: local('Cormorant Italic'), local('Cormorant-Italic'), url(/iching/assets/fonts/Cormorant-Italic.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
 }
 /*@import './fonts/Open_Sans/open_sans.scss';*/
@@ -575,8 +575,8 @@ body.loaded .icon-loading > svg {
   background-color: currentColor;
 }
 .my-icon.yinyang {
-  -webkit-mask-image: url(/iching//assets/fonts/yin_yang.svg);
-  mask-image: url(/iching//assets/fonts/yin_yang.svg);
+  -webkit-mask-image: url(/iching/assets/fonts/yin_yang.svg);
+  mask-image: url(/iching/assets/fonts/yin_yang.svg);
 }
 /*
  * Footer
@@ -873,7 +873,7 @@ body.loaded .icon-loading > svg {
   /*
  background-image: url(~assets/img/icon_256x256.png);
  */
-  background-image: url(/iching//assets/fonts/yin_yang_filled.svg);
+  background-image: url(/iching/assets/fonts/yin_yang_filled.svg);
   background-size: contain;
   will-change: transform, box-shadow;
   -webkit-transform: scale(1.0);

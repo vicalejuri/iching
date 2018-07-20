@@ -11,11 +11,11 @@
  * See https://goo.gl/2aRDsh
  */
 
-importScripts("/iching//assets/wb-assets/workbox-v3.4.1/workbox-sw.js");
-workbox.setConfig({modulePathPrefix: "/iching//assets/wb-assets/workbox-v3.4.1"});
+importScripts("/iching/assets/wb-assets/workbox-v3.4.1/workbox-sw.js");
+workbox.setConfig({modulePathPrefix: "/iching/assets/wb-assets/workbox-v3.4.1"});
 
 importScripts(
-  "/iching//assets/wb-assets/precache-manifest.89bd8098c18b15080020e72244ad2914.js"
+  "/iching/assets/wb-assets/precache-manifest.5af2f85a4b1cf2aab504e3da92e8925e.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "iching"});

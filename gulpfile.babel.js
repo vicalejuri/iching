@@ -88,7 +88,7 @@ gulp.task("fonts", cb => {
 
 gulp.task("copy", cb => {
   gulp
-    .src(["./src/*.html", "./src/*.ico"])
+    .src(["./src/*.html", "./src/*.ico", "./src/*.webmanifest"])
     .pipe(gulp.dest("dist/"));
 });
 

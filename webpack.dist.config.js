@@ -26,7 +26,7 @@ var chunks = {
 };
 
 const BASE_URL    = '/iching/'
-const PUBLIC_PATH = `${BASE_URL}/assets/`
+const PUBLIC_PATH = `${BASE_URL}assets/`
 
 module.exports = {
 
