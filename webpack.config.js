@@ -55,6 +55,7 @@ module.exports = {
     progress: true,
     hot: true,
     compress: true,
+    https: false,
 
     watchOptions: {
       ignored: 'node_modules'
