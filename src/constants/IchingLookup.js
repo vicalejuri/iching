@@ -176,6 +176,11 @@ export function getHexagramNumberByKuas(kuas) {
   return hexNumber;
 }
 
+export function getHexagramNumberByName( name ) {
+  let hex = find(getIchingBook(), { name }) 
+  return (hex ? hex.number : -1);
+}
+
 /*
  * Get a full hexagram.
  *
@@ -185,15 +190,14 @@ export function getHexagramNumberByKuas(kuas) {
  */
 export function getHexagram(hex) {
 
-  let hexNumber = 1;
+  let hexNumber = 0;
 
   if (isArray(hex)) {
-    let kuas = hex.map(k => k.yin)
-    hexNumber = getHexagramNumberByKuas(kuas)
+    hexNumber = getHexagramNumberByKuas(hex)
   } else if (isNumber(hex)) {
     hexNumber = hex;
   } else if (isString(hex)) {
-    hexNumber = find(getIchingBook(), { name: hex }).number;
+    hexNumber = getHexagramNumberByName( hex );
   } else {
     throw Error('getHexagram', `Argument ${hex} is not of valid type
             (Number,Name or Array of Kuas)`);

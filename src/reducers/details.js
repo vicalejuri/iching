@@ -5,7 +5,7 @@ import {
 /**
  * Simple hexagram number change (a number)
  */
-export function detailsSetActiveHexagram( state = 0, action) {
+export function detailsHexagram( state = -1, action) {
     switch (action.type) {
       case DETAILS_SET_HEXAGRAM:
         return action.payload;

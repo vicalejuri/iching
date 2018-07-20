@@ -80,7 +80,6 @@ export function kuaCreated(state = [], action) {
 export function hexagramSet(state = 0, action ) {
   switch (action.type) {
     case PLAY_SET_HEXAGRAM:
-      console.log("SET_HEXAGRAM PAYLOAD", action.payload)
       return (isNumber(action.payload) ? action.payload
                                        : IchingTable.getHexagramNumberByKuas(action.payload));
     case PLAY_CLEAR_HEXAGRAM:

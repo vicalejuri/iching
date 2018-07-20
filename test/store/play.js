@@ -4,12 +4,12 @@ import thunk from "redux-thunk";
 import { Thunk as ThunkTest } from 'redux-testkit';
 
 import * as actions from "src/actions/play";
+import reducers from "src/reducers";
+
 import { generateKua } from "src/reducers/play";
 import "src/assets/json/book";
 
-import reducers from "src/reducers";
-
-describe("Hexagram reduxer", () => {
+describe("Play reduxer", () => {
   let store;
 
   beforeAll(() => {

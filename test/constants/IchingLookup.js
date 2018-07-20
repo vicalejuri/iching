@@ -1,6 +1,7 @@
 import { getIchingBook , Trigrams,
          getHexagram, getHexagramNumberByKuas } from "src/constants/IchingLookup";
 import "src/assets/json/book";
+import { getHexagramNumberByName } from "../../src/constants/IchingLookup";
 
 // Fu hexagram (return - the turning point)
 const kuasMock = [{value: 8, name: 'young-yang', yin: 0}, 
@@ -32,6 +33,13 @@ describe("IChing Lookup", () => {
 
         expect(hex_num).toBe(24);
     })
+    it("getHexagramNumberByName should be resilient", () => {
+        const hexagram = getHexagramNumberByName('Chien');
+        expect(hexagram).toBe(1)
+
+        let hex2 = getHexagramNumberByName('XXX');
+        expect(hex2).toBe(-1);
+    });
     it("getHexagram by name", () => {
         const hexagram = getHexagram('Chien');
         expect(hexagram.name).toBe('Chien')

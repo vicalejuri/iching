@@ -10,8 +10,8 @@ export function generateKua() {
   }
 }
 
-// Set Active Hexagram Data
-export function setHexagram( kuas_or_hex_number ) {
+// Set Play Hexagram 
+export function setPlayHexagram( kuas_or_hex_number ) {
   return {
     type: PLAY_SET_HEXAGRAM,
     payload: kuas_or_hex_number,
@@ -42,7 +42,7 @@ export function generateHexagram() {
     return Promise.all( kua_promises )
                   .then( (x) => {
                     const { kuas }  = getState();
-                    dispatch( setHexagram(kuas) );
+                    dispatch( setPlayHexagram(kuas) );
                   })
   };
 }
