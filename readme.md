@@ -22,7 +22,7 @@ Built with ES6, Preact, redux and material-ui.
 
 ## Demo/App
 
-https://barrabinfc.github.io/react-iching/
+https://iching.netlify.com/
 
 ## LICENSE
 
