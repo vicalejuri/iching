@@ -79,46 +79,15 @@
 
 /*
  * Question animation
- *
-.question-enter {
-  transition: all $time ease;
-  opacity: 0;
-  will-change: transform, opacity;
-  transform: translateY(-100%);
-}
-.question-enter.queston-enter-active  {
-  width: 100%;
-  opacity: 1;
-  transform: translateY(0px);
-}
-
-.question-leave {
-  transition: all $time ease;
-  opacity: 1;
-  will-change: transform, opacity;
-}
-.question-leave.question-leave-active {
-  opacity: 0;
-  transform: translateY(-100%);
-}
-
-.question-enter {
-  animation-duration: $time;
-  animation-timing-function: ease-out;
-  animation-fill-mode: both;
-  opacity: 0;
-}
-.question-enter.question-enter-active {
-  animation-name: slideFromBottom;
-}
-*/
-
-.question-leave {
+ */
+.lblquestion-appear {
   animation-duration: var(--time_trans);
   animation-timing-function: var(--quartOut_easing);
   animation-fill-mode: both;
-  opacity: 1;
+  animation-delay: 400ms;
+  opacity: 0;
+  overflow: hidden;
 }
-.question-leave.question-leave-active {
-  animation-name: slideToTop;
+.lblquestion-appear.lblquestion-appear-active {
+  animation-name: slideFromBottom;
 }

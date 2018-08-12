@@ -18,14 +18,18 @@ class PlayPage extends Component {
 
   constructor(props) {
     super(props)
-    console.log("PlayPage CONSTRUCTOR!")
   }
 
   getInitialState(){
     return { already_played: false }
   }
 
+  setFocus(){
+    if(this.textarea) this.textarea.focus();
+  }
+
   render() {
+    setTimeout( this.setFocus.bind(this) , 1350 );
     return (
       <div className="playpage-container">
 
@@ -36,15 +40,17 @@ class PlayPage extends Component {
 
         <div className="canvas">
           <div className="infoArea">
-            <CSSTransitionGroup transitionName="question" 
-              transitionEnterTimeout={400} transitionLeaveTimeout={0} >
-                  {this.renderQuestion()}
-            </CSSTransitionGroup>
+            <div className="lblquestion">
+              <h2 className="title lblquestion-appear lblquestion-appear-active" >What's your question?</h2>
+            </div>
+            <div className="question"> 
+              <input ref={el => this.textarea = el} type="text" className="text" inputmode="text" spellcheck="false" tabindex="1"></input>
+            </div>
           </div>
 
-          <div className="ichingDragArea">
+          <div className="ichingDragArea" >
             <button className="gongo" ref={el => this.gongo = el}
-              onPointerDown={this.onGongoHold} aria-label="Play" />
+              onPointerDown={this.onGongoHold} aria-label="Play" tabindex="2"/>
             <audio ref={el => this.gongosound = el} src={getAsset('audio/bell-resonanceG.mp3')} preload="auto" />
           </div>
         </div>
@@ -69,9 +75,7 @@ class PlayPage extends Component {
   renderQuestion() {
     if (!this.state.already_played) {
       return (
-        <div className="question">
-          <h2 className="title" key="question">Concentrate and ask a question</h2>
-        </div>
+        <h2 className="title question-appear question-appear-active" >What's your question?</h2>
       )
     }
   }

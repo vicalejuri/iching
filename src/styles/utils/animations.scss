@@ -1,11 +1,11 @@
-@keyframes spin {
-  from {
-    transform: rotate(-60deg);
-  }
+@keyframes opacity {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
 
-  to {
-    transform: rotate(1440deg);
-  }
+@keyframes spin {
+  from { transform: rotate(-60deg); }
+  to { transform: rotate(1440deg); }
 }
 
 @keyframes hexagramRotate {
@@ -14,7 +14,7 @@
   100% { transform: rotate(-1800.0deg); }
 }
 
-/* sliding from Bottom (showing )
+/* sliding from Bottom (showing ) */
 @keyframes slideFromBottom {
   from {
     transform: translateY(100px);
@@ -26,7 +26,6 @@
     opacity: 1;
   }
 }
-*/
 
 /* Slide from up (showing) */
 @keyframes slideFromTop {
@@ -230,3 +229,14 @@
   100% { transform: matrix3d(0.8, 0, 0, 0, 0, 0.8, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); } 
 }
 
+
+/**
+ * Grow elastic
+ */
+.growElastic {
+  animation: growElastic 600ms cubic-bezier(.10,1.28,.17,1.41) 1 both;
+}
+@keyframes growElastic {
+  from { opacity: 0; transform: scale(0.4); }
+  to { opacity: 1; transform: scale(1.0); }
+}
