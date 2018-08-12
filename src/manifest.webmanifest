@@ -1,6 +1,6 @@
 {
     "short_name": "I Ching",
-    "name": "The book of Changes",
+    "name": "I Ching",
     "icons": [
         {
             "src": "assets/icons/yin_yang_filled.48.png",
@@ -18,7 +18,7 @@
             "sizes": "512x512"
         }
     ],
-    "scope": "/iching/",
+    "scope": "/",
     "start_url": "/",
     "display": "standalone",
     "theme_color": "#202020",
