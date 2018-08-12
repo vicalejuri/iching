@@ -46,7 +46,7 @@ class PlayPage extends Component {
 
           <div className="ichingDragArea">
             <button className="gongo" ref={el => this.gongo = el}
-              onPointerDown={this.onGongoHold} />
+              onPointerDown={this.onGongoHold} aria-label="Play" />
             <audio ref={el => this.gongosound = el} src={getAsset('audio/bell-resonanceG.mp3')} preload="auto" />
           </div>
         </div>

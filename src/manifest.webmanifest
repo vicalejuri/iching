@@ -19,7 +19,7 @@
         }
     ],
     "scope": "/iching/",
-    "start_url": "/iching/",
+    "start_url": "/",
     "display": "standalone",
     "theme_color": "#000",
     "background_color": "#f1f1f1"

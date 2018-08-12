@@ -176,8 +176,14 @@ module.exports = {
       'cacheId': 'iching',
       'importWorkboxFrom': 'local',
       'swDest': 'sw.js',
+      'clientsClaim': true,
+      'skipWaiting': true, 
       'importsDirectory': 'wb-assets',
-      'navigateFallback': `${BASE_URL}/`
+      'navigateFallback': `${BASE_URL}/`,
+      'runtimeCaching': [{
+        urlPattern: new RegExp('.*?'),
+        handler: 'staleWhileRevalidate'
+      }]      
     })
   ]
 
