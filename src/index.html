@@ -11,7 +11,7 @@
   <meta name="copyright" content="Open Source - MIT">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-  <meta name="theme-color" content="#000" />
+  <meta name="theme-color" content="#202020" />
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
 
@@ -34,11 +34,17 @@
   />
 
   <style>
+    * { box-sizing: border-box; }
+    ::selection {
+      background: rgba(0,0,0,.9);
+      color: #fff;
+    }
+
     body {
       font-family: Colfax,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
 
       font-weight: 100;
-      background: linear-gradient(45deg, #f1f1f1 30%, #e0e0e0 90%);
+      background: linear-gradient(45deg, #f1f1f1 30%, #efefef 90%);
       color: #000;
 
       box-sizing: border-box;
@@ -71,7 +77,14 @@
       /* Zero with slash */
       font-feature-settings: "zero";
       font-variant: slashed-zero;
+    }
 
+    a { color: #ff4081; }
+
+    a:active, a:focus , button:active, button:focus {
+      outline: 0;
+      border: none;
+      -moz-outline-style: none
     }
 
     #copyleft {
@@ -81,53 +94,61 @@
       padding: 10px;
     }
 
-    #loading {
-      width: 100%;
-      height: 150px;
-      position: absolute;
-      top: 30%;
-      text-align: center;
-      pointer-events: none;
-
-      font-family: Colfax,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
-    }
-
-    #loading h1 {
-      text-transform: uppercase;
-      font-weight: 800;
-      font-size: 3rem;
-      margin-bottom: 0rem;
-    }
-    #loading h3 {
-      font-weight: 100;
-      text-transform: uppercase;
-      color: #999;
-      font-size: 1.5rem;
-      margin-top: 1rem;
-    }
-
-    @keyframes hexagramRotate {
-      0% {
-        transform: rotate(0.0deg);
-      }
-      50% {
-        transform: rotate(-900.0deg);
-      }
-      100% {
-        transform: rotate(-1800.0deg);
-      }
-    }
-
-    .icon-loading {
-      margin: 0 auto;
-      display: block;
-      width: 96px;
-      height: 96px;
-    }
-    .icon-loading > svg {
+    /**
+     * Container
+     **/
+    /* Wrapper */
+    .app-wrap {
+      height: 100vh;
+      display:flex;
+      flex-direction:column;
+      
+      position: relative;
       overflow: hidden;
-      animation: hexagramRotate 8.0s infinite cubic-bezier(0.52, 0.01, 0.16, 1);
-      animation-fill-mode: forwards;
+    }
+
+    @media (min-width: 768px) {
+      .app-wrap  {
+        max-width: 340px;
+        min-height: 578px;
+        height: 80vh;
+        margin: 5vh auto 5vh auto;
+
+        border:10px solid rgba(0,0,0,0.9);
+        border-bottom-width: 70px;
+        border-radius:10px;
+        box-shadow:0 0 50px rgba(0,0,0,0.60);
+        box-shadow: 0 1px 0 rgba(0, 0, 0, 0.76), 0 2px 6px rgba(0, 0, 0, 0.77), 0 10px 20px rgba(0, 0, 0, 0.49); 
+      }
+    }
+
+    /*
+     * Overall Layout
+     */
+    .app-wrap > * { flex:1 1 auto; }
+
+    /*
+     * Content
+     */
+    .content {
+      position: absolute;
+      overflow-x: hidden;
+      /* Trick: https://css-tricks.com/snippets/css/momentum-scrolling-on-ios-overflow-elements/ */
+      overflow-y:  overlay;
+      -webkit-overflow-scrolling: touch;
+
+      width: 100%;
+      height: 100%;
+      padding: 0px 0px;
+      background: #fff;
+      /*background-image: linear-gradient(260deg, #2376ae 0%, #c16ecf 100%);*/
+    }
+
+    /*
+    * Body loaded animation
+    */
+    body.loaded {
+      
     }
   </style>
 
@@ -135,32 +156,22 @@
 
 <body>
 
-  <div id="loading">
-      <picture alt="The book of Changes" class="icon-loading">
-          <svg viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M4 2C4 0.89543 3.10457 0 2 0C0.89543 0 0 0.89543 0 2C0 3.10457 0.89543 4 2 4C3.10457 4 4 3.10457 4 2Z" transform="translate(15 23)" fill="#231F20" stroke="#231F20"/>
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M16 32C24.837 32 32 24.837 32 16C32 7.164 24.837 0 16 0C11.582 0 8 3.582 8 8C8 12.418 11.582 16 16 16C20.418 16 24 19.582 24 24C24 28.418 20.418 32 16 32ZM13 8C13 6.29779 14.2994 5 16 5C17.7006 5 19 6.29779 19 8C19 9.70221 17.7006 11 16 11C14.2994 11 13 9.70221 13 8Z" transform="translate(1 1)" fill="#231F20"/>
-            <path d="M16 32C24.837 32 32 24.837 32 16C32 7.164 24.837 0 16 0M16 32C7.164 32 0 24.837 0 16C0 7.164 7.164 0 16 0M16 32C20.418 32 24 28.418 24 24C24 19.582 20.418 16 16 16C11.582 16 8 12.418 8 8C8 3.582 11.582 0 16 0M16 5C14.2994 5 13 6.29779 13 8C13 9.70221 14.2994 11 16 11C17.7006 11 19 9.70221 19 8C19 6.29779 17.7006 5 16 5Z" transform="translate(1 1)" stroke="#231F20" stroke-width="2" stroke-miterlimit="10"/>
-          </svg>            
-      </picture>
-      <h1>I Ching</h1>
-      <h3>The book of changes</h3>
-  </div>
-
-
   <div id="app-mount">
-    <noscript>
-      <h1>❌ Javascript required ❌</h1>
-      <p>We're sorry, but IChing doesn't work without Javascript enabled.</p>
-    </noscript>
+    <div class="app-wrap">
+      <noscript>
+        <h1>❌ Javascript required ❌</h1>
+        <p>We're sorry, but IChing doesn't work without Javascript enabled.</p>
+      </noscript>    
+    </div>
   </div>
 
   <div id="copyleft">
   </div>
 
+  
   <link rel="preload" href="assets/main.css" as="style" onload="this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="assets/main.css"></noscript>
-
+  
   <script type="text/javascript" src="assets/book.js" defer></script>
   <script type="text/javascript" src="assets/vendor.js" defer></script>
   <script type="text/javascript" src="assets/app.js" defer></script>

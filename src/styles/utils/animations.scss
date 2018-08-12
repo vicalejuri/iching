@@ -8,7 +8,13 @@
   }
 }
 
-/* sliding from Bottom (showing )*/
+@keyframes hexagramRotate {
+  0% { transform: rotate(0.0deg); }
+  50% { transform: rotate(-900.0deg); }
+  100% { transform: rotate(-1800.0deg); }
+}
+
+/* sliding from Bottom (showing )
 @keyframes slideFromBottom {
   from {
     transform: translateY(100px);
@@ -20,6 +26,7 @@
     opacity: 1;
   }
 }
+*/
 
 /* Slide from up (showing) */
 @keyframes slideFromTop {

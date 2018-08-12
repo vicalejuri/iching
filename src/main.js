@@ -70,10 +70,11 @@ function start() {
         <AppContainer />
       </Router>
     </Provider>,
-    document.getElementById("app-mount")
+    document.querySelector("#app-mount > .app-wrap")
   );
 
   /* Loading complete */
+  console.log("Load complete: ", performance.now() );
   let load_el = document.getElementById("loading");
   requestAnimationFrame(() => {
     document.body.classList.toggle("loaded");

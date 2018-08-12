@@ -14,28 +14,25 @@ import { PlayPage, DetailPage, AboutPage } from "./index";
 class AppContainer extends Component {
 
   componentWillUpdate() {
-    this.scrollTopTop();
+    this.scrollToTop();
   }
 
   render() {
     return (
-      <div className={classNames(["app-wrap", (this.props.isMobile && 'cellphone-wrap' || '')])}>
-        <div
-          className="content"
-          ref={el => {
-            this.content = el;
-          }}
-        >
-          <Route exact path="/" component={PlayPage} />
-          <Route path="/about" component={AboutPage} />
-          <Route path="/details/:number" component={DetailPage} />
-        </div>
-        <Footer />
+      <div
+        className="content"
+        ref={el => {
+          this.content = el;
+        }}
+      >
+        <Route exact path="/" component={PlayPage} />
+        <Route path="/about" component={AboutPage} />
+        <Route path="/details/:number" component={DetailPage} />
       </div>
     );
   }
 
-  scrollTopTop() {
+  scrollToTop() {
     let el = this.content;
     el.scrollTop = 0;
   }
