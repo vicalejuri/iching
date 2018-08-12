@@ -25,7 +25,7 @@ var chunks = {
   book: ['./assets/json/book.js']
 };
 
-const BASE_URL    = '/iching/'
+const BASE_URL    = '/'
 const PUBLIC_PATH = `${BASE_URL}assets/`
 
 module.exports = {

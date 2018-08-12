@@ -9,3 +9,6 @@ export const ICHING_BOOK_LOAD = 'ICHING_BOOK_LOAD_JSON';
 export const ICHING_BOOK_LOADED = 'ICHING_BOOK_LOADED';
 
 export const I18N_SET_LANGUAGE = 'I18N_SET_LANGUAGE';
+
+/** Preferences **/
+export const PREFERENCES_SET = 'PREFERENCES_SET';

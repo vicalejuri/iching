@@ -167,8 +167,8 @@ module.exports = {
 
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
-    new webpack.NoErrorsPlugin(),
-    //new BundleAnalyzerPlugin({}),
+    new webpack.NoEmitOnErrorsPlugin(),
+    new BundleAnalyzerPlugin({}),
 
     //new ExtractTextPlugin('fonts.css'),
     new ExtractTextPlugin('main.css'),

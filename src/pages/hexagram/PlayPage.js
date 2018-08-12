@@ -47,7 +47,7 @@ class PlayPage extends Component {
           <div className="ichingDragArea">
             <button className="gongo" ref={el => this.gongo = el}
               onPointerDown={this.onGongoHold} />
-            <audio ref={el => this.gongosound = el} src={getAsset('audio/bell-square.mp3')} preload="auto" />
+            <audio ref={el => this.gongosound = el} src={getAsset('audio/bell-resonanceG.mp3')} preload="auto" />
           </div>
         </div>
 
@@ -93,10 +93,12 @@ class PlayPage extends Component {
     this.gongo.className = 'gongo hit';
 
     // play sound
-    let au = this.gongosound;
-    if (au.play) {
-      au.currentTime = 0.0;
-      au.play();
+    if(this.props.preferences['enable_gongosound']){
+      let au = this.gongosound;
+      if (au.play) {
+        au.currentTime = 0.0;
+        au.play();
+      }
     }
 
     this.props.clearHexagram();
@@ -122,7 +124,10 @@ PlayPage.defaultProps = {
 
 export default withRouter(
   connect(
-    state => ({ hexagram: getHexagram( state.play_hexagram ) }),
+    state => ({ 
+      hexagram: getHexagram( state.play_hexagram ),
+      preferences: state.preferences 
+    }),
     dispatch => ({
         generateHexagram: () => {dispatch(actions.generateHexagram())},
         clearHexagram: () => {

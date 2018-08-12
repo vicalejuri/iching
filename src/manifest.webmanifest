@@ -1,19 +1,19 @@
 {
     "short_name": "I Ching",
-    "name": "I Ching - The book of Changes",
+    "name": "The book of Changes",
     "icons": [
         {
-            "src": "/iching/assets/icons/yin_yang_filled.48.png",
+            "src": "assets/icons/yin_yang_filled.48.png",
             "type": "image/png",
             "sizes": "48x48"
         },
         {
-            "src": "/iching/assets/icons/yin_yang_filled.192.png",
+            "src": "assets/icons/yin_yang_filled.192.png",
             "type": "image/png",
             "sizes": "192x192"
         },
         {
-            "src": "/iching/assets/icons/yin_yang_filled.512.png",
+            "src": "assets/icons/yin_yang_filled.512.png",
             "type": "image/png",
             "sizes": "512x512"
         }

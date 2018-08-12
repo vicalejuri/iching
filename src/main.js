@@ -7,6 +7,7 @@ import thunk from "redux-thunk";
 import { HashRouter as Router, Route, Link } from "react-router-dom";
 import enquire from 'enquire.js';
 
+import DefaultSettings from './constants/settings.js';
 import { getAsset, parseQS } from "./constants/utils";
 
 import { AppContainer } from "./pages";
@@ -88,8 +89,12 @@ function bootstrap() {
   // Parse argv options
   const argv = parseQS(location.toString());
 
-  // Create store
-  window.store = configureStore();
+  // Create store with local preferences
+  let localPreferences = JSON.parse( localStorage.getItem('preferences') || '{}' )
+  let preferences      = Object.assign( DefaultSettings.preferences, localPreferences )
+  
+  let settings         = Object.assign( DefaultSettings, {preferences})
+  window.store = configureStore( settings );
 
   // Register layout changes
   mediaqueries(argv.media || false);
