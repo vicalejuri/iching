@@ -8,6 +8,6 @@ import { BookLoaded } from './book';
 export default combineReducers({
   preferences:        preferences,
   play_hexagram:      hexagram,
-  details_hexagrram:  detailsHexagram,
+  details_hexagram:   detailsHexagram,
   book_loaded:        BookLoaded
 });
