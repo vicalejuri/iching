@@ -21,7 +21,7 @@ const node_modules = path.resolve(__dirname, 'node_modules');
  */
 var chunks = {
   app: ['./main.js'],
-  vendor: ['preact', 'redux', 'react-router', 'preact-redux'],
+  vendor: ['preact', 'react-transition-group','redux', 'react-router', 'preact-redux','react-router-dom','hyphenation.en-us', 'react-textfit','hypher','classnames'],
   book: ['./assets/json/book.js']
 };
 
@@ -114,7 +114,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(['dist']),
     
-    /*new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.js' }),*/
+    /*new webpack.optimize.CommonCommonsChunkPlugin({ name: 'vendor', filename: 'vendor.js' }),*/
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       filename: 'vendor.js',
@@ -127,14 +127,17 @@ module.exports = {
       filename: 'book.js',
       chunks: ["book"]
     }),
-    new webpack.NamedModulesPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
+    
     new webpack.DefinePlugin({
       __PUBLIC_PATH__: `'${PUBLIC_PATH}'`,
       __DEVELOPMENT__: false,
       __DEVTOOLS__: false,
       'process.env.NODE_ENV': '"production"'
     }),
+        
+    new webpack.NamedModulesPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
+
     new ExtractTextPlugin('main.css'),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
@@ -146,7 +149,7 @@ module.exports = {
         dead_code: true,
       }
     }),
-    //new BundleAnalyzerPlugin()
+
     new GenerateSW({
       'cacheId': 'iching',
       'importWorkboxFrom': 'local',

@@ -25,7 +25,7 @@ var pathToReactRedux = path.resolve(node_modules, 'preact-redux');
  */
 var chunks = {
   app: ['./main.js'],
-  vendor: ['preact', 'redux', 'react-router', 'preact-redux'],
+  vendor: ['preact', 'react-transition-group','redux', 'react-router', 'preact-redux','react-router-dom','hyphenation.en-us', 'react-textfit','hypher','classnames'],
   book: ['./assets/json/book.js']
 };
 
@@ -168,10 +168,10 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
-    new BundleAnalyzerPlugin({}),
 
     //new ExtractTextPlugin('fonts.css'),
     new ExtractTextPlugin('main.css'),
+
     new GenerateSW({
       'cacheId': 'iching',
       'importWorkboxFrom': 'local',

@@ -3,7 +3,7 @@
  */
 const DefaultSettings = {
     play_hexagram: -1,
-    details_hexagrram: -1,
+    details_hexagram: -1,
     book_loaded: false,
     preferences: {
         'enable_gongosound': false

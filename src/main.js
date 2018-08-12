@@ -4,7 +4,7 @@ import { Provider } from "preact-redux";
 import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 
-import { HashRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import enquire from 'enquire.js';
 
 import DefaultSettings from './constants/settings.js';
@@ -109,7 +109,7 @@ function bootstrap() {
 // err: error message
 // fileName: which file error occurs in
 // lineNumber: what line error occurs on
-//import "preact/devtools";
+import "preact/devtools";
 if (!__DEVELOPMENT__) {
   // SW only on production
   requestIdleCallback(registerSW);

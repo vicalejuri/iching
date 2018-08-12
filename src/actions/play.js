@@ -22,6 +22,7 @@ export function generateHexagram() {
     
     // Throw 6 coins
     const kuas = times(6, IchingLookup.generateKua );
-    return dispatch( setPlayHexagram(kuas) );
+    dispatch( setPlayHexagram(kuas) );
+    return Promise.resolve( kuas )
   };
 }

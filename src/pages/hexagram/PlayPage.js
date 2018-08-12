@@ -18,9 +18,11 @@ class PlayPage extends Component {
 
   constructor(props) {
     super(props)
-    this.state = {
-      already_played: false
-    }
+    console.log("PlayPage CONSTRUCTOR!")
+  }
+
+  getInitialState(){
+    return { already_played: false }
   }
 
   render() {
@@ -36,11 +38,7 @@ class PlayPage extends Component {
           <div className="infoArea">
             <CSSTransitionGroup transitionName="question" 
               transitionEnterTimeout={400} transitionLeaveTimeout={0} >
-              {this.isFirstPlay() ? (
-                <div className="question" ref={el => this.question = el}>
                   {this.renderQuestion()}
-                </div>
-              ) : (false)}
             </CSSTransitionGroup>
           </div>
 
@@ -54,11 +52,6 @@ class PlayPage extends Component {
       </div>
     );
   }
-
-  isFirstPlay() {
-    return (!this.state.already_played)
-  }
-
 
   renderPreviewCard( opts={} ) {
     let { hexagram } = this.props;
@@ -76,7 +69,9 @@ class PlayPage extends Component {
   renderQuestion() {
     if (!this.state.already_played) {
       return (
-        <h2 className="title" key="question">Concentrate and ask a question</h2>
+        <div className="question">
+          <h2 className="title" key="question">Concentrate and ask a question</h2>
+        </div>
       )
     }
   }
@@ -104,9 +99,11 @@ class PlayPage extends Component {
     this.props.clearHexagram();
 
     setTimeout( () => {
-      this.setState({ already_played: true })
        //window.store.dispatch(HexagramActions.clearHexagram());
-      this.props.generateHexagram()
+      this.props.generateHexagram().then( () => {
+        this.setState({already_played: true})
+        this.goToHexagram()
+      })
     }, this.props.animation_timeout);
   }
 
@@ -129,7 +126,7 @@ export default withRouter(
       preferences: state.preferences 
     }),
     dispatch => ({
-        generateHexagram: () => {dispatch(actions.generateHexagram())},
+        generateHexagram: () => (dispatch(actions.generateHexagram())),
         clearHexagram: () => {
           dispatch(actions.clearHexagram()); 
         }
