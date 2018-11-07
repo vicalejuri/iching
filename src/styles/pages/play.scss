@@ -101,9 +101,10 @@
         width: 64px;
         height: 64px;
         margin-top: auto;
-        margin-bottom: 2em;
+        margin-bottom: 8em;
 
         /* Disable selection */
+        outline: none;
         user-select: none;
         -webkit-user-select: none;   /* Chrome/Safari/Opera */
         -moz-user-select: none;      /* Firefox */

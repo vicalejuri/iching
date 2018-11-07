@@ -17,13 +17,14 @@ class DetailPage extends Component {
     let   hex = this.props.hexagram;
     const emptyShell = (hex.number === 0);
 
-    /* Lines */
+    /* Lines 
     let lines = hex.interpretation.lines.map((line, i) => (
       <div className="line" key={this.lineId(line.poem)}>
         <q className="subQuote">{this.formatQuote(line.poem)}</q>
         {this.formatText(line.expl)}
       </div>
     ))
+    */
 
     let tarot_image = getAsset(`img/tarot/Tao_${hex.number}.jpg`)
     return (
@@ -50,10 +51,12 @@ class DetailPage extends Component {
           <hr />
           <q className="subQuote">{this.formatQuote(hex.interpretation.oracle)}</q>
           {this.formatText(hex.interpretation.judgment)}
-
+          <hr />
+          {/** 
           <h3>The Lines</h3>
           <hr />
           {lines}
+          */}
         </div>
       </div>
     );

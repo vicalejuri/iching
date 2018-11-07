@@ -24,6 +24,14 @@ class PlayPage extends Component {
     return { already_played: false }
   }
 
+  componentDidMount() {
+    /** clear hexagram and question, if dirty */
+    if(this.props.hexagram != -1){ 
+      this.props.clearHexagram(); 
+      this.textarea.value = ""
+    }
+  }
+
   setFocus(){
     if(this.textarea) this.textarea.focus();
   }
@@ -41,7 +49,7 @@ class PlayPage extends Component {
         <form className="canvas" action="/" onSubmit={this.throwDices}>
           <div className="infoArea">
             <div className="lblquestion">
-              <h2 className="title lblquestion-appear lblquestion-appear-active" >Ask a question</h2>
+              <h2 className="title lblquestion-appear lblquestion-appear-active" >Ask your question</h2>
             </div>
             <div className="question"> 
               <input ref={el => this.textarea = el} type="text" className="text" inputmode="text" spellcheck="false" tabindex="1"
@@ -70,14 +78,6 @@ class PlayPage extends Component {
                                 {...opts} />);
     } else {
       return (false);
-    }
-  }
-
-  renderQuestion() {
-    if (!this.state.already_played) {
-      return (
-        <h2 className="title question-appear question-appear-active" >What's your question?</h2>
-      )
     }
   }
 
