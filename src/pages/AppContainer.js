@@ -6,9 +6,7 @@ import { connect } from "preact-redux";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { withRouter } from "react-router";
 
-import CSSTransitionGroup from "react-transition-group/CSSTransitionGroup";
-
-import Footer from "../components/Footer";
+/*import Footer from "../components/Footer";*/
 import { PlayPage, DetailPage, AboutPage } from "./index";
 
 class AppContainer extends Component {

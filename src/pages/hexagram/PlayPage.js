@@ -29,7 +29,7 @@ class PlayPage extends Component {
   }
 
   render() {
-    setTimeout( this.setFocus.bind(this) , 1350 );
+    //setTimeout( this.setFocus.bind(this) , 1350 );
     return (
       <div className="playpage-container">
 
@@ -38,22 +38,23 @@ class PlayPage extends Component {
           {this.renderPreviewCard({onClick: this.goToHexagram.bind(this)})}
         </CSSTransitionGroup>
 
-        <div className="canvas">
+        <form className="canvas" action="/" onSubmit={this.throwDices}>
           <div className="infoArea">
             <div className="lblquestion">
-              <h2 className="title lblquestion-appear lblquestion-appear-active" >What's your question?</h2>
+              <h2 className="title lblquestion-appear lblquestion-appear-active" >Ask a question</h2>
             </div>
             <div className="question"> 
-              <input ref={el => this.textarea = el} type="text" className="text" inputmode="text" spellcheck="false" tabindex="1"></input>
+              <input ref={el => this.textarea = el} type="text" className="text" inputmode="text" spellcheck="false" tabindex="1"
+                ></input>
             </div>
           </div>
 
           <div className="ichingDragArea" >
-            <button className="gongo" ref={el => this.gongo = el}
+            <input type="submit" className="gongo" value="" ref={el => this.gongo = el}
               onPointerDown={this.onGongoHold} aria-label="Play" tabindex="2"/>
             <audio ref={el => this.gongosound = el} src={getAsset('audio/bell-resonanceG.mp3')} preload="auto" />
           </div>
-        </div>
+        </form>
 
       </div>
     );
@@ -99,7 +100,17 @@ class PlayPage extends Component {
         au.play();
       }
     }
+  }
 
+  /**
+   * Generate a new hexagram
+   */
+  throwDices = (ev) => {
+    if(ev) {
+      ev.preventDefault();
+      ev.stopPropagation();
+    }
+    
     this.props.clearHexagram();
 
     setTimeout( () => {
@@ -109,6 +120,8 @@ class PlayPage extends Component {
         this.goToHexagram()
       })
     }, this.props.animation_timeout);
+
+    return false;
   }
 
   goToHexagram = () => {

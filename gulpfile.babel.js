@@ -1,9 +1,11 @@
 /* eslint-disable no-alert, no-console */
 import gulp from "gulp";
 import gulpLoadPlugins from "gulp-load-plugins";
+import gutil from "gulp-util";
 
 import webpack from "webpack";
 import WebpackDevServer from "webpack-dev-server";
+import BrowserSync from "browser-sync";
 
 import eslint from "gulp-eslint";
 
@@ -13,10 +15,12 @@ import run from "gulp-run";
 import RunSequence from "run-sequence";
 import scraper from "scraperjs";
 
-import scrapeIchingTable from "./src/scrape/scrape_deoxy";
+import scrapeIchingTable from "./extra/scrape/scrape_deoxy";
 
 const $ = gulpLoadPlugins();
 var path = require("path");
+
+const browserSync = BrowserSync.create();
 
 let options = {};
 
@@ -44,7 +48,14 @@ gulp.task("bundle", cb => {
 
   function bundlerCallback(err, stats) {
     console.log(stats.toString());
+    gutil.log("[webpack]", stats.toString({
+      colors: true,
+      progress: true
+    }));
+    browserSync.reload();
+    cb();
   }
+
   if (options.watch) {
     bundler.watch(200, bundlerCallback);
   } else {
@@ -90,6 +101,7 @@ gulp.task("copy", cb => {
   gulp
     .src(["./src/*.html", "./src/*.ico", "./src/*.webmanifest"])
     .pipe(gulp.dest("dist/"));
+  cb()
 });
 
 gulp.task("phonegap:copy", cb => {
@@ -112,8 +124,15 @@ gulp.task("build:watch", ["clean"], cb => {
   });
 });
 
-gulp.task("dev-server", () => {
-  return run("webpack-dev-server", { verbosity: 3 }).exec();
+gulp.task("dev-server", ["copy"], cb => {
+  browserSync.init({
+    server: {
+      baseDir: './dist/'
+    }
+  })
+  gulp.watch("./src/**/*.js", ["bundle"]);
+
+  //return run("webpack-dev-server", { verbosity: 3 }).exec();
 });
 
 gulp.task("gh-publish", cb => {
