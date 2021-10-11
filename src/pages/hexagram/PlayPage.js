@@ -44,7 +44,6 @@ class PlayPage extends Component {
                 className="text"
                 inputMode="text"
                 spellCheck="false"
-                tabIndex="-1"
               />
             </div>
           </div>
