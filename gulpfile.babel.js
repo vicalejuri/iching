@@ -70,10 +70,13 @@ gulp.task("bundle:dist", cb => {
 });
 
 // Bundle everything for phonegap
-// gulp.task("bundle:phonegap", ["clean"], cb => {
-//   options.dist = true;
-//   RunSequence(["assets", "copy", "bundle", "phonegap:copy"]);
-// });
+gulp.task(
+  "bundle:phonegap",
+  gulp.series("clean", cb => {
+    options.dist = true;
+    RunSequence(["assets", "copy", "bundle", "phonegap:copy"]);
+  })
+);
 
 gulp.task("assets", cb =>
   gulp.src("src/assets/**/*").pipe(gulp.dest("dist/assets/"))
@@ -109,21 +112,30 @@ gulp.task("phonegap:copy", cb => {
   gulp.src(["dist/**/*"]).pipe(gulp.dest("phonegap/www/"));
 });
 
-// gulp.task("build", ["clean"], cb => {
-//   RunSequence(["assets", "copy", "bundle"], cb);
-// });
+gulp.task(
+  "build",
+  gulp.series("clean", cb => {
+    RunSequence(["assets", "copy", "bundle"], cb);
+  })
+);
 
-// gulp.task("build:dist", ["clean"], cb => {
-//   options.dist = true;
-//   RunSequence(["assets", "copy", "bundle"], cb);
-// });
+gulp.task(
+  "build:dist",
+  gulp.series("clean", cb => {
+    options.dist = true;
+    RunSequence(["assets", "copy", "bundle"], cb);
+  })
+);
 
-// gulp.task("build:watch", ["clean"], cb => {
-//   options.watch = true;
-//   RunSequence(["build"], () => {
-//     gulp.watch("src/styles/**", ["assets"]);
-//   });
-// });
+gulp.task(
+  "build:watch",
+  gulp.series("clean", cb => {
+    options.watch = true;
+    RunSequence(["build"], () => {
+      gulp.watch("src/styles/**", ["assets"]);
+    });
+  })
+);
 
 gulp.task(
   "dev-server",
