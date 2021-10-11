@@ -15,31 +15,29 @@ import run from "gulp-run";
 import RunSequence from "run-sequence";
 import scraper from "scraperjs";
 
-import scrapeIchingTable from "./extra/scrape/scrape_deoxy";
+import scrapeIchingTable from "./extra/scrape/scrape";
 
 const $ = gulpLoadPlugins();
-var path = require("path");
+let path = require("path");
 
 const browserSync = BrowserSync.create();
 
 let options = {};
 
-gulp.task("clean", cb => {
-  return del(["dist/"]);
-});
+gulp.task("clean", cb => del(["dist/"]));
 
 // Scrape ichingfortune and save to #{./src/assets/iching.json}
 gulp.task("scrape", cb => {
   scrapeIchingTable();
 });
 
-gulp.task("lint", () => {
-  return gulp
+gulp.task("lint", () =>
+  gulp
     .src(["src/**/*.js"])
     .pipe(eslint())
     .pipe(eslint.format())
-    .pipe(eslint.failAfterError());
-});
+    .pipe(eslint.failAfterError())
+);
 
 // run webpack bundler
 gulp.task("bundle", cb => {
@@ -48,10 +46,13 @@ gulp.task("bundle", cb => {
 
   function bundlerCallback(err, stats) {
     console.log(stats.toString());
-    gutil.log("[webpack]", stats.toString({
-      colors: true,
-      progress: true
-    }));
+    gutil.log(
+      "[webpack]",
+      stats.toString({
+        colors: true,
+        progress: true
+      })
+    );
     browserSync.reload();
     cb();
   }
@@ -69,16 +70,16 @@ gulp.task("bundle:dist", cb => {
 });
 
 // Bundle everything for phonegap
-gulp.task("bundle:phonegap", ["clean"], cb => {
-  options.dist = true;
-  RunSequence(["assets", "copy", "bundle", "phonegap:copy"]);
-});
+// gulp.task("bundle:phonegap", ["clean"], cb => {
+//   options.dist = true;
+//   RunSequence(["assets", "copy", "bundle", "phonegap:copy"]);
+// });
 
-gulp.task("assets", cb => {
-  return gulp.src("src/assets/**/*").pipe(gulp.dest("dist/assets/"));
-});
+gulp.task("assets", cb =>
+  gulp.src("src/assets/**/*").pipe(gulp.dest("dist/assets/"))
+);
 
-gulp.task("sprites", function() {
+gulp.task("sprites", () => {
   // Create sprite from tarot images
   let tarot = gulp.src("extra/tarot/*.jpg").pipe(
     $.spritesmith({
@@ -101,42 +102,43 @@ gulp.task("copy", cb => {
   gulp
     .src(["./src/*.html", "./src/*.ico", "./src/*.webmanifest"])
     .pipe(gulp.dest("dist/"));
-  cb()
+  cb();
 });
 
 gulp.task("phonegap:copy", cb => {
   gulp.src(["dist/**/*"]).pipe(gulp.dest("phonegap/www/"));
 });
 
-gulp.task("build", ["clean"], cb => {
-  RunSequence(["assets", "copy", "bundle"], cb);
-});
+// gulp.task("build", ["clean"], cb => {
+//   RunSequence(["assets", "copy", "bundle"], cb);
+// });
 
-gulp.task("build:dist", ["clean"], cb => {
-  options.dist = true;
-  RunSequence(["assets", "copy", "bundle"], cb);
-});
+// gulp.task("build:dist", ["clean"], cb => {
+//   options.dist = true;
+//   RunSequence(["assets", "copy", "bundle"], cb);
+// });
 
-gulp.task("build:watch", ["clean"], cb => {
-  options.watch = true;
-  RunSequence(["build"], () => {
-    gulp.watch("src/styles/**", ["assets"]);
-  });
-});
+// gulp.task("build:watch", ["clean"], cb => {
+//   options.watch = true;
+//   RunSequence(["build"], () => {
+//     gulp.watch("src/styles/**", ["assets"]);
+//   });
+// });
 
-gulp.task("dev-server", ["copy"], cb => {
-  browserSync.init({
-    server: {
-      baseDir: './dist/'
-    }
+gulp.task(
+  "dev-server",
+  gulp.series("copy", cb => {
+    browserSync.init({
+      server: {
+        baseDir: "./dist/"
+      }
+    });
+    gulp.watch("./src/**/*.js", gulp.series("bundle"));
+
+    return run("webpack-dev-server", { verbosity: 3 }).exec();
   })
-  gulp.watch("./src/**/*.js", ["bundle"]);
-
-  //return run("webpack-dev-server", { verbosity: 3 }).exec();
-});
+);
 
 gulp.task("gh-publish", cb => {
-  gulp
-    .src(["./dist/**"])
-    .pipe(gulp.dest("docs/"));
+  gulp.src(["./dist/**"]).pipe(gulp.dest("docs/"));
 });
