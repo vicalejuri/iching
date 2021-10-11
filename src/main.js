@@ -6,13 +6,12 @@ import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import enquire from "enquire.js";
 
 import DefaultSettings from "./constants/settings";
 import { getAsset, parseQS } from "./constants/utils";
 
-import { AppContainer } from "./pages";
+import AppContainer from "./pages/AppContainer";
 import reducers from "./reducers";
 
 // force to import&compile css
@@ -88,9 +87,7 @@ function mediaqueries(forceMedia = false) {
 function start() {
   let app = preact.render(
     <Provider store={window.store}>
-      <Router>
-        <AppContainer />
-      </Router>
+      <AppContainer />
     </Provider>,
     document.querySelector("#app-mount > .app-wrap")
   );

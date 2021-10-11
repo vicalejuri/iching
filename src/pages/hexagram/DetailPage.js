@@ -128,7 +128,7 @@ DetailPage.defaultProps = {
 export default withRouter(props => {
   // select appropriate hexagram
   let { match } = props;
-  let hexNumber = toNumber(match.params.number);
+  let hexNumber = toNumber(match.params.id);
 
   // Render early, if data is not loaded
 

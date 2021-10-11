@@ -31,7 +31,6 @@ let chunks = {
     "preact",
     "react-transition-group",
     "redux",
-    "react-router",
     "react-redux",
     "react-router-dom",
     "hyphenation.en-us",
