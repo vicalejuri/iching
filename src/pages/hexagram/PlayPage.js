@@ -28,7 +28,6 @@ class PlayPage extends Component {
   }
 
   render() {
-    //setTimeout( this.setFocus.bind(this) , 1350 );
     return (
       <div className="playpage-container">
         <form className="canvas" action="/" onSubmit={this.throwDices}>
@@ -54,7 +53,7 @@ class PlayPage extends Component {
             <input
               type="submit"
               className="gongo"
-              value=""
+              value=" "
               ref={el => (this.gongo = el)}
               onPointerDown={this.onGongoHold}
               aria-label="Play"
