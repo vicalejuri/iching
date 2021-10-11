@@ -1,7 +1,7 @@
-import preact, { Component } from "preact";
-import classNames from 'classnames';
+import { Component } from "preact";
+import classNames from "classnames";
 
-import { connect } from "preact-redux";
+import { connect } from "react-redux";
 
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { withRouter } from "react-router";
@@ -10,12 +10,12 @@ import { withRouter } from "react-router";
 import { PlayPage, DetailPage, AboutPage } from "./index";
 
 class AppContainer extends Component {
-
   componentWillUpdate() {
     this.scrollToTop();
   }
 
   render() {
+    console.log("AppContainer:render");
     return (
       <div
         className="content"
@@ -37,7 +37,7 @@ class AppContainer extends Component {
 }
 
 AppContainer.defaultProps = {
-  isMobile: true,
-}
+  isMobile: true
+};
 
 export default withRouter(connect(null)(AppContainer));

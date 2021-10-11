@@ -1,6 +1,6 @@
 import { Component } from "preact";
 
-import { connect } from "preact-redux";
+import { connect } from "react-redux";
 
 import { NavLink } from "react-router-dom";
 import CSSTransitionGroup from "react-transition-group/CSSTransitionGroup";
@@ -10,14 +10,14 @@ import { withRouter } from "react-router";
 import YinYangSvg from "assets/icons/yin_yang.svg";
 
 function Footer() {
-  return (<span />);
-    /*
+  return <span />;
+  /*
     <CSSTransitionGroup component="div" className="footer icon-bar"
                           transitionName="footer-appear" transitionAppear
                           transitionAppearTimeout={1000}
                           transitionEnterTimeout={1000}
                           transitionLeaveTimeout={1000}> */
-    /*
+  /*
     <div className="footer icon-bar">
       <NavLink to="/" activeClassName="active">
         <i className="box-block center-block icon my-icon yinyang" />
@@ -29,7 +29,7 @@ function Footer() {
       </NavLink>
     </div>
     */
-    /*
+  /*
     </CSSTransitionGroup>
     */
 }

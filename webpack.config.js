@@ -19,7 +19,7 @@ let node_modules = path.resolve(__dirname, "node_modules");
 let pathToMaterialUI = path.resolve(node_modules, "material-ui");
 let pathToReact = path.resolve(node_modules, "react");
 let pathToRedux = path.resolve(node_modules, "redux-devtools");
-let pathToReactRedux = path.resolve(node_modules, "preact-redux");
+let pathToReactRedux = path.resolve(node_modules, "react-redux");
 
 console.log("====Webpack.config.js=====");
 /**
@@ -32,7 +32,7 @@ let chunks = {
     "react-transition-group",
     "redux",
     "react-router",
-    "preact-redux",
+    "react-redux",
     "react-router-dom",
     "hyphenation.en-us",
     "react-textfit",
@@ -108,8 +108,8 @@ module.exports = {
       assets: `${__dirname}/src/assets/`,
       fonts: `${__dirname}/src/styles/fonts/`,
 
-      react: "preact-compat",
-      "react-dom": "preact-compat"
+      react: "preact/compat",
+      "react-dom": "preact/compat"
     }
   },
   module: {

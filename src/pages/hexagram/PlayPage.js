@@ -1,7 +1,7 @@
 import isEmpty from 'lodash/isEmpty';
 
 import { Component } from 'preact';
-import { connect } from 'preact-redux';
+import { connect } from 'react-redux';
 
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 
@@ -26,8 +26,8 @@ class PlayPage extends Component {
 
   componentDidMount() {
     /** clear hexagram and question, if dirty */
-    if(this.props.hexagram != -1){ 
-      this.props.clearHexagram(); 
+    if(this.props.hexagram != -1){
+      this.props.clearHexagram();
       this.textarea.value = ""
     }
   }
@@ -51,7 +51,7 @@ class PlayPage extends Component {
             <div className="lblquestion">
               <h2 className="title lblquestion-appear lblquestion-appear-active" >Ask your question</h2>
             </div>
-            <div className="question"> 
+            <div className="question">
               <input ref={el => this.textarea = el} type="text" className="text" inputmode="text" spellcheck="false" tabindex="1"
                 ></input>
             </div>
@@ -70,11 +70,11 @@ class PlayPage extends Component {
 
   renderPreviewCard( opts={} ) {
     let { hexagram } = this.props;
-    
+
     if (!isEmpty(hexagram)) {
-      return (<HexagramInfoCard key={hexagram.number} 
-                                hexagram={hexagram} 
-                                display_trigrams 
+      return (<HexagramInfoCard key={hexagram.number}
+                                hexagram={hexagram}
+                                display_trigrams
                                 {...opts} />);
     } else {
       return (false);
@@ -110,7 +110,7 @@ class PlayPage extends Component {
       ev.preventDefault();
       ev.stopPropagation();
     }
-    
+
     this.props.clearHexagram();
 
     setTimeout( () => {
@@ -138,14 +138,14 @@ PlayPage.defaultProps = {
 
 export default withRouter(
   connect(
-    state => ({ 
+    state => ({
       hexagram: getHexagram( state.play_hexagram ),
-      preferences: state.preferences 
+      preferences: state.preferences
     }),
     dispatch => ({
         generateHexagram: () => (dispatch(actions.generateHexagram())),
         clearHexagram: () => {
-          dispatch(actions.clearHexagram()); 
+          dispatch(actions.clearHexagram());
         }
     })
   )(PlayPage)

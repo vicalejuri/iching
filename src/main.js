@@ -1,5 +1,7 @@
-import preact from "preact";
-import { Provider } from "preact-redux";
+import * as preact from "preact";
+import "preact/debug";
+
+import { Provider } from "react-redux";
 
 import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
@@ -7,7 +9,7 @@ import thunk from "redux-thunk";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import enquire from "enquire.js";
 
-import DefaultSettings from "./constants/settings.js";
+import DefaultSettings from "./constants/settings";
 import { getAsset, parseQS } from "./constants/utils";
 
 import { AppContainer } from "./pages";
@@ -20,7 +22,6 @@ import "./styles/main.scss";
 // err: error message
 // fileName: which file error occurs in
 // lineNumber: what line error occurs on
-import "preact/devtools";
 
 require("typeface-eb-garamond");
 
@@ -132,9 +133,9 @@ function bootstrap() {
   });
 }
 
-if (!__DEVELOPMENT__) {
-  // SW only on production
-  requestIdleCallback(registerSW);
-}
+// if (!__DEVELOPMENT__) {
+//   // SW only on production
+//   requestIdleCallback(registerSW);
+// }
 
 bootstrap();

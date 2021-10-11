@@ -1,20 +1,17 @@
-import preact from 'preact';
-import Router, {History, State} from 'react-router-dom';
-import { connect } from 'preact-redux'
+import preact from "preact";
+import Router, { History, State } from "react-router-dom";
+import { connect } from "react-redux";
 
-import * as HexagramActions from '../actions/HexagramActions';
+import * as HexagramActions from "../actions/HexagramActions";
 
 let Header = preact.createClass({
-    mixins: [History],
+  mixins: [History],
 
-    render() {
-        let info = [this.props.location, this.props.params]
+  render() {
+    let info = [this.props.location, this.props.params];
 
-        return (
-            <pre>{info}</pre>
-        );
-    },
+    return <pre>{info}</pre>;
+  }
+});
 
-})
-
-export default connect( state => ({}))(Header);
+export default connect(state => ({}))(Header);
