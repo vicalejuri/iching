@@ -1,9 +1,17 @@
-@import '../components/footer.scss';
+@import "../components/footer.scss";
 
-/* Wrapper 
+#app-mount {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Wrapper */
 .app-wrap {
-  display:flex;
-  flex-direction:column;
+  display: flex;
+  flex-direction: column;
 
   animation-name: slideFromBottom;
   animation-fill-mode: forwards;
@@ -15,26 +23,11 @@
   animation-iteration-count: 1;
 }
 
-@media (min-width: 768px) {
-  .app-wrap  {
-    max-width: 340px;
-    min-height: 578px;
-    height: 80vh;
-    margin: 5vh auto 5vh auto;
-
-    border:10px solid rgba(0,0,0,0.9);
-    border-bottom-width: 70px;
-    border-radius:10px;
-    box-shadow:0 0 50px rgba(0,0,0,0.60);
-    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.76), 0 2px 6px rgba(0, 0, 0, 0.77), 0 10px 20px rgba(0, 0, 0, 0.49); 
-  }
-}
-
 /*
   Overall Layout
 .app-wrap > * {
   flex:1 1 auto;
-  
+
 }
 
 
@@ -44,7 +37,7 @@
 
 .content {
   overflow-x: hidden;
-  /* Trick: https://css-tricks.com/snippets/css/momentum-scrolling-on-ios-overflow-elements/ 
+  /* Trick: https://css-tricks.com/snippets/css/momentum-scrolling-on-ios-overflow-elements/
   overflow-y:  overlay;
   -webkit-overflow-scrolling: touch;
 
