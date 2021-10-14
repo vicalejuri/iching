@@ -2,7 +2,7 @@ import Hypher from "hypher";
 
 /* Utils functions */
 export function getAsset(resource_path) {
-  return __PUBLIC_PATH__ + resource_path;
+  return `/${resource_path}`;
 }
 
 export function CSSVar(varName, rootCtx = document.body) {

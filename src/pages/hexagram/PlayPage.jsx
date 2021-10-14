@@ -1,7 +1,7 @@
 import isEmpty from "lodash/isEmpty";
 
 import { Component } from "preact";
-import { connect } from "preact-redux";
+import { connect } from "react-redux";
 
 import CSSTransitionGroup from "react-transition-group/CSSTransitionGroup";
 

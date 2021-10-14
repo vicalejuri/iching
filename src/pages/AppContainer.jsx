@@ -1,10 +1,9 @@
-import preact, { Component } from "preact";
+import { Component } from "preact";
 import classNames from "classnames";
 
-import { connect } from "preact-redux";
+import { connect } from "react-redux";
 
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { withRouter } from "react-router";
+import { HashRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 /*import Footer from "../components/Footer";*/
 import { PlayPage, DetailPage, AboutPage } from "./index";
@@ -22,9 +21,13 @@ class AppContainer extends Component {
           this.content = el;
         }}
       >
-        <Route exact path="/" component={PlayPage} />
-        <Route path="/about" component={AboutPage} />
-        <Route path="/details/:number" component={DetailPage} />
+        <Router>
+          <Switch>
+            <Route exact path="/" component={PlayPage} />
+            <Route path="/about" component={AboutPage} />
+            <Route path="/details/:number" component={DetailPage} />
+          </Switch>
+        </Router>
       </div>
     );
   }
@@ -39,4 +42,4 @@ AppContainer.defaultProps = {
   isMobile: true
 };
 
-export default withRouter(connect(null)(AppContainer));
+export default connect(null)(AppContainer);

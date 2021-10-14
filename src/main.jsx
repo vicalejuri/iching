@@ -1,13 +1,15 @@
-import preact from "preact";
-import { Provider } from "preact-redux";
+/* eslint-disable no-underscore-dangle */
+import * as preact from "preact";
+import "preact/debug";
+
+import { Provider } from "react-redux";
 
 import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import enquire from "enquire.js";
 
-import DefaultSettings from "./constants/settings.js";
+import DefaultSettings from "./constants/settings";
 import { getAsset, parseQS } from "./constants/utils";
 
 import { AppContainer } from "./pages";
@@ -20,7 +22,6 @@ import "./styles/main.scss";
 // err: error message
 // fileName: which file error occurs in
 // lineNumber: what line error occurs on
-import "preact/debug";
 
 import("typeface-eb-garamond");
 
@@ -45,9 +46,11 @@ import("typeface-eb-garamond");
  * Configure global store
  */
 function configureStore(initialState) {
+  // window.__REDUX_DEVTOOLS_EXTENSION__ = true;
   let fCreateStore = compose(
     applyMiddleware(thunk),
-    window.devToolsExtension ? window.devToolsExtension() : f => f
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    // window.devToolsExtension ? window.devToolsExtension() : f => f
   )(createStore);
 
   const store = fCreateStore(reducers, initialState);
@@ -87,9 +90,7 @@ function mediaqueries(forceMedia = false) {
 function start() {
   let app = preact.render(
     <Provider store={window.store}>
-      <Router>
-        <AppContainer />
-      </Router>
+      <AppContainer />
     </Provider>,
     document.querySelector("#app-mount > .app-wrap")
   );

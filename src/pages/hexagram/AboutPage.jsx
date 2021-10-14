@@ -1,5 +1,5 @@
-import preact, { Component } from "preact";
-import { connect } from "preact-redux";
+import { Component } from "preact";
+import { connect } from "react-redux";
 
 import { withRouter } from "react-router";
 
