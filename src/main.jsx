@@ -48,8 +48,8 @@ import("typeface-eb-garamond");
 function configureStore(initialState) {
   // window.__REDUX_DEVTOOLS_EXTENSION__ = true;
   let fCreateStore = compose(
-    applyMiddleware(thunk),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    applyMiddleware(thunk)
+    // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     // window.devToolsExtension ? window.devToolsExtension() : f => f
   )(createStore);
 
@@ -127,10 +127,15 @@ function bootstrap() {
   // Register layout changes
   mediaqueries(argv.media || false);
 
-  requestIdleCallback(() => {
+  const finish = () => {
     window.react = preact;
     window.app = start();
-  });
+  };
+  if (window.requestIdleCallback) {
+    requestIdleCallback(finish);
+  } else {
+    finish();
+  }
 }
 
 // if (!__DEVELOPMENT__) {
