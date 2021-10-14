@@ -71,8 +71,8 @@
 
         animation-name: opacity;
         animation-timing-function: ease-out;
-        animation-delay: 1s;
-        animation-duration: 0.4s;
+        animation-delay: 0.25s;
+        animation-duration: 0.3s;
         animation-fill-mode: both;
 
         & .text {
@@ -134,8 +134,8 @@
         transform: scale(1);
         transition: box-shadow 400ms ease-out;
 
-        animation: growElastic 600ms cubic-bezier(0.1, 1.28, 0.17, 1.41) 1 both;
-        animation-delay: 1500ms;
+        animation: growElastic 300ms cubic-bezier(0.1, 1.28, 0.17, 1.41) 1 both;
+        animation-delay: 370ms;
 
         &.down {
           animation: elastic-bounce-in 1000ms linear 1 both;

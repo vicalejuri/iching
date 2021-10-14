@@ -30,16 +30,11 @@
   opacity: 0;
 }
 
-.page-transition-appear.page-transition-appear-acti  ve {
+.page-transition-appear.page-transition-appear-active {
   opacity: 1;
   transform: translateX(0px);
   transition: all var(--time_trans) var(--quartOut_easing);
 }
-
-
-
-
-
 
 /*
  * Transition for hexagram-preview
@@ -57,7 +52,7 @@
 }
 
 .hexagram-preview-leave {
-  animation-duration: var(--time_trans);;
+  animation-duration: var(--time_trans);
   animation-timing-function: var(--quartOut_easing);
   animation-fill-mode: both;
   opacity: 0;
@@ -76,7 +71,6 @@
   animation-name: slideFromTop;
 }
 
-
 /*
  * Question animation
  */
@@ -84,7 +78,7 @@
   animation-duration: var(--time_trans);
   animation-timing-function: var(--quartOut_easing);
   animation-fill-mode: both;
-  animation-delay: 400ms;
+  // animation-delay: 200ms;
   opacity: 0;
   overflow: hidden;
 }
