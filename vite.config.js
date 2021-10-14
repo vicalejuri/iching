@@ -4,7 +4,7 @@ import react from "@vitejs/plugin-react";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  publicDir: "/src/assets",
+  publicDir: "./src/assets/",
   resolve: {
     alias: [
       { find: "react", replacement: "preact/compat" },

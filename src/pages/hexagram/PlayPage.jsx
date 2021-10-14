@@ -43,7 +43,7 @@ class PlayPage extends Component {
           <div className="infoArea">
             <div className="lblquestion">
               <h2 className="title lblquestion-appear lblquestion-appear-active">
-                Ask your question
+                Ask a question
               </h2>
             </div>
             <div className="question">
@@ -61,7 +61,7 @@ class PlayPage extends Component {
             <input
               type="submit"
               className="gongo"
-              value=""
+              value=" "
               ref={el => (this.gongo = el)}
               onPointerDown={this.onGongoHold}
               aria-label="Play"
