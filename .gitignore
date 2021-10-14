@@ -28,7 +28,6 @@ $RECYCLE.BIN/
 # App specific
 
 node_modules/
-yarn.lock
 .tmp
 dist
 build

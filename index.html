@@ -18,34 +18,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="mobile-web-app-capable" content="yes" />
 
-    <link rel="manifest" href="manifest.webmanifest" />
-
-    <link
-      rel="preload"
-      as="script"
-      type="text/javascript"
-      href="assets/book.js"
-    />
-    <link
-      rel="preload"
-      as="image"
-      type="image/svg+xml"
-      href="assets/fonts/yin_yang_filled.svg"
-    />
-    <link
-      rel="preload"
-      as="font"
-      type=""
-      href="assets/fonts/eb-garamond-latin-400.woff2"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="preload"
-      as="font"
-      type=""
-      href="assets/fonts/Cormorant-Italic.woff2"
-      crossorigin="anonymous"
-    />
+    <!-- <link rel="manifest" href="manifest.webmanifest" /> -->
 
     <!-- Social graph -->
     <meta property="og:title" content="I Ching" />
@@ -208,27 +181,21 @@
   <body>
     <div id="app-mount">
       <div class="app-wrap">
-        <noscript>
-          <h1>❌ Javascript required ❌</h1>
+        <noscript style="padding: 0.5em">
+          <h1>❌ Javascript required</h1>
           <p>
-            We're sorry, but IChing doesn't work without Javascript enabled.
+            Please enable javascript and reload the page.
           </p>
         </noscript>
       </div>
     </div>
 
-    <div id="copyleft"></div>
+    <div id="copyleft">
+      Built with 💚 &nbsp;by
+      <a href="https://twitter.com/vicalejuri" target="_blank">@vicalejuri</a>
+    </div>
 
-    <link
-      rel="preload"
-      href="assets/main.css"
-      as="style"
-      onload="this.rel='stylesheet'"
-    />
-    <noscript><link rel="stylesheet" href="assets/main.css"/></noscript>
-
-    <script type="text/javascript" src="assets/book.js" defer></script>
-    <script type="text/javascript" src="assets/vendor.js" defer></script>
-    <script type="text/javascript" src="assets/app.js" defer></script>
+    <script type="module" src="/src/assets/json/book.js"></script>
+    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

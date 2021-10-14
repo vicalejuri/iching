@@ -1,4 +1,4 @@
-import { ICHING_BOOK_LOADED } from '../constants/ActionTypes';
+import { ICHING_BOOK_LOADED } from "../constants/ActionTypes";
 
 // IChing book
 export function BookLoaded(state = false, action) {
