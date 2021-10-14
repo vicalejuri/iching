@@ -13,7 +13,10 @@
     "dev": "gulp dev-server",
     "build": "gulp build:dist",
     "scrape": "gulp scrape --inspect",
-    "gh-publish": "gulp gh-publish"
+    "gh-publish": "gulp gh-publish",
+    "vite-dev": "vite",
+    "vite-build": "vite build",
+    "vite-serve": "vite preview"
   },
   "mainInput": "main",
   "mainOutput": "main",

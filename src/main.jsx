@@ -20,9 +20,9 @@ import "./styles/main.scss";
 // err: error message
 // fileName: which file error occurs in
 // lineNumber: what line error occurs on
-import "preact/devtools";
+import "preact/debug";
 
-require("typeface-eb-garamond");
+import("typeface-eb-garamond");
 
 /**
  * Register (external) service worker
@@ -132,9 +132,9 @@ function bootstrap() {
   });
 }
 
-if (!__DEVELOPMENT__) {
-  // SW only on production
-  requestIdleCallback(registerSW);
-}
+// if (!__DEVELOPMENT__) {
+// SW only on production
+// requestIdleCallback(registerSW);
+// }
 
 bootstrap();

@@ -1,5 +1,5 @@
 import preact, { Component } from "preact";
-import classNames from 'classnames';
+import classNames from "classnames";
 
 import { connect } from "preact-redux";
 
@@ -10,7 +10,6 @@ import { withRouter } from "react-router";
 import { PlayPage, DetailPage, AboutPage } from "./index";
 
 class AppContainer extends Component {
-
   componentWillUpdate() {
     this.scrollToTop();
   }
@@ -37,7 +36,7 @@ class AppContainer extends Component {
 }
 
 AppContainer.defaultProps = {
-  isMobile: true,
-}
+  isMobile: true
+};
 
 export default withRouter(connect(null)(AppContainer));
