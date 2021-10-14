@@ -39,15 +39,6 @@ class PlayPage extends Component {
     //setTimeout( this.setFocus.bind(this) , 1350 );
     return (
       <div className="playpage-container">
-        <CSSTransitionGroup
-          className="iching-card"
-          transitionName="hexagram-preview"
-          transitionEnterTimeout={0}
-          transitionLeaveTimeout={0}
-        >
-          {this.renderPreviewCard({ onClick: this.goToHexagram.bind(this) })}
-        </CSSTransitionGroup>
-
         <form className="canvas" action="/" onSubmit={this.throwDices}>
           <div className="infoArea">
             <div className="lblquestion">
@@ -60,10 +51,9 @@ class PlayPage extends Component {
                 ref={el => (this.textarea = el)}
                 type="text"
                 className="text"
-                inputmode="text"
-                spellcheck="false"
-                tabindex="1"
-              ></input>
+                inputMode="text"
+                spellCheck="false"
+              />
             </div>
           </div>
 
@@ -75,7 +65,6 @@ class PlayPage extends Component {
               ref={el => (this.gongo = el)}
               onPointerDown={this.onGongoHold}
               aria-label="Play"
-              tabindex="2"
             />
             <audio
               ref={el => (this.gongosound = el)}
@@ -88,6 +77,7 @@ class PlayPage extends Component {
     );
   }
 
+  /** @deprecated */
   renderPreviewCard(opts = {}) {
     let { hexagram } = this.props;
 
@@ -117,7 +107,7 @@ class PlayPage extends Component {
     this.gongo.className = "gongo hit";
 
     // play sound
-    if (this.props.preferences["enable_gongosound"]) {
+    if (this.props.preferences.enable_gongosound) {
       let au = this.gongosound;
       if (au.play) {
         au.currentTime = 0.0;
@@ -139,7 +129,9 @@ class PlayPage extends Component {
 
     setTimeout(() => {
       //window.store.dispatch(HexagramActions.clearHexagram());
-      this.props.generateHexagram().then(() => {
+      this.props.generateHexagram().then(c => {
+        console.log("after", c);
+        console.log("hexagram", this.props.hexagram);
         this.setState({ already_played: true });
         this.goToHexagram();
       });
