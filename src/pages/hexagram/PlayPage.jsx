@@ -15,17 +15,13 @@ import * as actions from "../../actions/play";
 import HexagramInfoCard from "../../components/HexagramInfoCard";
 
 class PlayPage extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   getInitialState() {
     return { already_played: false };
   }
 
   componentDidMount() {
     /** clear hexagram and question, if dirty */
-    if (this.props.hexagram != -1) {
+    if (this.props.hexagram !== -1) {
       this.props.clearHexagram();
       this.textarea.value = "";
     }
@@ -36,19 +32,19 @@ class PlayPage extends Component {
   }
 
   render() {
-    //setTimeout( this.setFocus.bind(this) , 1350 );
     return (
       <div className="playpage-container">
         <form className="canvas" action="/" onSubmit={this.throwDices}>
           <div className="infoArea">
             <div className="lblquestion">
               <h2 className="title lblquestion-appear lblquestion-appear-active">
-                Ask a question
+                <label htmlFor="question">Ask a question</label>
               </h2>
             </div>
             <div className="question">
               <input
                 ref={el => (this.textarea = el)}
+                id="question"
                 type="text"
                 className="text"
                 inputMode="text"
